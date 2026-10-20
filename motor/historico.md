@@ -73,6 +73,35 @@ Ideias do banco usadas (riscar): 4 coisas que o site faz e o Instagram não · r
 
 O vídeo de 60 s feito pelo Claude para anúncio (mesmo roteiro da indicação, sem som) não foi postado no perfil: fica só para anúncio.
 
+## Virada de 20/10/2026 à tarde: perfil só de advocacia
+
+Entre 16:00 e 16:06 (Brasília) quase tudo que estava agendado da estreia, da bateria e alguns itens da semana de 26/10 foi publicado de uma vez (alguém usou "publicar agora" no Trypost), e o resto da semana de 26/10 foi puxado pra esta semana. Às 16:08 o Matheus pediu: tirar tudo de barbearia (dois nichos no mesmo feed confundiam), não postar o vídeo falado dele, postar e fixar o vídeo de 60 s do Claude e variar o formato dos posts.
+
+**Apagado do Instagram (pelo navegador; fica 30 dias em "Excluídos recentemente"):** reel clube de assinatura, reel tour da barbearia, link do app, 5 coisas da barbearia, de onde vem o cliente novo, fixado da barbearia, vídeo falado da indicação, como funciona (tinha barbearia), preços (tinha barbearia), três jeitos (chamada com barbearia), 6 dúvidas (chamada com barbearia) e os stories com barbearia ou de posts apagados.
+**Apagado da agenda do Trypost:** reel tabela da barbearia, carrossel preço da barbearia, landing ou site (cards com barbearia) e os stories ligados a eles.
+**Ficou no feed (advocacia):** pesquisa no Google (P4), OAB (P5), reel guia (R2), site abre no celular (p10), o que o cliente digita no Google (b06), 4 coisas que só o site faz (b04), reel tour do modelo 2 (b07), fixado "este é o site do seu escritório" (b01).
+**Bio nova:** "Sites para escritórios de advocacia, seguindo o Provimento 205/2021. No ar em até 2 dias úteis. Você só paga depois de aprovar."
+
+**Postado e agendado na sequência (formatos variados):**
+
+| Quando | Formato | Capa | Tema / gancho | Pasta no repo |
+|---|---|---|---|---|
+| Ter 20/10 16:32 | Reel 60 s | vídeo | Vídeo de anúncio de 60 s (indicação sem site), final trocado de "clica no botão" para "o link está no perfil", 9:16 (FIXADO) | posts/2026-10-20-b10-reel-60s |
+| Ter 20/10 16:45 | Carrossel 6 | site antigo x celular | O site do seu escritório ainda parece de 2015? | posts/2026-10-20-n4-antes-depois |
+| Ter 20/10 17:00 | Carrossel 6 | tweet em papel | 4 desculpas pra adiar o site e a resposta pra cada uma | posts/2026-10-20-n5-desculpas |
+| Ter 20/10 17:15 | Carrossel 5 | só texto, fundo escuro | Quanto custa o site do seu escritório? Sem letra miúda | posts/2026-10-20-n3-precos-adv |
+| Ter 20/10 17:30 | Carrossel 8 | conversa de WhatsApp | Advogado, as 6 dúvidas de sempre. Respondidas | posts/2026-10-20-n2-duvidas-adv |
+| Ter 20/10 17:45 | Carrossel 7 | só texto, fundo laranja | R$ 0 pra começar. Você só paga depois de aprovar (como funciona) (FIXADO) | posts/2026-10-20-n1-como-funciona |
+| Qua 21/10 19:40 | Carrossel 5 | checklist em papel | O site do seu escritório tem estes 7 itens? | posts/2026-10-21-n6-checklist |
+| Sex 23/10 19:40 | Carrossel 6 | só texto escuro + carimbos | 3 mitos sobre site de advogado | posts/2026-10-23-n7-mitos |
+
+Ainda agendados de antes: artigo no site (p12) qui 22/10 19:40, reel INSS (r05) sáb 24/10 10:40 e stories soltos de advocacia.
+
+**Fixados:** reel de 60 s, "este é o site do seu escritório" (b01) e "R$ 0 pra começar" (n1).
+
 ## Decisões
 - 20/10: feed de seg a sex às 19:40 na primeira semana automática; na semana de 02/11 testar 13:10.
 - 20/10: fixados do perfil passam a ser o reel da indicação e os dois carrosséis "este é o site do seu escritório / da sua barbearia".
+- 20/10 tarde: Instagram só de advocacia. Barbearia fora do perfil (segue no porta a porta).
+- 20/10 tarde: variar formato de capa e fundo; nunca duas capas iguais seguidas (regra no LEIA-ME, seção 4).
+- 20/10 tarde: vídeo falado do Matheus não vai pro perfil; o vídeo de 60 s do Claude vai, fixado.
