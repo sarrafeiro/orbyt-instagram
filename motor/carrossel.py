@@ -123,14 +123,67 @@ ul.lista li small{{display:block;font-size:27px;color:var(--ardosia);margin-top:
 .applink .lin{{background:#fff;border-radius:14px;padding:16px;display:flex;justify-content:space-between;font-size:19px;color:#555}}
 .applink .lin em{{font-style:normal;color:#888}}
 .applink .btn{{margin-top:auto;background:#9AA0A6;color:#fff;border-radius:12px;text-align:center;padding:16px;font-size:20px}}
+
+/* ===== variações de formato (20/10) ===== */
+body.laranja{{background:var(--sinal);color:#fff}}
+.laranja .olho{{color:var(--grafite)}}
+.laranja h1 em{{color:var(--grafite)}}
+.laranja .sub{{color:#FFE7DD}} .laranja .sub b{{color:#fff}}
+.laranja .marca span{{color:#FFD9C9}} .laranja .cont,.laranja .arraste{{color:#FFE0D1}}
+.laranja .barra{{background:rgba(255,255,255,.3)}} .laranja .barra i{{background:#fff}}
+body.papel{{background:#fff;background-image:linear-gradient(#EEF1F4 1.5px,transparent 1.5px);background-size:100% 64px}}
+.gigante .miolo{{justify-content:center}}
+.gigante h1{{font-size:var(--t,132px);line-height:.94;letter-spacing:-.045em}}
+.gigante .sub{{font-size:var(--s,40px)}}
+.selo{{display:inline-block;align-self:flex-start;font-family:M;font-size:22px;letter-spacing:.06em;text-transform:uppercase;border:2px solid currentColor;border-radius:999px;padding:12px 22px;margin-bottom:34px}}
+.rodape{{font-family:M;font-size:22px;letter-spacing:.06em;text-transform:uppercase;margin-top:44px;opacity:.75}}
+/* tweet */
+.tweet{{width:100%;background:#fff;color:var(--grafite);border-radius:34px;padding:46px 48px;box-shadow:0 40px 70px -40px rgba(22,24,27,.45),0 0 0 1.5px var(--linha)}}
+.tweet .quem{{display:flex;align-items:center;gap:18px;margin-bottom:26px}}
+.tweet .quem svg{{width:70px;height:70px}}
+.tweet .quem b{{display:block;font-size:32px;font-weight:600}}
+.tweet .quem span{{display:block;font-size:26px;color:var(--ardosia)}}
+.tweet p{{font-family:I;font-size:var(--tw,46px);line-height:1.28;margin:0}}
+.tweet p em{{font-style:normal;color:var(--sinal);font-weight:600}}
+.tweet small{{display:block;margin-top:26px;font-family:M;font-size:20px;color:var(--ardosia);letter-spacing:.04em}}
+/* número gigante */
+.numero{{display:flex;flex-direction:column;align-items:flex-start;gap:10px}}
+.numero strong{{font-family:M;font-weight:600;font-size:var(--nz,250px);letter-spacing:-.06em;line-height:.85}}
+.numero span{{font-size:36px;color:inherit;opacity:.8;max-width:820px;line-height:1.3}}
+/* site antigo */
+.velho{{width:100%;background:#d4d0c8;border:3px solid #808080;font-family:"Times New Roman",serif;color:#000}}
+.velho .bar{{background:#000080;color:#fff;font-family:Arial,sans-serif;font-size:20px;padding:6px 10px;display:flex;justify-content:space-between}}
+.velho .pg{{background:#fff;margin:10px;padding:18px 20px;min-height:380px}}
+.velho h3{{font-size:40px;color:#800000;text-align:center;margin:0 0 6px;font-weight:bold}}
+.velho .mq{{background:#ffff99;border:1px dashed #999;font-size:20px;padding:6px;text-align:center;margin:10px 0}}
+.velho table{{width:100%;font-size:20px;border-collapse:collapse}}
+.velho td{{border:1px solid #999;padding:6px 8px;vertical-align:top}}
+.velho a{{color:#0000ee;text-decoration:underline}}
+.velho .cnt{{font-family:"Courier New",monospace;font-size:18px;text-align:center;margin-top:12px;color:#444}}
+.velho .obra{{display:inline-block;background:repeating-linear-gradient(45deg,#ffcc00 0 14px,#000 14px 28px);color:#fff;font-family:Arial;font-weight:bold;font-size:18px;padding:6px 10px;text-shadow:0 0 3px #000}}
+/* checklist */
+ul.check{{list-style:none;display:grid;gap:22px;width:100%}}
+ul.check{{gap:30px}} ul.check li{{display:flex;gap:28px;align-items:flex-start;font-size:50px;line-height:1.18}}
+ul.check li i{{flex:none;width:64px;height:64px;border:4px solid var(--grafite);border-radius:12px;margin-top:-2px;display:grid;place-items:center;font-style:normal;font-family:M;font-weight:700;font-size:34px;color:var(--sinal)}}
+ul.check li small{{display:block;font-size:32px;color:var(--ardosia);margin-top:6px}}
+/* carimbo */
+.carimbo{{display:inline-block;align-self:flex-start;font-family:M;font-weight:700;font-size:64px;letter-spacing:.12em;padding:14px 34px;border:7px solid currentColor;border-radius:16px;transform:rotate(-6deg);margin-bottom:40px}}
+.carimbo.mito{{color:#D93B16}} .carimbo.verdade{{color:#1F7A3D}}
+/* antes e depois */
+.par{{display:grid;grid-template-columns:1fr 1fr;gap:30px;width:100%;align-items:end}}
+.par .rot{{font-family:M;font-size:22px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}}
+.par .rot.a{{color:#D93B16}} .par .rot.b{{color:var(--sinal)}}
 """
 
-LOGO = '<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="10.5" fill="none" stroke="currentColor" stroke-width="3.4"/><circle cx="24.4" cy="8.6" r="4.8" fill="{bg}"/><circle cx="24.4" cy="8.6" r="3.1" fill="#FF5A1F"/></svg>'
+LOGO = '<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="10.5" fill="none" stroke="currentColor" stroke-width="3.4"/><circle cx="24.4" cy="8.6" r="4.8" fill="{bg}"/><circle cx="24.4" cy="8.6" r="3.1" fill="{dot}"/></svg>'
 
-def orbita(escuro, alto=1350, ponto=True):
-    c = 'rgba(241,243,245,.07)' if escuro else 'rgba(22,24,27,.07)'
+def orbita(tema, alto=1350, ponto=True):
+    if tema is True: tema = 'escuro'
+    if tema is False: tema = 'claro'
+    c = {'escuro': 'rgba(241,243,245,.07)', 'laranja': 'rgba(255,255,255,.18)'}.get(tema, 'rgba(22,24,27,.07)')
+    dot = '#16181B' if tema == 'laranja' else '#FF5A1F'
     return f'''<svg class="orbita" viewBox="0 0 1080 {alto}"><circle cx="1010" cy="{alto*0.22:.0f}" r="560" fill="none" stroke="{c}" stroke-width="2"/>
-    {'<circle cx="%.0f" cy="%.0f" r="9" fill="#FF5A1F" opacity=".9"/>' % (1010-560*0.7071, alto*0.22+560*0.7071) if ponto else ''}</svg>'''
+    {'<circle cx="%.0f" cy="%.0f" r="9" fill="%s" opacity=".9"/>' % (1010-560*0.7071, alto*0.22+560*0.7071, dot) if ponto else ''}</svg>'''
 
 def cel(img, chip=None, ch=None):
     c = f'<span class="chip"><i></i>{chip}</span>' if chip else ''
@@ -175,22 +228,57 @@ def applink(ch=None, chip=None, linhas=('Corte', 'Barba', 'Corte + barba', 'Sobr
     l = ''.join(f'<div class="lin">{x}<em>ver horários</em></div>' for x in linhas)
     return f'<div class="applink cel"{st}>{c}<div class="tela"><div class="cab"><b></b><div><span></span><span></span></div></div>{l}<div class="btn">Agendar</div></div></div>'
 
+
+AV = '<svg viewBox="0 0 54 54"><circle cx="27" cy="27" r="27" fill="#16181B"/><g transform="translate(27 27) scale(1.05) translate(-16 -16)"><circle cx="16" cy="16" r="10.5" fill="none" stroke="#F1F3F5" stroke-width="3.4"/><circle cx="24.4" cy="8.6" r="4.8" fill="#16181B"/><circle cx="24.4" cy="8.6" r="3.1" fill="#FF5A1F"/></g></svg>'
+
+def tweet(texto, data='20 out 2026', tam=None):
+    st = f' style="--tw:{tam}px"' if tam else ''
+    return f'<div class="tweet"{st}><div class="quem">{AV}<div><b>Orbyt Studio</b><span>@orbyt_studio</span></div></div><p>{texto}</p><small>{data}</small></div>'
+
+def numero(valor, rotulo, tam=None):
+    st = f' style="--nz:{tam}px"' if tam else ''
+    return f'<div class="numero"{st}><strong>{valor}</strong><span>{rotulo}</span></div>'
+
+def site_antigo(nome='Escritório Modelo Advogados Associados'):
+    return ('<div class="nav"><div class="barra-nav"><b></b><b></b><b></b><div class="url">www.escritoriomodelo.adv.br/index.htm</div></div>'
+            f'<div class="velho"><div class="bar"><span>Bem-vindo!!!</span><span>Melhor visualizado em 800x600</span></div><div class="pg">'
+            f'<h3>{nome}</h3><div class="mq">*** Seja bem-vindo ao nosso site *** Atualizado em 2015 ***</div>'
+            '<table><tr><td><a>Home</a><br><a>Quem somos</a><br><a>Áreas</a><br><a>Contato</a></td>'
+            '<td>Atuamos nas mais diversas áreas do Direito com ética e compromisso. Para mais informações entre em contato pelo telefone fixo em horário comercial.<br><br><span class="obra">EM CONSTRUÇÃO</span></td></tr></table>'
+            '<div class="cnt">Você é o visitante nº 000123</div></div></div></div>')
+
+def checklist(itens, marcados=0):
+    li = ''
+    for k, it in enumerate(itens):
+        a, b = (it if isinstance(it, tuple) else (it, ''))
+        li += f'<li><i>{"✓" if k < marcados else ""}</i><div>{a}{f"<small>{b}</small>" if b else ""}</div></li>'
+    return f'<ul class="check">{li}</ul>'
+
+def par(antes, depois, rot_a='Antes', rot_b='Depois'):
+    return f'<div class="par"><div><div class="rot a">{rot_a}</div>{antes}</div><div><div class="rot b">{rot_b}</div>{depois}</div></div>'
+
 def pagina(card, i, n, story=False):
     tipo = card.get('tipo', 'passo')
-    escuro = tipo == 'final' or card.get('escuro')
-    bg = '#16181B' if escuro else '#F1F3F5'
+    tema = card.get('tema') or ('escuro' if (tipo == 'final' or card.get('escuro')) else 'claro')
+    escuro = tema == 'escuro'
+    bg = {'escuro': '#16181B', 'laranja': '#FF5A1F', 'papel': '#FFFFFF'}.get(tema, '#F1F3F5')
+    dot = '#16181B' if tema == 'laranja' else '#FF5A1F'
     alto = 1920 if story else 1350
-    cls = ('escuro ' if escuro else '') + ('story' if story else '')
+    cls = ('' if tema == 'claro' else tema + ' ') + ('gigante ' if (tipo == 'texto' or card.get('gigante')) else '') + ('story' if story else '')
     t = card.get('t'); s = card.get('s')
     estilo = ''
     if t: estilo += f'--t:{t}px;'
     if s: estilo += f'--s:{s}px;'
-    topo = f'<div class="topo"><div class="marca">{LOGO.format(bg=bg)}Orbyt <span>Studio</span></div><div class="cont">{i:02d}/{n:02d}</div></div>'
+    topo = f'<div class="topo"><div class="marca">{LOGO.format(bg=bg, dot=dot)}Orbyt <span>Studio</span></div><div class="cont">{i:02d}/{n:02d}</div></div>'
     pe = '' if story else (f'<div class="pe"><div class="barra"><i style="width:{i/n*100:.1f}%"></i></div>'
           + ('<div class="arraste">arraste →</div>' if i < n else '<div class="arraste">link no perfil</div>') + '</div>')
-    corpo = card.get('olho', '') and f'<div class="olho">{card["olho"]}</div>'
+    corpo = ''
+    if card.get('carimbo'): corpo += f'<div class="carimbo {card["carimbo"][1]}">{card["carimbo"][0]}</div>'
+    if card.get('selo'): corpo += f'<div class="selo">{card["selo"]}</div>'
+    corpo += card.get('olho', '') and f'<div class="olho">{card["olho"]}</div>'
     corpo += f'<h1>{card["titulo"]}</h1>'
     if card.get('texto'): corpo += f'<p class="sub">{card["texto"]}</p>'
+    if card.get('rodape'): corpo += f'<div class="rodape">{card["rodape"]}</div>'
     if tipo == 'final':
         corpo += f'<div class="preco"><strong>{card["preco"]}</strong><span>{card["preco_nota"]}</span></div>'
         corpo += '<ul class="checks">' + ''.join(f'<li>{x}</li>' for x in card['checks']) + '</ul>'
@@ -198,7 +286,7 @@ def pagina(card, i, n, story=False):
     if card.get('visual'):
         corpo += f'<div class="visual{" centro" if card.get("centro") else ""}">{card["visual"]}</div>'
     return f'''<!doctype html><html class="{'story' if story else ''}"><head><meta charset="utf-8"><style>{CSS}</style></head>
-<body class="{cls}" style="{estilo}">{orbita(escuro, alto, card.get('ponto', tipo != 'final'))}{topo}<div class="miolo">{corpo}</div>{pe}</body></html>'''
+<body class="{cls}" style="{estilo}">{orbita(tema, alto, card.get('ponto', tipo not in ('final', 'texto')))}{topo}<div class="miolo">{corpo}</div>{pe}</body></html>'''
 
 def render(spec_path):
     spec = importlib.util.spec_from_file_location('spec', spec_path); m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
