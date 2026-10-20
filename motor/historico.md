@@ -24,6 +24,31 @@ Frases de story já usadas: "A gente trabalha primeiro. Você paga depois." · "
 
 ### Números da estreia
 (preencher na tarefa de 25/10)
+- Medição de 20/10 (15:20 UTC): nenhum post da conta Orbyt publicado ainda (o primeiro sai 20/10 19:40). `list-posts-tool` com status published e canal da Orbyt devolveu 0. Sem dado.
+
+## Semana 26/10 a 01/11/2026
+
+Produzida e agendada pela tarefa semanal em 20/10. Feed às 19:40 de seg a sex (o teste das 13:10 fica para a semana de 02/11).
+
+| Quando | Formato | Nicho | Tema / gancho | Pasta no repo |
+|---|---|---|---|---|
+| Seg 26/10 19:40 | Carrossel 7 | Advocacia | Advogado, seu site abre direito no celular? (teste de 1 minuto) | posts/2026-10-26-p10-adv-celular |
+| Ter 27/10 19:40 | Reel 22 s | Barbearia | Barbeiro, seu cliente quer saber o preço antes de ir. (mais pedidos, tabela com 38 serviços, filtro) | posts/2026-10-27-r04-barb-tabela |
+| Qua 28/10 19:40 | Carrossel 7 | Geral | Landing page ou site? Qual é o seu caso. (R$ 399 x R$ 797) | posts/2026-10-28-p11-landing-ou-site |
+| Qui 29/10 19:40 | Carrossel 7 | Advocacia | Advogado, pode publicar artigo no site do escritório? Pode. (Provimento 205/2021, 3 ideias de artigo) | posts/2026-10-29-p12-adv-artigo |
+| Sex 30/10 19:40 | Carrossel 7 | Barbearia | Barbeiro, cliente que não acha seu preço vai pra outra barbearia. | posts/2026-10-30-p13-barb-preco |
+| Sáb 31/10 10:40 | Reel 21 s | Advocacia | Advogado, seu cliente tem dúvida sobre o INSS. O seu site responde? (guia por assunto no modelo 2, caminho INSS) | posts/2026-10-31-r05-adv-inss |
+
+Stories (pasta stories/2026-10-26): seg 08:10 s01 clube de assinatura no celular · seg 13:10 s02 frase "Sem entrada. Sem mensalidade." · ter 08:10 s03 dúvida "O site fica no nome de quem? No seu." · ter 13:10 s04 post p10 · qua 08:10 s05 guia advocacia no celular · qua 13:10 s06 reel r04 (tabela) · qui 08:10 s07 frase landing R$ 399 · qui 13:10 s08 post p11 · sex 08:10 s09 bastidor "Você manda o nome. A gente monta o resto." · sex 13:10 s10 post p12 · sáb 09:10 s11 post p13 · sáb 20:10 s12 reel r05 (INSS) · dom 10:10 s13 equipe com OAB · dom 19:10 s14 antes e depois.
+
+Frases de story usadas nesta semana: "Sem entrada. Sem mensalidade." · "O site fica no nome de quem? No seu." · "Uma página. Um objetivo." (R$ 399) · "Você manda o nome. A gente monta o resto." · "Equipe com nome e OAB passa confiança." · "O seu corte vende sozinho." · "Preço de tudo, num toque só."
+
+Ideias do banco usadas (riscar): site abre no celular · pode publicar artigo · cliente não acha seu preço · reel tabela de serviços · reel guia por assunto em outro caminho · landing page ou site.
+
+Prints novos em motor/prints: adv1-cel/desk-conteudo, adv1-cel/desk-duvidas, barb-cel/desk-tabela (script posts/capt_s2026_10_26.py), adv2-cel-guia-inss (quadro do reel r05).
+
+### Números da semana 26/10
+(preencher na tarefa seguinte)
 
 ## Decisões
 - 20/10: feed de seg a sex às 19:40 na primeira semana automática; na semana de 02/11 testar 13:10.

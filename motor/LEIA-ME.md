@@ -88,6 +88,12 @@ Geral
 - Por que a gente monta antes de você pagar.
 - Do pedido ao site no ar em 5 passos (variação do post fixado, com outro visual).
 
+Ideias novas (acrescentadas em 20/10)
+- Reel advocacia: guia por assunto no caminho Família (divórcio, guarda, pensão).
+- Carrossel barbearia: as dúvidas que o site responde sozinho (prints `barb-cel-duvidas`).
+- Carrossel advocacia: dúvidas frequentes do escritório no site (print `adv1-cel-duvidas`).
+- Story: tabela de serviços com busca (print `barb-cel-tabela`).
+
 ## 5. Produzir
 
 Copie um arquivo de `motor/posts/` como base, troque o texto, rode.
