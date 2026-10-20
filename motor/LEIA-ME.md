@@ -55,6 +55,8 @@ Stories de segunda a sábado: o que sai **depois** do feed do dia é o "post nov
 
 ## 4. Pauta
 
+**Antes de tudo, veja se a semana já está pronta:** `list-posts-tool` com os agendados da semana alvo (segunda 00:00 a domingo 23:59, horário de Brasília). Se já tiver 20 agendados, não produza nada: só meça (seção 8), atualize o histórico e avise. Se tiver alguns, produza só os horários que faltam.
+
 Escolha 6 temas que não estão no histórico. Pilares: vitrine/prova 30%, dor do nicho 25%, oferta e mecanismo 20%, educação salvável 15%, bastidor 10%. Banco de ideias (risque no histórico o que usar, e acrescente ideias novas no fim desta lista quando tiver):
 
 Advocacia
