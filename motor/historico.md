@@ -25,6 +25,7 @@ Frases de story já usadas: "A gente trabalha primeiro. Você paga depois." · "
 ### Números da estreia
 (preencher na tarefa de 25/10)
 - Medição de 20/10 (15:20 UTC): nenhum post da conta Orbyt publicado ainda (o primeiro sai 20/10 19:40). `list-posts-tool` com status published e canal da Orbyt devolveu 0. Sem dado.
+- Medição de 20/10 (15:30 UTC, execução de teste): estreia ainda em publicação, sem números. Semana 26/10 já estava com 20 agendados, nada produzido de novo.
 
 ## Semana 26/10 a 01/11/2026
 
