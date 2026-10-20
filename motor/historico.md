@@ -51,5 +51,28 @@ Prints novos em motor/prints: adv1-cel/desk-conteudo, adv1-cel/desk-duvidas, bar
 ### Números da semana 26/10
 (preencher na tarefa seguinte)
 
+## Bateria extra de 20/10/2026 (9 posts para tirar o perfil do chão)
+
+Pedido do Matheus: 9 posts extras no mesmo dia, além da estreia, com 2 carrosséis e 1 vídeo para fixar. Publicados de 15:05 a 17:45, de 20 em 20 minutos.
+
+| Quando | Formato | Nicho | Tema / gancho | Pasta no repo |
+|---|---|---|---|---|
+| Ter 20/10 15:05 | Carrossel 7 | Advocacia | Advogado, olha o que o seu cliente digita no Google. (4 pesquisas e o que cada uma pede do site) | posts/2026-10-20-b06-adv-google |
+| Ter 20/10 15:25 | Reel 18 s | Barbearia | Barbeiro, o clube de assinatura no seu site. | posts/2026-10-20-b08-reel-barb-clube |
+| Ter 20/10 15:45 | Carrossel 8 | Geral | As 6 dúvidas que todo mundo tem. Respondidas. (conversa de WhatsApp) | posts/2026-10-20-b03-duvidas |
+| Ter 20/10 16:05 | Carrossel 7 | Advocacia | Advogado, o Instagram ajuda. Mas 4 coisas só o site faz. | posts/2026-10-20-b04-adv-so-o-site |
+| Ter 20/10 16:25 | Carrossel 7 | Barbearia | Barbeiro, de onde vem o seu cliente novo? (Google, Instagram, indicação) | posts/2026-10-20-b05-barb-cliente-novo |
+| Ter 20/10 16:45 | Reel 21 s | Advocacia | Advogado, olha o site do seu escritório. (tour do modelo 2: áreas, equipe, método) | posts/2026-10-20-b07-reel-adv-tour |
+| Ter 20/10 17:05 | Carrossel 8 | Barbearia | Barbeiro, este é o site da sua barbearia. (FIXADO) | posts/2026-10-20-b02-fixado-barb |
+| Ter 20/10 17:25 | Carrossel 8 | Advocacia | Advogado, este é o site do seu escritório. (FIXADO) | posts/2026-10-20-b01-fixado-adv |
+| Ter 20/10 17:45 | Reel 67 s | Advocacia | Vídeo com apresentador feito pelo Matheus: indicação sem site profissional (FIXADO). Cortado antes do "clica no botão aqui embaixo" (só existe no anúncio) e com cartão final "o link está no perfil". | posts/2026-10-20-b09-reel-indicacao |
+
+**Fixados do perfil (substitui o plano anterior de fixar P1, R2 e R3):** reel da indicação, carrossel fixado de advocacia e carrossel fixado de barbearia.
+
+Ideias do banco usadas (riscar): 4 coisas que o site faz e o Instagram não · reel clube de assinatura de perto.
+
+O vídeo de 60 s feito pelo Claude para anúncio (mesmo roteiro da indicação, sem som) não foi postado no perfil: fica só para anúncio.
+
 ## Decisões
 - 20/10: feed de seg a sex às 19:40 na primeira semana automática; na semana de 02/11 testar 13:10.
+- 20/10: fixados do perfil passam a ser o reel da indicação e os dois carrosséis "este é o site do seu escritório / da sua barbearia".
