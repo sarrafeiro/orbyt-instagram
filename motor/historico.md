@@ -27,7 +27,12 @@ Frases de story já usadas: "A gente trabalha primeiro. Você paga depois." · "
 - Medição de 20/10 (15:20 UTC): nenhum post da conta Orbyt publicado ainda (o primeiro sai 20/10 19:40). `list-posts-tool` com status published e canal da Orbyt devolveu 0. Sem dado.
 - Medição de 20/10 (15:30 UTC, execução de teste): estreia ainda em publicação, sem números. Semana 26/10 já estava com 20 agendados, nada produzido de novo.
 
-## Semana 26/10 a 01/11/2026
+## Mudança de 20/10 (pedido do Matheus)
+- 20/10 às 16h: os 9 posts da estreia, os 11 stories da estreia e a bateria de 9 posts de outra sessão saíram todos de uma vez, pra popular o perfil. Um story (s07) falhou com "Media not found" e foi postado de novo.
+- A semana abaixo foi puxada 7 dias pra trás: o que era de seg 26 e os stories de ter 27 saíram em 20/10 às 16h; o resto roda de 20/10 (reel r04 às 19:40) até dom 25/10, mesmos horários da tabela. Datas reais = datas abaixo menos 7 dias.
+- A tarefa automática roda todo domingo 16:54, mede a semana e agenda a seguinte. Primeira: 25/10, produz 26/10 a 01/11.
+
+## Semana 26/10 a 01/11/2026 (saiu de 20/10 a 25/10)
 
 Produzida e agendada pela tarefa semanal em 20/10. Feed às 19:40 de seg a sex (o teste das 13:10 fica para a semana de 02/11).
 
