@@ -13,7 +13,7 @@ CARDS = [
     dict(olho='Desculpa 1', titulo='"Já tenho Instagram."',
          visual=tweet('O Instagram mostra o dia a dia. <em>O site mostra preço, clube e agenda</em> pra quem te achou no Google.', data=D), centro=True, ponto=False),
     dict(tema='escuro', olho='Desculpa 2', titulo='"Site é caro."',
-         visual=tweet('Site com modelo de barbearia: <em>R$ 399, uma vez só.</em> Menos que 9 cortes de R$ 45.', data=D), centro=True, ponto=False),
+         visual=tweet('Site com modelo de barbearia: <em>R$ 399, uma vez só.</em> Menos que 5 cortes de R$ 80.', data=D), centro=True, ponto=False),
     dict(olho='Desculpa 3', titulo='"Não tenho tempo pra isso."',
          visual=tweet('Você manda o nome da barbearia e responde um formulário curto. <em>O resto é com a gente.</em>', data=D), centro=True, ponto=False),
     dict(tema='laranja', olho='Desculpa 4', titulo='"E se ficar ruim?"',

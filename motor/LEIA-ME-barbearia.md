@@ -22,7 +22,7 @@ Estratégia geral do Instagram: arquivo `brain/16-instagram-orbyt.md` no projeto
 - **Site com modelo de barbearia: R$ 399**, preço fechado, em até 2 dias úteis.
 - **Landing page: R$ 199**, preço fechado, em até 2 dias úteis.
 - Site 100% personalizado a partir de R$ 1.497, em até 5 dias úteis.
-- Conta pronta pra usar: R$ 399 é menos que 9 cortes de R$ 45 (9 × 45 = 405).
+- **Argumento de preço (regra do Matheus): "custa menos que 5 cortes".** R$ 40 é corte de entrada; em barbearia boa o corte passa de R$ 80 (o Matheus paga R$ 120). Conta pronta: 5 cortes de R$ 80 dão R$ 400. Use isso em carrossel, story, reel e legenda. Nunca "9 cortes" nem "18 cortes".
 - R$ 0 pra começar. O cliente vê o site pronto num link da Orbyt, pede até 2 ajustes e **só paga depois de aprovar**, uma vez, Pix ou cartão parcelado. Sem entrada, sem mensalidade.
 - A publicação é feita em chamada, numa conta do próprio cliente: o site fica no nome dele.
 - O site de barbearia tem: botão Agendar na primeira tela (leva pro app que ele já usa ou direto pro WhatsApp), tabela de serviços com preço, clube de assinatura com a economia, antes e depois dos cortes (o cliente arrasta), equipe com agendar direto com o barbeiro, espaço, avaliações, produtos, dúvidas e como chegar.
@@ -30,6 +30,8 @@ Estratégia geral do Instagram: arquivo `brain/16-instagram-orbyt.md` no projeto
 - Objeção principal: "já tenho o link do app". Resposta: o app agenda, o site vende.
 - LP de barbearia: orbytstudio.com.br/barbearias. O site geral da Orbyt mostra outro preço (R$ 797): o Matheus sabe e aceitou. Nos posts desta conta vale sempre R$ 399 e R$ 199.
 - WhatsApp da Orbyt: (31) 99073-0997. Base em BH, atende o Brasil todo.
+
+**Carro-chefe do conteúdo: o antes e depois que o cliente arrasta com o dedo.** É o que o mini diagnóstico é para a conta de advocacia: o diferencial que mais vende. Regra: **pelo menos 2 dos 6 posts da semana mostram o arrastar** (reel arrastando os 3 cortes `#ba1`, `#ba2`, `#ba3`, carrossel com o print `barb-cel-antes-depois`, ou `par` antes e depois), e pelo menos 1 story por semana também. O reel de base é `posts-barb/bb07_reel_antes_depois.py`. Ganchos que funcionam: "o seu corte vende sozinho", "o cliente arrasta e vê a diferença", "o seu trabalho convence melhor que qualquer texto".
 
 ## 2. Preparar a sessão
 
@@ -58,7 +60,11 @@ Total: 6 feed + 14 stories = 20. Stories: o das 13:10 anuncia o post da véspera
 
 Escolha 6 temas que não estão no histórico. Pilares: vitrine/prova 30%, dor 25%, oferta e mecanismo 20%, educação salvável 15%, bastidor 10%. Banco de ideias (risque no histórico o que usar e acrescente ideias novas no fim):
 
-- Antes e depois: o seu corte vende sozinho (o cliente arrasta e compara). Carrossel `par` ou reel arrastando os 3 cortes (`#ba1`, `#ba2`, `#ba3`).
+- (CARRO-CHEFE) Carrossel antes e depois: "o seu corte vende sozinho", um corte por card (degradê, barba, cacheado) e o botão Agendar no fim.
+- (CARRO-CHEFE) Reel: o cliente arrasta, vê o corte e toca em Agendar (mostrar a mensagem chegando no WhatsApp).
+- (CARRO-CHEFE) Story: print do antes e depois com "arrasta pra comparar".
+- Reel pronto e ainda não publicado: `barbearia/pronto-sem-data/bb06-reel-antes-de-ir/reel.mp4` (equipe, espaço, avaliações e como chegar; legenda `bb06-reel-antes-de-ir` em `legendas_barb_estreia.py`). Use numa das próximas semanas e mova a pasta para `barbearia/posts/AAAA-MM-DD-...`.
+- Menos que 5 cortes: carrossel ou story só com a conta (5 cortes de R$ 80 = R$ 400; o site custa R$ 399, uma vez só).
 - "Barbearia perto de mim": o que aparece no Google quando a sua barbearia não tem site (`busca`).
 - Avaliações no site: nota de quem já sentou na cadeira (print `#avaliacoes`).
 - Agendar direto com o barbeiro: cada um com o seu botão (seção `#equipe`).
@@ -84,7 +90,7 @@ Escolha 6 temas que não estão no histórico. Pilares: vitrine/prova 30%, dor 2
 
 Copie um arquivo de `motor/posts-barb/` como base, troque o texto e o `SLUG`, rode `python3 carrossel.py posts-barb/<arquivo>.py` (sai em `saida/<SLUG>/01.png...`).
 
-Bases por formato: `bb01_como_funciona.py` (capa texto laranja, número, conversa, navegador), `bb02_precos.py` (texto escuro, ficha, checklist, número), `bb03_tres_jeitos.py` (lista, ficha), `bb04_duvidas.py` (conversa), `bb05_desculpas.py` (tweet), `b02_fixado_barb.py`, `b05_barb_cliente_novo.py` (busca), `p06_barb_link.py` (applink x site), `p09_barb_5coisas.py`, `p13_barb_preco.py`.
+Bases por formato: `bb07_reel_antes_depois.py` (reel carro-chefe), `bb01_como_funciona.py` (capa texto laranja, número, conversa, navegador), `bb02_precos.py` (texto escuro, ficha, checklist, número), `bb03_tres_jeitos.py` (lista, ficha), `bb04_duvidas.py` (conversa), `bb05_desculpas.py` (tweet), `b02_fixado_barb.py`, `b05_barb_cliente_novo.py` (busca), `p06_barb_link.py` (applink x site), `p09_barb_5coisas.py`, `p13_barb_preco.py`.
 
 - Todo carrossel termina com o card `final` (escuro) com `preco='R$ 399'`, os 4 checks e a chamada. Copie `CHECKS` e `CTA_BARB` de `bb01_como_funciona.py`.
 - **Tweet:** ponha `_os.environ['ORBYT_HANDLE'] = 'orbytstudio_'` no topo do script (antes de importar o carrossel), senão sai @orbyt_studio.

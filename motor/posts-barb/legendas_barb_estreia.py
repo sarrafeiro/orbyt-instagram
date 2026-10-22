@@ -94,7 +94,7 @@ Site 100% personalizado: a partir de R$ 1.497.
 
 No site com modelo já vem botão Agendar, tabela de serviços com preço, clube de assinatura, antes e depois, avaliações e como chegar.
 
-R$ 399 é menos que 9 cortes de R$ 45. E você paga uma vez, só depois de aprovar o site pronto.
+R$ 399 é menos que 5 cortes de R$ 80. E você paga uma vez, só depois de aprovar o site pronto.
 
 Quanto custa o corte mais pedido aí?
 
@@ -134,7 +134,7 @@ Manda o nome da sua barbearia no WhatsApp pelo link do perfil.
 'bb05-desculpas': f"""Barbeiro, 4 desculpas pra adiar o site da barbearia. E a resposta pra cada uma.
 
 "Já tenho Instagram." O site mostra preço, clube e agenda pra quem te achou no Google.
-"Site é caro." R$ 399, uma vez só. Menos que 9 cortes.
+"Site é caro." R$ 399, uma vez só. Menos que 5 cortes.
 "Não tenho tempo." Você manda o nome e responde um formulário curto.
 "E se ficar ruim?" Você vê pronto e só paga se aprovar.
 
@@ -153,6 +153,15 @@ E o endereço, com Google Maps e Waze.
 Pronto em até 2 dias úteis. R$ 399 e você só paga depois de aprovar. Manda o nome da sua barbearia no WhatsApp, link no perfil.
 
 {HT}""",
+'bb07-reel-antes-depois': f"""Site para barbearia com antes e depois que o cliente arrasta com o dedo.
+
+Degradê, barba, cacheado: cada corte com o seu antes e depois. O cliente arrasta, vê a diferença e já toca em Agendar.
+
+O seu trabalho convence melhor que qualquer texto.
+
+R$ 399, menos que 5 cortes. Pronto em até 2 dias úteis, e você só paga depois de aprovar. Manda o nome da sua barbearia no WhatsApp, link no perfil.
+
+{HT}""",
 }
 ALT = {
 'b05-barb-cliente-novo': 'Site para barbearia: de onde vem o cliente novo e o que ele procura',
@@ -169,4 +178,5 @@ ALT = {
 'b02-fixado-barb': 'Site para barbearia com agendamento, clube de assinatura, tabela de serviços e antes e depois',
 'bb05-desculpas': 'Site para barbearia: 4 desculpas para adiar e a resposta',
 'bb06-reel-antes-de-ir': 'Site para barbearia com equipe, espaço, avaliações e como chegar',
+'bb07-reel-antes-depois': 'Site para barbearia com antes e depois dos cortes que o cliente arrasta',
 }

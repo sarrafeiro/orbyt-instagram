@@ -13,9 +13,9 @@ L = [
       capa=f'{REPO}/posts/2026-10-20-b02-fixado-barb/01.jpg', pe=PE),
  dict(nome='s03-sab-desculpas', olho='Barbearia', titulo='4 desculpas pra adiar o site. <em>E a resposta.</em>', t=88,
       capa=f'{S}/bb05-desculpas/01.png', pe=PE),
- dict(nome='s04-sab-reel', olho='Barbearia', titulo='O cliente novo quer ver tudo <em>antes de ir.</em>', t=88, cel='barb-cel-espaco2.png', pe=PR),
+ dict(nome='s04-sab-reel', olho='Antes e depois', titulo='O seu corte <em>vende sozinho.</em>', t=96, cel='barb-cel-antes-depois.png', pe=PR),
  dict(nome='s05-dom-clube', olho='Barbearia', titulo='Clube de assinatura <em>com preço e economia.</em>', t=88, cel='barb-cel-clube.png', pe=WA),
- dict(nome='s06-dom-frase-preco', escuro=True, olho='Preço fechado', titulo='Menos que <em>9 cortes.</em>', t=118, preco='R$ 399',
+ dict(nome='s06-dom-frase-preco', escuro=True, olho='Preço fechado', titulo='Menos que <em>5 cortes.</em>', t=118, preco='R$ 399',
       sub='Uma vez só, depois de aprovar. <b>Sem entrada e sem mensalidade.</b>', pe=WA),
 ]
 render(L, f'{S}/stories-barb-2026-10-23')
