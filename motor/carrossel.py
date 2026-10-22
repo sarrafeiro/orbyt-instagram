@@ -233,7 +233,7 @@ AV = '<svg viewBox="0 0 54 54"><circle cx="27" cy="27" r="27" fill="#16181B"/><g
 
 def tweet(texto, data='20 out 2026', tam=None):
     st = f' style="--tw:{tam}px"' if tam else ''
-    return f'<div class="tweet"{st}><div class="quem">{AV}<div><b>Orbyt Studio</b><span>@orbyt_studio</span></div></div><p>{texto}</p><small>{data}</small></div>'
+    return f'<div class="tweet"{st}><div class="quem">{AV}<div><b>Orbyt Studio</b><span>@{os.environ.get("ORBYT_HANDLE", "orbyt_studio")}</span></div></div><p>{texto}</p><small>{data}</small></div>'
 
 def numero(valor, rotulo, tam=None):
     st = f' style="--nz:{tam}px"' if tam else ''
