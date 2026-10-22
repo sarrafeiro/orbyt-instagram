@@ -31,7 +31,7 @@ Estratégia geral do Instagram: arquivo `brain/16-instagram-orbyt.md` no projeto
 - LP de barbearia: orbytstudio.com.br/barbearias. O site geral da Orbyt mostra outro preço (R$ 797): o Matheus sabe e aceitou. Nos posts desta conta vale sempre R$ 399 e R$ 199.
 - WhatsApp da Orbyt: (31) 99073-0997. Base em BH, atende o Brasil todo.
 
-**Carro-chefe do conteúdo: o antes e depois que o cliente arrasta com o dedo.** É o que o mini diagnóstico é para a conta de advocacia: o diferencial que mais vende. Regra: **pelo menos 2 dos 6 posts da semana mostram o arrastar** (reel arrastando os 3 cortes `#ba1`, `#ba2`, `#ba3`, carrossel com o print `barb-cel-antes-depois`, ou `par` antes e depois), e pelo menos 1 story por semana também. O reel de base é `posts-barb/bb07_reel_antes_depois.py`. Ganchos que funcionam: "o seu corte vende sozinho", "o cliente arrasta e vê a diferença", "o seu trabalho convence melhor que qualquer texto".
+**Carro-chefe do conteúdo: o antes e depois que o cliente arrasta com o dedo.** É o que o mini diagnóstico é para a conta de advocacia: o diferencial que mais vende. Regra: **pelo menos 2 dos 6 posts da semana mostram o arrastar**, de preferência nos 2 reels (reel arrastando os 3 cortes `#ba1`, `#ba2`, `#ba3`); num carrossel, ele entra como o card de prova (print `barb-cel-antes-depois`) no meio de cards de argumento, nunca como carrossel inteiro de celular. Pelo menos 1 story por semana também. O reel de base é `posts-barb/bb07_reel_antes_depois.py`. Ganchos que funcionam: "o seu corte vende sozinho", "o cliente arrasta e vê a diferença", "o seu trabalho convence melhor que qualquer texto".
 
 ## 2. Preparar a sessão
 
@@ -52,7 +52,7 @@ Estratégia geral do Instagram: arquivo `brain/16-instagram-orbyt.md` no projeto
 | Sáb | 10:40 (13:40Z) **reel**, vitrine ou bastidor | 09:10 (12:10Z) | 20:10 (23:10Z) |
 | Dom | sem feed | 10:10 (13:10Z) | 19:10 (22:10Z) |
 
-Total: 6 feed + 14 stories = 20. Stories: o das 13:10 anuncia o post da véspera; o das 08:10 é peça solta (frase de pagamento, preço, modelo no celular, dúvida, bastidor). Sábado: o story das 20:10 anuncia o reel do dia. Domingo: 2 peças soltas.
+Total: 6 feed + 14 stories = 20. Stories: o das 13:10 anuncia o post da véspera; o das 08:10 é peça solta (frase de argumento, frase de pagamento, a conta do "menos que 5 cortes", dúvida, bastidor). Sábado: o story das 20:10 anuncia o reel do dia. Domingo: 2 peças soltas. Story com celular: no máximo 2 por semana (um deles o antes e depois). Story que anuncia post: o título do story não repete o título da capa; use uma frase de dentro do post.
 
 ## 4. Pauta
 
@@ -70,7 +70,9 @@ Escolha 6 temas que não estão no histórico. Pilares: vitrine/prova 30%, dor 2
 - Agendar direto com o barbeiro: cada um com o seu botão (seção `#equipe`).
 - Produtos à venda no site (seção `#produtos`): pomada, óleo, shampoo.
 - O site da sua barbearia tem estes 7 itens? (checklist em papel).
-- 3 mitos sobre site de barbearia (carimbo MITO/VERDADE): "é caro", "precisa de mensalidade", "o link do app já resolve".
+- (USADA em 30/10, `bb08_mitos.py`) 3 mitos sobre site de barbearia. Mitos ainda livres pra outro post: "o link do app já resolve", "precisa de mensalidade", "site não traz cliente".
+- (USADA em 26/10) Enquanto você corta, quem responde o cliente? (`bb10_enquanto_corta.py`). (USADA em 28/10) Faz a conta: quanto vale um cliente que volta (`bb09_faz_a_conta.py`).
+- Ideias de argumento (sem celular): "Cliente perguntou o preço e sumiu" (conversa); "O que o cliente novo vê nos primeiros 5 segundos" (lista); "Barbearia de 1 cadeira precisa de site?" (pergunta e resposta); "Indicação sem site: o amigo manda o seu @ e o cliente não acha o preço" (tweet); "Quanto custa uma cadeira vazia numa terça à tarde" (número, conta com o preço do barbeiro); "Instagram, app de agenda e site: o que cada um faz" (ficha de comparação, sem print); "Mito ou verdade: site não traz cliente" (carimbo); "O que muda quando o cliente acha o seu preço sozinho" (antes e depois em texto, `par` com duas `lista`).
 - Número gigante: "38 serviços. Num toque só." (tabela).
 - Landing page de R$ 199 pra uma campanha: dia dos pais, combo corte + barba, promoção do mês.
 - Cliente pergunta preço no direct toda hora? Manda o link do site (conversa de WhatsApp).
@@ -84,13 +86,24 @@ Escolha 6 temas que não estão no histórico. Pilares: vitrine/prova 30%, dor 2
 - **Nunca dois posts seguidos com o mesmo tipo de capa.** Conferir no histórico a capa dos 3 últimos.
 - Tipos de capa: 1. só texto gigante em fundo laranja ou escuro (`tipo='texto'`); 2. print no celular; 3. site no computador (`navegador`); 4. conversa de WhatsApp (`conversa`); 5. tweet (`tweet`); 6. antes e depois (`par`); 7. checklist em papel (`tema='papel'` + `checklist`); 8. carimbo MITO/VERDADE (`carimbo`); 9. número gigante (`numero`); 10. busca do Google (`busca`); 11. lista numerada (`lista`); 12. link do app x site (`applink`).
 - Dentro do carrossel, alternar o fundo dos cards (pelo menos 2 fundos). **Atenção:** `ficha` e `lista` ficam ilegíveis com `tema='escuro'` (caixa branca com texto branco). Use `claro` ou `papel` nesses cards.
-- Na semana: no máximo 2 carrosséis com print de celular na capa; pelo menos 1 capa só texto.
+- Na semana: pelo menos 1 capa só texto.
+
+### Argumento antes de print (regra do Matheus, 22/10)
+
+Na estreia, 6 dos 9 carrosséis tinham o mesmo esquema: título em cima e celular com print embaixo, card após card. O Matheus achou fraco e pediu o jeito da conta de advocacia, que deu certo: carrossel que **argumenta**, quase sem celular. Regras:
+- **Carrossel é argumento.** Cada card defende uma ideia (um mito, uma objeção, uma conta, uma cena do dia a dia do barbeiro, uma pergunta do cliente), em tipografia grande, com carimbo, tweet, conversa, número, checklist, lista ou ficha. O print do site é prova, não é o conteúdo.
+- **No máximo 1 carrossel por semana com print de celular nos cards**, e mesmo nele no máximo 2 cards com celular. Os outros carrosséis da semana não têm nenhum print.
+- Celular e tela ficam pros **reels** (vitrine e carro-chefe do antes e depois) e no máximo 2 stories por semana.
+- Fale da vida do barbeiro: a máquina na mão e o celular vibrando, a cadeira vazia na terça, o cliente que pergunta o preço e some, a indicação que não acha o preço, o clube que faz voltar todo mês. Isso convence mais que mostrar a tela.
+- Referências do que funciona: aqui, `bb10_enquanto_corta.py`, `bb09_faz_a_conta.py`, `bb08_mitos.py`, `bb05_desculpas.py`, `bb02_precos.py`; na advocacia, `posts/n7_mitos.py`, `posts/n5_desculpas.py`, `posts/n3_precos_adv.py`, `posts/n6_checklist.py`.
+- Conta com número (ex.: cliente que volta) sempre com as premissas no card ("corte de R$ 80, a cada 3 semanas") e o convite "troca pelo seu preço". Nunca estatística inventada ("70% dos clientes...").
 
 ## 5. Produzir
 
 Copie um arquivo de `motor/posts-barb/` como base, troque o texto e o `SLUG`, rode `python3 carrossel.py posts-barb/<arquivo>.py` (sai em `saida/<SLUG>/01.png...`).
 
-Bases por formato: `bb07_reel_antes_depois.py` (reel carro-chefe), `bb01_como_funciona.py` (capa texto laranja, número, conversa, navegador), `bb02_precos.py` (texto escuro, ficha, checklist, número), `bb03_tres_jeitos.py` (lista, ficha), `bb04_duvidas.py` (conversa), `bb05_desculpas.py` (tweet), `b02_fixado_barb.py`, `b05_barb_cliente_novo.py` (busca), `p06_barb_link.py` (applink x site), `p09_barb_5coisas.py`, `p13_barb_preco.py`.
+Bases por formato (comece por estas): `bb10_enquanto_corta.py` (conversa com cliente, `conversa(..., pessoa=True)`, texto gigante, checklist), `bb09_faz_a_conta.py` (número gigante com conta), `bb08_mitos.py` (carimbo MITO/VERDADE), `bb05_desculpas.py` (tweet), `bb02_precos.py` (texto escuro, ficha, checklist, número), `bb03_tres_jeitos.py` (lista, ficha), `bb04_duvidas.py` (conversa), `bb07_reel_antes_depois.py` (reel carro-chefe).
+Bases com muito celular, use só no carrossel da semana que pode ter print (e corte pra no máximo 2 cards com celular): `bb01_como_funciona.py`, `b02_fixado_barb.py`, `b05_barb_cliente_novo.py` (busca), `p06_barb_link.py` (applink x site), `p09_barb_5coisas.py`, `p13_barb_preco.py`.
 
 - Todo carrossel termina com o card `final` (escuro) com `preco='R$ 399'`, os 4 checks e a chamada. Copie `CHECKS` e `CTA_BARB` de `bb01_como_funciona.py`.
 - **Tweet:** ponha `_os.environ['ORBYT_HANDLE'] = 'orbytstudio_'` no topo do script (antes de importar o carrossel), senão sai @orbyt_studio.
@@ -100,7 +113,7 @@ Bases por formato: `bb07_reel_antes_depois.py` (reel carro-chefe), `bb01_como_fu
 
 **Reel** (1080×1920, 15 a 25 s, sem som): bases `posts-barb/r03_barb.py` (tour + arrastar antes e depois), `r04_barb_tabela.py` (tabela), `b08_reel_barb_clube.py` (clube), `bb06_reel_antes_de_ir.py` (equipe, espaço, avaliações, como chegar). Copie, mude `OUT` (`RAIZ + '/saida/<slug>'`), os títulos (`html_fundo`), a sequência e o cartão final `html_fim('R$ 399', ...)`. **Grave um reel por vez** (o servidor local usa porta fixa; dois ao mesmo tempo dão "Address already in use"). Cerca de 1 min cada.
 
-**Stories** (1080×1920): base `posts-barb/stories_barb_2026_10_23.py`. Rodapé sempre com `@orbytstudio_`. Tipos: capa de post (`capa=` caminho do `01.png`), modelo no celular (`cel=` print), frase escura (`escuro=True`, `sub`, opcional `preco`). Salvar em `saida/stories-barb-AAAA-MM-DD/` (data da segunda).
+**Stories** (1080×1920): base `posts-barb/stories_barb_2026_10_23.py`. Rodapé sempre com `@orbytstudio_`. Tipos: capa de post (`capa=` caminho do `01.png`), frase escura (`escuro=True`, `sub`, opcional `preco`) e modelo no celular (`cel=` print, no máximo 2 por semana). Salvar em `saida/stories-barb-AAAA-MM-DD/` (data da segunda).
 
 **Legendas:** num arquivo `posts-barb/legendas_barb_AAAA_MM_DD.py` com `LEG` e `ALT` por slug (veja `legendas_barb_estreia.py`). 1ª linha = gancho com a palavra de busca ("site para barbearia"); 3 a 6 linhas curtas; uma pergunta quando fizer sentido; chamada pro WhatsApp pelo link do perfil; 0 a 3 hashtags. Texto alternativo em toda imagem com a palavra de busca. Story não leva legenda.
 

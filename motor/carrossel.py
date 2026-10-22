@@ -194,8 +194,11 @@ def navegador(img, url, w=None):
     st = f' style="max-width:{w}px"' if w else ''
     return f'<div class="nav"{st}><div class="barra-nav"><b></b><b></b><b></b><div class="url">{html.escape(url)}</div></div><img src="{P}/{img}"></div>'
 
-def conversa(nome, msgs):
+def conversa(nome, msgs, pessoa=False):
+    # pessoa=True: avatar cinza genérico (conversa vista do celular do barbeiro, com um cliente)
     av = '<svg viewBox="0 0 54 54"><circle cx="27" cy="27" r="27" fill="#16181B"/><g transform="translate(27 27) scale(1.05) translate(-16 -16)"><circle cx="16" cy="16" r="10.5" fill="none" stroke="#F1F3F5" stroke-width="3.4"/><circle cx="24.4" cy="8.6" r="4.8" fill="#16181B"/><circle cx="24.4" cy="8.6" r="3.1" fill="#FF5A1F"/></g></svg>'
+    if pessoa:
+        av = '<svg viewBox="0 0 54 54"><circle cx="27" cy="27" r="27" fill="#C9CCD1"/><circle cx="27" cy="21" r="9" fill="#F1F3F5"/><path d="M10 46c3-10 10-14 17-14s14 4 17 14" fill="#F1F3F5"/></svg>'
     b = ''.join(f'<div class="balao {q}">{html.escape(t)}<small>{h}</small></div>' for q, t, h in msgs)
     return f'<div class="conversa"><div class="quem">{av}{html.escape(nome)}</div>{b}</div>'
 
