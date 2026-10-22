@@ -22,5 +22,5 @@ CARDS = [
          visual=qa('Vou pagar todo mês?', 'Não. Você paga uma vez, depois de aprovar, no Pix ou no cartão parcelado.'), centro=True, ponto=False),
     dict(olho='Dúvida 6', titulo='O site fica no nome de quem? <em>No seu.</em>',
          visual=qa('O site é meu mesmo?', 'É. Depois do pagamento a gente publica com você, em chamada, numa conta que é sua.'), centro=True, ponto=False),
-    dict(tipo='final', olho='Quanto custa', t=80, titulo='Site da sua barbearia, pronto em 2 dias úteis.', preco='R$ 797', preco_nota='preço fechado<br>pagamento único', checks=CHECKS, cta=CTA_BARB),
+    dict(tipo='final', olho='Quanto custa', t=80, titulo='Site da sua barbearia, pronto em 2 dias úteis.', preco='R$ 399', preco_nota='preço fechado<br>pagamento único', checks=CHECKS, cta=CTA_BARB),
 ]

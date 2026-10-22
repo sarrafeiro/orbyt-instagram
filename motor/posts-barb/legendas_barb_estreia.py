@@ -10,7 +10,7 @@ Um site de barbearia responde as três com um link só, que vai no Google, na bi
 
 Por onde chega a maioria dos seus clientes novos?
 
-Site da sua barbearia em até 2 dias úteis, R$ 797, e você só paga depois de aprovar. Link no perfil.
+Site da sua barbearia em até 2 dias úteis, R$ 399, e você só paga depois de aprovar. Link no perfil.
 
 {HT}""",
 'r04-barb-tabela': f"""Site para barbearia com preço de tudo, do jeito que o cliente quer ver.
@@ -19,7 +19,7 @@ Os mais pedidos com preço logo de cara.
 Um toque e abre a tabela com todos os serviços, com busca e filtro.
 Escolheu, toca em Agendar: vai pro seu app ou direto pro seu WhatsApp.
 
-Pronto em até 2 dias úteis. R$ 797 e você só paga depois de aprovar. Manda o nome da sua barbearia no WhatsApp, link no perfil.
+Pronto em até 2 dias úteis. R$ 399 e você só paga depois de aprovar. Manda o nome da sua barbearia no WhatsApp, link no perfil.
 
 {HT}""",
 'p09-barb-5-coisas': f"""5 coisas que o site da sua barbearia precisa ter. Salva pra conferir no seu:
@@ -39,7 +39,7 @@ Se faltou alguma, manda o nome da sua barbearia no WhatsApp (link no perfil). Em
 
 Sozinho: suas folgas, mensalidade da plataforma e o risco de não gostar.
 Agência: semanas de espera, orçamento só depois de reunião e entrada antes de ver nada pronto.
-Orbyt: modelo de barbearia pronto em até 2 dias úteis, R$ 797 uma vez só, e você só paga depois de aprovar.
+Orbyt: modelo de barbearia pronto em até 2 dias úteis, R$ 399 uma vez só, e você só paga depois de aprovar.
 
 Manda o nome da sua barbearia no WhatsApp, link no perfil.
 
@@ -50,7 +50,7 @@ No link do app você aparece no mesmo layout de todo mundo. No seu site o client
 
 E o botão Agendar leva pro app que você já usa ou direto pro seu WhatsApp.
 
-Site da sua barbearia em até 2 dias úteis, R$ 797, e você só paga depois de aprovar. Manda o nome da sua barbearia no WhatsApp, link no perfil.
+Site da sua barbearia em até 2 dias úteis, R$ 399, e você só paga depois de aprovar. Manda o nome da sua barbearia no WhatsApp, link no perfil.
 
 {HT}""",
 'bb04-duvidas': f"""Site para barbearia: as 6 dúvidas de todo barbeiro, respondidas. Salva pra consultar depois.
@@ -71,7 +71,7 @@ Cada plano com preço e quanto o cliente economiza. E o botão leva pro seu app 
 
 Você já tem clube de assinatura na sua barbearia?
 
-Site da sua barbearia em até 2 dias úteis. R$ 797 e você só paga depois de aprovar. Link no perfil.
+Site da sua barbearia em até 2 dias úteis. R$ 399 e você só paga depois de aprovar. Link no perfil.
 
 {HT}""",
 'p13-barb-preco': f"""Site para barbearia: cliente que não acha seu preço vai pra outra.
@@ -83,18 +83,18 @@ No seu site ele vê os mais pedidos com preço, abre a tabela completa num toque
 
 Sua tabela de preços está fácil de achar hoje?
 
-Pronto em até 2 dias úteis. R$ 797 e você só paga depois de aprovar. Manda o nome da sua barbearia no WhatsApp, link no perfil.
+Pronto em até 2 dias úteis. R$ 399 e você só paga depois de aprovar. Manda o nome da sua barbearia no WhatsApp, link no perfil.
 
 {HT}""",
 'bb02-precos': f"""Quanto custa o site da sua barbearia? Sem letra miúda.
 
-Landing page: R$ 399.
-Site com modelo de barbearia: R$ 797.
+Landing page: R$ 199.
+Site com modelo de barbearia: R$ 399.
 Site 100% personalizado: a partir de R$ 1.497.
 
 No site com modelo já vem botão Agendar, tabela de serviços com preço, clube de assinatura, antes e depois, avaliações e como chegar.
 
-R$ 797 é menos que 18 cortes de R$ 45. E você paga uma vez, só depois de aprovar o site pronto.
+R$ 399 é menos que 9 cortes de R$ 45. E você paga uma vez, só depois de aprovar o site pronto.
 
 Quanto custa o corte mais pedido aí?
 
@@ -105,7 +105,7 @@ Manda o nome da sua barbearia no WhatsApp, link no perfil.
 
 Clube de assinatura com preço e economia, tabela de serviços completa e antes e depois que o cliente arrasta com o dedo. E o botão Agendar leva pro seu app ou pro seu WhatsApp.
 
-Pronto em até 2 dias úteis. R$ 797 e você só paga depois de aprovar. Manda o nome da sua barbearia no WhatsApp, link no perfil.
+Pronto em até 2 dias úteis. R$ 399 e você só paga depois de aprovar. Manda o nome da sua barbearia no WhatsApp, link no perfil.
 
 {HT}""",
 'bb01-como-funciona': f"""Site para barbearia em até 2 dias úteis, e você só paga depois de aprovar. Funciona assim:
@@ -113,7 +113,7 @@ Pronto em até 2 dias úteis. R$ 797 e você só paga depois de aprovar. Manda o
 1. Você manda o nome da barbearia no WhatsApp.
 2. Em até 2 dias úteis o site fica pronto, com a sua marca, os seus serviços e o clube.
 3. Você confere num link nosso e pede até 2 ajustes.
-4. Aprovou? Só agora paga: R$ 797, uma vez, no Pix ou no cartão parcelado.
+4. Aprovou? Só agora paga: R$ 399, uma vez, no Pix ou no cartão parcelado.
 5. A gente publica com você, numa conta que é sua.
 
 Sem entrada e sem mensalidade. Manda o nome da sua barbearia no WhatsApp, link no perfil.
@@ -126,7 +126,7 @@ Clube de assinatura com preço e economia.
 Preço de cada serviço, num toque.
 Antes e depois dos seus cortes.
 
-R$ 797, preço fechado. A gente monta primeiro e você só paga depois de aprovar.
+R$ 399, preço fechado. A gente monta primeiro e você só paga depois de aprovar.
 
 Manda o nome da sua barbearia no WhatsApp pelo link do perfil.
 
@@ -134,7 +134,7 @@ Manda o nome da sua barbearia no WhatsApp pelo link do perfil.
 'bb05-desculpas': f"""Barbeiro, 4 desculpas pra adiar o site da barbearia. E a resposta pra cada uma.
 
 "Já tenho Instagram." O site mostra preço, clube e agenda pra quem te achou no Google.
-"Site é caro." R$ 797, uma vez só. Menos que 18 cortes.
+"Site é caro." R$ 399, uma vez só. Menos que 9 cortes.
 "Não tenho tempo." Você manda o nome e responde um formulário curto.
 "E se ficar ruim?" Você vê pronto e só paga se aprovar.
 
@@ -150,7 +150,7 @@ O espaço, com Wi-Fi, estacionamento e se atende criança.
 As avaliações de quem já sentou na cadeira.
 E o endereço, com Google Maps e Waze.
 
-Pronto em até 2 dias úteis. R$ 797 e você só paga depois de aprovar. Manda o nome da sua barbearia no WhatsApp, link no perfil.
+Pronto em até 2 dias úteis. R$ 399 e você só paga depois de aprovar. Manda o nome da sua barbearia no WhatsApp, link no perfil.
 
 {HT}""",
 }
@@ -163,7 +163,7 @@ ALT = {
 'bb04-duvidas': 'Dúvidas frequentes sobre site para barbearia',
 'b08-reel-barb-clube': 'Site para barbearia com clube de assinatura e planos com preço',
 'p13-barb-preco': 'Site para barbearia com preço de todos os serviços e tabela completa',
-'bb02-precos': 'Preço de site para barbearia: landing R$ 399, site com modelo R$ 797',
+'bb02-precos': 'Preço de site para barbearia: landing R$ 199, site com modelo R$ 399',
 'r03-barb-tour': 'Site para barbearia com clube de assinatura e antes e depois',
 'bb01-como-funciona': 'Site para barbearia em 5 passos, pagamento só depois de aprovar',
 'b02-fixado-barb': 'Site para barbearia com agendamento, clube de assinatura, tabela de serviços e antes e depois',

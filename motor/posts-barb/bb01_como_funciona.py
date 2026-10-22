@@ -18,9 +18,9 @@ CARDS = [
          texto='Pode pedir até 2 ajustes. Nada vai pro ar sem o seu ok.',
          visual=navegador('barb-desk-capa.png', 'orbytstudio.com.br · prévia do seu site')),
     dict(tema='laranja', olho='Passo 4', titulo='Aprovou? <em>Só agora você paga.</em>',
-         visual=numero('R$ 797', 'Uma vez só, no Pix ou no cartão parcelado. Sem mensalidade.', tam=195), centro=True, ponto=False),
+         visual=numero('R$ 399', 'Uma vez só, no Pix ou no cartão parcelado. Sem mensalidade.', tam=195), centro=True, ponto=False),
     dict(olho='Passo 5', titulo='A gente publica com você, <em>em chamada.</em>',
          texto='Numa conta que é sua. O site fica no seu nome.',
          visual=cel('barb-cel-servicos.png', chip='no ar', ch=640)),
-    dict(tipo='final', olho='Quanto custa', t=80, titulo='Site da sua barbearia, pronto em 2 dias úteis.', preco='R$ 797', preco_nota='preço fechado<br>pagamento único', checks=CHECKS, cta=CTA_BARB),
+    dict(tipo='final', olho='Quanto custa', t=80, titulo='Site da sua barbearia, pronto em 2 dias úteis.', preco='R$ 399', preco_nota='preço fechado<br>pagamento único', checks=CHECKS, cta=CTA_BARB),
 ]

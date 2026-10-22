@@ -1,0 +1,49 @@
+# Histórico do @orbytstudio_ (barbearias)
+
+Tudo que já foi publicado nesta conta (não repetir tema nem gancho) e os números de cada semana. A tarefa semanal acrescenta uma seção por semana. Horários em Brasília. Conta no Trypost: `01a164ce-6789-728e-a634-c998fa7d61fa`.
+
+## Estreia: 22/10 a 25/10/2026
+
+Conta criada pelo Matheus em 22/10 só para barbearias. Perfil montado pelo navegador em 22/10: foto com o símbolo da Orbyt, nome "Orbyt Studio | Site para Barbearia" e bio em 4 linhas com emoji (site com agenda e clube, 2 dias úteis, R$ 399 só depois de aprovar, WhatsApp). Links e botão de WhatsApp o Instagram só deixa pôr pelo celular.
+
+Preço da conta desde 22/10 (decisão do Matheus, teste de preço baixo): site com modelo R$ 399, landing R$ 199. Por isso todos os posts da estreia foram renderizados de novo com esse preço (os de barbearia que existiam no repositório tinham R$ 797).
+
+**12 posts para tirar o perfil do zero (22/10, de 15 em 15 minutos):**
+
+| Quando | Formato | Capa | Tema / gancho | Pasta no repo |
+|---|---|---|---|---|
+| Qui 22/10 16:15 | Carrossel 7 | busca do Google | Barbeiro, de onde vem o seu cliente novo? | barbearia/posts/2026-10-22-b05-cliente-novo |
+| Qui 22/10 16:30 | Reel 22 s | vídeo | Preço de tudo, do jeito que o cliente quer ver (tabela de serviços) | barbearia/posts/2026-10-22-r04-tabela |
+| Qui 22/10 16:45 | Carrossel 7 | celular | 5 coisas que o site da sua barbearia precisa ter | barbearia/posts/2026-10-22-p09-5-coisas |
+| Qui 22/10 17:00 | Carrossel 5 | lista numerada | Barbeiro, três jeitos de ter um site | barbearia/posts/2026-10-22-bb03-tres-jeitos |
+| Qui 22/10 17:15 | Carrossel 8 | link do app x site | O link do app marca horário, mas não vende a sua barbearia | barbearia/posts/2026-10-22-p06-link-app |
+| Qui 22/10 17:30 | Carrossel 8 | conversa de WhatsApp | As 6 dúvidas de todo barbeiro. Respondidas | barbearia/posts/2026-10-22-bb04-duvidas |
+| Qui 22/10 17:45 | Reel 18 s | vídeo | O clube de assinatura no site da sua barbearia | barbearia/posts/2026-10-22-b08-reel-clube |
+| Qui 22/10 18:00 | Carrossel 7 | celular com selo | Cliente que não acha seu preço vai pra outra barbearia | barbearia/posts/2026-10-22-p13-preco |
+| Qui 22/10 18:15 | Carrossel 6 | só texto, fundo escuro | Quanto custa o site da sua barbearia? Sem letra miúda (inclui "menos que 9 cortes") | barbearia/posts/2026-10-22-bb02-precos |
+| Qui 22/10 18:30 | Reel 20 s | vídeo | Barbeiro, olha o site que a sua barbearia pode ter (tour + arrastar antes e depois) (FIXAR) | barbearia/posts/2026-10-22-r03-tour |
+| Qui 22/10 18:45 | Carrossel 7 | só texto, fundo laranja | R$ 0 pra começar. Você só paga depois de aprovar (como funciona em 5 passos) (FIXAR) | barbearia/posts/2026-10-22-bb01-como-funciona |
+| Qui 22/10 19:00 | Carrossel 8 | celular | Barbeiro, este é o site da sua barbearia (FIXAR) | barbearia/posts/2026-10-22-b02-fixado |
+
+**Sexta a domingo (já no ritmo da semana):**
+
+| Quando | Formato | Capa | Tema / gancho | Pasta no repo |
+|---|---|---|---|---|
+| Sex 23/10 19:40 | Carrossel 6 | tweet em papel | Barbeiro, 4 desculpas pra adiar o site. E a resposta pra cada uma | barbearia/posts/2026-10-23-bb05-desculpas |
+| Sáb 24/10 10:40 | Reel 20 s | vídeo | Barbeiro, o cliente novo quer ver tudo antes de ir (equipe, espaço, avaliações, como chegar) | barbearia/posts/2026-10-24-bb06-reel-antes-de-ir |
+
+Stories (pasta barbearia/stories/2026-10-23): sex 08:10 s01 frase "A gente monta primeiro. Você paga depois." · sex 13:10 s02 capa do fixado · sáb 09:10 s03 capa das 4 desculpas · sáb 20:10 s04 reel antes de ir (espaço no celular) · dom 10:10 s05 clube no celular · dom 19:10 s06 frase "Menos que 9 cortes. R$ 399".
+
+Frases de story já usadas: "A gente monta primeiro. Você paga depois." · "Este é o site da sua barbearia." · "O cliente novo quer ver tudo antes de ir." · "Clube de assinatura com preço e economia." · "Menos que 9 cortes."
+
+Ideias do banco já usadas: cliente novo (3 caminhos) · tabela de serviços · 5 coisas · três jeitos · link do app x site · dúvidas · clube · preço que o cliente não acha · preços · tour · como funciona · fixado · desculpas · equipe, espaço, avaliações e como chegar.
+
+**Fixados:** reel do tour (r03), "R$ 0 pra começar" (bb01) e "este é o site da sua barbearia" (b02).
+
+### Números da estreia
+(preencher na tarefa de 25/10)
+
+## Decisões
+- 22/10: conta só de barbearia; nunca citar advocacia nem dentista.
+- 22/10: preço de teste para barbearia: site R$ 399, landing R$ 199 (o site geral da Orbyt segue com outro preço, e o Matheus aceitou a diferença).
+- 22/10: mesma cadência do @orbyt_studio: 6 feed (seg a sex 19:40, sáb 10:40 reel) + 14 stories por semana.

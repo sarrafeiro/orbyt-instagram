@@ -42,7 +42,7 @@ renderizar_html([
     ('f2', html_fundo('Quem vai cortar. <em>E agendar direto com ele.</em>', 'Barbearia'), False),
     ('f3', html_fundo('O espaço, as avaliações <em>e como chegar.</em>', 'Barbearia'), False),
     ('f4', html_fundo('Tudo isso no site da sua barbearia, <em>em 2 dias úteis.</em>', 'Orbyt Studio'), False),
-    ('camada-fim', html_fim('R$ 797', 'preço fechado', ['Você só paga depois de aprovar.', 'Agendar pelo WhatsApp ou pelo seu app.', '<b>Link no perfil.</b>']), True),
+    ('camada-fim', html_fim('R$ 399', 'preço fechado', ['Você só paga depois de aprovar.', 'Agendar pelo WhatsApp ou pelo seu app.', '<b>Link no perfil.</b>']), True),
 ], OUT)
 R.fundos = [(0, 3.8, f'{OUT}/f1.png'), (3.8, 7.6, f'{OUT}/f2.png'), (7.6, 15.6, f'{OUT}/f3.png'), (15.6, 20.0, f'{OUT}/f4.png')]
 R.telas = [(0, 1.8, capa), (1.8, 3.8, p1), (3.8, 6.0, eq), (6.0, 7.6, p2), (7.6, 9.6, es), (9.6, 11.2, p3),

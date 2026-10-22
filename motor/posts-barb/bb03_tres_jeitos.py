@@ -16,8 +16,8 @@ CARDS = [
          visual=ficha([('Prazo', 'Semanas, às vezes meses.'), ('Preço', 'Sob orçamento, só depois de reunião.'),
                        ('Mensalidade', 'É comum cobrar manutenção ou hospedagem.'), ('Seu risco', 'Pagar entrada sem ter visto nada pronto.')]), centro=True, ponto=False),
     dict(olho='Jeito 3', titulo='Orbyt Studio.', texto='Modelo de barbearia pronto, preço publicado e tudo pelo WhatsApp.',
-         visual=ficha([('Prazo', 'Até 2 dias úteis com o modelo de barbearia.'), ('Preço', 'Site R$ 797. Landing R$ 399.'),
+         visual=ficha([('Prazo', 'Até 2 dias úteis com o modelo de barbearia.'), ('Preço', 'Site R$ 399. Landing R$ 199.'),
                        ('Mensalidade', 'Nenhuma. Você paga uma vez.'), ('Seu risco', 'Nenhum adiantamento: só paga depois de aprovar.'),
                        ('Dono do site', 'Você. Publicado na sua conta, no seu nome.')], destaque=True), centro=True, ponto=False),
-    dict(tipo='final', olho='Quanto custa', t=80, titulo='Site da sua barbearia, pronto em 2 dias úteis.', preco='R$ 797', preco_nota='preço fechado<br>pagamento único', checks=CHECKS, cta=CTA_BARB),
+    dict(tipo='final', olho='Quanto custa', t=80, titulo='Site da sua barbearia, pronto em 2 dias úteis.', preco='R$ 399', preco_nota='preço fechado<br>pagamento único', checks=CHECKS, cta=CTA_BARB),
 ]
