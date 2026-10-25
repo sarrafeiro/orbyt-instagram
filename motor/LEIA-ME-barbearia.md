@@ -63,7 +63,7 @@ Escolha 6 temas que não estão no histórico. Pilares: vitrine/prova 30%, dor 2
 - (CARRO-CHEFE) Carrossel antes e depois: "o seu corte vende sozinho", um corte por card (degradê, barba, cacheado) e o botão Agendar no fim.
 - (CARRO-CHEFE) Reel: o cliente arrasta, vê o corte e toca em Agendar (mostrar a mensagem chegando no WhatsApp).
 - (CARRO-CHEFE) Story: print do antes e depois com "arrasta pra comparar".
-- Reel pronto e ainda não publicado: `barbearia/pronto-sem-data/bb06-reel-antes-de-ir/reel.mp4` (equipe, espaço, avaliações e como chegar; legenda `bb06-reel-antes-de-ir` em `legendas_barb_estreia.py`). Use numa das próximas semanas e mova a pasta para `barbearia/posts/AAAA-MM-DD-...`.
+- (USADA em 27/10) Reel bb06 antes de ir (equipe, espaço, avaliações, como chegar), agora em `barbearia/posts/2026-10-27-bb06-reel-antes-de-ir`. (USADA em 31/10) Reel carro-chefe arrasta e toca em Agendar (`bb11_reel_agendar.py`). (USADA em 29/10) Primeiros segundos do cliente novo (`bb12_primeiros_segundos.py`).
 - Menos que 5 cortes: carrossel ou story só com a conta (5 cortes de R$ 80 = R$ 400; o site custa R$ 399, uma vez só).
 - "Barbearia perto de mim": o que aparece no Google quando a sua barbearia não tem site (`busca`).
 - Avaliações no site: nota de quem já sentou na cadeira (print `#avaliacoes`).
