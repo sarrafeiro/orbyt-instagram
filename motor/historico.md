@@ -53,8 +53,58 @@ Ideias do banco usadas (riscar): site abre no celular · pode publicar artigo ·
 
 Prints novos em motor/prints: adv1-cel/desk-conteudo, adv1-cel/desk-duvidas, barb-cel/desk-tabela (script posts/capt_s2026_10_26.py), adv2-cel-guia-inss (quadro do reel r05).
 
-### Números da semana 26/10
-(preencher na tarefa seguinte)
+### Números de 20/10 a 25/10 (medição de 25/10, 20:00 UTC, Trypost)
+Conta toda, 7 dias: alcance 837, visualizações 1.416, curtidas 34, comentários 6, compartilhamentos 7, salvamentos 1, visitas ao perfil 36 (total da conta; a ferramenta não deu visitas por post), seguidores 0 → 26 (14 vieram de posts). Quase tudo (753 de alcance) veio do dia 20/10, quando 41 itens saíram de uma vez. De 21 a 25/10 o alcance somou 84.
+
+Por post (feed e reel que ficaram no perfil; alcance · curtidas · comentários · compartilhamentos · salvamentos · seguidores ganhos):
+| Post | Alcance | Curt. | Com. | Comp. | Salv. | Seg. |
+|---|---|---|---|---|---|---|
+| b01 fixado "este é o site do seu escritório" (vitrine, prints) | 288 | 5 | 0 | 1 | 1 | 5 |
+| n5 4 desculpas (objeção, tweet) | 277 | 6 | 2 | 1 | 0 | 9 |
+| r05 reel INSS (24/10) | 16 | 0 | 0 | 0 | 0 | sem dado |
+| b10 reel 60 s indicação (fixado) | 16 | 3 | 0 | 0 | 0 | sem dado |
+| n1 R$ 0 pra começar (fixado) | 14 | 4 | 0 | 0 | 0 | 0 |
+| p05 OAB pode e não pode | 10 | 1 | 0 | 0 | 0 | 0 |
+| b06 o que o cliente digita no Google | 10 | 3 | 0 | 5 | 0 | 0 |
+| n2 6 dúvidas (conversa) | 9 | 3 | 0 | 0 | 0 | 0 |
+| n3 preços | 9 | 1 | 0 | 0 | 0 | 0 |
+| n4 antes e depois | 7 | 1 | 0 | 0 | 0 | 0 |
+| b07 reel tour modelo 2 | 7 | 1 | 0 | 0 | 0 | sem dado |
+| p10 abre no celular | 6 | 1 | 0 | 0 | 0 | 0 |
+| r02 reel guia | 6 | 2 | 0 | 0 | 0 | sem dado |
+| p04 pesquisa o seu nome | 6 | 0 | 0 | 0 | 0 | 0 |
+| n7 3 mitos (23/10) | 5 | 1 | 0 | 0 | 0 | 0 |
+| p12 artigo (22/10) | 4 | 0 | 0 | 0 | 0 | 0 |
+| n6 checklist (21/10) | 4 | 0 | 0 | 0 | 0 | 0 |
+| b04 4 coisas que só o site faz | 4 | 1 | 0 | 0 | 0 | 0 |
+Stories: sem alcance por item; 4 stories tiveram 1 comentário cada (preço R$ 797, pagamento, reel guia, pesquisa no Google).
+Falha: o story s07 (três jeitos) falhou em 20/10 com "Media not found"; já tinha sido postado de novo no mesmo dia. Nenhuma outra falha.
+
+**Direção tirada (25/10):** só dois posts saíram do chão e os dois são claros: vitrine do site com prints (b01) e objeção respondida (n5, o único com comentário e o que mais trouxe seguidor). O compartilhamento forte do b06 (5 em 10 de alcance) mostra que conteúdo "o que o cliente faz" também circula. Como o resto teve alcance de 4 a 16 (amostra pequena, perfil novo), a semana nova põe 3 dos 6 nessas linhas com ângulo novo (objeções novas em conversa, 2 reels de vitrine) e mantém o resto variado.
+
+## Semana real 26/10 a 01/11/2026 (2ª semana automática)
+
+Produzida e agendada pela tarefa semanal de 25/10. Feed às 19:40 de seg a sex (o teste das 13:10 é na semana de 02/11).
+
+| Quando | Formato | Capa | Tema / gancho | Pasta no repo |
+|---|---|---|---|---|
+| Seg 26/10 19:40 | Carrossel 8 | número gigante laranja | 5 erros no site do escritório que espantam cliente (dor) | posts/2026-10-26-p14-adv-5erros |
+| Ter 27/10 19:40 | Reel 21 s | vídeo | Advogado, seu cliente quer se divorciar. O seu site explica como funciona? (guia por assunto, caminho Família, modelo 1) | posts/2026-10-27-r06-adv-familia |
+| Qua 28/10 19:40 | Carrossel 7 | só texto, fundo escuro | Por que a gente monta o site antes de você pagar? (oferta e mecanismo) | posts/2026-10-28-p15-monta-antes |
+| Qui 29/10 19:40 | Carrossel 7 | site no computador | Como mostrar suas áreas de atuação sem ferir o Código de Ética (educação, "assim não / assim sim") | posts/2026-10-29-p16-adv-areas |
+| Sex 30/10 19:40 | Carrossel 6 | conversa de WhatsApp | 4 frases que todo advogado fala do site. E a resposta pra cada uma (indicação, sobrinho, não sei o que escrever, ano que vem) | posts/2026-10-30-p17-adv-objecoes |
+| Sáb 31/10 10:40 | Reel 21 s | vídeo | Advogado, você está em audiência. Quem responde o cliente? (artigos e dúvidas frequentes, modelo 1) | posts/2026-10-31-r07-adv-conteudo |
+
+Stories (pasta stories/2026-10-26b): seg 08:10 s01 frase "Pix ou cartão parcelado. Só depois de aprovar." · seg 13:10 s02 dúvidas frequentes no celular · ter 08:10 s03 dúvida "Posso pedir ajuste? Até 2, antes de pagar." · ter 13:10 s04 post p14 · qua 08:10 s05 frase personalizado "Do seu jeito, do zero." (a partir de R$ 1.497) · qua 13:10 s06 reel r06 (divórcio) · qui 08:10 s07 frase "Atendemos escritórios do Brasil todo." · qui 13:10 s08 post p15 · sex 08:10 s09 guia no celular "com a mensagem pronta" · sex 13:10 s10 post p16 · sáb 09:10 s11 post p17 · sáb 20:10 s12 reel r07 (artigos) · dom 10:10 s13 capa do modelo 2 no celular · dom 19:10 s14 frase "Não sabe qual? A gente te ajuda a escolher." (R$ 399 x R$ 797).
+
+Frases de story usadas: "Pix ou cartão parcelado. Só depois de aprovar." · "Posso pedir ajuste? Até 2, antes de pagar." · "Do seu jeito, do zero." · "Atendemos escritórios do Brasil todo." · "Não sabe qual? A gente te ajuda a escolher." · "Em audiência? O seu site responde." · "Dúvida de divórcio? O seu site explica."
+
+Ideias do banco usadas (riscar): 5 erros que espantam cliente · áreas de atuação sem ferir o Código de Ética · por que a gente monta antes de você pagar · reel guia no caminho Família.
+Print novo: prints/adv1-cel-guia-familia.png (quadro do reel r06). Formato novo: card "assim não / assim sim" com `par(tweet, tweet)` (p16).
+Agendados conferidos no Trypost em 25/10: 20, sem horário repetido.
+
+### Números da semana real 26/10
+(preencher na tarefa de 01/11)
 
 ## Bateria extra de 20/10/2026 (9 posts para tirar o perfil do chão)
 
@@ -110,3 +160,4 @@ Ainda agendados de antes: artigo no site (p12) qui 22/10 19:40, reel INSS (r05) 
 - 20/10 tarde: Instagram só de advocacia. Barbearia fora do perfil (segue no porta a porta).
 - 20/10 tarde: variar formato de capa e fundo; nunca duas capas iguais seguidas (regra no LEIA-ME, seção 4).
 - 20/10 tarde: vídeo falado do Matheus não vai pro perfil; o vídeo de 60 s do Claude vai, fixado.
+- 25/10: semana nova com metade nas linhas que puxaram (vitrine com prints e objeção respondida). Pouco dado ainda; regra das 4 semanas segue valendo.
