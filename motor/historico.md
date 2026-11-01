@@ -104,7 +104,45 @@ Print novo: prints/adv1-cel-guia-familia.png (quadro do reel r06). Formato novo:
 Agendados conferidos no Trypost em 25/10: 20, sem horário repetido.
 
 ### Números da semana real 26/10
-(preencher na tarefa de 01/11)
+(medição de 01/11, 20:00 UTC, Trypost; números de 01/11 05:26 UTC)
+Conta toda, 25/10 a 01/11: alcance 96, visualizações 122, curtidas 2, comentários 1, compartilhamentos 0, salvamentos 0, visitas ao perfil 0, seguidores 26 → 25. Tempo médio de reel 1,9 s.
+
+| Post | Alcance | Curt. | Com. | Comp. | Salv. | Visitas ao perfil |
+|---|---|---|---|---|---|---|
+| p14 5 erros (número gigante, dor, lista) | 6 | 2 | 1 | 0 | 0 | 0 |
+| r06 reel Família (vitrine) | 4 | 0 | 0 | 0 | 0 | sem dado (reel 1,9 s de média assistida) |
+| p16 áreas sem ferir o Código de Ética (navegador) | 3 | 0 | 0 | 0 | 0 | 0 |
+| p15 monta antes de pagar (texto escuro) | 2 | 0 | 0 | 0 | 0 | 0 |
+Stories de seg a sex: sem alcance por item.
+
+**Não saíram:** p17 (4 frases, sex 30/10), r07 (reel audiência, sáb 31/10) e os stories s11 a s14 foram mudados de agendado para rascunho no Trypost em 30/10 às 17:41 (Brasília), antes de sair. A tarefa não sabe quem mudou. Continuam lá como rascunho; dá pra reaproveitar numa semana futura.
+Nenhum post com status failed nesta semana (só o s07 antigo de 20/10, já repostado).
+
+**Direção tirada (01/11):** sinal muito fraco (alcance de 2 a 6 por post, sem salvamento nem compartilhamento). O único que puxou algo foi p14 (lista de erros, dor, capa número gigante), e nas semanas anteriores b01 (vitrine com prints), n5 (objeção) e b06 (o que o cliente faz no Google). Metade da semana nova vai nessas linhas com ângulo novo (p18 Google sem site, p20 lista salvável com prints, p21 objeções de quem nunca teve site); o resto segue variado. Reels com 1,9 s de média: gancho mais curto e mais direto no 1º segundo (r08 e r09).
+
+## Semana 02/11 a 08/11/2026 (3ª semana automática, teste de horário)
+
+Produzida e agendada pela tarefa semanal de 01/11. **Teste de horário:** feed de seg a sex às 13:10 e o story que anuncia o post vai às 19:40 do mesmo dia. Na tarefa de 08/11, comparar o alcance das primeiras 24 h com a semana de 26/10 (19:40) e decidir.
+
+| Quando | Formato | Capa | Tema / gancho | Pasta no repo |
+|---|---|---|---|---|
+| Seg 02/11 13:10 | Carrossel 7 | busca do Google | O cliente achou seu escritório no Google. E não achou mais nada. (dor, o que ele pensa) | posts/2026-11-02-p18-adv-google-sem-site |
+| Ter 03/11 13:10 | Reel 21 s | vídeo | O plano de saúde negou. Seu cliente pesquisa agora. Acha você? (guia por assunto, caminho Consumidor, modelo 2) | posts/2026-11-03-r08-adv-consumidor |
+| Qua 04/11 13:10 | Carrossel 6 | só texto, fundo laranja | Você aprovou o site. E agora? (oferta e mecanismo: paga 1x, chamada, no seu nome, onde pôr o link) | posts/2026-11-04-p19-depois-aprovar |
+| Qui 05/11 13:10 | Carrossel 7 | print no celular | O que o cliente quer ver antes de ligar pro escritório (lista salvável de 5, com prints) | posts/2026-11-05-p20-antes-de-ligar |
+| Sex 06/11 13:10 | Carrossel 7 | tweet em fundo escuro | Nunca teve site? As 5 perguntas de quem vai começar (objeção: tecnologia, mensalidade, nome, landing R$ 399, personalizado R$ 1.497) | posts/2026-11-06-p21-primeiro-site |
+| Sáb 07/11 10:40 | Reel 20 s | vídeo | "Quem vai me atender?" Seu cliente quer saber antes de ligar. (equipe com OAB e botão por advogado, modelo 1) | posts/2026-11-07-r09-adv-equipe |
+
+Stories (pasta stories/2026-11-02): seg 08:10 s01 frase prazo 2 dias úteis · seg 19:40 s02 post p18 · ter 08:10 s03 áreas no celular · ter 19:40 s04 reel r08 · qua 08:10 s05 frase "Atende escritório pequeno? Advogado sozinho também." · qua 19:40 s06 post p19 · qui 08:10 s07 guia em 3 cliques · qui 19:40 s08 post p20 · sex 08:10 s09 frase "Você vê o site pronto antes de decidir." · sex 19:40 s10 post p21 · sáb 09:10 s11 guia no celular · sáb 20:10 s12 reel r09 · dom 10:10 s13 frase "Informar pode. Prometer resultado, não." · dom 19:10 s14 "Domingo à noite alguém pesquisa o seu nome."
+
+Frases de story usadas: "Pediu hoje? Em 2 dias úteis está pronto." · "Atende escritório pequeno? Advogado sozinho também." · "Você vê o site pronto antes de decidir." · "Informar pode. Prometer resultado, não." · "Domingo à noite alguém pesquisa o seu nome." · "Áreas explicadas na língua do cliente." · "O cliente escolhe o assunto em 3 cliques." · "Um guia que organiza o primeiro contato."
+
+Ideias do banco usadas (riscar): perfil no Google sem site · o que o cliente quer ver antes de ligar (lista de 5) · o que acontece depois que você aprova · equipe com número da OAB · reel guia em outro caminho (Consumidor).
+Print novo: prints/adv2-cel-guia-consumidor.png. Evitar prints/adv2-cel-guia1.png em story (etiqueta "guia por assunto" por cima do título).
+Agendados conferidos no Trypost em 01/11: 20, sem horário repetido.
+
+### Números da semana 02/11
+(preencher na tarefa de 08/11)
 
 ## Bateria extra de 20/10/2026 (9 posts para tirar o perfil do chão)
 
@@ -161,3 +199,5 @@ Ainda agendados de antes: artigo no site (p12) qui 22/10 19:40, reel INSS (r05) 
 - 20/10 tarde: variar formato de capa e fundo; nunca duas capas iguais seguidas (regra no LEIA-ME, seção 4).
 - 20/10 tarde: vídeo falado do Matheus não vai pro perfil; o vídeo de 60 s do Claude vai, fixado.
 - 25/10: semana nova com metade nas linhas que puxaram (vitrine com prints e objeção respondida). Pouco dado ainda; regra das 4 semanas segue valendo.
+- 01/11: semana com metade nas linhas que puxaram (lista de dor, vitrine com prints, objeção, o que o cliente faz no Google). Reel com gancho mais curto. Teste de horário 13:10 rodando nesta semana.
+- 01/11: p17, r07 e 4 stories ficaram em rascunho (mudados em 30/10 17:41); não reagendados, aguardando o Matheus.
