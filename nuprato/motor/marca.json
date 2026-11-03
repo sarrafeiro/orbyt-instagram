@@ -1,0 +1,31 @@
+{
+  "nome": "NuPrato",
+  "handle": "nuprato.app",
+  "cores": {
+    "creme": "#FAF7F2",
+    "papel": "#FFFDF6",
+    "pauta": "#CFDCD4",
+    "margem": "#F2A66E",
+    "verde": "#5E9C76",
+    "verde_escuro": "#3F7A57",
+    "grafite": "#2E3133",
+    "texto_sec": "#575C60",
+    "amarelo": "#F4D35E",
+    "dourado": "#F4C13A",
+    "laranja": "#F2A66E",
+    "mito": "#C2562F"
+  },
+  "letras": {
+    "titulo": "Poppins-ExtraBold.ttf",
+    "texto_bold": "Poppins-Bold.ttf",
+    "texto_medio": "Poppins-Medium.ttf",
+    "texto": "Poppins-Regular.ttf",
+    "mao": "Caveat.ttf"
+  },
+  "textos": {
+    "arraste": "arrasta pro lado",
+    "fim": "link na bio",
+    "oferta": "1ª receita guiada grátis"
+  },
+  "proibido": ["roxo", "referência ao Nubank", "emoji como ícone na arte", "travessão ou meia-risca", "selo com borda, fundo ou contorno", "selo na capa", "tweet como formato (lembra fintech)"]
+}
