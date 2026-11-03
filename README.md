@@ -9,3 +9,4 @@ Pastas:
 - `posts/AAAA-MM-DD-nome/`: uma pasta por post do feed (JPG ou reel.mp4).
 - `stories/AAAA-MM-DD/`: stories da semana.
 - `motor/`: scripts que geram carrossel, reel e story, prints dos modelos, manual da tarefa semanal (`motor/LEIA-ME.md`) e histórico do que já saiu (`motor/historico.md`).
+- `nuprato/`: conta @nuprato.app (app de receitas NuPrato), separada da Orbyt. Motor próprio em `nuprato/motor/`, manual da tarefa semanal em `nuprato/LEIA-ME.md`, histórico em `nuprato/historico.md`, mídia em `nuprato/posts/` e `nuprato/stories/`.
