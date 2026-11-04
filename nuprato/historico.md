@@ -59,7 +59,7 @@ Ideias do banco já usadas nesta semana: receita pra 6 x pra 2 · 3 ingredientes
 
 | Quando | Formato | Tema | Música (biblioteca do Instagram) | Pasta no repo |
 |---|---|---|---|---|
-| Qua 04/11 14:31 | Reel 25 s, "Feito com IA" | Ficha 04: strogonoff sem creme de leite (requeijão) | Samba Quentinho, Mike Block (id 871079909934263) | nuprato/posts/2026-11-04-reel-ficha-04-strogonoff |
+| Qua 04/11 14:31 | Reel 25 s, "Feito com IA" | Ficha 04: strogonoff sem creme de leite (requeijão) | Audio em alta ⬆️, djpatrickr (id 359008577017420; trocado pelo Matheus, ele odiou o Samba Quentinho) | nuprato/posts/2026-11-04-reel-ficha-04-strogonoff |
 | Sex 06/11 14:31 | Reel 19 s, "Feito com IA" | Ficha 05: frango xadrez igual o do delivery (shoyu + amido de milho) | Funky Friday, Danny Peter Wolf (id 27878618708400305) | nuprato/posts/2026-11-06-reel-ficha-05-frango-xadrez |
 
 Os reels vêm prontos do Matheus (skill reels-nuprato). Próxima ficha: 06.
