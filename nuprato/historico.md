@@ -26,12 +26,31 @@ Bio B:
 | Ter 03/11 19:30 | Carrossel 6 | ficha de papel + pílula | creme | Cê fala o prato. A gente resolve o resto (como funciona em 4 passos) | nuprato/posts/2026-11-03-08-como-funciona |
 | Ter 03/11 19:45 | Imagem única | texto + selo dourado | verde | Sua 1ª receita é por nossa conta (oferta) | nuprato/posts/2026-11-03-09-primeira-gratis |
 
-Último número de post usado: 09. Últimas 3 capas: ficha de papel (08), texto + selo (09), busca (07).
-
 Ideias do banco já usadas: manifesto · geladeira vazia · mito da receita à risca · 5 trocas · receita de mãe "um tiquinho" · caderno x NuPrato · busca do strogonoff · como funciona · 1ª receita grátis.
 
-Stories da estreia: nenhum. Feed de quarta 04/11 a domingo 08/11: nada agendado (decisão do Matheus em 03/11). A tarefa semanal começa no domingo 08/11 produzindo a semana de 09/11.
+Stories da estreia: nenhum.
 
 ### Números da estreia
 
 Ainda sem dado (a primeira medição é da tarefa de domingo 08/11).
+
+## Semana parcial 04/11 a 08/11/2026 (feita em 04/11, antes da tarefa semanal)
+
+Pedido do Matheus em 04/11: posts de quarta a domingo; a tarefa semanal assume a partir da semana de 09/11. Link da bio já atualizado pelo Matheus.
+
+| Quando | Formato | Capa | Fundo da capa | Tema / gancho | Pasta no repo |
+|---|---|---|---|---|---|
+| Qua 04/11 18:40 | Carrossel 6 | antes e depois (duas fichas) | papel | Receita pra 6, janta pra 2 (ajustar quantidade, tempo e sal) | nuprato/posts/2026-11-04-10-receita-pra-6 |
+| Qui 05/11 18:40 | Carrossel 7 | número gigante | verde | 3 trens que viram janta: omelete de batata com batata, ovo e cebola | nuprato/posts/2026-11-05-11-tres-trens |
+| Sex 06/11 18:40 | Imagem única | ficha de papel (caixas vazias) | papel | Qual prato cê nunca teve coragem de fazer? (comunidade; prometido: "o mais pedido vira post") | nuprato/posts/2026-11-06-12-nunca-teve-coragem |
+| Sáb 07/11 10:40 | Carrossel 7 | texto gigante + pílula | grafite | Nunca fez tropeiro? Bora hoje (receita mineira passo a passo) | nuprato/posts/2026-11-07-13-tropeiro |
+
+Stories (nuprato/stories/2026-11-04): qua 11:10 s01 frase "Cê diz o prato. A gente faz caber na sua cozinha." · qua 17:10 s02 capa do 10 · qui 11:10 s03 ficha "Sem farinha de rosca?" · qui 17:10 s04 capa do 11 · sex 11:10 s05 frase "Um tiquinho de sal é quanto, mãe?" · sex 17:10 s06 capa do 12 · sáb 09:10 s07 oferta com selo · sáb 20:10 s08 capa do 13 · dom 10:10 s09 ficha "Sem panela de pressão?" · dom 18:10 s10 frase "Livro de receita? Trem do passado, sô."
+
+Frases de story já usadas: "Cê diz o prato. A gente faz caber na sua cozinha." · "Um tiquinho de sal é quanto, mãe?" · "Sua 1ª receita guiada é por nossa conta." · "Livro de receita? Trem do passado, sô." Trocas de story já usadas: farinha de rosca, panela de pressão.
+
+**Pendência pra semana de 09/11:** o post 12 prometeu que o prato mais pedido nos comentários vira post. A tarefa de domingo deve olhar os comentários do post 12 (get-post-metrics-tool ou o Instagram) e, se tiver pedido, fazer o carrossel desse prato na semana. Sem comentário, segue a pauta normal.
+
+Último número de post usado: 13. Últimas 3 capas: número (11), ficha caixas vazias (12), texto gigante grafite (13).
+
+Ideias do banco já usadas nesta semana: receita pra 6 x pra 2 · 3 ingredientes · comunidade "nunca teve coragem" · tropeiro.
