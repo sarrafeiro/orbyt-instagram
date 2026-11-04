@@ -54,3 +54,12 @@ Frases de story já usadas: "Cê diz o prato. A gente faz caber na sua cozinha."
 Último número de post usado: 13. Últimas 3 capas: número (11), ficha caixas vazias (12), texto gigante grafite (13).
 
 Ideias do banco já usadas nesta semana: receita pra 6 x pra 2 · 3 ingredientes · comunidade "nunca teve coragem" · tropeiro.
+
+**Reels extras (pedido do Matheus em 04/11, a mais, sem substituir nada):**
+
+| Quando | Formato | Tema | Música (biblioteca do Instagram) | Pasta no repo |
+|---|---|---|---|---|
+| Qua 04/11 20:30 | Reel 25 s, "Feito com IA" | Ficha 04: strogonoff sem creme de leite (requeijão) | Samba Quentinho, Mike Block (id 871079909934263) | nuprato/posts/2026-11-04-reel-ficha-04-strogonoff |
+| Sex 06/11 20:30 | Reel 19 s, "Feito com IA" | Ficha 05: frango xadrez igual o do delivery (shoyu + amido de milho) | Funky Friday, Danny Peter Wolf (id 27878618708400305) | nuprato/posts/2026-11-06-reel-ficha-05-frango-xadrez |
+
+Os reels vêm prontos do Matheus (skill reels-nuprato). Próxima ficha: 06.
