@@ -45,7 +45,7 @@ Pedido do Matheus em 04/11: posts de quarta a domingo; a tarefa semanal assume a
 | Sex 06/11 18:40 | Imagem única | ficha de papel (caixas vazias) | papel | Qual prato cê nunca teve coragem de fazer? (comunidade; prometido: "o mais pedido vira post") | nuprato/posts/2026-11-06-12-nunca-teve-coragem |
 | Sáb 07/11 10:40 | Carrossel 7 | texto gigante + pílula | grafite | Nunca fez tropeiro? Bora hoje (receita mineira passo a passo) | nuprato/posts/2026-11-07-13-tropeiro |
 
-Stories (nuprato/stories/2026-11-04): qua 11:10 s01 frase "Cê diz o prato. A gente faz caber na sua cozinha." · qua 17:10 s02 capa do 10 · qui 11:10 s03 ficha "Sem farinha de rosca?" · qui 17:10 s04 capa do 11 · sex 11:10 s05 frase "Um tiquinho de sal é quanto, mãe?" · sex 17:10 s06 capa do 12 · sáb 09:10 s07 oferta com selo · sáb 20:10 s08 capa do 13 · dom 10:10 s09 ficha "Sem panela de pressão?" · dom 18:10 s10 frase "Livro de receita? Trem do passado, sô."
+Stories (nuprato/stories/2026-11-04): qua 11:10 s01 frase "Cê diz o prato. A gente faz caber na sua cozinha." · qua 17:10 s02 capa do 10 · qui 11:10 s03 ficha "Sem farinha de rosca?" · qui 17:10 s04 capa do 11 · sex 11:10 s05 frase "Um tiquinho de sal é quanto, mãe?" · sex 17:10 s06 capa do 12 · sáb 09:10 s07 oferta com selo · sáb 18:10 s08 capa do 13 (era 20:10; regra de nada depois das 19h) · dom 10:10 s09 ficha "Sem panela de pressão?" · dom 18:10 s10 frase "Livro de receita? Trem do passado, sô."
 
 Frases de story já usadas: "Cê diz o prato. A gente faz caber na sua cozinha." · "Um tiquinho de sal é quanto, mãe?" · "Sua 1ª receita guiada é por nossa conta." · "Livro de receita? Trem do passado, sô." Trocas de story já usadas: farinha de rosca, panela de pressão.
 
@@ -59,7 +59,7 @@ Ideias do banco já usadas nesta semana: receita pra 6 x pra 2 · 3 ingredientes
 
 | Quando | Formato | Tema | Música (biblioteca do Instagram) | Pasta no repo |
 |---|---|---|---|---|
-| Qua 04/11 20:30 | Reel 25 s, "Feito com IA" | Ficha 04: strogonoff sem creme de leite (requeijão) | Samba Quentinho, Mike Block (id 871079909934263) | nuprato/posts/2026-11-04-reel-ficha-04-strogonoff |
-| Sex 06/11 20:30 | Reel 19 s, "Feito com IA" | Ficha 05: frango xadrez igual o do delivery (shoyu + amido de milho) | Funky Friday, Danny Peter Wolf (id 27878618708400305) | nuprato/posts/2026-11-06-reel-ficha-05-frango-xadrez |
+| Qua 04/11 14:31 | Reel 25 s, "Feito com IA" | Ficha 04: strogonoff sem creme de leite (requeijão) | Samba Quentinho, Mike Block (id 871079909934263) | nuprato/posts/2026-11-04-reel-ficha-04-strogonoff |
+| Sex 06/11 14:31 | Reel 19 s, "Feito com IA" | Ficha 05: frango xadrez igual o do delivery (shoyu + amido de milho) | Funky Friday, Danny Peter Wolf (id 27878618708400305) | nuprato/posts/2026-11-06-reel-ficha-05-frango-xadrez |
 
 Os reels vêm prontos do Matheus (skill reels-nuprato). Próxima ficha: 06.

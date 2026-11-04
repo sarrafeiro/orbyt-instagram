@@ -29,6 +29,8 @@ Estratégia e identidade: docs `claude/instagram-nuprato.md` e `claude/conceito-
 
 ## 3. A semana (horário de Brasília, UTC−3; o Trypost recebe em UTC)
 
+**Regra do Matheus (04/11): nada sai depois das 19:00 de Brasília (22:00Z), nem post, nem story, nem reel.** Reel extra que o Matheus mandar sai às 14:31 (17:31Z).
+
 | Dia | Feed | Story 1 | Story 2 |
 |---|---|---|---|
 | Seg | 18:40 (21:40Z) carrossel, dor | 11:10 (14:10Z) | 17:10 (20:10Z) |
@@ -36,14 +38,14 @@ Estratégia e identidade: docs `claude/instagram-nuprato.md` e `claude/conceito-
 | Qua | 18:40 (21:40Z) carrossel, mecanismo (como o NuPrato resolve) | 11:10 (14:10Z) | 17:10 (20:10Z) |
 | Qui | 18:40 (21:40Z) carrossel, educação salvável (trocas, checklist) | 11:10 (14:10Z) | 17:10 (20:10Z) |
 | Sex | 18:40 (21:40Z) imagem única ou carrossel, mito ou comunidade | 11:10 (14:10Z) | 17:10 (20:10Z) |
-| Sáb | 10:40 (13:40Z) carrossel, oferta (1ª receita grátis) ou receita de fim de semana | 09:10 (12:10Z) | 20:10 (23:10Z) |
+| Sáb | 10:40 (13:40Z) carrossel, oferta (1ª receita grátis) ou receita de fim de semana | 09:10 (12:10Z) | 18:10 (21:10Z) |
 | Dom | sem feed | 10:10 (13:10Z) | 18:10 (21:10Z) |
 
 Total: 6 feed + 14 stories = 20. Na semana: 4 carrosséis e 2 imagens únicas (igual à estreia). Reels: a tarefa semanal não produz reel. O Matheus faz os reels (capa na Runway, vídeo, card final) e manda; aí entram como post a mais, sem tirar nenhum do calendário. Agendar reel: `content_type: instagram_reel`, `media: [{url, meta: {cover_offset_ms: 300}}]` (a capa é o primeiro quadro), `meta: {share_to_feed: true, is_ai_generated: true, audio: {...}}`. Vídeo acima de 30 MB: comprimir antes (`ffmpeg -c:v libx264 -preset veryfast -crf 21 -c:a copy -movflags +faststart`).
 
 **Música (desde 04/11 a conta está ligada ao Trypost pelo Facebook, plataforma instagram-facebook):** `search-instagram-audio-tool` com `account_id` da conta (sem `q` traz o que está em alta; buscas que funcionam: "samba", "funk"). A API só devolve a biblioteca licenciada do Instagram, não os hits do momento. Copie `id`, `title`, `artist` e `cover_url` em `meta.audio`, com `audio_volume: 45` e `video_volume: 100` (o vídeo tem som de cozinha). Não repetir música já usada (ver histórico). Música também pode ir em carrossel? Não: só em reel.
 
-Stories: o das 17:10 anuncia o post do dia (story com `capa=`); o das 11:10 é peça solta (frase de argumento, ficha com uma troca de ingrediente, pergunta pra responder, a oferta com o selo). Sábado: o das 20:10 anuncia o post do dia. Domingo: 2 peças soltas. Story que anuncia post: o título do story não repete o título da capa; use uma frase de dentro do post. Story com selo: no máximo 2 por semana.
+Stories: o das 17:10 anuncia o post do dia (story com `capa=`); o das 11:10 é peça solta (frase de argumento, ficha com uma troca de ingrediente, pergunta pra responder, a oferta com o selo). Sábado: o das 18:10 anuncia o post do dia. Domingo: 2 peças soltas. Story que anuncia post: o título do story não repete o título da capa; use uma frase de dentro do post. Story com selo: no máximo 2 por semana.
 
 ## 4. Pauta
 
