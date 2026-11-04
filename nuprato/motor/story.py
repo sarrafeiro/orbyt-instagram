@@ -25,7 +25,7 @@ CSS_STORY = K.CSS.replace('html,body{width:1080px;height:1350px;overflow:hidden}
 .sbloco{{position:absolute;left:90px;right:90px;top:360px;bottom:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;z-index:2}}
 .sbloco h1{{font-size:var(--t,104px)}}
 .sbloco .sub{{font-size:var(--s,44px)}}
-.scapa{{margin-top:56px;width:640px;transform:rotate(-2deg);border-radius:10px;overflow:hidden;box-shadow:0 40px 70px -30px rgba(30,40,32,.55),0 0 0 10px {C['papel']}}}
+.scapa{{margin-top:48px;width:580px;transform:rotate(-2deg);border-radius:10px;overflow:hidden;box-shadow:0 40px 70px -30px rgba(30,40,32,.55),0 0 0 10px {C['papel']}}}
 .scapa img{{width:100%;display:block}}
 .sselo{{width:420px;height:420px;margin-bottom:40px;transform:rotate(-8deg);filter:drop-shadow(0 22px 26px rgba(20,40,28,.35))}}
 .svisual{{margin-top:50px;width:100%;display:flex;justify-content:center}}
