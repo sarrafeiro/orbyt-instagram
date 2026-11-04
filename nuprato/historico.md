@@ -69,3 +69,4 @@ Músicas usadas em reel, da mais nova pra mais antiga (só repete depois de 5 re
 Qua 04/11 17:11: o Matheus mandou uma edição nova da Ficha 04 (26 s) e pediu pra ela ficar no feed, com Funky Friday. Publicada na hora (nuprato/posts/2026-11-04-reel-ficha-04-strogonoff-v2). O repost das 16:35 com a edição antiga continua no ar até o Matheus decidir apagar.
 
 Qua 04/11 17:26: versão FINAL da Ficha 04 publicada (nuprato/posts/2026-11-04-reel-ficha-04-strogonoff-v3, Funky Friday), https://www.instagram.com/reel/DfVT0HJD-Ul/ . Esta é a que vale. As duas anteriores (16:35 DfVOEp4DdZ7 e 17:12 DfVSO3CCG9B) eram edições erradas.
+As duas edições erradas (16:35 e 17:12) foram tiradas do feed pelo Matheus em 04/11. No ar só a final (DfVT0HJD-Ul).
