@@ -65,3 +65,5 @@ Ideias do banco já usadas nesta semana: receita pra 6 x pra 2 · 3 ingredientes
 Os reels vêm prontos do Matheus (skill reels-nuprato). Próxima ficha: 06.
 
 Músicas usadas em reel, da mais nova pra mais antiga (só repete depois de 5 reels): Funky Friday, Danny Peter Wolf (Ficha 05) · Funky Friday, Danny Peter Wolf (Ficha 04, repetição liberada pelo Matheus). Daqui pra frente a música vem na edição do Matheus.
+
+Qua 04/11 17:11: o Matheus mandou uma edição nova da Ficha 04 (26 s) e pediu pra ela ficar no feed, com Funky Friday. Publicada na hora (nuprato/posts/2026-11-04-reel-ficha-04-strogonoff-v2). O repost das 16:35 com a edição antiga continua no ar até o Matheus decidir apagar.
