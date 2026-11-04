@@ -59,9 +59,9 @@ Ideias do banco já usadas nesta semana: receita pra 6 x pra 2 · 3 ingredientes
 
 | Quando | Formato | Tema | Música (biblioteca do Instagram) | Pasta no repo |
 |---|---|---|---|---|
-| Qua 04/11 14:31 | Reel 25 s, "Feito com IA" | Ficha 04: strogonoff sem creme de leite (requeijão) | Audio em alta ⬆️, djpatrickr (id 359008577017420; trocado pelo Matheus, ele odiou o Samba Quentinho) | nuprato/posts/2026-11-04-reel-ficha-04-strogonoff |
+| Qua 04/11 16:35 (repostado) | Reel 25 s, "Feito com IA" | Ficha 04: strogonoff sem creme de leite (requeijão) | Funky Friday, Danny Peter Wolf (o post das 14:31 com funk do djpatrickr foi apagado pelo Matheus e repostado) | nuprato/posts/2026-11-04-reel-ficha-04-strogonoff |
 | Sex 06/11 14:31 | Reel 19 s, "Feito com IA" | Ficha 05: frango xadrez igual o do delivery (shoyu + amido de milho) | Funky Friday, Danny Peter Wolf (id 27878618708400305) | nuprato/posts/2026-11-06-reel-ficha-05-frango-xadrez |
 
 Os reels vêm prontos do Matheus (skill reels-nuprato). Próxima ficha: 06.
 
-Músicas usadas em reel, da mais nova pra mais antiga (só repete depois de 5 reels): 2. Funky Friday, Danny Peter Wolf · 1. Audio em alta ⬆️, djpatrickr.
+Músicas usadas em reel, da mais nova pra mais antiga (só repete depois de 5 reels): Funky Friday, Danny Peter Wolf (Ficha 05) · Funky Friday, Danny Peter Wolf (Ficha 04, repetição liberada pelo Matheus). Daqui pra frente a música vem na edição do Matheus.
