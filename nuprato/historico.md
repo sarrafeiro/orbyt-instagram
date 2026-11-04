@@ -63,3 +63,5 @@ Ideias do banco já usadas nesta semana: receita pra 6 x pra 2 · 3 ingredientes
 | Sex 06/11 14:31 | Reel 19 s, "Feito com IA" | Ficha 05: frango xadrez igual o do delivery (shoyu + amido de milho) | Funky Friday, Danny Peter Wolf (id 27878618708400305) | nuprato/posts/2026-11-06-reel-ficha-05-frango-xadrez |
 
 Os reels vêm prontos do Matheus (skill reels-nuprato). Próxima ficha: 06.
+
+Músicas usadas em reel, da mais nova pra mais antiga (só repete depois de 5 reels): 2. Funky Friday, Danny Peter Wolf · 1. Audio em alta ⬆️, djpatrickr.
