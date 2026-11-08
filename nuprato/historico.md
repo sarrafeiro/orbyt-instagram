@@ -70,3 +70,54 @@ Qua 04/11 17:11: o Matheus mandou uma edição nova da Ficha 04 (26 s) e pediu p
 
 Qua 04/11 17:26: versão FINAL da Ficha 04 publicada (nuprato/posts/2026-11-04-reel-ficha-04-strogonoff-v3, Funky Friday), https://www.instagram.com/reel/DfVT0HJD-Ul/ . Esta é a que vale. As duas anteriores (16:35 DfVOEp4DdZ7 e 17:12 DfVSO3CCG9B) eram edições erradas.
 As duas edições erradas (16:35 e 17:12) foram tiradas do feed pelo Matheus em 04/11. No ar só a final (DfVT0HJD-Ul).
+
+## Medição da semana 03/11 a 08/11/2026 (tarefa de domingo 08/11)
+
+Fonte: Trypost (get-channel-insights e list-channel-publications, 03/11 a 08/11). Seguidores: 25 → 29 (+4). Alcance somado: 681. Visualizações: 850. Curtidas: 16. Comentários: 0. Salvamentos: 0. Compartilhamentos: 2. Visitas ao perfil: 2.
+
+| Post | Formato | Alcance | Curtidas | Coment. | Salv. | Compart. |
+|---|---|---|---|---|---|---|
+| Ficha 04 strogonoff (reel final, 04/11 17:26) | reel | 112 | 1 | 0 | 0 | 0 |
+| Ficha 04 strogonoff (edição errada 16:35, já tirada) | reel | 110 | 2 | 0 | 0 | 1 |
+| Ficha 07 macarrão molho branco sem farinha (06/11) | reel | 107 | 0 | 0 | 0 | 0 |
+| Ficha 08 frango com quiabo sem baba (07/11) | reel | 106 | 1 | 0 | 0 | 1 |
+| Ficha 04 strogonoff (reel das 14:31, apagado) | reel | 70 | 1 | 0 | 0 | 0 |
+| Ficha 06 baião de dois com sobra (05/11) | reel | 69 | 1 | 0 | 0 | 0 |
+| 11 três trens | carrossel | 5 | 1 | 0 | 0 | 0 |
+| 01 manifesto | carrossel | 5 | 1 | 0 | 0 | 0 |
+| 10 receita pra 6 | carrossel | 4 | 2 | 0 | 0 | 0 |
+| 09 primeira grátis | imagem | 4 | 1 | 0 | 0 | 0 |
+| 02, 03, 04, 05 (estreia) | carrossel/imagem | 4 cada | 0 | 0 | 0 | 0 |
+| 06, 07, 08 (estreia) | carrossel | 3 cada | 1 | 0 | 0 | 0 |
+| 12 nunca teve coragem | imagem | 2 | 1 | 0 | 0 | 0 |
+| 13 tropeiro | carrossel | 1 | 1 | 0 | 0 | 0 |
+| Stories (10) | story | 5 a 8 cada | sem dado | 0 | sem dado | 0 |
+
+Reels que entraram fora da tarefa (feitos pelo Matheus, anotados aqui pra controle): Ficha 06 baião de dois (05/11 14:32), Ficha 07 macarrão ao molho branco sem farinha (06/11 14:32), Ficha 08 frango com quiabo sem baba (07/11 14:33). Próxima ficha: 09. O reel da Ficha 05 (frango xadrez) não apareceu na lista de publicações do Trypost dessa semana.
+
+Pendência do post 12: zero comentários, então nenhum prato pedido. Segue a pauta normal.
+
+**Leitura:** reel alcança 70 a 112 contas (gente de fora); carrossel e imagem única ficam em 1 a 5 (só seguidor). Zero salvamento em tudo. O sinal de engajamento é fraco demais pra virar regra; o que dá pra tirar: o gancho "faltou ingrediente / sem X" é o que os reels mais alcançados têm em comum, e no feed o melhor foi o antes e depois (10, 2 curtidas).
+
+**Decisão da semana 09/11:** metade dos temas na linha "faltou ingrediente / adapta pro que tem" com ângulo novo (16 sem forno em antes e depois, 17 trocas no bolo, 19 frango que sobrou com troca de farinha); o resto variado (14 arroz empapou, 15 mito ou verdade da carne, 18 conversa de comunidade). Sugestão pro Matheus: o crescimento está vindo dos reels; vale manter 1 reel por dia útil.
+
+## Semana 09/11 a 15/11/2026 (tarefa semanal de 08/11)
+
+| Quando | Formato | Capa | Fundo da capa | Tema / gancho | Pasta no repo |
+|---|---|---|---|---|---|
+| Seg 09/11 18:40 | Carrossel 7 | ficha de papel (caixas vazias) | papel | Arroz empapou? Ainda dá janta (secar, bolinho de arroz, medida de água) | nuprato/posts/2026-11-09-14-arroz-empapou |
+| Ter 10/11 18:40 | Imagem única | carimbo VERDADE | grafite | Carne tem que descansar antes de cortar | nuprato/posts/2026-11-10-15-carne-descansa |
+| Qua 11/11 18:40 | Carrossel 6 | antes e depois (duas fichas) | creme | Sem forno? A receita muda junto (coxa com batata: forno x air fryer) | nuprato/posts/2026-11-11-16-sem-forno |
+| Qui 12/11 18:40 | Carrossel 8 | número gigante (4) | verde | 4 trocas no bolo: leite, manteiga, açúcar e fermento (o que não tem troca) | nuprato/posts/2026-11-12-17-bolo-trocas |
+| Sex 13/11 18:40 | Imagem única | conversa de WhatsApp | creme | O que tem pra janta? Nada (comunidade, marca quem) | nuprato/posts/2026-11-13-18-o-que-tem-pra-janta |
+| Sáb 14/11 10:40 | Carrossel 7 | texto gigante + pílula | grafite | Sobrou frango? Vira 3 pratos (farofa, arroz com frango, sanduíche) | nuprato/posts/2026-11-14-19-frango-sobrou |
+
+Stories (nuprato/stories/2026-11-09): seg 11:10 s01 frase "Faltou um trem? A receita se vira." · seg 17:10 s02 capa do 14 · ter 11:10 s03 ficha "Sem extrato de tomate?" · ter 17:10 s04 capa do 15 · qua 11:10 s05 frase "Receita boa é a que cabe na sua cozinha." · qua 17:10 s06 capa do 16 · qui 11:10 s07 ficha "Sem creme de leite?" (requeijão) · qui 17:10 s08 capa do 17 · sex 11:10 s09 frase "Mercado às 20h? Abre a geladeira primeiro." · sex 17:10 s10 capa do 18 · sáb 09:10 s11 oferta com selo "Escolhe o prato. A 1ª receita guiada é grátis." · sáb 18:10 s12 capa do 19 · dom 10:10 s13 ficha "Sem ovo pra empanar?" · dom 18:10 s14 frase "Semana nova, janta resolvida."
+
+Frases de story usadas nesta semana: "Faltou um trem? A receita se vira." · "Receita boa é a que cabe na sua cozinha." · "Mercado às 20h? Abre a geladeira primeiro." · "Escolhe o prato. A 1ª receita guiada é grátis." · "Semana nova, janta resolvida." Trocas de story usadas: extrato de tomate, creme de leite (requeijão), ovo pra empanar.
+
+Último número de post usado: 19. Últimas 3 capas: número (17), conversa (18), texto gigante grafite (19). Grade: 19 foi escuro, o 20 abre claro.
+
+Ideias do banco já usadas nesta semana: arroz empapou · mito ou verdade da carne descansar · air fryer x forno (antes e depois) · trocas pro bolo · conversa "o que tem pra janta" · frango que sobrou.
+
+Ideias novas pro banco: feijão sem panela de pressão em carrossel passo a passo · janta pra 1 pessoa · "lavar o arroz deixa soltinho" (mito ou verdade) · conversa da amiga "me passa a receita?" · checklist do que ter em casa.
