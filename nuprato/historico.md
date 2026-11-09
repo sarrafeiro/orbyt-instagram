@@ -121,3 +121,22 @@ Frases de story usadas nesta semana: "Faltou um trem? A receita se vira." · "Re
 Ideias do banco já usadas nesta semana: arroz empapou · mito ou verdade da carne descansar · air fryer x forno (antes e depois) · trocas pro bolo · conversa "o que tem pra janta" · frango que sobrou.
 
 Ideias novas pro banco: feijão sem panela de pressão em carrossel passo a passo · janta pra 1 pessoa · "lavar o arroz deixa soltinho" (mito ou verdade) · conversa da amiga "me passa a receita?" · checklist do que ter em casa.
+
+### Mudança na semana 09/11 (pedido do Matheus em 09/11)
+
+2 posts de feed por dia; terça, quinta e sábado com vídeo de receita que o Matheus faz (vaga às 14:31, nada agendado pela tarefa). Entraram 5 carrosséis com as cenas da Kairogen do TikTok (`is_ai_generated`) e saíram do Trypost o 16 (sem forno) e o 18 (o que tem pra janta). Os dois ficam prontos no repo pra outra semana. Stories de qua e sex 17:10 trocados pra anunciar o 21 e o 23.
+
+| Quando | Formato | Capa | Tema | Pasta no repo |
+|---|---|---|---|---|
+| Ter 10/11 14:31 | vaga | vídeo de receita do Matheus | | |
+| Qua 11/11 12:40 | Carrossel 6 com foto | foto (cena ia-cetica) | IA não cozinha, quem cozinha é cê | nuprato/posts/2026-11-11-20-ia-nao-cozinha |
+| Qua 11/11 18:40 | Carrossel 6 com foto | foto (quinta-geladeira) | Geladeira assim e fome agora: ovo no molho de tomate | nuprato/posts/2026-11-11-21-geladeira-quinta |
+| Qui 12/11 14:31 | vaga | vídeo de receita do Matheus | | |
+| Sex 13/11 12:40 | Carrossel 6 com foto | foto (sexta13-fumaca) | Sexta 13: os sustos da cozinha | nuprato/posts/2026-11-13-22-sexta-13 |
+| Sex 13/11 18:40 | Carrossel 6 com foto | foto (namorado-zoando) | Quando duvidam que cê sabe cozinhar | nuprato/posts/2026-11-13-23-duvidaram |
+| Sáb 14/11 14:31 | vaga | vídeo de receita do Matheus | | |
+| Dom 15/11 17:40 | Carrossel 6 com foto | foto (domingo-mesa) | Almoço de domingo na sua vez | nuprato/posts/2026-11-15-24-domingo |
+
+Cenas do TikTok já usadas no Instagram: ia-cetica, ia-fogao v2, quinta-geladeira, quinta-sofa, sexta13-fumaca, sexta13-arroz, sexta13-feijao, sexta13-tropeiro, namorado-zoando, namorado-comendo v2, domingo-mesa, domingo-mae, domingo-lasanha. Sobram: sogra-repetindo, ia-fogao v1, namorado-comendo v1.
+
+Prontos e não publicados (usar em outra semana): 16-sem-forno, 18-o-que-tem-pra-janta. Último número de post: 24.

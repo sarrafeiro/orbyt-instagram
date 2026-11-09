@@ -16,7 +16,7 @@ Estratégia e identidade: docs `claude/instagram-nuprato.md` e `claude/conceito-
 - **Fase atual (desde 03/11/2026): venda de conceito.** O app ainda não está pronto nem renomeado. Nada de print do app, nada de "baixa agora", nada de prometer função que o Matheus não confirmou. Funções que podem ser ditas: o usuário fala o prato; conta o que tem, quantas pessoas e o que tem na cozinha (fogão, forno, air fryer, panela de pressão); a IA adapta a receita (troca o que falta, ajusta quantidade e tempo) e explica o que mudou; guia passo a passo até o prato pronto.
 - **Chamada:** "1ª receita guiada grátis" e "link na bio". Sem WhatsApp, sem preço, sem "sem cartão" (não confirmado). Nunca "comente PALAVRA que eu mando no direct", a não ser como pedido de comentário pra engajar (ex.: "comenta strogonoff").
 - **Tom mineiro:** no máximo 2 marcas mineiras por legenda. "Nu" só na frase inteira "Nu, que prato!". "trem" no lugar de coisa ou ingrediente. "cê" liberado. "sô" no máximo 1 por peça. "uai" e "trem bão" só na voz (reel), nunca escrito.
-- **Proibido:** roxo, qualquer referência ao Nubank, tweet como formato (lembra fintech), selo com borda, fundo ou contorno, selo na capa de post, número, estatística ou depoimento inventado, nome de pessoa real, comida gerada por IA no carrossel, repostar conteúdo de outra página.
+- **Proibido:** roxo, qualquer referência ao Nubank, tweet como formato (lembra fintech), selo com borda, fundo ou contorno, selo na capa de post, número, estatística ou depoimento inventado, nome de pessoa real, repostar conteúdo de outra página.
 - Substituição de ingrediente tem que ser verdadeira e segura. Na dúvida, não escreva. Bolo e pão: sempre avisar que pedem mais cuidado.
 - Hashtag: 0 a 3, específicas (#receitafacil #comidacaseira #dicasdecozinha #cozinhafacil #substituicao #receitademae). Nunca mais de 3.
 
@@ -30,6 +30,10 @@ Estratégia e identidade: docs `claude/instagram-nuprato.md` e `claude/conceito-
 ## 3. A semana (horário de Brasília, UTC−3; o Trypost recebe em UTC)
 
 **Regra do Matheus (04/11): nada sai depois das 19:00 de Brasília (22:00Z), nem post, nem story, nem reel.** Reel extra que o Matheus mandar sai às 14:31 (17:31Z).
+
+**Calendário novo do feed (Matheus, 09/11; vale a partir da semana de 16/11):** 2 posts de feed por dia de segunda a sábado e 1 no domingo. Terça, quinta e sábado têm vídeo de receita que o Matheus faz: a tarefa deixa o horário das 14:31 (17:31Z) livre pra ele e produz só 1 carrossel nesses dias. Segunda, quarta e sexta: 2 carrosséis (12:40 = 15:40Z e 18:40 = 21:40Z). Domingo: 1 carrossel às 17:40 (20:40Z). Sábado o carrossel sai às 10:40 (13:40Z). Total: 10 carrosséis + 3 vagas de vídeo. A tabela abaixo continua valendo pros stories e pro horário das 18:40.
+
+**Carrossel com foto (Matheus, 09/11):** parte dos carrosséis (uns metade) usa as cenas com gente de verdade geradas na Kairogen pro TikTok (`nuprato/tiktok/cenas/`). No motor: card `tema='foto', foto=<caminho>, fy=<foco vertical %>, baixo=True` (texto embaixo). Modelo: `posts/fotos_2026_11_09.py`. Mistura cards de foto com cards da marca (ficha, texto) e fecha no `FIM`. Esses posts vão com `meta: {is_ai_generated: true}` no Trypost. A regra antiga "sem comida gerada por IA no carrossel" não vale mais pra esse tipo. Não repetir cena já usada no Instagram (ver histórico); se faltar cena nova, avisar o Matheus em vez de gerar sozinho (gerar gasta crédito).
 
 | Dia | Feed | Story 1 | Story 2 |
 |---|---|---|---|
