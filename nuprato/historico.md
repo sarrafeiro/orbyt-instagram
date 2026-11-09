@@ -128,6 +128,7 @@ Ideias novas pro banco: feijão sem panela de pressão em carrossel passo a pass
 
 | Quando | Formato | Capa | Tema | Pasta no repo |
 |---|---|---|---|---|
+| Seg 09/11 12:40 | Carrossel 6 | antes e depois (duas fichas) | Sem forno? A receita muda junto (o 16 voltou, segundo post de segunda) | nuprato/posts/2026-11-11-16-sem-forno (pasta com data de 11, saiu em 09) |
 | Ter 10/11 14:31 | vaga | vídeo de receita do Matheus | | |
 | Qua 11/11 12:40 | Carrossel 6 com foto | foto (cena ia-cetica) | IA não cozinha, quem cozinha é cê | nuprato/posts/2026-11-11-20-ia-nao-cozinha |
 | Qua 11/11 18:40 | Carrossel 6 com foto | foto (quinta-geladeira) | Geladeira assim e fome agora: ovo no molho de tomate | nuprato/posts/2026-11-11-21-geladeira-quinta |
@@ -139,4 +140,4 @@ Ideias novas pro banco: feijão sem panela de pressão em carrossel passo a pass
 
 Cenas do TikTok já usadas no Instagram: ia-cetica, ia-fogao v2, quinta-geladeira, quinta-sofa, sexta13-fumaca, sexta13-arroz, sexta13-feijao, sexta13-tropeiro, namorado-zoando, namorado-comendo v2, domingo-mesa, domingo-mae, domingo-lasanha. Sobram: sogra-repetindo, ia-fogao v1, namorado-comendo v1.
 
-Prontos e não publicados (usar em outra semana): 16-sem-forno, 18-o-que-tem-pra-janta. Último número de post: 24.
+Pronto e não publicado (usar em outra semana): 18-o-que-tem-pra-janta. Último número de post: 24.
