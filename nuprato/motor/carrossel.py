@@ -12,6 +12,7 @@ Campos de um card:
   nota   anotação à mão (Caveat) embaixo do título
   carimbo ('MITO','mito') ou ('VERDADE','verdade')
   visual HTML de um dos helpers abaixo
+  foto   caminho de uma cena (foto 9:16 ou 4:5) em tela cheia; use tema='foto'. fy = foco vertical em %, baixo=True = texto embaixo
   t, s   tamanho do título e do texto em px
 """
 import sys, os, html, json, importlib.util, base64
@@ -41,6 +42,7 @@ TEMAS = {
     'papel':  dict(bg=C['papel'], fg=C['grafite'], sec=C['texto_sec'], olho=C['verde_escuro'], logo_fg=C['verde'], mao=C['verde_escuro']),
     'verde':  dict(bg=C['verde'], fg=C['creme'], sec='#E4EFE7', olho=C['amarelo'], logo_fg=C['creme'], mao=C['creme']),
     'escuro': dict(bg=C['grafite'], fg=C['creme'], sec='#C9CCC8', olho=C['amarelo'], logo_fg=C['creme'], mao=C['amarelo']),
+    'foto':   dict(bg='#1d1f20', fg='#FFFFFF', sec='#EDEDE8', olho=C['amarelo'], logo_fg='#FFFFFF', mao=C['amarelo']),
 }
 
 CSS = f"""
@@ -134,6 +136,17 @@ ul.lista{{list-style:none;display:grid;gap:22px;width:100%;text-align:left}}
 ul.lista li{{display:flex;gap:26px;align-items:center;font-size:36px;font-weight:700;line-height:1.22;background:{C['papel']};color:{C['grafite']};border-radius:24px;padding:26px 32px;box-shadow:0 0 0 1.5px #E6E0D4}}
 ul.lista li i{{flex:none;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:30px;background:{C['verde']};color:{C['creme']}}}
 ul.lista li small{{display:block;font-size:27px;font-weight:400;color:{C['texto_sec']};margin-top:6px}}
+/* card de foto (cena real gerada, tela cheia) */
+body.foto{{background-color:#1d1f20;background-size:cover;background-repeat:no-repeat}}
+.sombra{{position:absolute;inset:0;z-index:1;pointer-events:none}}
+.foto h1{{text-shadow:0 4px 28px rgba(0,0,0,.55)}}
+.foto h1 em{{text-shadow:none}}
+.foto .sub{{text-shadow:0 2px 14px rgba(0,0,0,.7);color:#fff}}
+.foto .olho{{text-shadow:0 2px 10px rgba(0,0,0,.6)}}
+.foto .miolo.baixo{{justify-content:flex-end}}
+.foto .marca,.foto .cont{{text-shadow:0 2px 10px rgba(0,0,0,.5)}}
+.foto .arrasta{{background:{C['creme']};color:{C['grafite']}}}
+.foto .arrasta span{{background:{C['grafite']}}}
 /* card final */
 .final .miolo{{justify-content:flex-start}}
 .final .selo{{width:380px;height:380px;margin:6px auto 0;transform:rotate(-8deg);filter:drop-shadow(0 22px 26px rgba(20,40,28,.35))}}
@@ -225,8 +238,17 @@ def pagina(card, i, n):
     centro = ' meio' if (card.get('centro') or (not card.get('visual') and tipo != 'final')) else ''
     cls = tema + (' final' if tipo == 'final' else '')
     grao = GRAO if tema in ('verde', 'escuro') else ''
+    sombra = ''
+    if card.get('foto'):
+        # foto: caminho da cena; fy: foco vertical em % (0 = topo); baixo=True põe o texto embaixo
+        var += f";background-image:url(file://{card['foto']});background-position:center {card.get('fy', 40)}%"
+        baixo = card.get('baixo')
+        g = ('linear-gradient(to top, rgba(0,0,0,.80) 0%, rgba(0,0,0,.45) 34%, rgba(0,0,0,0) 58%), linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,0) 22%)' if baixo else
+             'linear-gradient(to bottom, rgba(0,0,0,.78) 0%, rgba(0,0,0,.42) 34%, rgba(0,0,0,0) 58%), linear-gradient(to top, rgba(0,0,0,.45), rgba(0,0,0,0) 22%)')
+        sombra = f'<div class="sombra" style="background:{g}"></div>'
+        centro = ' baixo' if baixo else ''
     return (f'<!doctype html><html><head><meta charset="utf-8"><style>{CSS}</style></head>'
-            f'<body class="{cls}" style="{var}">{grao}{topo}<div class="miolo{centro}">{c}</div>{pe}</body></html>')
+            f'<body class="{cls}" style="{var}">{grao}{sombra}{topo}<div class="miolo{centro}">{c}</div>{pe}</body></html>')
 
 def render(spec_path, so=None):
     """O spec tem SLUG + CARDS (um post) ou POSTS = [(slug, cards), ...] (vários)."""

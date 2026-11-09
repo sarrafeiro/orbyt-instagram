@@ -22,9 +22,9 @@ L = [
  # qua 11:10 frase
  dict(nome='s05-qua-frase', tema='escuro', olho='Do seu jeito', titulo='Receita boa é a que <em>cabe na sua&nbsp;cozinha.</em>', t=96,
       sub='Fogão, forno, air fryer ou panela de pressão: cê conta o que tem.', pe=LB),
- # qua 17:10 anuncia o 16
- dict(nome='s06-qua-post', tema='creme', olho='Post novo', titulo='Menos graus, <em>menos&nbsp;tempo.</em>', t=100,
-      capa=f'{S}/16-sem-forno/01.png', pe=PN),
+ # qua 17:10 anuncia o 21
+ dict(nome='s06-qua-post', tema='creme', olho='Post novo', titulo='Parece nada. <em>É&nbsp;janta.</em>', t=100,
+      capa=f'{S}/21-geladeira-quinta/01.png', pe=PN),
  # qui 11:10 ficha de troca
  dict(nome='s07-qui-ficha', tema='papel', olho='Salva esse', titulo='Sem creme de leite?', t=96,
       visual=ficha('Faz assim', ['requeijão cremoso', 'entra no fim, fogo baixo', 'mexe até ficar cremoso'], rodape='strogonoff aprovado'), pe=MT),
@@ -34,9 +34,9 @@ L = [
  # sex 11:10 frase
  dict(nome='s09-sex-frase', tema='escuro', olho='Antes do delivery', titulo='Mercado às 20h? <em>Abre a geladeira&nbsp;primeiro.</em>', t=92,
       sub='Cê conta o que tem. O NuPrato monta o prato.', pe=LB),
- # sex 17:10 anuncia o 18
- dict(nome='s10-sex-post', tema='creme', olho='Post novo', titulo='Ovo, arroz e meia cebola <em>é&nbsp;janta.</em>', t=88,
-      capa=f'{S}/18-o-que-tem-pra-janta/01.png', pe=PN),
+ # sex 17:10 anuncia o 23
+ dict(nome='s10-sex-post', tema='creme', olho='Post novo', titulo='Marca quem <em>duvidou de&nbsp;você.</em>', t=96,
+      capa=f'{S}/23-duvidaram/01.png', pe=PN),
  # sáb 09:10 oferta com selo
  dict(nome='s11-sab-oferta', tema='verde', selo=True, titulo='Escolhe o prato.<br><em>A 1ª receita guiada é&nbsp;grátis.</em>', t=84, pe=LB),
  # sáb 18:10 anuncia o 19
