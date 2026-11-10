@@ -131,6 +131,11 @@ class Carrossel:
         y = texto(img, s['texto'], s.get('y', 300), s.get('tam', 72))
         if s.get('sub'):
             texto(img, s['sub'], y + 24, 54, cor=AMARELO)
+        if s.get('selo'):
+            # selo dourado solto sobre a cena (slide de revela com imagem); posição e tamanho ajustáveis
+            tam = int(s.get('selo_tam', 340))
+            selo = Image.open(self.cfg['selo']).convert('RGBA'); selo = selo.crop(selo.getbbox()).resize((tam, tam), Image.LANCZOS)
+            img.paste(selo, (int(s.get('selo_x', W - tam - 48)), int(s.get('selo_y', y + 60))), selo)
         return img
 
     def card(self, s):
