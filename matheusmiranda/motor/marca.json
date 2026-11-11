@@ -1,0 +1,27 @@
+{
+  "nome": ["Matheus", "Miranda"],
+  "nome_completo": "Matheus Miranda",
+  "handle": "matheusmiranda.ia",
+  "cores": {
+    "fundo": "#F3F1EC",
+    "papel": "#FFFFFF",
+    "nevoa": "#E7E3DB",
+    "escuro": "#0E1013",
+    "texto_sec": "#5B5F66",
+    "texto_sec_escuro": "#B4B8BF",
+    "linha": "#DAD5CB",
+    "linha_escuro": "#2A2D33",
+    "linha_papel": "#F0EDE7",
+    "destaque": "#2E5BFF",
+    "destaque_claro": "#E9EEFF",
+    "texto_no_destaque": "#DCE4FF"
+  },
+  "letras": {
+    "titulo": "BricolageGrotesque.ttf",
+    "texto": "InstrumentSans.ttf",
+    "mono": "MartianMono.ttf",
+    "titulo_condensa": true
+  },
+  "logo_svg": "<svg viewBox=\"0 0 32 32\"><rect x=\"3.5\" y=\"3.5\" width=\"25\" height=\"25\" rx=\"7.5\" fill=\"none\" stroke=\"{fg}\" stroke-width=\"3.2\"/><path d=\"M9.5 11.5l4.5 4.5-4.5 4.5\" fill=\"none\" stroke=\"{fg}\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"16\" y=\"18.6\" width=\"7.5\" height=\"3.4\" rx=\"1.7\" fill=\"{dot}\"/></svg>",
+  "textos": {"arraste": "arraste →", "fim": "segue pra mais"}
+}
