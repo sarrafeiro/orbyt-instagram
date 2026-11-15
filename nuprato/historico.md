@@ -141,3 +141,65 @@ Ideias novas pro banco: feijão sem panela de pressão em carrossel passo a pass
 Cenas do TikTok já usadas no Instagram: ia-cetica, ia-fogao v2, quinta-geladeira, quinta-sofa, sexta13-fumaca, sexta13-arroz, sexta13-feijao, sexta13-tropeiro, namorado-zoando, namorado-comendo v2, domingo-mesa, domingo-mae, domingo-lasanha. Sobram: sogra-repetindo, ia-fogao v1, namorado-comendo v1.
 
 Pronto e não publicado (usar em outra semana): 18-o-que-tem-pra-janta. Último número de post: 24.
+
+## Medição da semana 09/11 a 15/11/2026 (tarefa de domingo 15/11)
+
+Fonte: Trypost (get-channel-insights e list-channel-publications, 09/11 a 15/11). Seguidores: 29 → 31 (+2). Alcance somado: 449 (semana anterior 728). Visualizações: 548. Curtidas: 14. Comentários: 0. Salvamentos: 0. Compartilhamentos: 0. Reposts: 2. Visitas ao perfil: 0.
+
+| Post | Formato | Alcance | Visualiz. | Curtidas | Coment. | Salv. | Compart. |
+|---|---|---|---|---|---|---|---|
+| Ficha 11 yakissoba POV (reel, 10/11) | reel | 109 | 117 | 2 | 0 | 0 | 0 |
+| Motion yakissoba (reel, 13/11) | reel | 104 | 116 | 2 | 0 | 0 | 0 |
+| Motion baião de dois (reel, 12/11) | reel | 77 | 92 | 2 | 0 | 0 | 0 (1 repost) |
+| Motion macarrão molho branco (reel, 14/11) | reel | 26 | 25 | 1 | 0 | 0 | 0 |
+| Motion strogonoff (reel, 10/11) | reel | 14 | 13 | 1 | 0 | 0 | 0 (1 repost) |
+| Motion frango com quiabo (reel, 15/11, saiu hoje) | reel | 1 | 1 | 1 | 0 | 0 | 0 |
+| 21 geladeira quinta (foto) | carrossel | 7 | 14 | 1 | 0 | 0 | 0 |
+| 17 bolo trocas | carrossel | 5 | 19 | 1 | 0 | 0 | 0 |
+| 15 carne descansa | imagem | 5 | 20 | 0 | 0 | 0 | 0 |
+| 20 IA não cozinha (foto) | carrossel | 4 | 5 | 1 | 0 | 0 | 0 |
+| 22 sexta 13 (foto) | carrossel | 3 | 7 | 0 | 0 | 0 | 0 |
+| 16 sem forno | carrossel | 3 | 5 | 0 | 0 | 0 | 0 |
+| 19 frango sobrou | carrossel | 2 | 3 | 1 | 0 | 0 | 0 |
+| 23 duvidaram (foto) | carrossel | 2 | 5 | 1 | 0 | 0 | 0 |
+| 14 arroz empapou | carrossel | 1 | 3 | 0 | 0 | 0 | 0 |
+| 24 domingo (foto) | carrossel | saiu 15/11 17:40, sem dado ainda | | | | | |
+| Stories (13 com dado) | story | 5 a 9 cada | 5 a 11 | sem dado | 0 | sem dado | 0 |
+
+**Leitura:** igual à semana passada, reel é o que leva o perfil pra fora (77 a 109 contas); carrossel e imagem única ficam em 1 a 7 (só seguidor). Zero salvamento e zero comentário de novo. No feed, os melhores foram 21 geladeira (foto, dor "o que tem em casa"), 17 bolo trocas (educação "faltou ingrediente") e 15 carne descansa (mito ou verdade, mais visualização do feed: 20). Carrossel com foto teve média de alcance 4, os da marca 3,2: diferença pequena demais pra virar regra.
+
+**Decisão da semana 16/11:** metade dos temas nas linhas que mais engajaram, com ângulo novo: faltou ingrediente/trocas (29 pão de queijo, 33 panqueca com troca de forno), o que ter em casa (30 sete trens), mito ou verdade (27 lavar o arroz) e cena com foto de dor (26 janta pra 1, 32 sogra). O resto variado (25 feijão sem pressão em busca, 28 mecanismo, 31 oferta com comentário do feriado, 34 sobra do churrasco). Sugestão pro Matheus continua: quem traz gente nova é reel; o feed só segura quem já segue.
+
+## Semana 16/11 a 22/11/2026 (tarefa semanal de 15/11)
+
+Calendário novo (2 posts seg/qua/sex, 1 ter/qui com vaga das 14:31 livre pro vídeo do Matheus, sáb 10:40, dom 17:40). 20/11 é feriado (Consciência Negra): os dois posts de sexta conversam com isso.
+
+| Quando | Formato | Capa | Fundo da capa | Tema / gancho | Pasta no repo |
+|---|---|---|---|---|---|
+| Seg 16/11 12:40 | Carrossel 7 | busca do Google | creme | Feijão sem panela de pressão (molho na véspera, fogo baixo, água quente, tempero no fim) | nuprato/posts/2026-11-16-25-feijao-sem-pressao |
+| Seg 16/11 18:40 | Carrossel 6 com foto | foto (quinta-sofa-ele) | escuro | Janta pra 1 sem sobrar a semana inteira (macarrão pra 1) | nuprato/posts/2026-11-16-26-janta-pra-1 |
+| Ter 17/11 14:31 | vaga | vídeo de receita do Matheus | | | |
+| Ter 17/11 18:40 | Imagem única | carimbo VERDADE | creme | Lavar o arroz deixa soltinho | nuprato/posts/2026-11-17-27-lavar-arroz |
+| Qua 18/11 12:40 | Carrossel 6 com foto | foto (ia-app) | escuro | Cê fala o prato do seu jeito (mecanismo, alho e óleo sem azeite) | nuprato/posts/2026-11-18-28-fala-do-seu-jeito |
+| Qua 18/11 18:40 | Carrossel 7 | ficha de papel (check e riscado) | papel | Pão de queijo de liquidificador: o que troca (queijo, polvilho; farinha de trigo não) | nuprato/posts/2026-11-18-29-pao-de-queijo |
+| Qui 19/11 14:31 | vaga | vídeo de receita do Matheus | | | |
+| Qui 19/11 18:40 | Carrossel 6 | número gigante (7) | verde | 7 trens pra ter em casa e nunca ficar sem janta | nuprato/posts/2026-11-19-30-sete-trens |
+| Sex 20/11 12:40 | Carrossel 5 | texto gigante + pílula Feriado | creme | Qual vai ser o prato do feriado? Comenta o número (oferta) | nuprato/posts/2026-11-20-31-prato-do-feriado |
+| Sex 20/11 18:40 | Carrossel 7 com foto | foto (sogra-mensagem) | escuro | Sogra vem almoçar: frango com quiabo sem baba | nuprato/posts/2026-11-20-32-sogra-almoco |
+| Sáb 21/11 10:40 | Carrossel 7 | ficha de papel + pílula Fim de semana | papel | Panqueca de carne moída (sem forno, tampa a frigideira) | nuprato/posts/2026-11-21-33-panqueca |
+| Sáb 21/11 14:31 | vaga | vídeo de receita do Matheus | | | |
+| Dom 22/11 17:40 | Carrossel 6 | texto gigante + pílula Domingo | escuro | Sobrou churrasco? Segunda tem carreteiro | nuprato/posts/2026-11-22-34-sobrou-churrasco |
+
+Posts com foto (26, 28, 32) foram com `is_ai_generated`. Cenas do TikTok usadas agora no Instagram: quinta-sofa-ele, ia-app, ia-fogao v1, sogra-mensagem, sogra-fogao, sogra-repetindo. Sobram: namorado-comendo v1 e sogra-abraco (dá pra no máximo 1 carrossel). **Pra semana de 23/11 precisa de cena nova** (o Matheus decide se gera; a tarefa não gasta crédito).
+
+Capa de conversa de WhatsApp ficou de fora de propósito: o Matheus reprovou o slide de chat no TikTok em 09/11. O 18-o-que-tem-pra-janta (conversa) continua pronto e não publicado.
+
+Stories (nuprato/stories/2026-11-16): seg 11:10 s01 frase "Cê fala pra quantos. A receita acompanha." · seg 17:10 s02 capa do 25 · ter 11:10 s03 ficha "Sem alho?" · ter 17:10 s04 capa do 27 · qua 11:10 s05 frase "Fala o prato. Sem termo de chef." · qua 17:10 s06 capa do 28 · qui 11:10 s07 ficha "Sem farinha pra engrossar?" (amido de milho) · qui 17:10 s08 capa do 30 · sex 11:10 s09 frase "Dia de cozinhar sem pressa." (feriado) · sex 17:10 s10 capa do 31 · sáb 09:10 s11 oferta com selo "Fala o prato do almoço. A 1ª receita guiada é grátis." · sáb 18:10 s12 capa do 33 · dom 10:10 s13 ficha "Sem manteiga pro refogado?" · dom 18:10 s14 frase "Segunda tem janta. Cê só fala o prato."
+
+Frases de story usadas nesta semana: as 5 acima. Trocas de story usadas: alho, farinha pra engrossar, manteiga.
+
+Último número de post usado: 34. Últimas 3 capas: foto (32), ficha (33), texto gigante grafite (34). Grade: 34 foi escuro, o 35 abre claro.
+
+Ideias do banco já usadas nesta semana: feijão sem panela de pressão · janta pra 1 · mito "lavar o arroz" · checklist do que ter em casa · pão de queijo de liquidificador.
+
+Ideias novas pro banco: Black Friday na cozinha (27/11: o que vale estocar) · conversa da amiga "me passa a receita?" (sem chat, como foto ou ficha) · antes e depois pressão x panela comum · ceia de Natal pra pouca gente (dezembro).
