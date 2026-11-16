@@ -190,7 +190,9 @@ Calendário novo (2 posts seg/qua/sex, 1 ter/qui com vaga das 14:31 livre pro v�
 | Sáb 21/11 14:31 | vaga | vídeo de receita do Matheus | | | |
 | Dom 22/11 17:40 | Carrossel 6 | texto gigante + pílula Domingo | escuro | Sobrou churrasco? Segunda tem carreteiro | nuprato/posts/2026-11-22-34-sobrou-churrasco |
 
-Posts com foto (26, 28, 32) foram com `is_ai_generated`. Cenas do TikTok usadas agora no Instagram: quinta-sofa-ele, ia-app, ia-fogao v1, sogra-mensagem, sogra-fogao, sogra-repetindo. Sobram: namorado-comendo v1 e sogra-abraco (dá pra no máximo 1 carrossel). **Pra semana de 23/11 precisa de cena nova** (o Matheus decide se gera; a tarefa não gasta crédito).
+Posts com foto (26, 28, 30, 32, 34) foram com `is_ai_generated`.
+
+**Ajuste de 16/11 (Matheus liberou a Kairogen pras cenas):** 30 e 34 viraram carrossel com foto (capa de foto, escura na grade; o 34 deixou de ser capa de texto). Cenas novas geradas na Kairogen (nano-banana-2, 9:16, 3 créditos cada, 15 no total): despensa-armario v1, despensa-janta v1 (mesma mulher, com referência), churrasco-sobra v1, carreteiro-servindo v1 (reprovada: marca de fogão real visível) e v2 (aprovada). Todas em nuprato/tiktok/cenas. Não subiram pro Drive (esta sessão não tem o Chrome). Story s08 refeito com a capa nova do 30. Saldo Kairogen depois: 950 créditos. Cenas usadas agora no Instagram: quinta-sofa-ele, ia-app, ia-fogao v1, sogra-mensagem, sogra-fogao, sogra-repetindo, despensa-armario, despensa-janta, churrasco-sobra, carreteiro-servindo v2. Sobram: namorado-comendo v1 e sogra-abraco. Desde 16/11 a tarefa gera cena nova na Kairogen quando faltar (regra no LEIA-ME).
 
 Capa de conversa de WhatsApp ficou de fora de propósito: o Matheus reprovou o slide de chat no TikTok em 09/11. O 18-o-que-tem-pra-janta (conversa) continua pronto e não publicado.
 
@@ -198,7 +200,7 @@ Stories (nuprato/stories/2026-11-16): seg 11:10 s01 frase "Cê fala pra quantos.
 
 Frases de story usadas nesta semana: as 5 acima. Trocas de story usadas: alho, farinha pra engrossar, manteiga.
 
-Último número de post usado: 34. Últimas 3 capas: foto (32), ficha (33), texto gigante grafite (34). Grade: 34 foi escuro, o 35 abre claro.
+Último número de post usado: 34. Últimas 3 capas: foto (32), ficha (33), foto (34). Grade: 34 foi escuro, o 35 abre claro.
 
 Ideias do banco já usadas nesta semana: feijão sem panela de pressão · janta pra 1 · mito "lavar o arroz" · checklist do que ter em casa · pão de queijo de liquidificador.
 

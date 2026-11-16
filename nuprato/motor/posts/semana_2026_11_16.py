@@ -1,6 +1,6 @@
 """Semana 16/11 a 22/11/2026 (tarefa semanal de 15/11). Ordem = ordem de publicação.
 Calendário novo: 2 posts seg/qua/sex (12:40 e 18:40), 1 post ter/qui (18:40), sáb 10:40, dom 17:40.
-Carrosséis com foto (cenas da Kairogen do TikTok): 26, 28 e 32.
+Carrosséis com foto (cenas da Kairogen): 26, 28, 30, 32 e 34 (30 e 34 com cenas novas geradas em 16/11).
 python3 carrossel.py posts/semana_2026_11_16.py
 """
 import os as _os, sys; sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
@@ -83,14 +83,14 @@ POSTS = [
 
 # 30. Qui 19/11 18:40, educação salvável, capa número (verde)
 ('30-sete-trens', [
-    dict(tema='verde', titulo='', centro=True,
-         visual=numero('7', 'trens pra ter em casa e nunca ficar sem janta', tam=440)),
+    dict(tema='foto', foto=cena('despensa-armario'), fy=35, t=96, titulo='7 trens pra nunca<br><em>ficar sem&nbsp;janta.</em>'),
     dict(tema='creme', olho='A base', titulo='Arroz, feijão <em>e&nbsp;ovo.</em>',
          texto='Duram bastante na despensa e na geladeira, e com eles já sai prato de verdade.'),
     dict(tema='papel', olho='Os 7 trens', cima=True,
          visual=lista(['Arroz', 'Feijão', 'Ovo', 'Macarrão', 'Molho de tomate', 'Cebola e alho', 'Batata'])),
     dict(tema='escuro', olho='Com isso sai', titulo='Macarrão ao molho, <em>arroz com ovo,&nbsp;feijão.</em>',
          texto='E batata com ovo na frigideira quando a semana aperta.'),
+    dict(tema='foto', foto=cena('despensa-janta'), fy=60, baixo=True, t=92, titulo='Arroz, feijão e ovo.<br><em>Janta&nbsp;feita.</em>'),
     dict(tema='creme', olho='Faltou um trem?', titulo='A janta <em>muda&nbsp;junto.</em>',
          texto='Cê conta o que sobrou na despensa e o NuPrato monta o prato com isso.', nota='salva e confere no mercado'),
     FIM,
@@ -142,7 +142,7 @@ POSTS = [
 
 # 34. Dom 22/11 17:40, dor e receita, capa texto (escuro)
 ('34-sobrou-churrasco', [
-    dict(tema='escuro', selo='Domingo', t=112, titulo='Sobrou churrasco? <em>Segunda tem&nbsp;carreteiro.</em>'),
+    dict(tema='foto', foto=cena('churrasco-sobra'), fy=45, t=100, titulo='Sobrou churrasco?<br><em>Segunda tem&nbsp;carreteiro.</em>'),
     dict(tema='creme', olho='Antes de guardar', titulo='Pica a carne<br><em>e guarda&nbsp;fechado.</em>',
          texto='Carne e linguiça que sobraram, em pote fechado na geladeira. No outro dia viram janta.'),
     dict(tema='papel', olho='Arroz carreteiro', titulo='O que vai', cima=True,
@@ -150,7 +150,8 @@ POSTS = [
     dict(tema='verde', olho='Faz assim', titulo='Doura a carne, <em>refoga o&nbsp;arroz.</em>',
          texto='Carne e linguiça na panela, depois cebola, alho e tomate. Junta o arroz, mexe e põe água quente.'),
     dict(tema='creme', olho='Ponto', titulo='Tampa e <em>fogo&nbsp;baixo.</em>',
-         texto='Até secar a água e o arroz ficar macio. Cheiro-verde no fim.', nota='janta de segunda resolvida'),
+         texto='Até secar a água e o arroz ficar macio. Cheiro-verde no fim.'),
+    dict(tema='foto', foto=cena('carreteiro-servindo', 2), fy=55, baixo=True, t=100, titulo='Segunda <em>resolvida.</em>'),
     FIM,
 ]),
 ]
