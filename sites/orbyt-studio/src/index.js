@@ -27,6 +27,7 @@ export default {
       if (p === "/api/mp/webhook") return await webhook(req, env, url, ctx);
       if (p === "/api/download" && req.method === "GET") return await download(env, url);
       if (p === "/api/saude") return await saude(env);
+      if (p === "/api/teste-email-temporario") { await enviarEmail(env, url, { id: "ORDTESTE" + Date.now(), payer: { email: "medicina@orbytstudio.com.br", first_name: "Matheus" } }); return json({ ok: true }); }
       if (p.startsWith("/api/")) return json({ erro: "rota não existe" }, 404);
     } catch (e) {
       console.log("erro", p, e && e.stack || e);
