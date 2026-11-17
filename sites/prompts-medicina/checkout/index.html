@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Checkout · 40 Prompts para Estudar Medicina com IA</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400..700&family=Martian+Mono:wght@400;500&display=swap">
+<!-- Pixel da Meta: colar aqui o mesmo código base da LP. -->
+<style>
+/* Checkout no padrão Orbyt. Computador: formulário à esquerda e resumo fixo à direita. Celular: resumo compacto no topo e formulário embaixo. */
+:root{
+  --gelo:#F1F3F5; --papel:#FFFFFF; --nevoa:#E6EAEE; --grafite:#16181B; --ardosia:#59606A;
+  --laranja:#FF5A1F; --laranja-2:#E84A10; --laranja-suave:#FFE9E0;
+  --linha:#D7DCE1; --linha-esc:#2C3036; --mudo-esc:#9AA2AC;
+  --alerta:#E5484D; --ok:#16A34A; --ok-suave:#EEF9F2;
+  --f-disp:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+  --f-corpo:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"Martian Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --gut:max(clamp(16px,4vw,40px),env(safe-area-inset-left,0px));
+  --gut-d:max(clamp(16px,4vw,40px),env(safe-area-inset-right,0px));
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--gelo);color:var(--grafite);font-family:var(--f-corpo);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100svh;display:flex;flex-direction:column}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3,h4{margin:0;font-family:var(--f-disp);font-weight:700;letter-spacing:-.02em;line-height:1.1}
+p{margin:0}
+button,input{font:inherit}
+:focus-visible{outline:3px solid var(--laranja);outline-offset:2px}
+.wrap{width:100%;max-width:1060px;margin-inline:auto;padding-left:var(--gut);padding-right:var(--gut-d)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:1rem 1.4rem;border-radius:999px;font-weight:600;font-size:1.05rem;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background .15s,transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn svg{width:18px;height:18px}
+.btn-laranja{background:var(--laranja);color:#fff}
+.btn-laranja:hover{background:var(--laranja-2)}
+.btn-escuro{background:var(--grafite);color:#fff}
+.btn:disabled{opacity:.6;cursor:default;transform:none}
+
+/* topo */
+.topo{background:var(--grafite);color:#fff;padding-top:env(safe-area-inset-top,0px)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:52px}
+.logo{display:flex;align-items:center;gap:.45rem;text-decoration:none;font-family:var(--f-disp);font-weight:700;font-size:.95rem;letter-spacing:-.02em;white-space:nowrap}
+.logo .orb{width:24px;height:24px;flex:0 0 auto}
+.logo small{font-family:var(--f-mono);font-weight:400;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;opacity:.6;margin-left:.15rem}
+.logo .marca{width:32px;height:32px;border-radius:9px;background:var(--laranja);display:grid;place-items:center;font-weight:800;font-size:.95rem;letter-spacing:-.04em}
+.seguro{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mudo-esc)}
+.seguro svg{width:14px;height:14px;color:#4ADE80}
+.reserva{position:sticky;top:0;z-index:40;background:var(--laranja);color:#fff;overflow:hidden}
+.reserva .wrap{display:flex;align-items:center;justify-content:center;gap:.7rem;min-height:48px;padding-block:.4rem;text-align:center;flex-wrap:nowrap;white-space:nowrap}
+.res-txt{font-weight:600;font-size:.95rem}
+.res-txt b{font-weight:800}
+.res-tempo{font-family:var(--f-mono);font-weight:500;font-size:1.15rem;letter-spacing:.04em;background:var(--grafite);color:#fff;padding:.3rem .75rem;border-radius:10px;font-variant-numeric:tabular-nums}
+.res-barra{position:absolute;left:0;bottom:0;height:3px;background:var(--grafite);width:100%;transform-origin:left;transition:transform 1s linear}
+.reserva.fim{background:var(--alerta)}
+.reserva.fim .res-tempo{animation:pulsa 1s ease-in-out infinite}
+@keyframes pulsa{50%{transform:scale(1.08)}}
+.prova-ck{background:var(--grafite);color:#ECEEF0}
+.prova-ck .wrap{display:flex;align-items:center;justify-content:center;gap:.6rem;min-height:38px;font-size:.88rem;white-space:nowrap}
+.prova-ck b{color:#4ADE80;font-weight:700}
+.pulso{width:8px;height:8px;border-radius:50%;background:#4ADE80;box-shadow:0 0 0 0 rgba(74,222,128,.6);animation:pul 1.6s infinite;flex:0 0 auto}
+@keyframes pul{0%{box-shadow:0 0 0 0 rgba(74,222,128,.55)}70%{box-shadow:0 0 0 9px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+.faixa{background:#FFF4CC;color:#7A5B00;text-align:center;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:.45rem 1rem}
+
+main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
+.grade{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(1.2rem,3vw,2.2rem);align-items:start}
+.grade>*{min-width:0}
+
+/* caixa principal */
+.caixa{background:var(--papel);border:1px solid var(--linha);border-radius:22px;padding:clamp(1.1rem,2.6vw,1.8rem);box-shadow:0 30px 60px -40px rgba(22,24,27,.35)}
+.etapa{display:none}
+.etapa.on{display:grid;gap:1.2rem;animation:surge .3s ease}
+@keyframes surge{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.bloco{display:grid;gap:.8rem}
+.bloco-tit{display:flex;align-items:center;gap:.6rem;font-family:var(--f-disp);font-weight:700;font-size:1.15rem;letter-spacing:-.015em}
+.bloco-tit span{width:26px;height:26px;border-radius:50%;background:var(--grafite);color:#fff;display:grid;place-items:center;font-family:var(--f-mono);font-weight:400;font-size:.7rem}
+.campos{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.campo{display:grid;gap:.3rem;min-width:0;align-content:start}
+.campo.cheio{grid-column:1 / -1}
+.campo label{font-size:.82rem;font-weight:600}
+.campo input{width:100%;border:1.5px solid var(--linha);border-radius:12px;padding:.85rem .95rem;font-size:1rem;background:var(--papel);color:var(--grafite);transition:border-color .15s}
+.campo input:focus{outline:none;border-color:var(--grafite)}
+.campo .dica{font-size:.76rem;color:var(--ardosia)}
+.campo .erro-txt{display:none;font-size:.78rem;color:var(--alerta)}
+.campo.erro input{border-color:var(--alerta)}
+.campo.erro .erro-txt{display:block}
+.campo.erro .dica{display:none}
+.metodos{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.metodo{display:flex;align-items:center;gap:.7rem;border:1.5px solid var(--linha);border-radius:14px;padding:.85rem .95rem;background:var(--papel);cursor:pointer;text-align:left;color:var(--grafite)}
+.metodo i{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--linha);flex:0 0 auto;display:grid;place-items:center}
+.metodo b{display:block;font-size:.98rem}
+.metodo small{display:block;font-size:.76rem;color:var(--ardosia);line-height:1.25}
+.metodo.on{border-color:var(--grafite);background:var(--gelo)}
+.metodo.on i{border-color:var(--laranja)}
+.metodo.on i::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--laranja)}
+.painel-pg{display:none}
+.painel-pg.on{display:grid;gap:.6rem}
+.pix-info{display:grid;grid-template-columns:auto 1fr;gap:.7rem;align-items:start;font-size:.88rem;color:var(--ardosia);background:var(--gelo);border-radius:12px;padding:.85rem .95rem}
+.pix-info svg{width:20px;height:20px;color:var(--ok);margin-top:.1em}
+.brick{border:1.5px dashed var(--linha);border-radius:14px;padding:.9rem;display:grid;gap:.6rem;background:#FAFBFC}
+.brick .dupla{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.falso{border:1.5px solid var(--linha);border-radius:10px;padding:.75rem .85rem;font-size:.92rem;color:#A0A7B0;background:var(--papel)}
+.brick p{font-size:.76rem;color:var(--ardosia);text-align:center}
+.pagar{width:100%}
+.urgencia{border:1.5px solid #FFC9B3;background:#FFF6F2;border-radius:14px;padding:.85rem 1rem;display:grid;gap:.55rem}
+.urg-preco{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap}
+.urg-preco s{color:var(--ardosia);font-size:.95rem}
+.urg-preco b{font-family:var(--f-disp);font-weight:800;font-size:1.6rem;letter-spacing:-.03em;color:var(--grafite)}
+.urg-off{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;background:var(--laranja);color:#fff;padding:.3rem .55rem;border-radius:999px;align-self:center}
+.urgencia ul{list-style:none;margin:0;padding:0;display:grid;gap:.3rem;font-size:.86rem;color:var(--grafite)}
+.urgencia li{display:grid;grid-template-columns:1rem 1fr;gap:.45rem;line-height:1.35}
+.urgencia li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--laranja);margin-top:.45em}
+.letra{display:flex;align-items:center;justify-content:center;gap:.45rem;font-size:.78rem;color:var(--ardosia);text-align:center}
+.letra svg{width:14px;height:14px;flex:0 0 auto}
+
+/* Pix gerado */
+.pix-cab{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+.pix-cab h2{font-size:1.5rem}
+.pix-cab p{font-size:.9rem;color:var(--ardosia);margin-top:.25rem}
+.pix-valor{font-family:var(--f-disp);font-weight:800;font-size:1.6rem;letter-spacing:-.03em;white-space:nowrap}
+.pix-corpo{display:grid;grid-template-columns:auto 1fr;gap:1.2rem;align-items:center}
+.qr{width:200px;height:200px;padding:10px;border:1px solid var(--linha);border-radius:16px;background:#fff;position:relative}
+.qr svg{width:100%;height:100%}
+.qr small{position:absolute;left:0;right:0;bottom:-1.4rem;text-align:center;font-size:.64rem;color:var(--ardosia)}
+.como{list-style:none;margin:0;padding:0;display:grid;gap:.55rem;counter-reset:p}
+.como li{display:grid;grid-template-columns:auto 1fr;gap:.6rem;font-size:.9rem;line-height:1.4;counter-increment:p}
+.como li::before{content:counter(p);width:22px;height:22px;border-radius:50%;background:var(--nevoa);display:grid;place-items:center;font-family:var(--f-mono);font-size:.64rem}
+.copia{display:flex;border:1.5px solid var(--linha);border-radius:12px;overflow:hidden}
+.copia input{flex:1;min-width:0;border:0;padding:.8rem .9rem;font-family:var(--f-mono);font-size:.72rem;color:var(--ardosia);background:var(--gelo)}
+.copia button{border:0;background:var(--grafite);color:#fff;font-weight:600;padding:0 1.1rem;cursor:pointer;font-size:.9rem;white-space:nowrap}
+.copia button.ok{background:var(--ok)}
+.status{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;background:var(--gelo);border-radius:12px;padding:.75rem .95rem;font-size:.88rem}
+.status .esp{display:flex;align-items:center;gap:.6rem;font-weight:600}
+.roda{width:16px;height:16px;border-radius:50%;border:2px solid var(--linha);border-top-color:var(--laranja);animation:gira .8s linear infinite;flex:0 0 auto}
+@keyframes gira{to{transform:rotate(360deg)}}
+.timer{font-family:var(--f-mono);font-size:.72rem;color:var(--ardosia)}
+.simular{border:1.5px dashed #C9A227;background:#FFFBEA;color:#7A5B00;border-radius:12px;padding:.7rem;font-weight:600;font-size:.85rem;cursor:pointer}
+.voltar{background:none;border:0;color:var(--ardosia);text-decoration:underline;text-underline-offset:3px;cursor:pointer;font-size:.86rem;justify-self:center}
+
+/* processando e aprovado */
+.centro{display:grid;gap:1rem;justify-items:center;text-align:center;padding-block:1.5rem}
+.centro .roda{width:44px;height:44px;border-width:4px}
+.check{width:72px;height:72px;border-radius:50%;background:var(--ok-suave);color:var(--ok);display:grid;place-items:center;animation:pop .45s cubic-bezier(.2,1.4,.4,1)}
+.check svg{width:38px;height:38px}
+@keyframes pop{from{transform:scale(.4);opacity:0}to{transform:none;opacity:1}}
+.centro h2{font-size:clamp(1.6rem,4vw,2.1rem)}
+.centro p{color:var(--ardosia);max-width:42ch}
+.centro p b{color:var(--grafite)}
+.centro .btn{width:100%;max-width:380px}
+.prox{width:100%;max-width:440px;text-align:left;border-top:1px solid var(--linha);padding-top:1rem;display:grid;gap:.5rem}
+.prox b{font-family:var(--f-mono);font-weight:500;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--laranja)}
+.prox p{font-size:.92rem;color:var(--grafite)}
+
+/* resumo */
+.resumo{background:var(--grafite);color:#ECEEF0;border-radius:22px;padding:clamp(1.1rem,2.4vw,1.6rem);display:grid;gap:1rem;position:sticky;top:1.5rem}
+.res-produto{display:flex;gap:.9rem;align-items:center}
+.res-produto img{width:70px;height:auto;border-radius:8px;flex:0 0 auto;box-shadow:0 12px 24px -10px rgba(0,0,0,.7)}
+.res-produto b{display:block;font-family:var(--f-disp);font-size:1.08rem;color:#fff;letter-spacing:-.01em;line-height:1.2}
+.res-produto span{font-size:.82rem;color:var(--mudo-esc)}
+.linhas{display:grid;gap:.45rem;border-top:1px solid var(--linha-esc);padding-top:.9rem;font-size:.9rem}
+.linhas div{display:flex;justify-content:space-between;gap:1rem;color:var(--mudo-esc)}
+.linhas .desc{color:#4ADE80}
+.linhas .total{color:#fff;font-weight:600;font-size:1.05rem;border-top:1px solid var(--linha-esc);padding-top:.7rem;margin-top:.2rem}
+.linhas .total b{font-family:var(--f-disp);font-size:1.5rem;letter-spacing:-.03em}
+.res-lista{list-style:none;margin:0;padding:0;display:grid;gap:.5rem;font-size:.88rem}
+.res-lista li{display:grid;grid-template-columns:auto 1fr;gap:.55rem;align-items:start}
+.res-lista svg{width:16px;height:16px;color:var(--laranja);margin-top:.15em}
+.res-garantia{display:grid;grid-template-columns:auto 1fr;gap:.7rem;align-items:center;border:1px solid rgba(22,163,74,.45);background:rgba(22,163,74,.1);border-radius:14px;padding:.7rem .9rem;font-size:.84rem}
+.res-garantia svg{width:22px;height:22px;color:#4ADE80}
+.res-garantia b{display:block;color:#fff}
+.res-garantia span{color:var(--mudo-esc)}
+
+.rodape{color:var(--ardosia);font-size:.76rem;text-align:center;padding:1.2rem var(--gut) calc(1.2rem + env(safe-area-inset-bottom,0px));border-top:1px solid var(--linha)}
+.rodape a{color:var(--grafite)}
+
+.aviso{position:fixed;z-index:60;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--grafite);color:#fff;padding:.7rem 1.1rem;border-radius:999px;font-size:.88rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;white-space:nowrap}
+.aviso.ver{opacity:1;transform:translate(-50%,0)}
+
+/* tablet e celular: resumo compacto em cima, formulário embaixo */
+@media (max-width:880px){
+  .grade{grid-template-columns:1fr;max-width:600px;margin-inline:auto;gap:.9rem}
+  .resumo{order:-1;position:static;padding:.8rem 1rem;border-radius:16px;gap:0}
+  .res-produto img{width:44px}
+  .res-produto b{font-size:.95rem}
+  .res-produto{justify-content:space-between}
+  .res-produto .txt{flex:1;min-width:0}
+  .res-produto .val-mob{display:grid;justify-items:end;line-height:1.05;white-space:nowrap}
+  .val-mob s{font-size:.72rem;color:var(--mudo-esc)}
+  .val-mob b{font-family:var(--f-disp);font-weight:800;font-size:1.35rem;letter-spacing:-.03em;color:#fff}
+  .resumo .linhas,.resumo .res-lista,.resumo .res-garantia{display:none}
+  .garantia-mob{display:grid!important}
+}
+@media (min-width:881px){.val-mob,.garantia-mob{display:none!important}}
+.garantia-mob{grid-template-columns:auto 1fr;gap:.6rem;align-items:center;font-size:.8rem;color:var(--ardosia);justify-self:center}
+.garantia-mob svg{width:18px;height:18px;color:var(--ok)}
+@media (max-width:560px){
+  body{font-size:15px}
+  .reserva .wrap{gap:.5rem;min-height:44px;padding-inline:.6rem}
+  .res-txt{font-size:.86rem}
+  .res-tempo{font-size:.98rem;padding:.25rem .6rem}
+  .prova-ck .wrap{font-size:.8rem;min-height:34px}
+  .logo{font-size:.88rem}
+  .logo .orb{width:21px;height:21px}
+  .logo small{font-size:.5rem}
+  main{padding-top:.9rem}
+  .campos{grid-template-columns:1fr}
+  .caixa{padding:1rem;border-radius:18px}
+  .etapa.on{gap:1rem}
+  .pix-corpo{grid-template-columns:1fr;justify-items:center;gap:1.6rem}
+  .qr{width:180px;height:180px}
+  .pix-cab h2{font-size:1.3rem}
+  .pix-valor{font-size:1.35rem}
+  .seguro span{display:none}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="topo">
+  <div class="wrap">
+    <a class="logo" href="/" id="voltarLp"><svg class="orb" viewBox="0 0 32 32" fill="none" aria-hidden="true"><ellipse cx="16" cy="16" rx="12.5" ry="12.5" stroke="currentColor" stroke-width="2"/><circle cx="25" cy="7.4" r="3.6" fill="#FF5A1F"/></svg><span>Orbyt Studio <small>para Medicina</small></span></a>
+    <span class="seguro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span>Compra segura</span></span>
+  </div>
+</header>
+<div class="reserva" id="reserva" role="timer" aria-live="off">
+  <div class="wrap">
+    <span class="res-txt" id="resTxt"><b class="preco-txt">R$ 27,90</b> reservado por</span>
+    <span class="res-tempo" id="resTempo">05:00</span>
+  </div>
+  <i class="res-barra" id="resBarra"></i>
+</div>
+<div class="prova-ck"><div class="wrap"><span class="pulso"></span><span><b class="vendas">+45</b> estudantes de Medicina compram por dia</span></div></div>
+<div class="faixa">Prévia · o pagamento ainda não está ligado ao Mercado Pago</div>
+
+<main>
+  <div class="wrap grade">
+    <div class="caixa">
+      <!-- 1. dados e pagamento -->
+      <form class="etapa on" id="eForm" novalidate>
+        <div class="bloco">
+          <h1 class="bloco-tit"><span>1</span>Seus dados</h1>
+          <div class="campos">
+            <div class="campo cheio"><label for="fNome">Nome completo</label><input id="fNome" autocomplete="name" placeholder="Como está no seu documento"><span class="erro-txt">Digite nome e sobrenome.</span></div>
+            <div class="campo"><label for="fEmail">E-mail</label><input id="fEmail" type="email" inputmode="email" autocomplete="email" placeholder="voce@email.com"><span class="dica">O PDF vai para este e-mail.</span><span class="erro-txt">Confira o e-mail. O PDF vai para ele.</span></div>
+            <div class="campo"><label for="fCpf">CPF</label><input id="fCpf" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" maxlength="14"><span class="erro-txt">CPF inválido. Confira os números.</span></div>
+          </div>
+        </div>
+        <div class="bloco">
+          <h2 class="bloco-tit"><span>2</span>Pagamento</h2>
+          <div class="metodos" role="radiogroup" aria-label="Forma de pagamento">
+            <button type="button" class="metodo on" role="radio" aria-checked="true" data-m="pix"><i></i><span><b>Pix</b><small>Aprovação na hora</small></span></button>
+            <button type="button" class="metodo" role="radio" aria-checked="false" data-m="cartao"><i></i><span><b>Cartão</b><small>Crédito, à vista</small></span></button>
+          </div>
+          <div class="painel-pg on" id="pgPix">
+            <div class="pix-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><p>Na próxima tela aparecem o QR Code e o código copia e cola. Pagou, o PDF chega no seu e-mail na hora.</p></div>
+          </div>
+          <div class="painel-pg" id="pgCartao">
+            <div class="brick" aria-label="Espaço do formulário de cartão">
+              <div class="falso">Número do cartão</div>
+              <div class="dupla"><div class="falso">Validade (MM/AA)</div><div class="falso">Código</div></div>
+              <div class="falso">Nome impresso no cartão</div>
+              <p>Aqui entra o formulário seguro do Mercado Pago. O número do cartão não passa pelo nosso site.</p>
+            </div>
+          </div>
+        </div>
+        <div class="urgencia">
+          <div class="urg-preco"><s class="de-txt">R$ 59,90</s><b class="preco-txt">R$ 27,90</b><span class="urg-off">-53% só hoje</span></div>
+          <ul>
+            <li><span>O preço de hoje vale só enquanto o tempo lá em cima não zerar.</span></li>
+            <li><span>Amanhã ele volta para <span class="de-txt">R$ 59,90</span>.</span></li>
+            <li><span><b class="vendas">+45</b> estudantes compram por dia. Você recebe o PDF segundos depois do Pix.</span></li>
+          </ul>
+        </div>
+        <button class="btn btn-laranja pagar" type="submit" id="btnPagar">Gerar Pix de <span class="preco-txt">R$ 27,90</span></button>
+        <p class="letra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Pagamento processado pelo Mercado Pago</p>
+      </form>
+
+      <!-- 2. Pix gerado -->
+      <div class="etapa" id="ePix">
+        <div class="pix-cab">
+          <div><h2>Pague com Pix</h2><p>Escaneie o QR Code ou copie o código.</p></div>
+          <span class="pix-valor preco-txt">R$ 27,90</span>
+        </div>
+        <div class="pix-corpo">
+          <div class="qr" id="qr"><small>QR Code ilustrativo</small></div>
+          <ol class="como">
+            <li>Abra o app do seu banco e entre na área Pix.</li>
+            <li>Escolha "Ler QR Code" ou "Pix copia e cola".</li>
+            <li>Confira o valor e confirme. Esta página atualiza sozinha.</li>
+          </ol>
+        </div>
+        <div class="copia"><input id="pixCodigo" readonly aria-label="Código Pix copia e cola"><button type="button" id="copiarPix">Copiar código</button></div>
+        <div class="status"><span class="esp"><i class="roda"></i>Aguardando pagamento</span><span class="timer">Expira em <b id="timer">30:00</b></span></div>
+        <button type="button" class="simular" id="simular">Prévia: simular pagamento aprovado</button>
+        <button type="button" class="voltar" data-voltar>Voltar e trocar a forma de pagamento</button>
+      </div>
+
+      <!-- 3. processando cartão -->
+      <div class="etapa" id="eProc">
+        <div class="centro"><i class="roda"></i><h2>Processando pagamento</h2><p>Não feche esta página.</p></div>
+      </div>
+
+      <!-- 4. aprovado -->
+      <div class="etapa" id="eOk">
+        <div class="centro">
+          <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+          <h2>Pagamento aprovado!</h2>
+          <p>Enviamos o PDF para <b id="emailEco">seu e-mail</b>. Se não aparecer em alguns minutos, olhe o spam e as promoções.</p>
+          <a class="btn btn-escuro" href="#" id="baixar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Baixar o PDF agora</a>
+          <div class="prox">
+            <b>Próximo passo</b>
+            <p>Abra o PDF, copie o Prompt 1 e cole na sua IA. Ele coloca a conversa no nível de um estudante de Medicina.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="resumo" aria-label="Resumo do pedido">
+      <div class="res-produto">
+        <img src="/img/capa.webp" alt="" width="720" height="1019">
+        <div class="txt"><b>40 Prompts para Estudar Medicina com IA</b><span>Guia prático 2026 · PDF</span></div>
+        <span class="val-mob"><s class="de-txt">R$ 59,90</s><b class="preco-txt">R$ 27,90</b></span>
+      </div>
+      <div class="linhas">
+        <div><span>Produto</span><span class="de-txt">R$ 59,90</span></div>
+        <div class="desc"><span>Desconto de hoje</span><span id="descTxt">- R$ 32,00</span></div>
+        <div><span>Entrega</span><span>No e-mail, na hora</span></div>
+        <div class="total"><span>Total</span><b class="preco-txt">R$ 27,90</b></div>
+      </div>
+      <ul class="res-lista">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>40 prompts em 7 blocos de estudo</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>ChatGPT, Gemini e Claude, grátis ou pago</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Pagamento único, sem mensalidade</li>
+      </ul>
+    </aside>
+  </div>
+</main>
+
+<footer class="rodape">Ao comprar, você concorda com os termos de uso. Dúvidas sobre a compra: <a href="#">fale com a gente</a>.</footer>
+<div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  "use strict";
+  // ===== CONFIGURAÇÃO =====
+  var PRECO = 27.90, PRECO_DE = 59.90;
+  var LP = "/"; // no domínio: a slug da LP
+
+  var precoTxt = "R$ " + PRECO.toLocaleString("pt-BR", {minimumFractionDigits: PRECO % 1 ? 2 : 0});
+  document.querySelectorAll(".preco-txt").forEach(function(el){ el.textContent = precoTxt; });
+  function brl(v){ return "R$ " + v.toLocaleString("pt-BR", {minimumFractionDigits: 2, maximumFractionDigits: 2}); }
+  document.querySelectorAll(".de-txt").forEach(function(el){ el.textContent = brl(PRECO_DE); });
+  var VENDAS_BASE = 45; // média offline; com o pagamento ligado, soma as vendas reais do dia
+  document.querySelectorAll(".vendas").forEach(function(el){ el.textContent = "+" + VENDAS_BASE; });
+  document.getElementById("descTxt").textContent = "- " + brl(PRECO_DE - PRECO);
+
+  // cronômetro de 5 minutos no topo; segue contando se a pessoa recarregar a página
+  var TOTAL = 300, reserva = document.getElementById("reserva"), resTempo = document.getElementById("resTempo"), resTxt = document.getElementById("resTxt"), resBarra = document.getElementById("resBarra");
+  var inicio = Date.now();
+  try { var guardado = +sessionStorage.getItem("ckInicio"); if (guardado && Date.now() - guardado < TOTAL * 1000) inicio = guardado; else sessionStorage.setItem("ckInicio", inicio); } catch(e){}
+  function relogio(){
+    var r = Math.max(0, TOTAL - Math.floor((Date.now() - inicio) / 1000));
+    resTempo.textContent = String(Math.floor(r / 60)).padStart(2, "0") + ":" + String(r % 60).padStart(2, "0");
+    resBarra.style.transform = "scaleX(" + (r / TOTAL) + ")";
+    if (r <= 60 && r > 0) resTxt.innerHTML = "Último minuto para <b>" + precoTxt + "</b>";
+    if (r === 0){
+      reserva.classList.add("fim");
+      resTxt.innerHTML = "Tempo esgotado: <b>finalize agora</b>";
+      clearInterval(tRel);
+    }
+  }
+  var tRel = setInterval(relogio, 1000); relogio();
+  document.getElementById("voltarLp").href = LP + location.search.replace(/[?&]origem=[^&]*/,"").replace(/^&/,"?");
+
+  function px(evento, dados){ try { if (typeof window.fbq === "function") window.fbq("track", evento, dados || {}); } catch(e){} }
+  var produto = {content_name: "40-prompts-medicina", content_category: "prompts-medicina", value: PRECO, currency: "BRL"};
+  var params = new URLSearchParams(location.search);
+  var origem = params.get("origem") || "direto";
+  px("InitiateCheckout", Object.assign({origem: origem}, produto));
+
+  var aviso = document.getElementById("aviso"), tAviso;
+  function avisar(t){ aviso.textContent = t; aviso.classList.add("ver"); clearTimeout(tAviso); tAviso = setTimeout(function(){ aviso.classList.remove("ver"); }, 1800); }
+  var reduz = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var etapas = ["eForm","ePix","eProc","eOk"].map(function(id){ return document.getElementById(id); });
+  function ir(id){ etapas.forEach(function(e){ e.classList.toggle("on", e.id === id); }); window.scrollTo({top:0, behavior: reduz ? "auto" : "smooth"}); }
+
+  // forma de pagamento
+  var metodo = "pix", btnPagar = document.getElementById("btnPagar");
+  document.querySelectorAll(".metodo").forEach(function(m){
+    m.addEventListener("click", function(){
+      metodo = m.getAttribute("data-m");
+      document.querySelectorAll(".metodo").forEach(function(x){ var on = x === m; x.classList.toggle("on", on); x.setAttribute("aria-checked", on); });
+      document.getElementById("pgPix").classList.toggle("on", metodo === "pix");
+      document.getElementById("pgCartao").classList.toggle("on", metodo === "cartao");
+      btnPagar.textContent = metodo === "pix" ? "Gerar Pix de " + precoTxt : "Pagar " + precoTxt + " no cartão";
+      px("AddPaymentInfo", Object.assign({metodo: metodo}, produto));
+    });
+  });
+
+  // CPF: máscara e conferência dos dígitos
+  var fCpf = document.getElementById("fCpf");
+  fCpf.addEventListener("input", function(){
+    var d = fCpf.value.replace(/\D/g, "").slice(0, 11), s = d;
+    if (d.length > 9) s = d.slice(0,3) + "." + d.slice(3,6) + "." + d.slice(6,9) + "-" + d.slice(9);
+    else if (d.length > 6) s = d.slice(0,3) + "." + d.slice(3,6) + "." + d.slice(6);
+    else if (d.length > 3) s = d.slice(0,3) + "." + d.slice(3);
+    fCpf.value = s;
+  });
+  function cpfOk(v){
+    var d = v.replace(/\D/g, "");
+    if (d.length !== 11 || /^(\d)\1+$/.test(d)) return false;
+    for (var t = 9; t < 11; t++){
+      var soma = 0;
+      for (var i = 0; i < t; i++) soma += +d[i] * (t + 1 - i);
+      if (((soma * 10) % 11) % 10 !== +d[t]) return false;
+    }
+    return true;
+  }
+  function marca(id, erro){ document.getElementById(id).parentNode.classList.toggle("erro", erro); return !erro; }
+  ["fNome","fEmail","fCpf"].forEach(function(id){ document.getElementById(id).addEventListener("input", function(){ this.parentNode.classList.remove("erro"); }); });
+
+  var email = "";
+  document.getElementById("eForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var nome = document.getElementById("fNome").value.trim();
+    email = document.getElementById("fEmail").value.trim();
+    var ok = marca("fNome", nome.split(/\s+/).length < 2);
+    ok = marca("fEmail", !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) && ok;
+    ok = marca("fCpf", !cpfOk(fCpf.value)) && ok;
+    if (!ok){ var e1 = document.querySelector(".campo.erro input"); if (e1) e1.focus(); return; }
+    document.getElementById("emailEco").textContent = email;
+    // AQUI entra a chamada ao servidor (Cloudflare Worker) que cria o pagamento no Mercado Pago.
+    if (metodo === "pix"){
+      desenharQr();
+      document.getElementById("pixCodigo").value = "00020126PREVIA-PIX-ILUSTRATIVO-" + Date.now().toString(36).toUpperCase();
+      iniciarTimer(); ir("ePix");
+    } else {
+      ir("eProc"); setTimeout(aprovado, 1600);
+    }
+  });
+  document.querySelectorAll("[data-voltar]").forEach(function(b){ b.addEventListener("click", function(){ clearInterval(tTimer); ir("eForm"); }); });
+  document.getElementById("simular").addEventListener("click", aprovado);
+  function aprovado(){
+    clearInterval(tTimer); ir("eOk");
+    px("Purchase", Object.assign({metodo: metodo, origem: origem}, produto));
+  }
+  document.getElementById("baixar").addEventListener("click", function(e){ e.preventDefault(); avisar("Prévia: aqui abre o PDF"); });
+
+  var bCopia = document.getElementById("copiarPix");
+  bCopia.addEventListener("click", function(){
+    var v = document.getElementById("pixCodigo").value;
+    function ok(){ bCopia.textContent = "Copiado"; bCopia.classList.add("ok"); setTimeout(function(){ bCopia.textContent = "Copiar código"; bCopia.classList.remove("ok"); }, 1600); }
+    try { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(v).then(ok, function(){ document.getElementById("pixCodigo").select(); avisar("Código selecionado"); }); else { document.getElementById("pixCodigo").select(); avisar("Código selecionado"); } }
+    catch(err){ document.getElementById("pixCodigo").select(); avisar("Código selecionado"); }
+  });
+
+  function desenharQr(){
+    var n = 29, cel = "", semente = 11;
+    function rnd(){ semente = (semente * 9301 + 49297) % 233280; return semente / 233280; }
+    function olho(x, y){ return '<rect x="' + x + '" y="' + y + '" width="7" height="7"/><rect x="' + (x+1) + '" y="' + (y+1) + '" width="5" height="5" fill="#fff"/><rect x="' + (x+2) + '" y="' + (y+2) + '" width="3" height="3"/>'; }
+    for (var y = 0; y < n; y++) for (var x = 0; x < n; x++){
+      var canto = (x < 8 && y < 8) || (x > n - 9 && y < 8) || (x < 8 && y > n - 9);
+      if (!canto && rnd() > .52) cel += '<rect x="' + x + '" y="' + y + '" width="1" height="1"/>';
+    }
+    var qr = document.getElementById("qr");
+    qr.innerHTML = '<svg viewBox="0 0 ' + n + ' ' + n + '" shape-rendering="crispEdges" aria-hidden="true"><g fill="#16181B">' + cel + olho(0,0) + olho(n-7,0) + olho(0,n-7) + '</g></svg><small>QR Code ilustrativo</small>';
+  }
+  var tTimer;
+  function iniciarTimer(){
+    var s = 30 * 60, el = document.getElementById("timer");
+    el.textContent = "30:00"; clearInterval(tTimer);
+    tTimer = setInterval(function(){ s--; if (s < 0){ clearInterval(tTimer); return; } el.textContent = String(Math.floor(s / 60)).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0"); }, 1000);
+  }
+})();
+</script>
+</body>
+</html>

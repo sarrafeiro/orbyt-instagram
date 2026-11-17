@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>40 Prompts para Estudar Medicina com IA</title>
+<meta name="description" content="40 prompts prontos para transformar o ChatGPT, o Gemini ou o Claude no seu tutor de Medicina. Explica, testa, corrige e organiza o seu estudo. PDF no seu e-mail na hora.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400..700&family=Martian+Mono:wght@400;500&display=swap">
+<!-- Pixel da Meta: ao publicar no domínio, colar aqui o código base. Os eventos já estão prontos no script do fim da página. -->
+<style>
+/* Identidade da Orbyt Studio. Computador: rolagem livre. Celular e tablet (até 1080 px): rolagem travada, uma tela por vez, cada tela cabe inteira. */
+:root{
+  --gelo:#F1F3F5; --papel:#FFFFFF; --nevoa:#E6EAEE; --grafite:#16181B; --grafite-2:#1F2226; --ardosia:#59606A;
+  --laranja:#FF5A1F; --laranja-2:#E84A10; --laranja-suave:#FFE9E0;
+  --linha:#D7DCE1; --linha-esc:#2C3036; --texto-esc:#ECEEF0; --mudo-esc:#9AA2AC;
+  --alerta:#E5484D; --alerta-suave:#FDECEC; --ok:#16A34A;
+  --f-disp:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+  --f-corpo:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"Martian Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --gut:max(clamp(16px,4vw,40px),env(safe-area-inset-left,0px));
+  --gut-d:max(clamp(16px,4vw,40px),env(safe-area-inset-right,0px));
+  --h-topo:64px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:var(--h-topo)}
+body{margin:0;background:var(--gelo);color:var(--grafite);font-family:var(--f-corpo);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{margin:0;font-family:var(--f-disp);font-weight:700;letter-spacing:-.025em;line-height:1.04;text-wrap:balance}
+p{margin:0}
+button{font:inherit}
+:focus-visible{outline:3px solid var(--laranja);outline-offset:3px}
+.wrap{width:100%;max-width:1240px;margin-inline:auto;padding-left:var(--gut);padding-right:var(--gut-d)}
+.olho{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laranja);display:inline-flex;align-items:center;gap:.6rem}
+.olho .n{color:var(--ardosia)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:.95rem 1.4rem;border-radius:999px;font-weight:600;font-size:1rem;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background .15s,transform .15s,border-color .15s,color .15s;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn svg{width:18px;height:18px;flex:0 0 auto}
+.btn-laranja{background:var(--laranja);color:#fff}
+.btn-laranja:hover{background:var(--laranja-2)}
+.btn s{font-weight:500;opacity:.72}
+.btn-contorno-claro{border-color:rgba(255,255,255,.32);color:#fff;background:transparent}
+.btn-contorno-claro:hover{border-color:#fff}
+mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;border-radius:4px;font-weight:600}
+@media (min-width:1081px){.so-mob{display:none!important}}
+@media (max-width:1080px){.so-desk{display:none!important}}
+
+/* topo */
+.topo{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:rgba(22,24,27,.94);color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--linha-esc);transition:background .25s,color .25s,border-color .25s}
+.topo.claro{background:rgba(255,255,255,.94);color:var(--grafite);border-color:var(--linha)}
+.topo-linha{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:64px}
+.logo{display:flex;align-items:center;gap:.5rem;text-decoration:none;font-family:var(--f-disp);font-weight:700;font-size:1rem;letter-spacing:-.02em;line-height:1}
+.logo .orb{width:26px;height:26px;flex:0 0 auto}
+.rodape .logo .orb{width:24px;height:24px}
+.logo .marca{width:34px;height:34px;border-radius:10px;background:var(--laranja);color:#fff;display:grid;place-items:center;font-weight:800;font-size:1rem;letter-spacing:-.04em;flex:0 0 auto}
+.logo small{display:block;font-family:var(--f-mono);font-weight:400;font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;opacity:.6;margin-top:.3rem}
+.menu{display:flex;gap:.3rem;list-style:none;margin:0;padding:0}
+.menu a{display:flex;align-items:baseline;gap:.4rem;text-decoration:none;font-size:.9rem;padding:.5rem .8rem;border-radius:999px;opacity:.72;transition:opacity .15s,background .15s}
+.menu a b{font-family:var(--f-mono);font-weight:400;font-size:.66rem;color:var(--laranja)}
+.menu a:hover,.menu a.ativo{opacity:1}
+.menu a.ativo{background:rgba(255,90,31,.14)}
+.topo .btn{padding:.6rem 1.05rem;font-size:.9rem}
+.tarja{display:flex;align-items:stretch;height:32px;background:var(--laranja);color:#fff;overflow:hidden;font-family:var(--f-mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase}
+.tarja-relogio{flex:0 0 auto;display:flex;align-items:center;gap:.45rem;padding:0 .9rem 0 var(--gut);background:var(--grafite);color:#fff;position:relative;z-index:1;white-space:nowrap}
+.tarja-relogio i{width:7px;height:7px;border-radius:50%;background:var(--laranja);animation:pisca 1s steps(1) infinite}
+.tarja-relogio b{font-weight:500;color:var(--laranja);font-variant-numeric:tabular-nums}
+.tarja-trilho{flex:1;min-width:0;overflow:hidden;display:flex;align-items:center}
+.tarja-faixa{display:flex;white-space:nowrap;animation:corre 60s linear infinite;will-change:transform}
+.tarja-faixa span{display:inline-block;padding-right:1.4rem}
+.tarja-faixa span::after{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.75);margin-left:1.4rem;vertical-align:.15em}
+.tarja-faixa s{opacity:.75}
+.tarja-faixa b{font-weight:500}
+@keyframes corre{to{transform:translateX(-50%)}}
+@keyframes pisca{50%{opacity:0}}
+
+/* TELA 1 */
+.t1{background:var(--grafite);color:var(--texto-esc);position:relative;overflow:hidden;padding-top:var(--h-topo)}
+.orbita{position:absolute;z-index:0;pointer-events:none;left:-18%;top:4%;width:120%;height:auto}
+.t1-grade{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4.5rem);align-items:center;min-height:calc(100svh - var(--h-topo));padding-block:clamp(2.5rem,6svh,4.5rem)}
+.t1-grade>*{min-width:0}
+.t1-copia{display:flex;flex-direction:column;gap:clamp(1rem,2.4svh,1.5rem)}
+.t1 h1{font-size:clamp(2.4rem,min(4.6vw,8svh),4.2rem);color:#fff;max-width:13ch}
+.t1 h1 em{font-style:normal;color:var(--laranja)}
+.t1 .lead{font-size:clamp(1rem,1.25vw,1.14rem);color:var(--mudo-esc);max-width:54ch}
+.t1 .lead b{color:#fff;font-weight:600}
+.acoes{display:flex;flex-wrap:wrap;gap:.7rem}
+.args{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--linha-esc);padding-top:1.1rem;margin-top:.3rem}
+.arg{display:grid;gap:.25rem;padding-right:1rem;align-content:start}
+.arg+.arg{padding-left:1rem;border-left:1px solid var(--linha-esc)}
+.arg b{font-family:var(--f-mono);font-weight:500;font-size:.74rem;letter-spacing:.06em;color:#fff;text-transform:uppercase}
+.arg span{font-size:.84rem;color:var(--mudo-esc);line-height:1.35}
+.selos{display:grid;grid-template-columns:1fr 1fr;gap:.45rem;width:100%}
+.selos span{display:flex;align-items:center;justify-content:center;gap:.35rem;min-height:2.4rem;padding:.35rem .5rem;border:1px solid var(--linha-esc);border-radius:12px;background:rgba(255,255,255,.04);font-weight:600;font-size:.8rem;line-height:1.2;color:#fff;text-align:center}
+.selos span b{color:var(--laranja);font-weight:700}
+
+/* conversa com a IA */
+.chat{background:var(--papel);color:var(--grafite);border-radius:22px;box-shadow:0 40px 80px -30px rgba(0,0,0,.7);overflow:hidden;display:flex;flex-direction:column}
+.chat-topo{display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:.8rem 1.1rem;border-bottom:1px solid var(--nevoa);flex:0 0 auto}
+.chat-topo .quem{display:flex;align-items:center;gap:.6rem;font-weight:600;font-size:.92rem}
+.chat-topo .av{width:30px;height:30px;border-radius:50%;background:var(--grafite);color:#fff;display:grid;place-items:center}
+.chat-topo .av svg{width:16px;height:16px}
+.chat-topo .tag{font-family:var(--f-mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;background:var(--laranja-suave);color:var(--laranja-2);padding:.35rem .6rem;border-radius:999px;white-space:nowrap}
+.chat-corpo{padding:1.1rem;display:flex;flex-direction:column;justify-content:flex-end;gap:.7rem;height:480px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 2.6rem);mask-image:linear-gradient(to bottom,transparent 0,#000 2.6rem)}
+.msg{max-width:88%;padding:.65rem .9rem;border-radius:16px;font-size:.9rem;line-height:1.45;flex:0 0 auto;display:none}
+.msg.ver{display:block;animation:entra .35s ease}
+.msg.eu{align-self:flex-end;background:var(--nevoa);border-bottom-right-radius:4px}
+.msg.eu .cola{display:block;font-family:var(--f-mono);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ardosia);margin-bottom:.3rem}
+.msg.ia{align-self:flex-start;background:var(--papel);border:1px solid var(--linha);border-bottom-left-radius:4px}
+.msg.fim{background:var(--grafite);color:#fff;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em}
+.msg.aval{max-width:96%;border:1.5px solid var(--laranja);background:#FFF8F5}
+.msg.aval strong{color:var(--grafite)}
+.msg.aval ul{list-style:none;margin:.45rem 0 .5rem;padding:0;display:grid;gap:.25rem;font-size:.84rem}
+.msg.aval li{display:grid;grid-template-columns:1.1rem 1fr;line-height:1.35}
+.msg.aval li::before{font-weight:700}
+.msg.aval li.sim::before{content:"\2713";color:var(--ok)}
+.msg.aval li.nao::before{content:"\2717";color:var(--alerta)}
+.nota{display:inline-flex;align-items:baseline;gap:.35rem;font-family:var(--f-disp);font-weight:800;font-size:1.15rem;letter-spacing:-.02em}
+.nota small{font-family:var(--f-mono);font-weight:400;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ardosia)}
+.msg.ia b{display:block;font-family:var(--f-mono);font-weight:500;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--laranja);margin-bottom:.25rem}
+.digitando{align-self:flex-start;display:none;gap:4px;padding:.8rem .95rem;border:1px solid var(--linha);border-radius:16px;border-bottom-left-radius:4px;flex:0 0 auto}
+.digitando.ver{display:flex}
+.digitando i{width:6px;height:6px;border-radius:50%;background:var(--ardosia);animation:pula 1s infinite}
+.digitando i:nth-child(2){animation-delay:.15s}.digitando i:nth-child(3){animation-delay:.3s}
+@keyframes entra{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pula{0%,60%,100%{transform:none;opacity:.4}30%{transform:translateY(-4px);opacity:1}}
+.chat-pe{display:flex;align-items:center;gap:.6rem;padding:.7rem 1rem;border-top:1px solid var(--nevoa);font-size:.82rem;color:var(--ardosia);flex:0 0 auto}
+.chat-pe .campo{flex:1;min-width:0;border:1px solid var(--linha);border-radius:999px;padding:.5rem .9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--grafite)}
+.chat-pe .campo.vazio{color:#A0A7B0}
+.chat-pe .cursor{display:inline-block;width:2px;height:1em;background:var(--laranja);vertical-align:-.12em;margin-left:1px;animation:pisca 1s steps(1) infinite}
+@keyframes pisca{50%{opacity:0}}
+.chat-pe .env.manda{background:var(--laranja)}
+.chat-pe .env{width:32px;height:32px;border-radius:50%;background:var(--grafite);color:#fff;display:grid;place-items:center;flex:0 0 auto}
+.chat-pe .env svg{width:14px;height:14px}
+.chat-legenda{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.06em;color:var(--mudo-esc);text-align:center;margin-top:1rem;text-transform:uppercase}
+.chat-legenda b{color:#fff;font-weight:500}
+
+/* telas */
+.tela{padding-block:clamp(4rem,9vw,7rem)}
+.cab{display:grid;gap:1rem;max-width:780px;margin-bottom:clamp(2rem,4vw,3rem)}
+.cab h2{font-size:clamp(1.9rem,3.6vw,3.1rem)}
+.cab .lead{font-size:1.08rem;color:var(--ardosia);max-width:62ch}
+
+/* TELA 2 */
+.t2{background:var(--gelo)}
+.troca{display:none}
+.duelo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1rem,2.5vw,1.8rem);align-items:stretch}
+.duelo>*{min-width:0}
+.lado{background:var(--papel);border:1px solid var(--linha);border-radius:20px;padding:clamp(1.1rem,2.2vw,1.6rem);display:flex;flex-direction:column;gap:1rem}
+.lado-topo{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap}
+.lado-topo h3{font-size:1.25rem;letter-spacing:-.015em}
+.selo{font-family:var(--f-mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;padding:.35rem .6rem;border-radius:999px;white-space:nowrap}
+.selo.ruim{background:var(--alerta-suave);color:var(--alerta)}
+.selo.bom{background:var(--laranja);color:#fff}
+.pergunta{align-self:flex-end;background:var(--nevoa);border-radius:14px 14px 4px 14px;padding:.55rem .85rem;font-size:.9rem;font-weight:500}
+.resposta{border:1px solid var(--linha);border-radius:14px 14px 14px 4px;padding:.9rem 1rem;font-size:.92rem;line-height:1.5;display:grid;gap:.55rem}
+.lado.fraco .resposta{color:var(--ardosia)}
+.lado.forte{border:1.5px solid var(--laranja);box-shadow:0 30px 60px -36px rgba(255,90,31,.55)}
+.resposta dl{margin:0;display:grid;gap:.55rem}
+.resposta dt{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--laranja)}
+.resposta dd{margin:0}
+.resposta .teste{border-top:1px dashed var(--linha);padding-top:.6rem;font-weight:600}
+.lado-pe{margin-top:auto;font-size:.88rem;display:grid;grid-template-columns:auto 1fr;gap:.6rem;align-items:start}
+.lado-pe svg{width:18px;height:18px;margin-top:.15em}
+.lado.fraco .lado-pe{color:var(--alerta)}
+.lado.forte .lado-pe svg{color:var(--laranja)}
+.dicas{display:grid;grid-template-columns:repeat(3,1fr);margin-top:clamp(2rem,4vw,3rem);border-top:1px solid var(--linha);padding-top:1.4rem}
+.dica{display:grid;grid-template-columns:auto 1fr;gap:.2rem .9rem;padding-right:1.2rem}
+.dica+.dica{padding-left:1.2rem;border-left:1px solid var(--linha)}
+.dica .num{grid-row:span 2;width:32px;height:32px;border-radius:50%;background:var(--grafite);color:#fff;display:grid;place-items:center;font-family:var(--f-mono);font-size:.74rem}
+.dica b{font-family:var(--f-disp);font-size:1.05rem;letter-spacing:-.01em}
+.dica span{font-size:.88rem;color:var(--ardosia);line-height:1.4}
+
+/* TELA 3 */
+.t3{background:var(--papel)}
+.serve{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.2rem}
+.serve span{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--linha);padding:.4rem .7rem;border-radius:999px;color:var(--ardosia)}
+.blocos{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(1.5rem,3.5vw,3rem);align-items:start}
+.blocos>*{min-width:0}
+.lista-b{list-style:none;margin:0;padding:0;display:grid;gap:.45rem;position:sticky;top:calc(var(--h-topo) + 1.5rem)}
+.lista-b button{width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:.1rem .9rem;align-items:center;text-align:left;padding:.85rem 1rem;border-radius:14px;border:1px solid var(--linha);background:var(--gelo);cursor:pointer;color:var(--grafite);transition:border-color .2s,background .2s,transform .2s}
+.lista-b .num{grid-row:1 / 3;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-size:.74rem;background:var(--papel);border:1px solid var(--linha);color:var(--ardosia);transition:background .2s,color .2s}
+.lista-b b{grid-column:2;font-family:var(--f-disp);font-size:1.06rem;letter-spacing:-.01em;line-height:1.2}
+.lista-b small{grid-column:2;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ardosia)}
+.lista-b .seta{grid-column:3;grid-row:1 / 3;color:var(--ardosia);opacity:.5;transition:translate .2s,opacity .2s}
+.lista-b button:hover{border-color:var(--grafite)}
+.lista-b button:hover .seta{translate:3px 0;opacity:1}
+.lista-b button.on{border-color:var(--laranja);background:var(--papel);transform:translateX(6px)}
+.lista-b button.on .num{background:var(--laranja);border-color:var(--laranja);color:#fff}
+.lista-b button.on .seta{color:var(--laranja);opacity:1}
+.lista-b .curto,.lista-b .ico{display:none}
+.lista-b button.on .curto{color:var(--laranja-2)}
+.painel-topo{display:flex;align-items:flex-start;justify-content:space-between;gap:.8rem}
+.nav-b{display:none;gap:.35rem;flex:0 0 auto}
+.nav-b button{width:34px;height:34px;border-radius:50%;border:1px solid var(--linha-esc);background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer}
+.nav-b button:hover{border-color:#fff}
+.nav-b svg{width:16px;height:16px}
+.painel{background:var(--grafite);color:var(--texto-esc);border-radius:22px;padding:clamp(1.2rem,2.6vw,2rem);display:flex;flex-direction:column;gap:1.2rem;box-shadow:0 50px 90px -45px rgba(22,24,27,.6)}
+.painel-cab{display:grid;gap:.5rem}
+.painel-cab .olho{color:var(--laranja)}
+.painel-cab h3{font-size:clamp(1.5rem,2.6vw,2.1rem);color:#fff}
+.painel-cab p{color:var(--mudo-esc);font-size:.95rem;max-width:56ch}
+.titulos{list-style:none;margin:0;padding:1rem 0 0;display:grid;grid-template-columns:1fr 1fr;gap:.4rem 1.2rem;border-top:1px solid var(--linha-esc)}
+.titulos li{display:grid;grid-template-columns:2.2em 1fr;font-size:.9rem;line-height:1.35;color:#fff}
+.titulos li span{font-family:var(--f-mono);font-size:.68rem;color:var(--laranja);padding-top:.18em}
+.titulos mark{background:none;color:inherit;padding:0;font-weight:inherit}
+.amostra{background:var(--papel);color:var(--grafite);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.amostra-topo{display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:.75rem 1rem;border-bottom:1px solid var(--nevoa);flex:0 0 auto}
+.amostra-topo b{font-family:var(--f-disp);font-size:1rem;letter-spacing:-.01em;display:flex;gap:.6rem;align-items:center;min-width:0}
+.amostra-topo b span{font-family:var(--f-mono);font-size:.66rem;font-weight:400;background:var(--grafite);color:#fff;border-radius:6px;padding:.25rem .45rem;flex:0 0 auto}
+.amostra-topo b em{font-style:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.amostra-topo{min-width:0}.amostra-topo b{overflow:hidden}
+.painel{min-width:0;max-width:100%}.painel > *,.amostra > *{min-width:0;max-width:100%}
+.copiar{display:inline-flex;align-items:center;gap:.4rem;border:1px solid var(--linha);background:var(--papel);border-radius:999px;padding:.4rem .8rem;font-size:.8rem;font-weight:600;cursor:pointer;color:var(--grafite);white-space:nowrap;flex:0 0 auto}
+.copiar svg{width:14px;height:14px}
+.copiar:hover{border-color:var(--grafite)}
+.copiar.ok{border-color:var(--ok);color:var(--ok)}
+.amostra pre{margin:0;padding:1rem;font-family:var(--f-corpo);font-size:.9rem;line-height:1.55;white-space:pre-wrap;word-wrap:break-word;background:#FAFBFC}
+.amostra-pe{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ardosia);padding:.6rem 1rem;border-top:1px solid var(--nevoa);flex:0 0 auto}
+.painel-acao{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem 1.2rem}
+.painel-acao p{font-size:.86rem;color:var(--mudo-esc)}
+
+/* TELA 4 */
+.t4{background:var(--gelo)}
+.t4-grade{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.t4-grade>*{min-width:0}
+.leque{position:relative;aspect-ratio:1/1;max-width:560px;width:100%;margin-inline:auto;container-type:size}
+.leque img{position:absolute;top:8%;left:50%;height:min(78cqh,70cqw);width:auto;max-width:none;border-radius:10px;box-shadow:0 30px 60px -28px rgba(22,24,27,.55),0 0 0 1px rgba(22,24,27,.06);background:#fff;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.leque .f1{transform:translateX(-92%) rotate(-8deg)}
+.leque .f2{transform:translateX(-8%) rotate(7deg);top:9%}
+.leque .f3{transform:translateX(-50%) rotate(-1deg);z-index:2;top:3%;height:min(82cqh,74cqw)}
+.leque:hover .f1{transform:translateX(-98%) rotate(-11deg)}
+.leque:hover .f2{transform:translateX(-2%) rotate(10deg)}
+.leque .etq{position:absolute;z-index:3;left:0;right:0;bottom:2%;display:flex;gap:.4rem;flex-wrap:wrap;justify-content:center}
+.leque .etq span{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;background:var(--grafite);color:#fff;padding:.42rem .7rem;border-radius:999px;white-space:nowrap}
+.passos{list-style:none;margin:1.6rem 0 0;padding:0;display:grid;gap:.6rem}
+.passos li{display:grid;grid-template-columns:auto 1fr;gap:.15rem .9rem;padding:.95rem 1.1rem;border-radius:14px;border:1px solid var(--linha);background:var(--papel)}
+.passos .num{grid-row:span 2;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-size:.76rem;background:var(--grafite);color:#fff}
+.passos li:last-child .num{background:var(--laranja)}
+.passos b{font-family:var(--f-disp);font-size:1.1rem;letter-spacing:-.01em}
+.passos span{font-size:.9rem;color:var(--ardosia);line-height:1.4}
+.regras{margin-top:1.2rem;display:grid;grid-template-columns:auto 1fr;gap:.8rem;align-items:start;font-size:.88rem;color:var(--ardosia);border-top:1px solid var(--linha);padding-top:1.1rem}
+.regras svg{width:22px;height:22px;color:var(--grafite)}
+.regras b{color:var(--grafite)}
+
+/* TELA 5: oferta */
+.t5{background:var(--grafite);color:var(--texto-esc);position:relative;overflow:hidden}
+.t5 .orbita{left:20%;top:-12%;width:100%}
+.t5 .wrap{position:relative;z-index:1}
+.t5-grade{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.t5-grade>*{min-width:0}
+.t5 .cab{margin-bottom:1.6rem}
+.t5 .cab h2{color:#fff}
+.t5 .cab .lead{color:var(--mudo-esc)}
+.leva{list-style:none;margin:0;padding:0;display:grid;gap:.75rem}
+.leva li{display:grid;grid-template-columns:auto 1fr;gap:.8rem;align-items:start;font-size:1rem}
+.leva li svg{width:20px;height:20px;color:var(--laranja);margin-top:.15em}
+.leva li b{color:#fff;font-weight:600}
+.leva li span{color:var(--mudo-esc)}
+.cartao{background:var(--papel);color:var(--grafite);border-radius:24px;padding:clamp(1.3rem,2.6vw,2rem);display:grid;gap:1.1rem;box-shadow:0 40px 80px -30px rgba(0,0,0,.7)}
+.produto{display:flex;gap:1rem;align-items:center}
+.produto img{width:64px;height:auto;flex:0 0 auto;border-radius:8px;box-shadow:0 10px 20px -10px rgba(22,24,27,.6),0 0 0 1px var(--linha)}
+.produto b{display:block;font-family:var(--f-disp);font-size:1.12rem;letter-spacing:-.01em;line-height:1.2}
+.produto span{font-size:.84rem;color:var(--ardosia)}
+.preco{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;border-block:1px solid var(--linha);padding-block:1rem}
+.preco .valor{font-family:var(--f-disp);font-weight:800;font-size:clamp(3.2rem,5.4vw,4.4rem);letter-spacing:-.045em;line-height:.9;display:flex;align-items:flex-start;gap:.12em}
+.preco .valor small{font-size:.32em;font-weight:600;letter-spacing:0;margin-top:.4em;color:var(--ardosia)}
+.selo-oferta{display:flex;justify-content:space-between;align-items:center;gap:.6rem;flex-wrap:wrap;background:var(--laranja-suave);border:1px solid #FFC9B3;border-radius:12px;padding:.55rem .8rem;font-family:var(--f-mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--laranja-2);font-weight:500}
+.selo-oferta{flex-wrap:nowrap}
+.selo-oferta span{white-space:nowrap}
+.selo-oferta .prova{display:inline-flex;align-items:center;gap:.4rem;color:var(--grafite);text-transform:none;letter-spacing:.02em}
+.selo-oferta .prova i{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(22,163,74,.18)}
+.selo-oferta b{font-weight:500;color:var(--grafite)}
+.preco .de{display:block;font-size:.95rem;color:var(--ardosia);margin-bottom:.35rem;text-decoration-thickness:1.5px}
+.preco .cond{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ardosia);text-align:right;line-height:1.6}
+.cartao .btn{width:100%;padding-block:1.05rem;font-size:1.05rem}
+.escassez{font-size:.86rem;color:var(--ardosia);text-align:center;margin:-.2rem 0 -.3rem}
+.escassez b{color:var(--laranja-2)}
+.formas{display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap}
+.formas span{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;color:var(--ardosia);border:1px solid var(--linha);border-radius:999px;padding:.3rem .65rem}
+.formas svg{width:14px;height:14px}
+.garantia{display:grid;grid-template-columns:auto 1fr;gap:.8rem;align-items:center;border:1px solid rgba(22,163,74,.35);background:#EEF9F2;border-radius:14px;padding:.75rem .95rem;font-size:.86rem}
+.garantia svg{width:24px;height:24px;color:var(--ok)}
+.garantia b{display:block}
+.garantia span{color:var(--ardosia)}
+
+/* TELA 6 */
+.t6{background:var(--gelo)}
+.duvidas{display:grid;grid-template-columns:.7fr 1.3fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+.duvidas>*{min-width:0}
+.duvidas h2{font-size:clamp(1.8rem,3vw,2.6rem)}
+.lado-txt{display:grid;gap:1rem;position:sticky;top:calc(var(--h-topo) + 2rem)}
+.lado-txt p{color:var(--ardosia)}
+.lista-d details{border-top:1px solid var(--linha);padding:1rem 0}
+.lista-d details:last-child{border-bottom:1px solid var(--linha)}
+.lista-d summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:1rem;align-items:center;font-family:var(--f-disp);font-weight:600;font-size:1.12rem;letter-spacing:-.01em}
+.lista-d summary::-webkit-details-marker{display:none}
+.lista-d summary::after{content:"+";font-family:var(--f-mono);font-weight:400;color:var(--laranja);font-size:1.2rem;transition:rotate .2s;flex:0 0 auto}
+.lista-d details[open] summary::after{rotate:45deg}
+.lista-d details p{color:var(--ardosia);padding-top:.6rem;max-width:62ch;font-size:.95rem}
+
+/* final */
+.final{background:var(--grafite);color:var(--texto-esc);padding-block:clamp(4rem,9vw,6.5rem);position:relative;overflow:hidden}
+.final .orbita{left:30%;top:-10%;width:90%}
+.final .wrap{position:relative;z-index:1;display:grid;gap:1.3rem;justify-items:start}
+.final h2{font-size:clamp(2rem,4.4vw,3.8rem);color:#fff;max-width:20ch}
+.final h2 em{font-style:normal;color:var(--laranja)}
+.final p{color:var(--mudo-esc);font-size:1.08rem;max-width:52ch}
+.rodape{background:var(--grafite);color:var(--mudo-esc);border-top:1px solid var(--linha-esc);padding-block:1.8rem calc(1.8rem + env(safe-area-inset-bottom,0px));font-size:.82rem}
+.rodape .wrap{display:flex;flex-wrap:wrap;gap:.8rem 2rem;justify-content:space-between;align-items:center}
+.rodape .logo{color:#fff;font-size:.95rem}
+.rodape .aviso-legal{flex-basis:100%;font-size:.76rem;opacity:.8;max-width:80ch}
+
+.aviso{position:fixed;z-index:60;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--grafite);color:#fff;padding:.7rem 1.1rem;border-radius:999px;font-size:.88rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;white-space:nowrap}
+.aviso.ver{opacity:1;transform:translate(-50%,0)}
+
+/* =========================================================
+   CELULAR E TABLET (até 1080 px): uma tela por vez
+   ========================================================= */
+@media (max-width:1080px){
+  body{font-size:15px}
+  .menu{display:none}
+  .topo-linha{height:58px}
+  /* toda tela tem a altura exata da janela menos o topo, e o conteúdo se ajusta dentro dela */
+  .tela{height:calc(100svh - var(--h-topo));min-height:0;display:flex;flex-direction:column;overflow:hidden;padding-block:clamp(.9rem,2.4svh,1.6rem) clamp(.9rem,2.2svh,1.4rem)}
+  .tela > .wrap{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;max-width:720px}
+  .cab{text-align:center;justify-items:center;margin:0 auto clamp(.7rem,2svh,1.2rem);gap:clamp(.35rem,1svh,.6rem);flex:0 0 auto}
+  .cab h2{font-size:clamp(1.45rem,min(6.6vw,4.2svh),2.3rem)}
+  .cab .lead{font-size:clamp(.86rem,2svh,1rem);line-height:1.45}
+
+  /* capa */
+  .t1-grade{height:calc(100svh - var(--h-topo));min-height:0;max-width:720px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:clamp(.55rem,1.6svh,1rem);padding-block:clamp(.8rem,2.2svh,1.4rem)}
+  .t1-copia{display:contents}
+  .t1-copia .olho{order:1}
+  .t1 h1{order:2;font-size:clamp(1.85rem,min(9vw,5.2svh),3.2rem);max-width:14ch}
+  .t1 .lead{order:3;font-size:clamp(.84rem,2svh,1rem);line-height:1.42;max-width:44ch}
+  .t1 .lead .longo{display:none}
+  .t1-chat{order:4;flex:1 1 auto;min-height:0;width:100%;display:flex;flex-direction:column}
+  .chat{flex:1 1 auto;min-height:0;text-align:left;border-radius:18px}
+  .chat-topo{padding:.55rem .85rem}
+  .chat-topo .av{width:26px;height:26px}
+  .chat-topo .quem{font-size:.84rem}
+  .chat-topo .tag{font-size:.5rem;padding:.3rem .5rem}
+  /* a conversa cresce de baixo para cima: o que não cabe some por cima, como no app */
+  .chat-corpo{flex:1 1 auto;min-height:0;overflow:hidden;justify-content:flex-end;padding:.7rem .8rem;gap:.5rem;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 2.2rem);mask-image:linear-gradient(to bottom,transparent 0,#000 2.2rem)}
+  .msg{font-size:clamp(.78rem,1.9svh,.92rem);padding:.5rem .72rem;max-width:90%}
+  .msg.aval ul{font-size:clamp(.74rem,1.75svh,.84rem);margin:.3rem 0 .35rem}
+  .chat-corpo{height:auto}
+  .chat-pe,.chat-legenda{display:none}
+  .acoes{order:5;width:100%;max-width:520px;display:block}
+  .acoes .btn{width:100%;padding-block:clamp(.75rem,1.9svh,.95rem)}
+  .acoes .btn-contorno-claro{display:none}
+  .args{display:none}
+  .selos{order:6;max-width:520px}
+  .orbita{left:-60%;top:2%;width:220%}
+
+  /* a diferença: uma resposta por vez, com troca */
+  .t2 .cab .lead{display:none}
+  .troca{display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:3px;border:1px solid var(--linha);border-radius:999px;background:var(--papel);margin:0 auto clamp(.6rem,1.6svh,1rem);width:100%;max-width:420px;flex:0 0 auto}
+  .troca button{border:0;background:transparent;border-radius:999px;padding:.55rem .4rem;font-weight:600;font-size:.84rem;color:var(--ardosia);cursor:pointer;white-space:nowrap}
+  .troca button.on{background:var(--grafite);color:#fff}
+  .troca button[data-l="forte"].on{background:var(--laranja)}
+  .duelo{display:flex;flex:1 1 auto;min-height:0}
+  .lado{flex:1 1 auto;min-height:0;overflow:hidden;padding:clamp(.85rem,2svh,1.2rem);gap:clamp(.55rem,1.4svh,.9rem)}
+  .duelo:not([data-l="fraco"]) .fraco,.duelo[data-l="fraco"] .forte{display:none}
+  .lado-topo h3{font-size:1.1rem}
+  .resposta{font-size:clamp(.82rem,1.95svh,.95rem);padding:.75rem .85rem}
+  .lado.fraco .resposta{font-size:clamp(.86rem,2.1svh,1rem)}
+  .lado-pe{font-size:.82rem}
+  .dicas{flex:0 0 auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.35rem;margin-top:clamp(.6rem,1.6svh,1rem);padding-top:0;border:0}
+  .dica,.dica+.dica{display:flex;align-items:center;justify-content:center;gap:.35rem;padding:.4rem .35rem;border:1px solid var(--linha);border-radius:12px;background:var(--papel);min-width:0}
+  .dica .num{width:20px;height:20px;font-size:.56rem;flex:0 0 auto}
+  .dica b{font-size:.74rem;line-height:1.15;min-width:0}
+  .dica b mark{padding:0 .1em}
+  .dica span:not(.num){display:none}
+
+  /* os 7 blocos */
+  .t3 .cab{margin-bottom:clamp(.5rem,1.4svh,.9rem)}
+  .serve{display:none}
+  .blocos{display:flex;flex-direction:column;align-items:stretch;flex:1 1 auto;min-height:0;gap:clamp(.6rem,1.6svh,.9rem)}
+  .lista-b{--c:40px;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:0;flex:0 0 auto;position:relative;top:auto}
+  .lista-b::before,.lista-b::after{content:"";position:absolute;top:calc(var(--c) / 2 - 1px);left:calc(100% / 14);height:2px;border-radius:2px}
+  .lista-b::before{right:calc(100% / 14);background:var(--linha)}
+  .lista-b::after{width:calc((100% - 100% / 7) * var(--prog,0));background:var(--laranja);transition:width .35s ease}
+  .lista-b li{min-width:0;position:relative;z-index:1}
+  .lista-b button{display:flex;flex-direction:column;align-items:center;gap:.3rem;padding:0;border:0;background:none;border-radius:0;transform:none!important;min-width:0;width:100%}
+  .lista-b button:hover{border:0}
+  .lista-b .ico{display:grid;place-items:center;width:var(--c);height:var(--c);border-radius:50%;background:var(--papel);border:1.5px solid var(--linha);color:var(--ardosia);transition:background .2s,color .2s,border-color .2s,box-shadow .2s}
+  .lista-b .ico svg{width:46%;height:46%}
+  .lista-b .curto{display:block;font-size:.6rem;font-weight:600;line-height:1.1;text-align:center;white-space:nowrap;color:var(--ardosia);letter-spacing:-.01em}
+  .lista-b button.feito .ico{border-color:var(--laranja);color:var(--laranja)}
+  .lista-b button.on .ico{background:var(--laranja);border-color:var(--laranja);color:#fff;box-shadow:0 0 0 4px var(--laranja-suave)}
+  .lista-b button.on .curto{color:var(--laranja-2)}
+  .lista-b .num,.lista-b b,.lista-b small,.lista-b .seta{display:none}
+  .nav-b{display:flex}
+  .painel{flex:1 1 auto;min-height:0;padding:clamp(.8rem,2svh,1.2rem);gap:clamp(.55rem,1.4svh,.9rem);border-radius:18px}
+  .painel-cab{gap:.25rem;flex:0 0 auto}
+  .painel-cab .olho{font-size:.58rem}
+  .painel-cab h3{font-size:clamp(1.2rem,3svh,1.6rem)}
+  .painel-cab p{display:none}
+  .titulos{flex:0 0 auto;padding-top:.6rem;gap:.15rem 1rem}
+  .titulos li{font-size:clamp(.74rem,1.75svh,.88rem);line-height:1.3}
+  .amostra{flex:1 1 auto;min-height:5.5rem}
+  .amostra-topo{padding:.5rem .7rem}
+  .amostra-topo b{font-size:.86rem}
+  .amostra pre{flex:1 1 auto;min-height:0;overflow:auto;font-size:clamp(.78rem,1.8svh,.9rem);padding:.7rem .8rem;line-height:1.5}
+  .amostra-pe{padding:.45rem .8rem;font-size:.52rem}
+  .painel-acao{flex:0 0 auto}
+  .painel-acao .btn{width:100%;padding-block:clamp(.7rem,1.8svh,.9rem)}
+  .painel-acao p{display:none}
+
+  /* o PDF */
+  .t4-grade{display:flex;flex-direction:column;align-items:stretch;flex:1 1 auto;min-height:0;gap:clamp(.5rem,1.4svh,1rem)}
+  .t4-txt{display:contents}
+  .t4-txt .cab{order:1;margin-bottom:0}
+  .t4 .cab .lead{display:none}
+  .leque{order:2;flex:1 1 auto;min-height:0;aspect-ratio:auto;max-width:none}
+  .leque .etq span{font-size:.52rem;padding:.35rem .6rem}
+  .passos{order:3;margin:0;gap:.4rem;flex:0 0 auto}
+  .passos li{padding:.55rem .75rem;gap:.05rem .7rem;align-items:center}
+  .passos .num{width:28px;height:28px;font-size:.66rem}
+  .passos b{font-size:clamp(.9rem,2.1svh,1.05rem)}
+  .passos span{font-size:clamp(.74rem,1.7svh,.86rem);line-height:1.3}
+  .regras{display:none}
+
+  /* oferta */
+  .t5 .wrap{justify-content:center}
+  .t5-grade{display:flex;flex-direction:column;gap:clamp(.7rem,2svh,1.2rem)}
+  .t5 .cab{margin-bottom:0}
+  .t5 .cab .lead{display:none}
+  .leva{display:none}
+  .cartao{padding:clamp(1rem,2.4svh,1.5rem);gap:clamp(.6rem,1.6svh,1rem);border-radius:20px}
+  .produto img{width:52px}
+  .produto b{font-size:1rem}
+  .preco{padding-block:clamp(.6rem,1.6svh,.9rem)}
+  .preco .valor{font-size:clamp(2.8rem,8svh,3.8rem)}
+  .inclui-mob{list-style:none;margin:0;padding:0;display:grid;gap:clamp(.3rem,.9svh,.45rem);font-size:clamp(.82rem,1.9svh,.92rem)}
+  .inclui-mob li{display:grid;grid-template-columns:auto 1fr;gap:.55rem;align-items:start;line-height:1.35}
+  .inclui-mob svg{width:16px;height:16px;color:var(--laranja);margin-top:.15em}
+  .cartao .btn{padding-block:clamp(.8rem,2svh,1rem)}
+  .garantia{padding:.6rem .8rem;font-size:.8rem}
+
+  /* dúvidas */
+  .duvidas{display:flex;flex-direction:column;flex:1 1 auto;min-height:0;gap:clamp(.6rem,1.6svh,1rem)}
+  .lado-txt{position:static;text-align:center;justify-items:center;gap:.4rem;flex:0 0 auto}
+  .lado-txt p{display:none}
+  .duvidas h2{font-size:clamp(1.45rem,min(6.6vw,4.2svh),2.3rem)}
+  .lista-d{flex:1 1 auto;min-height:0;overflow-y:auto;scrollbar-width:none}
+  .lista-d::-webkit-scrollbar{display:none}
+  .lista-d details{padding:clamp(.6rem,1.6svh,.9rem) 0}
+  .lista-d summary{font-size:clamp(.92rem,2.1svh,1.05rem)}
+  .lista-d details p{font-size:.86rem}
+
+  /* chamada final + rodapé = última tela */
+  .fecho{height:calc(100svh - var(--h-topo));display:flex;flex-direction:column}
+  .final{flex:1 1 auto;display:flex;align-items:center;padding-block:1.5rem}
+  .final .wrap{justify-items:center;text-align:center;max-width:620px;gap:clamp(.7rem,2svh,1.2rem)}
+  .final h2{font-size:clamp(1.7rem,min(8vw,5svh),2.8rem)}
+  .final p{font-size:.95rem}
+  .final .btn{width:100%;max-width:520px}
+  .rodape{flex:0 0 auto;padding-block:1.1rem calc(1.1rem + env(safe-area-inset-bottom,0px))}
+  .rodape .wrap{flex-direction:column;text-align:center;gap:.45rem}
+  .rodape .aviso-legal{font-size:.68rem}
+  .rodape .sub-rod{display:none}
+}
+/* celular */
+@media (max-width:640px){
+  .tarja{height:28px;font-size:.58rem}
+  .tarja-relogio{padding-right:.65rem}
+  html{scroll-snap-type:y mandatory}
+  .t1,.tela,.fecho{scroll-snap-align:start;scroll-snap-stop:always}
+  .topo-linha{height:56px}
+  .logo{font-size:.98rem;gap:.5rem}
+  .logo .orb{width:22px;height:22px}
+  .logo{font-size:.9rem}
+  .logo small{font-size:.5rem}
+  .topo .btn{padding:.5rem .85rem;font-size:.8rem}
+  .titulos{grid-template-columns:1fr}
+  .logo > span:last-child{white-space:nowrap}
+}
+@media (max-width:400px){
+  .logo small{font-size:.48rem;letter-spacing:.08em}
+  .acoes .btn{font-size:.95rem;padding-inline:.8rem;gap:.45rem}
+  .logo{font-size:.92rem}
+  .topo .btn{padding:.48rem .72rem;font-size:.76rem}
+}
+/* tablet: rolagem livre; cada parte ocupa a tela inteira e o conteúdo cresce para preencher */
+@media (min-width:641px) and (max-width:1080px){
+  body{font-size:17px}
+  .tela{height:auto;min-height:calc(100svh - var(--h-topo));padding-block:clamp(2rem,4svh,3.2rem)}
+  .tela > .wrap{max-width:860px;justify-content:center}
+  .cab{margin-bottom:clamp(1.2rem,2.6svh,2rem);gap:.8rem}
+  .cab h2{font-size:clamp(2.2rem,5.4vw,3rem)}
+  .cab .lead{font-size:1.1rem}
+  /* capa */
+  .t1-grade{height:auto;min-height:calc(100svh - var(--h-topo));max-width:860px;gap:clamp(1rem,2.4svh,1.6rem);padding-block:clamp(1.6rem,3.4svh,2.6rem)}
+  .t1 h1{font-size:clamp(2.8rem,7vw,3.8rem)}
+  .t1 .lead{font-size:1.2rem}
+  .t1-chat{flex:1 1 auto;max-width:none;min-height:420px}
+  .chat-corpo{padding:1.1rem 1.3rem;gap:.7rem}
+  .chat-topo{padding:.8rem 1.2rem}
+  .chat-topo .quem{font-size:1rem}
+  .chat-topo .tag{font-size:.6rem}
+  .msg{font-size:1.02rem;padding:.7rem 1rem}
+  .msg.aval ul{font-size:.95rem}
+  .acoes,.selos{max-width:none}
+  .acoes .btn{font-size:1.1rem;padding-block:1.05rem}
+  .selos{grid-template-columns:repeat(4,1fr)}
+  .selos span{font-size:.92rem;min-height:3rem}
+  /* a diferença: só o título, as duas respostas grandes lado a lado */
+  .t2 .cab .lead{display:none}
+  .troca{display:none}
+  .duelo{display:grid;grid-template-columns:1fr 1fr;flex:1 1 auto}
+  .duelo .fraco,.duelo .forte{display:flex!important}
+  .lado{padding:1.4rem;gap:1rem}
+  .lado-topo h3{font-size:1.35rem}
+  .pergunta{font-size:1rem}
+  .resposta,.lado.fraco .resposta{font-size:1.05rem;padding:1rem 1.1rem}
+  .resposta dt{font-size:.66rem}
+  .lado-pe{font-size:.95rem}
+  .dicas{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
+  .dica,.dica+.dica{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:.4rem;padding:.9rem 1rem;border-radius:16px}
+  .dica .num{width:28px;height:28px;font-size:.7rem}
+  .dica b{font-size:1.02rem}
+  .dica span:not(.num){display:block;font-size:.88rem}
+  /* os 7 blocos: jornada grande e painel ocupando a tela */
+  .blocos{gap:1.4rem}
+  .lista-b{--c:62px}
+  .lista-b .curto{font-size:.84rem}
+  .lista-b button{gap:.5rem}
+  .painel{padding:1.6rem;gap:1.2rem;border-radius:22px}
+  .painel-cab .olho{font-size:.68rem}
+  .painel-cab h3{font-size:2.1rem}
+  .painel-cab p{display:block;font-size:1.02rem}
+  .nav-b button{width:42px;height:42px}
+  .titulos{grid-template-columns:1fr 1fr;gap:.45rem 1.4rem;padding-top:1rem}
+  .titulos li{font-size:1rem}
+  .amostra{flex:1 1 auto;min-height:0}
+  .amostra-topo{padding:.8rem 1.1rem}
+  .amostra-topo b{font-size:1.05rem}
+  .amostra pre{font-size:1.05rem;padding:1.1rem 1.2rem;line-height:1.6}
+  .amostra-pe{font-size:.62rem}
+  .painel-acao .btn{font-size:1.1rem;padding-block:1rem}
+  /* o PDF */
+  .t4-grade{align-items:stretch}
+  .leque{flex:0 0 auto;height:clamp(400px,42svh,600px);width:100%;align-self:stretch;container-type:normal}
+  .leque img{height:78%}
+  .leque .f3{height:84%}
+  .leque .etq span{font-size:.62rem;padding:.45rem .8rem}
+  .passos{gap:.6rem}
+  .passos li{padding:.95rem 1.1rem}
+  .passos .num{width:36px;height:36px;font-size:.78rem}
+  .passos b{font-size:1.15rem}
+  .passos span{display:block;font-size:.95rem}
+  .regras{display:grid;order:4;margin-top:.2rem;font-size:.95rem;border-top:0;padding-top:0}
+  /* oferta */
+  .t5 .cab .lead{display:block}
+  .leva{display:grid;grid-template-columns:1fr 1fr;gap:1rem 1.6rem;margin-bottom:.4rem}
+  .leva li{font-size:1rem}
+  .cartao{width:100%;max-width:600px;margin-inline:auto;padding:1.8rem;gap:1.2rem}
+  .produto img{width:72px}
+  .produto b{font-size:1.2rem}
+  .preco .valor{font-size:4.4rem}
+  .inclui-mob{display:none}
+  .cartao .btn{font-size:1.15rem;padding-block:1.1rem}
+  .garantia{font-size:.95rem;padding:.9rem 1.1rem}
+  /* dúvidas: todas abertas, letra maior */
+  .lado-txt p{display:block;font-size:1.05rem}
+  .duvidas h2{font-size:clamp(2.2rem,5.4vw,3rem)}
+  .lista-d{overflow:visible}
+  .lista-d details{padding:1.1rem 0}
+  .lista-d summary{font-size:1.2rem}
+  .lista-d details p{font-size:1rem}
+  /* final */
+  .fecho{height:auto;min-height:calc(100svh - var(--h-topo))}
+  .final h2{font-size:clamp(2.6rem,6.4vw,3.6rem)}
+  .final p{font-size:1.1rem}
+  .final .btn{font-size:1.1rem}
+}
+/* tablet mais baixo (iPad comum em pé): enxuga para cada parte caber na tela */
+@media (min-width:641px) and (max-width:1080px) and (max-height:1100px){
+  .cab h2,.duvidas h2{font-size:2.15rem}
+  .cab{margin-bottom:1.1rem}
+  .lado{padding:1.1rem;gap:.8rem}
+  .resposta,.lado.fraco .resposta{font-size:.98rem;padding:.85rem .95rem}
+  .dica,.dica+.dica{flex-direction:row;align-items:center;justify-content:center;padding:.6rem .8rem;border-radius:999px}
+  .dica span:not(.num){display:none}
+  .painel-cab p{display:none}
+  .lista-b{--c:54px}
+  .painel{padding:1.3rem;gap:1rem}
+  .amostra pre{font-size:1rem}
+  .leque{height:360px}
+  .cartao{padding:1.4rem;gap:.95rem}
+  .leva{gap:.7rem 1.4rem}
+  .passos li{padding:.75rem 1rem}
+  .lista-d details{padding:.8rem 0}
+  .lista-d summary{font-size:1.12rem}
+  .lista-d details p{font-size:.95rem;padding-top:.4rem}
+}
+/* telas baixas (iPhone SE e afins): tira o que é secundário */
+@media (max-width:1080px) and (max-height:700px){
+  .t1 .lead{display:none}
+  .selos{display:none}
+  .titulos{display:none}
+  .passos span{display:none}
+  .garantia span{display:none}
+  .t5 .cab h2{font-size:1.35rem}
+  .dicas{display:none}
+  .inclui-mob,.formas{display:none}
+  .produto img{width:42px}
+  .lado-pe{display:none}
+  .pergunta{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .msg{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="topo" id="topo">
+  <div class="wrap topo-linha">
+    <a class="logo" href="#inicio" aria-label="Orbyt Studio para Medicina, início">
+      <svg class="orb" viewBox="0 0 32 32" fill="none" aria-hidden="true"><ellipse cx="16" cy="16" rx="12.5" ry="12.5" stroke="currentColor" stroke-width="2"/><circle cx="25" cy="7.4" r="3.6" fill="#FF5A1F"/></svg>
+      <span>Orbyt Studio<small>para Medicina</small></span>
+    </a>
+    <ul class="menu">
+      <li><a href="#diferenca" data-alvo="diferenca"><b>01</b>A diferença</a></li>
+      <li><a href="#blocos" data-alvo="blocos"><b>02</b>O que tem dentro</a></li>
+      <li><a href="#material" data-alvo="material"><b>03</b>Como chega</a></li>
+      <li><a href="#duvidas" data-alvo="duvidas"><b>04</b>Dúvidas</a></li>
+    </ul>
+    <a class="btn btn-laranja comprar" href="/checkout/" data-origem="topo">Quero os prompts</a>
+  </div>
+  <div class="tarja" aria-label="Preço promocional só hoje">
+    <div class="tarja-trilho"><div class="tarja-faixa" aria-hidden="true"></div></div>
+  </div>
+</header>
+
+<main>
+<!-- TELA 1 -->
+<section class="t1" id="inicio" data-tema="escuro">
+  <svg class="orbita" viewBox="0 0 1200 700" fill="none" aria-hidden="true">
+    <ellipse id="trilha" cx="600" cy="350" rx="560" ry="250" transform="rotate(-12 600 350)" stroke="rgba(255,255,255,.07)" stroke-width="1.2"/>
+    <ellipse cx="600" cy="350" rx="430" ry="180" transform="rotate(-12 600 350)" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+    <circle r="7" fill="#FF5A1F"><animateMotion dur="26s" repeatCount="indefinite"><mpath href="#trilha"/></animateMotion></circle>
+  </svg>
+  <div class="wrap t1-grade">
+    <div class="t1-copia">
+      <h1>Transforme o ChatGPT no seu <em>tutor de Medicina.</em></h1>
+      <p class="lead">Copie, cole e a IA vira sua professora, seu paciente e seu examinador.</p>
+      <div class="acoes">
+        <a class="btn btn-laranja comprar" href="/checkout/" data-origem="capa">Quero os prompts <s class="de-txt">R$ 59,90</s> <span class="preco-txt">R$ 27,90</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-contorno-claro" href="#blocos">Ver o que tem dentro</a>
+      </div>
+      <div class="args">
+        <div class="arg"><b>40 prompts</b><span>Prontos para colar</span></div>
+        <div class="arg"><b>7 blocos</b><span>Do 1º contato à véspera</span></div>
+        <div class="arg"><b>3 IAs</b><span>ChatGPT, Gemini e Claude</span></div>
+        <div class="arg"><b>Na hora</b><span>PDF no seu e-mail</span></div>
+      </div>
+      <div class="selos so-mob">
+        <span><b>40</b> prompts prontos</span>
+        <span><b>7</b> blocos de estudo</span>
+        <span>ChatGPT, Gemini e Claude</span>
+        <span>PDF no e-mail na hora</span>
+      </div>
+    </div>
+
+    <div class="t1-chat">
+      <div class="chat" role="img" aria-label="Simulação: o estudante cola o prompt do paciente simulado, faz a anamnese, a IA responde como paciente e no fim avalia o estudante como examinador de OSCE.">
+        <div class="chat-topo">
+          <span class="quem"><span class="av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg></span>Sua IA</span>
+          <span class="tag">Prompt 31 · Paciente simulado</span>
+        </div>
+        <div class="chat-corpo" id="chat">
+          <div class="msg eu" data-cola="1"><span class="cola">Colou o prompt 31</span>Vamos simular uma consulta. Você é um paciente com <mark>dor torácica</mark> e eu sou o estudante fazendo a anamnese. Escolha o diagnóstico em segredo e não me conte…</div>
+          <div class="msg ia"><b>Paciente · IA</b>Doutor, tô com uma dor no meio do peito desde ontem à noite. Confesso que tô assustado.</div>
+          <div class="msg eu">Como é essa dor? Aperto, queimação ou pontada? Muda com alguma posição?</div>
+          <div class="msg ia"><b>Paciente · IA</b>É uma pontada. Piora quando eu respiro fundo e quando deito. Sentado, inclinado pra frente, alivia.</div>
+          <div class="msg eu">Teve gripe, febre ou resfriado nos últimos dias?</div>
+          <div class="msg ia"><b>Paciente · IA</b>Semana passada, um resfriado com febre baixa. Achei que já tinha passado.</div>
+          <div class="msg eu fim">FIM DA ANAMNESE</div>
+          <div class="msg ia aval"><b>Examinador · Avaliação</b>Diagnóstico secreto: <strong>pericardite aguda, provavelmente viral.</strong>
+            <ul>
+              <li class="sim">Caracterizou a dor e a mudança com a posição</li>
+              <li class="sim">Investigou infecção recente</li>
+              <li class="nao">Faltou: fatores de risco cardiovascular e irradiação</li>
+              <li class="nao">Faltou: diferenciais obrigatórios (IAM, TEP, dissecção)</li>
+            </ul>
+            <span class="nota">7,5 <small>de 10 nesta estação</small></span>
+          </div>
+          <div class="digitando" id="digitando" aria-hidden="true"><i></i><i></i><i></i></div>
+        </div>
+        <div class="chat-pe" aria-hidden="true"><span class="campo vazio" id="campo"><span id="campoTxt">Pergunte ao paciente…</span><i class="cursor"></i></span><span class="env" id="env"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span></div>
+      </div>
+      <p class="chat-legenda">A IA vira o paciente e o examinador. <b>Você treina o OSCE de verdade.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- TELA 2 -->
+<section class="tela t2" id="diferenca" data-tema="claro">
+  <div class="wrap">
+    <div class="cab">
+      <span class="olho"><span class="n">01</span> A diferença</span>
+      <h2>Sem prompt, a IA responde como site para leigo.</h2>
+    </div>
+    <div class="troca" role="tablist" aria-label="Comparar respostas">
+      <button type="button" role="tab" data-l="fraco" class="on" aria-selected="true">Sem prompt</button>
+      <button type="button" role="tab" data-l="forte" aria-selected="false">Com o Prompt 01</button>
+    </div>
+    <div class="duelo" id="duelo" data-l="fraco">
+      <article class="lado fraco">
+        <div class="lado-topo"><h3>Sem prompt</h3><span class="selo ruim">Resposta genérica</span></div>
+        <p class="pergunta">O que é síndrome nefrótica?</p>
+        <div class="resposta"><p>A síndrome nefrótica é um problema nos rins que faz a pessoa perder proteína pela urina, o que pode causar inchaço no corpo. Pode ter várias causas. Se você tem esses sintomas, procure um médico.</p></div>
+        <p class="lado-pe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg>Raso, sem critério, sem fisiopatologia. Não serve para prova.</p>
+      </article>
+      <article class="lado forte">
+        <div class="lado-topo"><h3>Com o Prompt 01</h3><span class="selo bom">Tutora de Medicina</span></div>
+        <p class="pergunta">O que é síndrome nefrótica?</p>
+        <div class="resposta">
+          <dl>
+            <div><dt>Conceito</dt><dd>Proteinúria acima de 3,5 g/24h, hipoalbuminemia, edema e dislipidemia.</dd></div>
+            <div><dt>Fisiopatologia</dt><dd>Lesão da barreira de filtração glomerular → perda de albumina → queda da pressão oncótica → edema.</dd></div>
+            <div><dt>Clínica</dt><dd>Edema que começa periorbital e pode chegar à anasarca. Urina espumosa.</dd></div>
+          </dl>
+          <p class="teste">Pergunta para você: por que esse paciente tem mais risco de trombose?</p>
+        </div>
+        <p class="lado-pe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Organizado em conceito, fisiopatologia e clínica, e já te testa no fim.</p>
+      </article>
+    </div>
+    <div class="dicas">
+      <div class="dica"><span class="num">1</span><b>Copia e cola</b><span>Cada prompt está pronto. Você não precisa saber nada de IA.</span></div>
+      <div class="dica"><span class="num">2</span><b>Troca o <mark>[TEMA]</mark></b><span>O que está entre colchetes vira o seu assunto, o seu período, a sua matéria.</span></div>
+      <div class="dica"><span class="num">3</span><b>Anexa a aula</b><span>PDF da aula, slide, print da questão. A IA responde em cima do que o seu professor cobra.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TELA 3 -->
+<section class="tela t3" id="blocos" data-tema="claro">
+  <div class="wrap">
+    <div class="cab">
+      <span class="olho"><span class="n">02</span> O que tem dentro</span>
+      <h2>40 prompts em 7 blocos, na ordem de uma semana de estudo.</h2>
+      <div class="serve"><span>Prova da faculdade</span><span>OSCE</span><span>Prova oral</span><span>ENAMED</span><span>Residência</span></div>
+    </div>
+    <div class="blocos">
+      <ol class="lista-b" id="listaB"></ol>
+      <div class="painel" id="painel" aria-live="polite">
+        <div class="painel-cab">
+          <div class="painel-topo">
+            <div style="display:grid;gap:.3rem;min-width:0"><span class="olho" id="pOlho"></span><h3 id="pTitulo"></h3></div>
+            <div class="nav-b"><button type="button" id="bAnt" aria-label="Bloco anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" id="bProx" aria-label="Próximo bloco"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div>
+          </div>
+          <p id="pDesc"></p>
+        </div>
+        <ol class="titulos" id="pTitulos"></ol>
+        <div class="amostra">
+          <div class="amostra-topo">
+            <b><span id="aNum"></span><em id="aNome"></em></b>
+            <button class="copiar" type="button" id="aCopiar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span>Copiar</span></button>
+          </div>
+          <pre id="aTexto"></pre>
+          <p class="amostra-pe">Amostra grátis · os outros prompts estão no PDF</p>
+        </div>
+        <div class="painel-acao">
+          <a class="btn btn-laranja comprar" href="/checkout/" data-origem="blocos">Quero os 40 prompts</a>
+          <p>Testa esse aqui na sua IA agora. Depois volta.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TELA 4 -->
+<section class="tela t4" id="material" data-tema="claro">
+  <div class="wrap t4-grade">
+    <div class="leque" aria-label="Páginas do PDF: capa, prompts do bloco 1 e prompts do bloco 3">
+      <img class="f1" src="/img/prompts-1.webp" alt="" width="720" height="1019">
+      <img class="f2" src="/img/prompts-pdf.webp" alt="" width="720" height="1019">
+      <img class="f3" src="/img/capa.webp" alt="Capa do PDF 40 prompts para estudar Medicina com Inteligência Artificial" width="720" height="1019">
+      <div class="etq"><span>PDF · 19 páginas</span><span>Guia prático 2026</span></div>
+    </div>
+    <div class="t4-txt">
+      <div class="cab" style="margin-bottom:0">
+        <span class="olho"><span class="n">03</span> Como chega</span>
+        <h2>Um PDF para salvar no celular e copiar na hora de estudar.</h2>
+        <p class="lead">Os campos que você troca aparecem destacados. Cada prompt tem o "como usar" do lado.</p>
+      </div>
+      <ol class="passos">
+        <li><span class="num">1</span><b>Paga no Pix ou no cartão</b><span>Numa página segura, sem cadastro em site nenhum.</span></li>
+        <li><span class="num">2</span><b>Recebe o PDF no e-mail</b><span>No Pix, a aprovação é na hora. O link chega em seguida.</span></li>
+        <li><span class="num">3</span><b>Cola o Prompt 1 e começa</b><span>Ele coloca a IA no nível de um estudante de Medicina.</span></li>
+      </ol>
+      <div class="regras">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+        <p><b>Vem com 5 regras para não cair em cilada.</b> IA erra. Dose, critério diagnóstico e conduta você confere na diretriz ou no material da aula, e o material te mostra como.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TELA 5: oferta -->
+<section class="tela t5" id="oferta" data-tema="escuro">
+  <svg class="orbita" viewBox="0 0 1200 700" fill="none" aria-hidden="true"><ellipse cx="600" cy="350" rx="560" ry="250" transform="rotate(-12 600 350)" stroke="rgba(255,255,255,.07)" stroke-width="1.2"/><circle cx="1090" cy="215" r="7" fill="#FF5A1F"/></svg>
+  <div class="wrap t5-grade">
+    <div>
+      <div class="cab">
+        <span class="olho">Garanta o seu</span>
+        <h2>Menos que um lanche na cantina. Só hoje.</h2>
+        <p class="lead">De R$ 59,90 por R$ 27,90, pagamento único. Preço promocional só hoje.</p>
+      </div>
+      <ul class="leva">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><p><b>40 prompts prontos, em 7 blocos.</b> <span>Da configuração da IA à véspera da prova.</span></p></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><p><b>Simulado, Anki, OSCE e prova oral.</b> <span>A IA vira paciente, examinador e professor.</span></p></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><p><b>ChatGPT, Gemini e Claude.</b> <span>Na versão grátis ou paga.</span></p></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><p><b>5 regras para estudar com IA sem se enganar.</b> <span>O que conferir e onde.</span></p></li>
+      </ul>
+    </div>
+    <div class="cartao">
+      <div class="produto">
+        <img src="/img/capa.webp" alt="" width="720" height="1019">
+        <div><b>40 Prompts para Estudar Medicina com IA</b><span>Guia prático 2026 · PDF</span></div>
+      </div>
+      <div class="selo-oferta"><span>Oferta só hoje</span><span class="prova"><i></i><b class="vendas">+45</b> estudantes compram por dia</span></div>
+      <div class="preco">
+        <div><s class="de">De <span class="de-txt">R$ 59,90</span></s><div class="valor"><small>R$</small><span class="preco-num">27,90</span></div></div>
+        <div class="cond">Pagamento único<br>Pix ou cartão</div>
+      </div>
+      <ul class="inclui-mob so-mob">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>40 prompts em 7 blocos de estudo</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Simulado, Anki, OSCE e prova oral</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>ChatGPT, Gemini e Claude, grátis ou pago</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>PDF no seu e-mail na hora</li>
+      </ul>
+      <p class="escassez">Preço promocional <b>só hoje</b>.</p>
+      <a class="btn btn-laranja comprar" href="/checkout/" data-origem="oferta">Garantir por <span class="preco-txt">R$ 27,90</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <div class="formas"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>Pix na hora</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>Cartão de crédito</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TELA 6 -->
+<section class="tela t6" id="duvidas" data-tema="claro">
+  <div class="wrap duvidas">
+    <div class="lado-txt">
+      <span class="olho"><span class="n">04</span> Dúvidas</span>
+      <h2>Antes de comprar.</h2>
+      <p>Se ficou alguma dúvida, a resposta provavelmente está aqui.</p>
+    </div>
+    <div class="lista-d">
+      <details open><summary>Funciona no ChatGPT grátis?</summary><p>Funciona. Os prompts rodam em qualquer IA, na versão grátis ou paga: ChatGPT, Gemini e Claude. Os que pedem para anexar PDF ou print rendem mais quando a sua conta permite anexar arquivo.</p></details>
+      <details><summary>Como eu recebo?</summary><p>Assim que o pagamento é aprovado, o PDF vai para o e-mail que você informou. No Pix, a aprovação é na hora.</p></details>
+      <details><summary>Serve para qual período?</summary><p>Do primeiro período ao internato. No Prompt 1 você informa o seu período e as matérias do semestre, e a IA ajusta o nível. Tem blocos para prova da faculdade, OSCE, prova oral, ENAMED e residência.</p></details>
+      <details><summary>Preciso entender de IA?</summary><p>Não. É copiar, colar e trocar o que está entre colchetes. Exemplo: [TEMA] vira "síndrome nefrótica". O resto você cola do jeito que está.</p></details>
+      <details><summary>A IA não erra?</summary><p>Erra. Por isso o material tem um prompt que obriga a IA a marcar o nível de confiança e dizer onde conferir cada informação, e 5 regras para checar dose, critério e conduta na diretriz ou no material da aula.</p></details>
+    </div>
+  </div>
+</section>
+
+<div class="fecho">
+<section class="final" data-tema="escuro">
+  <svg class="orbita" viewBox="0 0 1200 700" fill="none" aria-hidden="true"><ellipse cx="600" cy="350" rx="560" ry="250" transform="rotate(-12 600 350)" stroke="rgba(255,255,255,.07)" stroke-width="1.2"/><circle cx="1090" cy="215" r="7" fill="#FF5A1F"/></svg>
+  <div class="wrap">
+    <span class="olho">Última chamada</span>
+    <h2>A IA você já tem. <em>Falta mandar ela estudar com você.</em></h2>
+    <p>De <s class="de-txt">R$ 59,90</s> por <b style="color:#fff"><span class="preco-txt">R$ 27,90</span></b>, só hoje.</p>
+    <a class="btn btn-laranja comprar" href="/checkout/" data-origem="final">Garantir o preço de hoje</a>
+  </div>
+</section>
+<footer class="rodape">
+  <div class="wrap">
+    <a class="logo" href="#inicio"><svg class="orb" viewBox="0 0 32 32" fill="none" aria-hidden="true"><ellipse cx="16" cy="16" rx="12.5" ry="12.5" stroke="currentColor" stroke-width="2"/><circle cx="25" cy="7.4" r="3.6" fill="#FF5A1F"/></svg><span>Orbyt Studio <span style="font-weight:400;opacity:.6">para Medicina</span></span></a>
+    <span class="sub-rod">40 Prompts para Estudar Medicina com IA · Guia prático 2026</span>
+    <p class="aviso-legal">Material de apoio ao estudo. Não substitui aula, livro-texto, diretriz oficial nem a orientação dos seus professores e preceptores. ChatGPT, Gemini e Claude são marcas dos seus respectivos donos; este material não tem vínculo com elas.</p>
+  </div>
+</footer>
+</div>
+</main>
+
+<div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  "use strict";
+  // ===== CONFIGURAÇÃO: preço e endereço do checkout mudam só aqui =====
+  var PRECO = 27.90, PRECO_DE = 59.90;
+  var CHECKOUT = "/checkout/"; // no domínio: "/checkout" (ou a slug que for escolhida)
+
+  var fmt = PRECO.toLocaleString("pt-BR", {minimumFractionDigits: PRECO % 1 ? 2 : 0});
+  document.querySelectorAll(".preco-txt").forEach(function(el){ el.textContent = "R$ " + fmt; });
+  document.querySelectorAll(".preco-num").forEach(function(el){ el.textContent = fmt; });
+  var fmtDe = "R$ " + PRECO_DE.toLocaleString("pt-BR", {minimumFractionDigits: 2});
+  document.querySelectorAll(".de-txt").forEach(function(el){ el.textContent = fmtDe; });
+  // prova social: média de vendas por dia (offline). Quando o pagamento estiver ligado, soma as vendas reais do dia.
+  var VENDAS_BASE = 45;
+  document.querySelectorAll(".vendas").forEach(function(el){ el.textContent = "+" + VENDAS_BASE; });
+
+  // faixa de urgência: texto corrido, devagar
+  var itensFaixa = ["Preço promocional só hoje", "De <s>" + fmtDe + "</s> por <b>R$ " + fmt + "</b>"];
+  var faixa = document.querySelector(".tarja-faixa");
+  var bloco = itensFaixa.map(function(t){ return "<span>" + t + "</span>"; }).join("");
+  var rep8 = ""; for (var q = 0; q < 8; q++) rep8 += bloco;
+  faixa.innerHTML = rep8 + rep8;
+
+  // Pixel da Meta: só dispara quando o código base estiver colado no site
+  function px(evento, dados){ try { if (typeof window.fbq === "function") window.fbq("track", evento, dados || {}); } catch(e){} }
+  var produto = {content_name: "40-prompts-medicina", content_category: "prompts-medicina", value: PRECO, currency: "BRL"};
+  px("ViewContent", produto);
+
+  // botões de compra: levam ao checkout carregando a origem do clique e as UTMs da página
+  var busca = location.search || "";
+  document.querySelectorAll("a.comprar").forEach(function(a){
+    var origem = a.getAttribute("data-origem") || "lp";
+    a.href = CHECKOUT + (busca ? busca + "&" : "?") + "origem=" + encodeURIComponent(origem);
+    a.addEventListener("click", function(){ px("InitiateCheckout", Object.assign({origem: origem}, produto)); });
+  });
+
+  var aviso = document.getElementById("aviso"), tAviso;
+  function avisar(t){ aviso.textContent = t; aviso.classList.add("ver"); clearTimeout(tAviso); tAviso = setTimeout(function(){ aviso.classList.remove("ver"); }, 1800); }
+  function copiar(texto, btn){
+    function ok(){ avisar("Copiado"); if (btn){ btn.classList.add("ok"); setTimeout(function(){ btn.classList.remove("ok"); }, 1500); } }
+    try { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texto).then(ok, function(){ avisar("Selecione e copie o texto"); }); else avisar("Selecione e copie o texto"); }
+    catch(e){ avisar("Selecione e copie o texto"); }
+  }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+  function marcar(s){ return esc(s).replace(/\[([^\]]+)\]/g, "<mark>[$1]</mark>"); }
+  var reduz = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var mobTab = window.matchMedia("(max-width:1080px)");
+
+  // ===== topo: altura real, tema claro/escuro e menu =====
+  var topo = document.getElementById("topo"), raiz = document.documentElement;
+  var secoes = Array.prototype.slice.call(document.querySelectorAll("main section"));
+  var links = document.querySelectorAll(".menu [data-alvo]");
+  function atualizar(){
+    var h = topo.offsetHeight; raiz.style.setProperty("--h-topo", h + "px");
+    var tema = "escuro", atual = "";
+    secoes.forEach(function(s){ var r = s.getBoundingClientRect(); if (r.top <= h + 2 && r.bottom > h + 2) tema = s.getAttribute("data-tema"); if (r.top <= window.innerHeight * .4) atual = s.id; });
+    topo.classList.toggle("claro", tema === "claro");
+    links.forEach(function(a){ a.classList.toggle("ativo", a.getAttribute("data-alvo") === atual); });
+  }
+  var pedido = false;
+  window.addEventListener("scroll", function(){ if (pedido) return; pedido = true; requestAnimationFrame(function(){ pedido = false; atualizar(); }); }, {passive:true});
+  window.addEventListener("resize", atualizar);
+  atualizar();
+
+  // ===== conversa da capa: o aluno digita, a IA responde como paciente e no fim avalia; repete em loop =====
+  var chat = document.getElementById("chat");
+  var msgs = Array.prototype.slice.call(chat.querySelectorAll(".msg")), dig = document.getElementById("digitando");
+  var campo = document.getElementById("campo"), campoTxt = document.getElementById("campoTxt"), env = document.getElementById("env");
+  var PADRAO = "Pergunte ao paciente…", timers = [];
+  function depois(ms, fn){ timers.push(setTimeout(fn, ms)); }
+  function textoDe(m){ var c = m.cloneNode(true); var x = c.querySelector(".cola"); if (x) x.remove(); return c.textContent.replace(/\s+/g, " ").trim(); }
+  function campoVazio(){ campoTxt.textContent = PADRAO; campo.classList.add("vazio"); env.classList.remove("manda"); }
+  if (reduz){ msgs.forEach(function(m){ m.classList.add("ver"); }); }
+  else {
+    var k = 0;
+    function passo(){
+      if (k >= msgs.length){ depois(7000, function(){ msgs.forEach(function(m){ m.classList.remove("ver"); }); k = 0; passo(); }); return; }
+      var m = msgs[k];
+      if (m.classList.contains("ia")){
+        chat.insertBefore(dig, m); dig.classList.add("ver");
+        depois(m.classList.contains("aval") ? 2000 : 1300, function(){ dig.classList.remove("ver"); m.classList.add("ver"); k++; depois(m.classList.contains("aval") ? 400 : 900, passo); });
+      } else {
+        var txt = textoDe(m), cola = m.getAttribute("data-cola") === "1";
+        var visivel = campo.offsetParent !== null;
+        if (!visivel){ m.classList.add("ver"); k++; depois(600, passo); return; }
+        campo.classList.remove("vazio");
+        if (cola){ campoTxt.textContent = txt; env.classList.add("manda"); depois(900, enviar); return; }
+        var i = 0, passoMs = Math.min(38, 1400 / txt.length);
+        campoTxt.textContent = "";
+        (function letra(){ i++; campoTxt.textContent = txt.slice(0, i); if (i < txt.length) depois(passoMs, letra); else { env.classList.add("manda"); depois(450, enviar); } })();
+      }
+      function enviar(){ campoVazio(); m.classList.add("ver"); k++; depois(500, passo); }
+    }
+    depois(600, passo);
+  }
+
+  // ===== a diferença (celular e tablet): troca entre as respostas; vira sozinha para "com prompt" na primeira vez =====
+  var duelo = document.getElementById("duelo"), botoesTroca = document.querySelectorAll(".troca button"), mexeu = false;
+  function troca(l){
+    duelo.setAttribute("data-l", l);
+    botoesTroca.forEach(function(b){ var on = b.getAttribute("data-l") === l; b.classList.toggle("on", on); b.setAttribute("aria-selected", on); });
+  }
+  botoesTroca.forEach(function(b){ b.addEventListener("click", function(){ mexeu = true; troca(b.getAttribute("data-l")); }); });
+  if ("IntersectionObserver" in window){
+    var viu = false;
+    new IntersectionObserver(function(it){
+      if (viu || !it[0].isIntersecting || !mobTab.matches) return;
+      viu = true;
+      setTimeout(function(){ if (!mexeu) troca("forte"); }, 2600);
+    }, {threshold:.6}).observe(document.getElementById("diferenca"));
+  }
+
+  // ===== os 7 blocos (conteúdo do PDF) =====
+  var BLOCOS = [
+    {t:"Configurar a IA", faixa:"Prompts 1 a 5", d:"Sem configuração, a IA responde como um site de saúde para leigos. Esses 5 prompts mudam o nível da conversa.",
+     tit:["A tutora de Medicina","Instruções personalizadas","Ensine sua grade para a IA","Modo professor socrático","Resposta com nível de confiança e fonte"], ini:1,
+     a:{n:"05", nome:"Confiança e fonte", txt:"Revise a resposta que você acabou de me dar:\n1. Marque cada afirmação importante como [ALTA], [MÉDIA] ou [BAIXA] confiança.\n2. Diga em qual tipo de fonte eu confirmo cada uma (diretriz, livro-texto, protocolo do Ministério da Saúde) e o nome da diretriz quando souber.\n3. Se alguma informação estiver desatualizada ou houver controvérsia, aponte.\nNão invente link nem ano de publicação."}},
+    {t:"Entender a matéria", faixa:"Prompts 6 a 11", d:"Para o tema que não entrou na aula, no livro nem no resumo do colega.",
+     tit:["Explicação em 3 níveis","Fisiopatologia em cadeia","Doenças parecidas lado a lado","Mnemônico e analogia","Tema ancorado num caso clínico","Farmacologia sem decoreba"], ini:6,
+     a:{n:"06", nome:"Explicação em 3 níveis", txt:"Me explique [TEMA] em 3 níveis, um depois do outro:\nNível 1: em 5 linhas, como se eu estivesse vendo o tema pela primeira vez.\nNível 2: o que eu preciso saber para a prova da faculdade, com fisiopatologia e clínica.\nNível 3: os detalhes que diferenciam um aluno nota 10 (pegadinhas, exceções, o que o professor costuma cobrar).\nTermine com as 3 ideias que eu não posso esquecer."}},
+    {t:"PDF, slides e aulas", faixa:"Prompts 12 a 17", d:"O professor mandou 80 slides? Esses prompts fazem a IA trabalhar em cima do material dele, não do genérico.",
+     tit:["Resumo de aula que serve para prova","O que vai cair na prova","Aula gravada vira anotação","Artigo científico em 10 minutos","Junte aula, livro e diretriz","Folha de véspera"], ini:12,
+     a:{n:"13", nome:"O que vai cair na prova", txt:"Analise o material anexado como se você fosse o professor que vai montar a prova.\nListe os 10 pontos com maior chance de cair, em ordem de prioridade, e explique por que escolheu cada um.\nPara os 3 primeiros, escreva como a questão provavelmente viria (objetiva ou discursiva)."}},
+    {t:"Flashcards e revisão", faixa:"Prompts 18 a 23", d:"Ler resumo não é estudar. Esses prompts fazem você lembrar ativamente, que é o que fixa.",
+     tit:["Flashcards prontos para o Anki","Flashcards de lacuna","Mapa mental","Cronograma de revisão espaçada","Flashcards só do que eu errei","Explique de volta (técnica Feynman)"], ini:18,
+     a:{n:"18", nome:"Flashcards para o Anki", txt:"Crie [N, ex.: 30] flashcards sobre [TEMA] (ou a partir do material anexado).\nRegras:\n1. Uma ideia por cartão. Pergunta direta na frente, resposta curta no verso (máximo 2 linhas).\n2. Misture tipos: definição, mecanismo, clínica, diagnóstico, conduta.\n3. Nada de cartão com resposta \"sim\" ou \"não\".\nEntregue em texto puro, um cartão por linha, no formato: frente;verso\nAssim eu importo direto no Anki (Arquivo > Importar, separador ponto e vírgula)."}},
+    {t:"Questões e simulados", faixa:"Prompts 24 a 30", d:"Quem treina questão antes da prova chega sabendo onde erra. Esses prompts montam o treino e analisam o seu erro.",
+     tit:["Simulado da prova da faculdade","Simulado no formato ENAMED e residência","Discursiva com correção de professor","Por que eu errei esta questão","Interpretação de exames","Diagnóstico do meu desempenho","Clone do estilo do seu professor"], ini:24,
+     a:{n:"27", nome:"Por que eu errei", txt:"Errei a questão abaixo. Marquei a alternativa [LETRA]. O gabarito é [LETRA].\n1. Explique o raciocínio correto passo a passo, a partir dos dados do enunciado.\n2. Analise cada alternativa: por que está certa ou errada.\n3. Diga qual foi o meu provável erro de raciocínio (falta de conteúdo, leitura apressada ou confusão entre doenças parecidas).\n4. Me dê 1 questão nova, parecida, para eu testar se aprendi.\n\n[COLE A QUESTÃO OU ANEXE O PRINT]"}},
+    {t:"OSCE e prova oral", faixa:"Prompts 31 a 36", d:"OSCE não se aprende lendo. Aqui a IA vira paciente, examinador e professor. Use o modo de voz e responda falando, como na estação de verdade.",
+     tit:["Paciente simulado","Estação de OSCE completa","Comunicação de notícia difícil","Prova oral com professor exigente","Roteiro de exame físico","Passagem de caso"], ini:31,
+     a:{n:"31", nome:"Paciente simulado", txt:"Vamos simular uma consulta. Você é um paciente com [QUEIXA, ex.: dor torácica] e eu sou o estudante fazendo a anamnese.\nRegras:\n1. Escolha o diagnóstico em segredo e não me conte.\n2. Responda só o que eu perguntar, como um paciente leigo responderia, sem termos técnicos.\n3. Não me dê dica.\nQuando eu escrever \"FIM DA ANAMNESE\", revele o diagnóstico e me avalie: perguntas importantes que fiz, perguntas que faltaram e minhas hipóteses."}},
+    {t:"Rotina e semana de prova", faixa:"Prompts 37 a 40", d:"Conteúdo você tem. O que falta, na maioria das vezes, é saber o que estudar hoje.",
+     tit:["Plano de estudo da semana","Reta final: faltam [X] dias para a prova","Destrava: o que eu faço nos próximos 25 minutos","Continue de onde parou"], ini:37,
+     a:{n:"39", nome:"Destrava em 25 min", txt:"Estou travado e sem saber por onde começar. Tenho prova de [MATÉRIA] em [X] dias e estudei até agora: [O QUE JÁ ESTUDOU].\nMe dê UMA tarefa concreta para os próximos 25 minutos, que eu consiga terminar.\nSem plano longo. Só a próxima tarefa, o material que eu preciso abrir e como sei que terminei."}}
+  ];
+  var CURTO = ["Configurar","Entender","Aulas","Revisão","Questões","OSCE","Rotina"], blocoAtual = 0;
+  var ICONE = ["<path d=\"M4 7h9M17 7h3M4 17h3M11 17h9\"/><circle cx=\"15\" cy=\"7\" r=\"2\"/><circle cx=\"9\" cy=\"17\" r=\"2\"/>", "<path d=\"M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z\"/>", "<path d=\"M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z\"/><path d=\"M14 3v5h5M9 13h6M9 17h4\"/>", "<rect x=\"3\" y=\"8\" width=\"13\" height=\"12\" rx=\"2\"/><path d=\"M7 8V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3\"/>", "<rect x=\"4\" y=\"4\" width=\"16\" height=\"16\" rx=\"3\"/><path d=\"M8 12l3 3 5-6\"/>", "<path d=\"M6 3v5a4 4 0 0 0 8 0V3\"/><path d=\"M10 12v3a5 5 0 0 0 10 0v-2\"/><circle cx=\"20\" cy=\"11\" r=\"2\"/>", "<rect x=\"3\" y=\"5\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M3 10h18M8 3v4M16 3v4\"/>"];
+  var listaB = document.getElementById("listaB"), atualA = BLOCOS[0].a;
+  var seta = '<svg class="seta" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  BLOCOS.forEach(function(b, k){
+    var li = document.createElement("li");
+    li.innerHTML = '<button type="button" aria-label="' + esc(b.t) + '"><span class="num">0' + (k + 1) + '</span><b>' + esc(b.t) + '</b><small>' + b.faixa + '</small><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICONE[k] + '</svg></span><span class="curto">' + CURTO[k] + '</span>' + seta + '</button>';
+    li.firstChild.addEventListener("click", function(){ abrir(k, true); });
+    listaB.appendChild(li);
+  });
+  function abrir(k, clicou){
+    var b = BLOCOS[k]; blocoAtual = k;
+    listaB.querySelectorAll("button").forEach(function(x, n){ x.classList.toggle("on", n === k); x.classList.toggle("feito", n < k); x.setAttribute("aria-pressed", n === k); });
+    listaB.style.setProperty("--prog", k / 6);
+    document.getElementById("pOlho").textContent = "Bloco 0" + (k + 1) + " · " + b.faixa;
+    document.getElementById("pTitulo").textContent = b.t;
+    document.getElementById("pDesc").textContent = b.d;
+    document.getElementById("pTitulos").innerHTML = b.tit.map(function(t, n){ return "<li><span>" + String(b.ini + n).padStart(2, "0") + "</span>" + marcar(t) + "</li>"; }).join("");
+    atualA = b.a;
+    document.getElementById("aNum").textContent = b.a.n;
+    document.getElementById("aNome").textContent = b.a.nome;
+    var pre = document.getElementById("aTexto"); pre.innerHTML = marcar(b.a.txt); pre.scrollTop = 0;
+  }
+  abrir(0, false);
+  document.getElementById("bAnt").addEventListener("click", function(){ abrir((blocoAtual + 6) % 7, true); });
+  document.getElementById("bProx").addEventListener("click", function(){ abrir((blocoAtual + 1) % 7, true); });
+  // arrastar o painel para o lado troca de bloco
+  var painel = document.getElementById("painel"), x0 = null, y0 = null;
+  painel.addEventListener("touchstart", function(e){ x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, {passive:true});
+  painel.addEventListener("touchend", function(e){
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) abrir(dx < 0 ? (blocoAtual + 1) % 7 : (blocoAtual + 6) % 7, true);
+  }, {passive:true});
+  var bCopiar = document.getElementById("aCopiar");
+  bCopiar.addEventListener("click", function(){ copiar(atualA.txt, bCopiar); });
+
+  if (window.matchMedia("(min-width:641px) and (max-width:1080px)").matches) document.querySelectorAll(".lista-d details").forEach(function(d){ d.open = true; });
+  if (reduz) document.querySelectorAll("animateMotion").forEach(function(a){ a.parentNode.setAttribute("cx","1150"); a.parentNode.setAttribute("cy","220"); a.remove(); });
+})();
+</script>
+</body>
+</html>
