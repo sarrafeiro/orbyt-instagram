@@ -1,0 +1,8 @@
+{
+  // Site da Orbyt Studio (orbytstudio.com.br). O nome tem de ser igual ao do projeto na Cloudflare.
+  "name": "orbyt-studio",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./public"
+  }
+}
