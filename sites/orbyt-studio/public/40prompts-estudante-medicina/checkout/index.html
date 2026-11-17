@@ -404,7 +404,11 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
   var params = new URLSearchParams(location.search);
   var origem = params.get("origem") || "direto";
   px("InitiateCheckout", Object.assign({origem: origem}, produto));
-  try { if (!sessionStorage.getItem("ck40OaCheckout")) { oa("checkout_started"); sessionStorage.setItem("ck40OaCheckout", "1"); } } catch(e){ oa("checkout_started"); }
+  function oaCookie(n){ try { var m = document.cookie.match(new RegExp("(?:^|; )" + n + "=([^;]*)")); return m ? decodeURIComponent(m[1]) : ""; } catch(e){ return ""; } }
+  function oaRef(){ var q = ""; try { q = new URLSearchParams(location.search).get("oppref") || ""; } catch(e){} return {oppref: q || oaCookie("__oppref"), obref: oaCookie("__obref")}; }
+  function oaId(p){ return p + "-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 10); }
+  function oaServidor(tipo, id){ setTimeout(function(){ try { var r = oaRef(); fetch("/api/oa/evento", {method: "POST", headers: {"content-type": "application/json"}, body: JSON.stringify({type: tipo, id: id, source_url: location.href, oppref: r.oppref, obref: r.obref}), keepalive: true}); } catch(e){} }, 1500); }
+  try { if (!sessionStorage.getItem("ck40OaCheckout")) { var oaCk = oaId("ck"); oa("checkout_started", {event_id: oaCk}); oaServidor("checkout_started", oaCk); sessionStorage.setItem("ck40OaCheckout", "1"); } } catch(e){ oa("checkout_started"); }
 
   var aviso = document.getElementById("aviso"), tAviso;
   function avisar(t){ aviso.textContent = t; aviso.classList.add("ver"); clearTimeout(tAviso); tAviso = setTimeout(function(){ aviso.classList.remove("ver"); }, 1800); }
@@ -486,7 +490,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
 
   function pagarPix(c){
     travar(true, "Gerando o Pix...");
-    api("/api/mp/pix", c).then(function(d){
+    api("/api/mp/pix", Object.assign({}, c, oaRef())).then(function(d){
       travar(false);
       if (!d.id || !d.qr_code){ avisar(d.erro || "Não deu para gerar o Pix. Tente de novo."); return; }
       pedido = {id: d.id, metodo: "pix", qr: d.qr_code, img: d.qr_code_base64, criado: Date.now()};
@@ -553,7 +557,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
       return Promise.resolve(extra).then(function(ad){
         ad = ad || {};
         ir("eProc");
-        return api("/api/mp/cartao", Object.assign({}, c, {
+        return api("/api/mp/cartao", Object.assign({}, c, oaRef(), {
           token: f.token, payment_method_id: f.payment_method_id, issuer_id: f.issuer_id,
           payment_type_id: ad.paymentTypeId || f.payment_type_id || "credit_card"
         }));

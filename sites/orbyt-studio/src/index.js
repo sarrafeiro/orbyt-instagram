@@ -27,6 +27,7 @@ export default {
       if (p === "/api/mp/webhook") return await webhook(req, env, url, ctx);
       if (p === "/api/download" && req.method === "GET") return await download(env, url);
       if (p === "/api/saude") return await saude(env);
+      if (p === "/api/oa/evento" && req.method === "POST") return await eventoOa(req, env, ctx);
       if (p.startsWith("/api/")) return json({ erro: "rota não existe" }, 404);
     } catch (e) {
       console.log("erro", p, e && e.stack || e);
@@ -67,13 +68,13 @@ function baseOrder(payer, metodo) {
 }
 
 async function criarPix(req, env, url, ctx) {
-  let payer;
-  try { payer = lerComprador(await req.json()); } catch (e) { return erroCliente(e); }
+  let b, payer;
+  try { b = await req.json(); payer = lerComprador(b); } catch (e) { return erroCliente(e); }
   const corpo = baseOrder(payer, "pix");
   corpo.transactions = { payments: [{ amount: PRODUTO.preco, payment_method: { id: "pix", type: "bank_transfer" }, expiration_time: "PT30M" }] };
   const r = await mp(env, "POST", "/v1/orders", corpo);
   if (!r.ok) { console.log("pix falhou", r.status, JSON.stringify(r.data)); return json({ erro: "Não deu para gerar o Pix agora. Tente de novo." }, 502); }
-  await guardarComprador(env, r.data.id, payer);
+  await guardarComprador(env, r.data.id, payer, atribuicao(req, b));
   const pg = (((r.data.transactions || {}).payments || [])[0] || {}).payment_method || {};
   return json({ id: r.data.id, status: r.data.status, qr_code: pg.qr_code, qr_code_base64: pg.qr_code_base64, ticket_url: pg.ticket_url });
 }
@@ -87,11 +88,11 @@ async function criarCartao(req, env, url, ctx) {
   corpo.transactions = { payments: [{ amount: PRODUTO.preco, payment_method: { id: String(b.payment_method_id), type: tipo, token: String(b.token), installments: 1 } }] };
   const r = await mp(env, "POST", "/v1/orders", corpo);
   const o = r.data || {};
-  if (o.id) await guardarComprador(env, o.id, payer);
+  if (o.id) await guardarComprador(env, o.id, payer, atribuicao(req, b));
   const pgto = ((o.transactions || {}).payments || [])[0] || {};
   const det = pgto.status_detail || o.status_detail || (o.errors && o.errors[0] && o.errors[0].code) || "";
   if (o.status === "processed") {
-    ctx.waitUntil(enviarEmail(env, url, o));
+    ctx.waitUntil(posVenda(env, url, o));
     return json({ id: o.id, status: "processed", download: await linkDownload(env, url, o.id) });
   }
   if (o.status === "processing" || o.status === "action_required") {
@@ -123,7 +124,7 @@ async function status(env, url, ctx) {
   const saida = { id: o.id, status: o.status };
   if (o.status === "processed") {
     saida.download = await linkDownload(env, url, o.id);
-    ctx.waitUntil(enviarEmail(env, url, o));
+    ctx.waitUntil(posVenda(env, url, o));
   }
   return json(saida);
 }
@@ -140,7 +141,7 @@ async function webhook(req, env, url, ctx) {
       const r = await mp(env, "GET", "/v1/orders/" + id);
       if (r.ok && r.data.status === "processed" && String(r.data.external_reference || "").startsWith(PRODUTO.prefixo + "-")) {
         console.log("venda aprovada", id, r.data.external_reference);
-        await enviarEmail(env, url, r.data);
+        await posVenda(env, url, r.data);
       }
     })());
   }
@@ -218,10 +219,93 @@ async function enviarEmail(env, url, o) {
 }
 
 // Guarda e-mail e nome do comprador por 90 dias. O Mercado Pago não devolve esses dados na consulta do pedido.
-async function guardarComprador(env, id, payer) {
+async function guardarComprador(env, id, payer, atrib) {
   if (!env.PEDIDOS || !id) return;
-  await env.PEDIDOS.put("pedido:" + id, JSON.stringify({ email: payer.email, first_name: payer.first_name, last_name: payer.last_name, criado: new Date().toISOString() }), { expirationTtl: 60 * 60 * 24 * 90 });
+  await env.PEDIDOS.put("pedido:" + id, JSON.stringify(Object.assign({ email: payer.email, first_name: payer.first_name, last_name: payer.last_name, criado: new Date().toISOString() }, atrib || {})), { expirationTtl: 60 * 60 * 24 * 90 });
 }
+
+// ---------- ChatGPT Ads: API de conversão (servidor) ----------
+// Pixel "Orbyt Medicina - 40 Prompts". Chave em OPENAI_CAPI_KEY (Secret). Sem a chave, não envia nada.
+const OA_PIXEL = "9XiKvStxRXDEi93APHe2ak";
+const OA_ORIGEM = "https://orbytstudio.com.br";
+
+function atribuicao(req, b) {
+  const t = (v, n) => (typeof v === "string" && v.trim() ? v.trim().slice(0, n) : undefined);
+  return {
+    oppref: t(b && b.oppref, 512),
+    obref: t(b && b.obref, 128),
+    ip: t(req.headers.get("cf-connecting-ip"), 64),
+    ua: t(req.headers.get("user-agent"), 512),
+  };
+}
+
+function oaProduto(comValor) {
+  const d = { type: "contents", contents: [{ id: "40-prompts-medicina", name: PRODUTO.nome, content_type: "product", quantity: 1 }] };
+  if (comValor) { d.amount = Math.round(Number(PRODUTO.preco) * 100); d.currency = "BRL"; }
+  return d;
+}
+
+async function capi(env, eventos) {
+  if (!env.OPENAI_CAPI_KEY) return false;
+  const r = await fetch("https://bzr.openai.com/v1/events?pid=" + OA_PIXEL, {
+    method: "POST",
+    headers: { authorization: "Bearer " + env.OPENAI_CAPI_KEY, "content-type": "application/json" },
+    body: JSON.stringify({ validate_only: false, events: eventos }),
+  });
+  if (!r.ok) console.log("capi falhou", r.status, (await r.text()).slice(0, 500));
+  return r.ok;
+}
+
+function usuarioBase(a) {
+  const u = { countries: ["BR"] };
+  if (a.obref) u.obref = a.obref;
+  if (a.ip) u.ip_address = a.ip;
+  if (a.ua) u.user_agent = a.ua;
+  return u;
+}
+
+// LP vista e checkout iniciado: o navegador manda o mesmo ID que usou no pixel.
+async function eventoOa(req, env, ctx) {
+  let b;
+  try { b = await req.json(); } catch (e) { return json({ erro: "inválido" }, 400); }
+  const tipos = { page_viewed: false, checkout_started: true };
+  if (!(b.type in tipos) || !/^[A-Za-z0-9_.-]{6,80}$/.test(String(b.id || ""))) return json({ erro: "inválido" }, 400);
+  let fonte = OA_ORIGEM + "/40prompts-estudante-medicina/";
+  try { const u = new URL(String(b.source_url)); if (u.origin === OA_ORIGEM) fonte = u.origin + u.pathname; } catch (e) {}
+  const a = atribuicao(req, b);
+  const ev = { id: String(b.id), type: b.type, timestamp_ms: Date.now(), source_url: fonte, action_source: "web", user: usuarioBase(a), data: oaProduto(tipos[b.type]) };
+  if (b.type === "page_viewed") ev.data = { type: "contents", contents: [{ id: "lp-40-prompts", name: "LP 40 Prompts Medicina", content_type: "page" }] };
+  if (a.oppref) ev.oppref = a.oppref;
+  ctx.waitUntil(capi(env, [ev]));
+  return json({ ok: true });
+}
+
+// Compra: mesmo ID do pedido que o pixel usa como event_id.
+async function conversaoCompra(env, o) {
+  if (!env.OPENAI_CAPI_KEY || !env.PEDIDOS) return;
+  const comp = await env.PEDIDOS.get("pedido:" + o.id, "json");
+  if (!comp || comp.capiEnviado) return;
+  const u = usuarioBase(comp);
+  if (comp.email) u.emails_sha256 = [await sha256(comp.email.trim().toLowerCase())];
+  if (comp.first_name) u.first_names_sha256 = [await sha256(normNome(comp.first_name))];
+  if (comp.last_name) u.last_names_sha256 = [await sha256(normNome(comp.last_name))];
+  const ev = { id: o.id, type: "order_created", timestamp_ms: Date.now(), source_url: OA_ORIGEM + "/40prompts-estudante-medicina/checkout/", action_source: "web", user: u, data: oaProduto(true) };
+  if (comp.oppref) ev.oppref = comp.oppref;
+  if (await capi(env, [ev])) {
+    const atual = (await env.PEDIDOS.get("pedido:" + o.id, "json")) || comp;
+    atual.capiEnviado = new Date().toISOString();
+    await env.PEDIDOS.put("pedido:" + o.id, JSON.stringify(atual), { expirationTtl: 60 * 60 * 24 * 90 });
+    console.log("capi compra enviada", o.id);
+  }
+}
+
+async function posVenda(env, url, o) {
+  try { await enviarEmail(env, url, o); } catch (e) { console.log("email erro", e && e.stack || e); }
+  try { await conversaoCompra(env, o); } catch (e) { console.log("capi erro", e && e.stack || e); }
+}
+
+async function sha256(t) { const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t)); return [...new Uint8Array(b)].map((x) => x.toString(16).padStart(2, "0")).join(""); }
+function normNome(t) { return String(t || "").toLowerCase().replace(/[\s!-\/:-@\[-`{-~]/g, ""); }
 
 function paraB64(u) { let s = ""; for (let i = 0; i < u.length; i += 0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000)); return btoa(s); }
 function escapar(t) { return String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
@@ -231,7 +315,7 @@ async function saude(env) {
   let mpOk = false, pdfOk = false;
   try { const r = await fetch(MP + "/users/me", { headers: { authorization: "Bearer " + env.MP_ACCESS_TOKEN } }); mpOk = r.ok; } catch (e) {}
   try { const b = new Uint8Array(await abrirPdf(env)); pdfOk = b[0] === 0x25 && b[1] === 0x50; } catch (e) {}
-  return json({ mercado_pago: mpOk, pdf: pdfOk, email: !!env.RESEND_API_KEY, pedidos: !!env.PEDIDOS });
+  return json({ mercado_pago: mpOk, pdf: pdfOk, email: !!env.RESEND_API_KEY, pedidos: !!env.PEDIDOS, chatgpt_capi: !!env.OPENAI_CAPI_KEY });
 }
 
 // ---------- utilitários ----------

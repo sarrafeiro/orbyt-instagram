@@ -959,7 +959,12 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
   function px(evento, dados){ try { if (typeof window.fbq === "function") window.fbq("track", evento, dados || {}); } catch(e){} }
   var produto = {content_name: "40-prompts-medicina", content_category: "prompts-medicina", value: PRECO, currency: "BRL"};
   px("ViewContent", produto);
-  try { oaiq("measure", "page_viewed", { type: "contents", contents: [{ id: "lp-40-prompts", name: "LP 40 Prompts Medicina", content_type: "page" }] }); oaiq("measure", "contents_viewed", { type: "contents", contents: [{ id: "40-prompts-medicina", name: "40 Prompts para Estudar Medicina com IA", content_type: "product", quantity: 1 }] }); } catch(e){}
+  function oaCookie(n){ try { var m = document.cookie.match(new RegExp("(?:^|; )" + n + "=([^;]*)")); return m ? decodeURIComponent(m[1]) : ""; } catch(e){ return ""; } }
+  function oaRef(){ var q = ""; try { q = new URLSearchParams(location.search).get("oppref") || ""; } catch(e){} return {oppref: q || oaCookie("__oppref"), obref: oaCookie("__obref")}; }
+  function oaId(p){ return p + "-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 10); }
+  function oaServidor(tipo, id){ setTimeout(function(){ try { var r = oaRef(); fetch("/api/oa/evento", {method: "POST", headers: {"content-type": "application/json"}, body: JSON.stringify({type: tipo, id: id, source_url: location.href, oppref: r.oppref, obref: r.obref}), keepalive: true}); } catch(e){} }, 1500); }
+  var oaPv = oaId("pv"); oaServidor("page_viewed", oaPv);
+  try { oaiq("measure", "page_viewed", { type: "contents", contents: [{ id: "lp-40-prompts", name: "LP 40 Prompts Medicina", content_type: "page" }] }, { event_id: oaPv }); oaiq("measure", "contents_viewed", { type: "contents", contents: [{ id: "40-prompts-medicina", name: "40 Prompts para Estudar Medicina com IA", content_type: "product", quantity: 1 }] }); } catch(e){}
 
   // botões de compra: levam ao checkout carregando a origem do clique e as UTMs da página
   var busca = location.search || "";
