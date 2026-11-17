@@ -111,6 +111,31 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
 .selos span{display:flex;align-items:center;justify-content:center;gap:.35rem;min-height:2.4rem;padding:.35rem .5rem;border:1px solid var(--linha-esc);border-radius:12px;background:rgba(255,255,255,.04);font-weight:600;font-size:.8rem;line-height:1.2;color:#fff;text-align:center}
 .selos span b{color:var(--laranja);font-weight:700}
 
+/* prova e selos da capa */
+.prova-capa{display:flex;align-items:center;flex-wrap:wrap;gap:.6rem .9rem;font-size:.92rem;color:var(--mudo-esc)}
+.prova-capa>span{display:inline-flex;align-items:center;gap:.45rem}
+.prova-capa b{color:#fff;font-weight:700}
+.prova-capa .estrelas{display:inline-flex;gap:2px;color:#FFB020}
+.prova-capa .estrelas svg{width:15px;height:15px}
+.prova-capa .sep{width:1px;height:16px;background:var(--linha-esc)}
+.prova-capa .alunos svg{width:18px;height:18px;color:var(--laranja)}
+.selos-capa{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:auto auto 1fr;gap:.6rem;width:100%;max-width:580px}
+.selos-capa li{display:flex;align-items:center;gap:.6rem;padding:.65rem .9rem;border:1px solid var(--linha-esc);border-radius:16px;background:rgba(255,255,255,.04);color:#fff;font-size:.8rem;font-weight:600;line-height:1.15;min-width:0}
+.selos-capa .s40 b{font-family:var(--f-disp);font-size:1.9rem;line-height:1;color:var(--laranja);letter-spacing:-.04em}
+.selos-capa svg{width:22px;height:22px;color:var(--laranja);flex:0 0 auto}
+.selos-capa .ias{flex-direction:column;align-items:flex-start;gap:.35rem}
+.selos-capa .ias small{font-family:var(--f-mono);font-size:.56rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--mudo-esc)}
+.ia-lista{display:flex;flex-wrap:wrap;gap:.3rem}
+.ia-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.28rem .55rem;border-radius:999px;background:rgba(255,255,255,.08);font-size:.76rem;font-weight:600;white-space:nowrap}
+.ia-chip i{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
+
+/* barra de compra fixa no rodapé (aparece quando a pessoa rola) */
+.barra-cta{position:fixed;z-index:54;left:0;right:0;bottom:0;display:flex;justify-content:center;padding:.7rem var(--gut) calc(.7rem + env(safe-area-inset-bottom,0px));background:rgba(22,24,27,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--linha-esc);transform:translateY(110%);transition:transform .35s ease}
+.barra-cta.ver{transform:none}
+.barra-cta .btn{width:100%;max-width:520px;padding-block:.9rem}
+body{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+body.com-barra .balao-prova{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
+
 /* conversa com a IA */
 .chat{background:var(--papel);color:var(--grafite);border-radius:22px;box-shadow:0 40px 80px -30px rgba(0,0,0,.7);overflow:hidden;display:flex;flex-direction:column}
 .chat-topo{display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:.8rem 1.1rem;border-bottom:1px solid var(--nevoa);flex:0 0 auto}
@@ -375,11 +400,17 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
   .msg.aval ul{font-size:clamp(.74rem,1.75svh,.84rem);margin:.3rem 0 .35rem}
   .chat-corpo{height:auto}
   .chat-pe,.chat-legenda{display:none}
-  .acoes{order:5;width:100%;max-width:520px;display:block}
-  .acoes .btn{width:100%;padding-block:clamp(.75rem,1.9svh,.95rem)}
-  .acoes .btn-contorno-claro{display:none}
-  .args{display:none}
-  .selos{order:6;max-width:520px}
+  .prova-capa{order:4;justify-content:center;font-size:clamp(.8rem,1.9svh,.92rem);gap:.4rem .7rem}
+  .t1-chat{order:5}
+  .prova-capa .sep{display:none}
+  .selos-capa{order:6;max-width:560px;gap:.45rem;grid-template-columns:1fr 1fr}
+  .selos-capa .ias{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:center;gap:.5rem}
+  .selos-capa .s40,.selos-capa .rapido{justify-content:center}
+  .selos-capa li{padding:.5rem .65rem;gap:.45rem;font-size:.72rem;text-align:left}
+  .selos-capa .s40 b{font-size:1.5rem}
+  .selos-capa svg{width:18px;height:18px}
+  .ia-chip{font-size:.66rem;padding:.22rem .42rem;gap:.28rem}
+  .ia-chip i{width:6px;height:6px}
   .orbita{left:-60%;top:2%;width:220%}
 
   /* a diferença: uma resposta por vez, com troca */
@@ -495,8 +526,6 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
 @media (max-width:640px){
   .tarja{height:28px;font-size:.58rem}
   .tarja-relogio{padding-right:.65rem}
-  html{scroll-snap-type:y mandatory}
-  .t1,.tela,.fecho{scroll-snap-align:start;scroll-snap-stop:always}
   .topo-linha{height:56px}
   .logo{font-size:.98rem;gap:.5rem}
   .logo .orb{width:22px;height:22px}
@@ -531,10 +560,11 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
   .chat-topo .tag{font-size:.6rem}
   .msg{font-size:1.02rem;padding:.7rem 1rem}
   .msg.aval ul{font-size:.95rem}
-  .acoes,.selos{max-width:none}
-  .acoes .btn{font-size:1.1rem;padding-block:1.05rem}
-  .selos{grid-template-columns:repeat(4,1fr)}
-  .selos span{font-size:.92rem;min-height:3rem}
+  .prova-capa{font-size:1.05rem}
+  .selos-capa{max-width:none}
+  .selos-capa li{font-size:.92rem;padding:.8rem 1rem}
+  .selos-capa .s40 b{font-size:2.1rem}
+  .ia-chip{font-size:.85rem}
   /* a diferença: só o título, as duas respostas grandes lado a lado */
   .t2 .cab .lead{display:none}
   .troca{display:none}
@@ -628,7 +658,7 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
 /* telas baixas (iPhone SE e afins): tira o que é secundário */
 @media (max-width:1080px) and (max-height:700px){
   .t1 .lead{display:none}
-  .selos{display:none}
+  .selos-capa .ias small{display:none}
   .titulos{display:none}
   .passos span{display:none}
   .garantia span{display:none}
@@ -679,24 +709,16 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
     <div class="t1-copia">
       <h1>Transforme o ChatGPT no seu <em>tutor de Medicina.</em></h1>
       <p class="lead">Copie, cole e a IA vira sua professora, seu paciente e seu examinador.</p>
-      <div class="acoes">
-        <a class="btn btn-laranja comprar" href="/40prompts-estudante-medicina/checkout/" data-origem="capa">Quero os prompts <s class="de-txt">R$ 59,90</s> <span class="preco-txt">R$ 27,90</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <a class="btn btn-contorno-claro" href="#blocos">Ver o que tem dentro</a>
+      <div class="prova-capa">
+        <span class="av-nota"><span class="estrelas" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><span><b>4,9</b>/5 de avaliação</span></span>
+        <span class="sep" aria-hidden="true"></span>
+        <span class="alunos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span><b>+5 mil</b> alunos já compraram</span></span>
       </div>
-      <div class="args">
-        <div class="arg"><b>40 prompts</b><span>Prontos para colar</span></div>
-        <div class="arg"><b>7 blocos</b><span>Do 1º contato à véspera</span></div>
-        <div class="arg"><b>3 IAs</b><span>ChatGPT, Gemini e Claude</span></div>
-        <div class="arg"><b>Na hora</b><span>PDF no seu e-mail</span></div>
-      </div>
-      <div class="selos so-mob">
-        <span><b>40</b> prompts prontos</span>
-        <span><b>7</b> blocos de estudo</span>
-        <span>ChatGPT, Gemini e Claude</span>
-        <span>PDF no e-mail na hora</span>
-      </div>
+      <ul class="selos-capa">
+        <li class="s40"><b>40</b><span>prompts<br>prontos</span></li>
+        <li class="rapido"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><span>Entrega<br>imediata</span></li>
+        <li class="ias"><small>Funciona no</small><span class="ia-lista"><span class="ia-chip"><i style="background:#10A37F"></i>ChatGPT</span><span class="ia-chip"><i style="background:#4F8DF7"></i>Gemini</span><span class="ia-chip"><i style="background:#D97757"></i>Claude</span></span></li>
+      </ul>
     </div>
 
     <div class="t1-chat">
@@ -915,6 +937,12 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
 </div>
 </main>
 
+<div class="barra-cta" id="barraCta">
+  <a class="btn btn-laranja comprar" href="/40prompts-estudante-medicina/checkout/" data-origem="barra" tabindex="-1">Quero os prompts <s class="de-txt">R$ 59,90</s> <span class="preco-txt">R$ 27,90</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+</div>
+
 <div class="balao-prova" id="balaoProva" role="status" aria-live="polite" hidden>
   <span class="bp-icone"><i></i></span>
   <p><b>Todo dia, <span class="vendas">+45</span> estudantes de Medicina</b> garantem o pacote dos 40 prompts.</p>
@@ -939,6 +967,9 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
   document.querySelectorAll(".vendas").forEach(function(el){ el.textContent = "+" + VENDAS_BASE; });
 
   // balão de prova social: sobe aos 20 s e fica até a pessoa fechar
+  var barra = document.getElementById("barraCta");
+  function verBarra(){ var on = (window.scrollY || document.documentElement.scrollTop) > 60; barra.classList.toggle("ver", on); document.body.classList.toggle("com-barra", on); var a = barra.querySelector("a"); if (a) a.tabIndex = on ? 0 : -1; }
+  window.addEventListener("scroll", verBarra, {passive: true}); verBarra();
   var balao = document.getElementById("balaoProva"), fechou = false, tBalao;
   function mostraBalao(){
     if (fechou) return;
