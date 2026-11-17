@@ -13,13 +13,14 @@ body{{background:{COR['papel']};color:{COR['navy']};font-family:I;position:relat
 body.navy{{background:{COR['navy']};color:{COR['papel']}}}
 body.laranja{{background:{COR['laranja']};color:{COR['papel']}}}
 .il{{position:absolute;inset:33px;border-radius:4px;background-size:cover;background-position:center bottom}}
-.txt{{position:absolute;left:90px;right:90px;top:110px;z-index:2}}
-.gigante .txt{{top:0;bottom:0;display:flex;flex-direction:column;justify-content:center}}
+.txt{{position:absolute;left:90px;right:90px;top:110px;z-index:2;text-align:center}}
+h1{{text-wrap:balance}}
+.gigante .txt{{top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;align-items:center}}
 .tag{{display:inline-block;font-family:M;font-weight:600;font-size:24px;letter-spacing:.08em;text-transform:uppercase;background:{COR['amarelo']};color:{COR['navy']};padding:10px 18px;border:3px solid {COR['navy']};transform:rotate(-2deg);margin-bottom:30px}}
 h1{{font-family:B;font-weight:800;font-stretch:85%;letter-spacing:-.035em;line-height:.98;font-size:var(--t,92px)}}
 h1 em{{font-style:normal;color:{COR['laranja']}}}
 .navy h1 em{{color:{COR['amarelo']}}} .laranja h1 em{{color:{COR['navy']}}}
-.sub{{font-size:var(--s,44px);line-height:1.3;margin-top:26px;max-width:880px;opacity:.85}}
+.sub{{font-size:var(--s,44px);line-height:1.3;margin-top:26px;max-width:880px;margin-left:auto;margin-right:auto;opacity:.85;text-wrap:balance}}
 .painel{{position:absolute;inset:30px;border:6px solid {COR['navy']};border-radius:6px;z-index:3;pointer-events:none}}
 .navy .painel{{border-color:{COR['papel']}}} .laranja .painel{{border-color:{COR['navy']}}}
 .pe{{position:absolute;left:90px;right:90px;bottom:70px;display:flex;justify-content:space-between;align-items:center;font-family:M;font-size:22px;letter-spacing:.05em;z-index:2}}
