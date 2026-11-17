@@ -21,8 +21,8 @@ export default {
     const url = new URL(req.url);
     const p = url.pathname;
     try {
-      if (p === "/api/mp/pix" && req.method === "POST") return await criarPix(req, env, url);
-      if (p === "/api/mp/cartao" && req.method === "POST") return await criarCartao(req, env, url);
+      if (p === "/api/mp/pix" && req.method === "POST") return await criarPix(req, env, url, ctx);
+      if (p === "/api/mp/cartao" && req.method === "POST") return await criarCartao(req, env, url, ctx);
       if (p === "/api/mp/status" && req.method === "GET") return await status(env, url, ctx);
       if (p === "/api/mp/webhook") return await webhook(req, env, url, ctx);
       if (p === "/api/download" && req.method === "GET") return await download(env, url);
@@ -66,18 +66,19 @@ function baseOrder(payer, metodo) {
   };
 }
 
-async function criarPix(req, env, url) {
+async function criarPix(req, env, url, ctx) {
   let payer;
   try { payer = lerComprador(await req.json()); } catch (e) { return erroCliente(e); }
   const corpo = baseOrder(payer, "pix");
   corpo.transactions = { payments: [{ amount: PRODUTO.preco, payment_method: { id: "pix", type: "bank_transfer" }, expiration_time: "PT30M" }] };
   const r = await mp(env, "POST", "/v1/orders", corpo);
   if (!r.ok) { console.log("pix falhou", r.status, JSON.stringify(r.data)); return json({ erro: "Não deu para gerar o Pix agora. Tente de novo." }, 502); }
+  await guardarComprador(env, r.data.id, payer);
   const pg = (((r.data.transactions || {}).payments || [])[0] || {}).payment_method || {};
   return json({ id: r.data.id, status: r.data.status, qr_code: pg.qr_code, qr_code_base64: pg.qr_code_base64, ticket_url: pg.ticket_url });
 }
 
-async function criarCartao(req, env, url) {
+async function criarCartao(req, env, url, ctx) {
   let b, payer;
   try { b = await req.json(); payer = lerComprador(b); } catch (e) { return erroCliente(e); }
   if (!b.token || !b.payment_method_id) return json({ erro: "Confira os dados do cartão." }, 400);
@@ -86,9 +87,11 @@ async function criarCartao(req, env, url) {
   corpo.transactions = { payments: [{ amount: PRODUTO.preco, payment_method: { id: String(b.payment_method_id), type: tipo, token: String(b.token), installments: 1 } }] };
   const r = await mp(env, "POST", "/v1/orders", corpo);
   const o = r.data || {};
+  if (o.id) await guardarComprador(env, o.id, payer);
   const pgto = ((o.transactions || {}).payments || [])[0] || {};
   const det = pgto.status_detail || o.status_detail || (o.errors && o.errors[0] && o.errors[0].code) || "";
   if (o.status === "processed") {
+    ctx.waitUntil(enviarEmail(env, url, o));
     return json({ id: o.id, status: "processed", download: await linkDownload(env, url, o.id) });
   }
   if (o.status === "processing" || o.status === "action_required") {
@@ -176,36 +179,59 @@ async function assinar(env, id) {
   return [...s.slice(0, 16)].map((x) => x.toString(16).padStart(2, "0")).join("");
 }
 
-// E-mail com o link (só funciona depois de configurar o Resend e criar RESEND_API_KEY).
-// Para não mandar repetido, guarda no cache da Cloudflare que aquele pedido já recebeu.
+// E-mail pós-compra com o PDF anexado e o link de download (Resend).
+// Só funciona com RESEND_API_KEY criada. A chave de idempotência garante 1 e-mail por pedido,
+// mesmo que o webhook e a página de compra confirmem o pagamento ao mesmo tempo.
 async function enviarEmail(env, url, o) {
   if (!env.RESEND_API_KEY) return;
-  const email = o.payer && o.payer.email;
-  if (!email) return;
-  const marca = new Request("https://orbyt.interno/email-enviado/" + o.id);
-  const cache = caches.default;
-  if (await cache.match(marca)) return;
-  await cache.put(marca, new Response("1", { headers: { "cache-control": "max-age=2592000" } }));
+  const comp = env.PEDIDOS ? await env.PEDIDOS.get("pedido:" + o.id, "json") : null;
+  const email = (comp && comp.email) || (o.payer && o.payer.email);
+  if (!email) { console.log("pedido sem e-mail", o.id); return; }
+  if (comp && comp.emailEnviado) return;
   const link = await linkDownload(env, url, o.id);
-  const html = '<div style="font-family:Arial,sans-serif;font-size:16px;line-height:1.5;color:#16181B">'
-    + "<p>Pagamento aprovado! Aqui está o seu <b>" + PRODUTO.nome + "</b>.</p>"
-    + '<p><a href="' + link + '" style="display:inline-block;background:#FF5A1F;color:#fff;padding:12px 20px;border-radius:999px;text-decoration:none;font-weight:bold">Baixar o PDF</a></p>'
-    + "<p>Próximo passo: abra o PDF, copie o Prompt 1 e cole na sua IA.</p>"
-    + '<p style="color:#5B6470;font-size:13px">Orbyt Studio · orbytstudio.com.br</p></div>';
+  const nome = ((comp && comp.first_name) || (o.payer && o.payer.first_name) || "").trim();
+  const pdf = await abrirPdf(env);
+  const html = '<div style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.55;color:#16181B;max-width:520px;margin:0 auto;padding:24px">'
+    + '<p style="margin:0 0 16px">' + (nome ? "Oi, " + escapar(nome) + "!" : "Oi!") + " Pagamento aprovado.</p>"
+    + '<p style="margin:0 0 16px">O seu <b>' + PRODUTO.nome + "</b> está anexado neste e-mail. Se preferir, baixe pelo botão:</p>"
+    + '<p style="margin:0 0 24px"><a href="' + link + '" style="display:inline-block;background:#FF5A1F;color:#ffffff;padding:13px 22px;border-radius:999px;text-decoration:none;font-weight:bold">Baixar o PDF</a></p>'
+    + '<p style="margin:0 0 8px"><b>Próximo passo:</b> abra o PDF, copie o Prompt 1 e cole na sua IA. Ele coloca a conversa no nível de um estudante de Medicina.</p>'
+    + '<p style="margin:24px 0 0;color:#5B6470;font-size:13px">Orbyt Studio para Medicina · orbytstudio.com.br<br>Pedido ' + o.id + "</p></div>";
+  const texto = "Pagamento aprovado. O seu " + PRODUTO.nome + " está anexado. Link para baixar: " + link;
   const r = await fetch("https://api.resend.com/emails", {
     method: "POST",
-    headers: { authorization: "Bearer " + env.RESEND_API_KEY, "content-type": "application/json" },
-    body: JSON.stringify({ from: env.EMAIL_DE || "Orbyt Studio <pedidos@orbytstudio.com.br>", to: [email], subject: "Seu PDF: " + PRODUTO.nome, html }),
+    headers: { authorization: "Bearer " + env.RESEND_API_KEY, "content-type": "application/json", "idempotency-key": "pedido-" + o.id },
+    body: JSON.stringify({
+      from: env.EMAIL_DE || "Orbyt Studio para Medicina <medicina@orbytstudio.com.br>",
+      reply_to: "medicina@orbytstudio.com.br",
+      to: [email],
+      subject: "Seu PDF chegou: " + PRODUTO.nome,
+      html, text: texto,
+      attachments: [{ filename: PRODUTO.arquivo, content: paraB64(new Uint8Array(pdf)) }],
+    }),
   });
-  if (!r.ok) { console.log("email falhou", r.status, await r.text()); await cache.delete(marca); }
+  if (r.ok) {
+    if (comp && env.PEDIDOS) await env.PEDIDOS.put("pedido:" + o.id, JSON.stringify(Object.assign(comp, { emailEnviado: new Date().toISOString() })), { expirationTtl: 60 * 60 * 24 * 90 });
+    console.log("email enviado", o.id);
+  }
+  else console.log("email falhou", o.id, r.status, (await r.text()).slice(0, 500));
 }
+
+// Guarda e-mail e nome do comprador por 90 dias. O Mercado Pago não devolve esses dados na consulta do pedido.
+async function guardarComprador(env, id, payer) {
+  if (!env.PEDIDOS || !id) return;
+  await env.PEDIDOS.put("pedido:" + id, JSON.stringify({ email: payer.email, first_name: payer.first_name, last_name: payer.last_name, criado: new Date().toISOString() }), { expirationTtl: 60 * 60 * 24 * 90 });
+}
+
+function paraB64(u) { let s = ""; for (let i = 0; i < u.length; i += 0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000)); return btoa(s); }
+function escapar(t) { return String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
 
 // Checagem rápida: confirma que as duas chaves funcionam, sem mostrar nenhuma delas.
 async function saude(env) {
   let mpOk = false, pdfOk = false;
   try { const r = await fetch(MP + "/users/me", { headers: { authorization: "Bearer " + env.MP_ACCESS_TOKEN } }); mpOk = r.ok; } catch (e) {}
   try { const b = new Uint8Array(await abrirPdf(env)); pdfOk = b[0] === 0x25 && b[1] === 0x50; } catch (e) {}
-  return json({ mercado_pago: mpOk, pdf: pdfOk });
+  return json({ mercado_pago: mpOk, pdf: pdfOk, email: !!env.RESEND_API_KEY, pedidos: !!env.PEDIDOS });
 }
 
 // ---------- utilitários ----------

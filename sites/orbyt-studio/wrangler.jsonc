@@ -11,6 +11,8 @@
   // O PDF vai criptografado dentro do servidor. Sem a chave PDF_KEY ninguém abre.
   "rules": [{ "type": "Data", "globs": ["**/*.bin"], "fallthrough": false }],
   // Mantém as variáveis e segredos criados no painel da Cloudflare a cada deploy.
+  // Guarda o e-mail de cada comprador para o envio do PDF depois que o pagamento confirma.
+  "kv_namespaces": [{ "binding": "PEDIDOS", "id": "41ab98434fc948beb4385aa1ec5cd36d" }],
   "keep_vars": true,
   "observability": { "enabled": true }
 }
