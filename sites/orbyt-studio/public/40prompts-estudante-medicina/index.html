@@ -129,12 +129,6 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
 .ia-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.28rem .55rem;border-radius:999px;background:rgba(255,255,255,.08);font-size:.76rem;font-weight:600;white-space:nowrap}
 .ia-chip i{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
 
-/* barra de compra fixa no rodapé (aparece quando a pessoa rola) */
-.barra-cta{position:fixed;z-index:54;left:0;right:0;bottom:0;display:flex;justify-content:center;padding:.7rem var(--gut) calc(.7rem + env(safe-area-inset-bottom,0px));background:rgba(22,24,27,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--linha-esc);transform:translateY(110%);transition:transform .35s ease}
-.barra-cta.ver{transform:none}
-.barra-cta .btn{width:100%;max-width:520px;padding-block:.9rem}
-body{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
-body.com-barra .balao-prova{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
 
 /* conversa com a IA */
 .chat{background:var(--papel);color:var(--grafite);border-radius:22px;box-shadow:0 40px 80px -30px rgba(0,0,0,.7);overflow:hidden;display:flex;flex-direction:column}
@@ -182,6 +176,11 @@ body.com-barra .balao-prova{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
 .cab{display:grid;gap:1rem;max-width:780px;margin-bottom:clamp(2rem,4vw,3rem)}
 .cab h2{font-size:clamp(1.9rem,3.6vw,3.1rem)}
 .cab .lead{font-size:1.08rem;color:var(--ardosia);max-width:62ch}
+
+.cta-tela{display:flex;justify-content:center;margin-top:clamp(1.6rem,3vw,2.4rem)}
+.cta-tela .btn{padding-inline:1.8rem}
+.t4 .cta-tela{justify-content:flex-start;margin-top:1.4rem}
+.duvidas .cta-tela{grid-column:2;justify-content:flex-start;margin-top:0}
 
 /* TELA 2 */
 .t2{background:var(--gelo)}
@@ -363,7 +362,7 @@ body.com-barra .balao-prova{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
 .balao-prova p b{color:var(--grafite);display:block}
 .balao-prova p b .vendas{color:var(--ok)}
 .bp-fechar{border:1px solid var(--linha);background:var(--gelo);color:var(--grafite);width:30px;height:30px;border-radius:50%;font-size:1.1rem;line-height:1;cursor:pointer;flex:0 0 auto;align-self:flex-start}
-@media (max-width:640px){.balao-prova{left:12px;right:12px;max-width:none;bottom:calc(12px + env(safe-area-inset-bottom,0px));padding:.9rem}.balao-prova p{font-size:.9rem}}
+@media (max-width:640px){.balao-prova{left:12px;right:12px;max-width:none;top:calc(var(--h-topo) + 10px);bottom:auto;transform:translateY(-24px);padding:.75rem .8rem}.balao-prova p{font-size:.88rem}}
 .aviso{position:fixed;z-index:60;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--grafite);color:#fff;padding:.7rem 1.1rem;border-radius:999px;font-size:.88rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;white-space:nowrap}
 .aviso.ver{opacity:1;transform:translate(-50%,0)}
 
@@ -464,7 +463,7 @@ body.com-barra .balao-prova{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
   .amostra pre{flex:1 1 auto;min-height:0;overflow:auto;font-size:clamp(.78rem,1.8svh,.9rem);padding:.7rem .8rem;line-height:1.5}
   .amostra-pe{padding:.45rem .8rem;font-size:.52rem}
   .painel-acao{flex:0 0 auto}
-  .painel-acao .btn{width:100%;padding-block:clamp(.7rem,1.8svh,.9rem)}
+  .painel-acao .btn{width:100%;padding:clamp(.72rem,1.9svh,.92rem) 1rem;font-size:clamp(.92rem,2.2svh,1rem);gap:.5rem}
   .painel-acao p{display:none}
 
   /* o PDF */
@@ -499,15 +498,21 @@ body.com-barra .balao-prova{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
   .garantia{padding:.6rem .8rem;font-size:.8rem}
 
   /* dúvidas */
-  .duvidas{display:flex;flex-direction:column;flex:1 1 auto;min-height:0;gap:clamp(.6rem,1.6svh,1rem)}
+  .duvidas{display:flex;align-items:stretch;flex-direction:column;flex:1 1 auto;min-height:0;gap:clamp(.6rem,1.6svh,1rem)}
   .lado-txt{position:static;text-align:center;justify-items:center;gap:.4rem;flex:0 0 auto}
   .lado-txt p{display:none}
   .duvidas h2{font-size:clamp(1.45rem,min(6.6vw,4.2svh),2.3rem)}
   .lista-d{flex:1 1 auto;min-height:0;overflow-y:auto;scrollbar-width:none}
   .lista-d::-webkit-scrollbar{display:none}
-  .lista-d details{padding:clamp(.6rem,1.6svh,.9rem) 0}
+  .lista-d details{padding:clamp(.42rem,1.35svh,.9rem) 0}
   .lista-d summary{font-size:clamp(.92rem,2.1svh,1.05rem)}
-  .lista-d details p{font-size:.86rem}
+  .lista-d details p{font-size:clamp(.8rem,1.9svh,.86rem);padding-top:.35rem}
+
+  /* botão no pé de cada tela */
+  .cta-tela,.t4 .cta-tela,.duvidas .cta-tela{flex:0 0 auto;justify-content:center;margin-top:clamp(.55rem,1.5svh,.9rem)}
+  .cta-tela .btn{width:100%;max-width:520px;padding:clamp(.72rem,1.9svh,.92rem) 1rem;font-size:clamp(.92rem,2.2svh,1rem);gap:.5rem}
+  .t4 .cta-tela{order:4;margin-top:0}
+  .duvidas .cta-tela{margin-top:0}
 
   /* chamada final + rodapé = última tela */
   .fecho{height:calc(100svh - var(--h-topo));display:flex;flex-direction:column}
@@ -570,17 +575,18 @@ body.com-barra .balao-prova{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
   .troca{display:none}
   .duelo{display:grid;grid-template-columns:1fr 1fr;flex:1 1 auto}
   .duelo .fraco,.duelo .forte{display:flex!important}
-  .lado{padding:1.4rem;gap:1rem}
+  .t2,.t4{padding-block:clamp(1.3rem,2.6svh,2.2rem)}
+  .lado{padding:1.15rem;gap:.8rem}
   .lado-topo h3{font-size:1.35rem}
   .pergunta{font-size:1rem}
-  .resposta,.lado.fraco .resposta{font-size:1.05rem;padding:1rem 1.1rem}
+  .resposta,.lado.fraco .resposta{font-size:.98rem;padding:.85rem 1rem}
   .resposta dt{font-size:.66rem}
   .lado-pe{font-size:.95rem}
   .dicas{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
-  .dica,.dica+.dica{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:.4rem;padding:.9rem 1rem;border-radius:16px}
+  .dica,.dica+.dica{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:.3rem;padding:.7rem .9rem;border-radius:16px}
   .dica .num{width:28px;height:28px;font-size:.7rem}
   .dica b{font-size:1.02rem}
-  .dica span:not(.num){display:block;font-size:.88rem}
+  .dica span:not(.num){display:block;font-size:.84rem;line-height:1.35}
   /* os 7 blocos: jornada grande e painel ocupando a tela */
   .blocos{gap:1.4rem}
   .lista-b{--c:62px}
@@ -601,12 +607,12 @@ body.com-barra .balao-prova{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
   .painel-acao .btn{font-size:1.1rem;padding-block:1rem}
   /* o PDF */
   .t4-grade{align-items:stretch}
-  .leque{flex:0 0 auto;height:clamp(400px,42svh,600px);width:100%;align-self:stretch;container-type:normal}
+  .leque{flex:0 0 auto;height:clamp(340px,35svh,560px);width:100%;align-self:stretch;container-type:normal}
   .leque img{height:78%}
   .leque .f3{height:84%}
   .leque .etq span{font-size:.62rem;padding:.45rem .8rem}
   .passos{gap:.6rem}
-  .passos li{padding:.95rem 1.1rem}
+  .passos li{padding:.8rem 1.1rem}
   .passos .num{width:36px;height:36px;font-size:.78rem}
   .passos b{font-size:1.15rem}
   .passos span{display:block;font-size:.95rem}
@@ -655,6 +661,15 @@ body.com-barra .balao-prova{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
   .lista-d summary{font-size:1.12rem}
   .lista-d details p{font-size:.95rem;padding-top:.4rem}
 }
+/* tablets menores: aperta o secundário para o botão caber no pé da tela */
+@media (min-width:641px) and (max-width:1080px) and (max-height:1150px){
+  .t1-chat{min-height:370px}
+  .dica,.dica+.dica{flex-direction:row;align-items:center;justify-content:center;padding:.6rem .7rem}
+  .dica span:not(.num){display:none}
+  .painel{padding:1.25rem;gap:.85rem}
+  .titulos li{font-size:.92rem}
+  .leque{height:clamp(290px,30svh,560px)}
+}
 /* telas baixas (iPhone SE e afins): tira o que é secundário */
 @media (max-width:1080px) and (max-height:700px){
   .t1 .lead{display:none}
@@ -666,8 +681,28 @@ body.com-barra .balao-prova{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
   .dicas{display:none}
   .inclui-mob,.formas{display:none}
   .produto img{width:42px}
-  .lado-pe{display:none}
+  .lado.forte .lado-pe{display:none}
   .pergunta{display:none}
+}
+/* celular: a resposta com prompt cabe inteira acima do botão */
+@media (max-width:640px) and (max-height:860px){
+  .t2 .dicas,.t2 .pergunta{display:none}
+}
+@media (max-width:640px) and (max-height:700px){
+  .lado{padding:.7rem .75rem;gap:.5rem}
+  .resposta,.lado.fraco .resposta{padding:.6rem .7rem;gap:.4rem}
+  .resposta{font-size:clamp(.74rem,1.85svh,.9rem)}
+  .resposta dl{gap:.4rem}
+  .resposta .teste{padding-top:.45rem}
+}
+@media (max-width:640px) and (max-height:660px){
+  .lado-topo{display:none}
+}
+@media (max-width:640px) and (max-height:620px){
+  .tela .cab .olho{display:none}
+}
+@media (max-width:640px) and (max-height:580px){
+  .lado.forte .resposta dl div:nth-child(3){display:none}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -787,6 +822,7 @@ body.com-barra .balao-prova{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
       <div class="dica"><span class="num">2</span><b>Troca o <mark>[TEMA]</mark></b><span>O que está entre colchetes vira o seu assunto, o seu período, a sua matéria.</span></div>
       <div class="dica"><span class="num">3</span><b>Anexa a aula</b><span>PDF da aula, slide, print da questão. A IA responde em cima do que o seu professor cobra.</span></div>
     </div>
+    <div class="cta-tela"><a class="btn btn-laranja comprar" href="/40prompts-estudante-medicina/checkout/" data-origem="diferenca">Quero os prompts <s class="de-txt">R$ 59,90</s> <span class="preco-txt">R$ 27,90</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
 
@@ -818,7 +854,7 @@ body.com-barra .balao-prova{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
           <p class="amostra-pe">Amostra grátis · os outros prompts estão no PDF</p>
         </div>
         <div class="painel-acao">
-          <a class="btn btn-laranja comprar" href="/40prompts-estudante-medicina/checkout/" data-origem="blocos">Quero os 40 prompts</a>
+          <a class="btn btn-laranja comprar" href="/40prompts-estudante-medicina/checkout/" data-origem="blocos">Quero os prompts <s class="de-txt">R$ 59,90</s> <span class="preco-txt">R$ 27,90</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <p>Testa esse aqui na sua IA agora. Depois volta.</p>
         </div>
       </div>
@@ -850,6 +886,7 @@ body.com-barra .balao-prova{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
         <p><b>Vem com 5 regras para não cair em cilada.</b> IA erra. Dose, critério diagnóstico e conduta você confere na diretriz ou no material da aula, e o material te mostra como.</p>
       </div>
+      <div class="cta-tela"><a class="btn btn-laranja comprar" href="/40prompts-estudante-medicina/checkout/" data-origem="material">Quero os prompts <s class="de-txt">R$ 59,90</s> <span class="preco-txt">R$ 27,90</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </div>
   </div>
 </section>
@@ -911,6 +948,7 @@ body.com-barra .balao-prova{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
       <details><summary>Preciso entender de IA?</summary><p>Não. É copiar, colar e trocar o que está entre colchetes. Exemplo: [TEMA] vira "síndrome nefrótica". O resto você cola do jeito que está.</p></details>
       <details><summary>A IA não erra?</summary><p>Erra. Por isso o material tem um prompt que obriga a IA a marcar o nível de confiança e dizer onde conferir cada informação, e 5 regras para checar dose, critério e conduta na diretriz ou no material da aula.</p></details>
     </div>
+    <div class="cta-tela"><a class="btn btn-laranja comprar" href="/40prompts-estudante-medicina/checkout/" data-origem="duvidas">Quero os prompts <s class="de-txt">R$ 59,90</s> <span class="preco-txt">R$ 27,90</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
   </div>
 </section>
 
@@ -934,11 +972,6 @@ body.com-barra .balao-prova{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
 </div>
 </main>
 
-<div class="barra-cta" id="barraCta">
-  <a class="btn btn-laranja comprar" href="/40prompts-estudante-medicina/checkout/" data-origem="barra" tabindex="-1">Quero os prompts <s class="de-txt">R$ 59,90</s> <span class="preco-txt">R$ 27,90</span>
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-  </a>
-</div>
 
 <div class="balao-prova" id="balaoProva" role="status" aria-live="polite" hidden>
   <span class="bp-icone"><i></i></span>
@@ -964,9 +997,6 @@ body.com-barra .balao-prova{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
   document.querySelectorAll(".vendas").forEach(function(el){ el.textContent = "+" + VENDAS_BASE; });
 
   // balão de prova social: sobe aos 20 s e fica até a pessoa fechar
-  var barra = document.getElementById("barraCta");
-  function verBarra(){ var on = (window.scrollY || document.documentElement.scrollTop) > 60; barra.classList.toggle("ver", on); document.body.classList.toggle("com-barra", on); var a = barra.querySelector("a"); if (a) a.tabIndex = on ? 0 : -1; }
-  window.addEventListener("scroll", verBarra, {passive: true}); verBarra();
   var balao = document.getElementById("balaoProva"), fechou = false, tBalao;
   function mostraBalao(){
     if (fechou) return;
