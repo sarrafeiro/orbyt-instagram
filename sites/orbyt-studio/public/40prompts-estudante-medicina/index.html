@@ -7,7 +7,7 @@
 <meta name="description" content="40 prompts prontos para transformar o ChatGPT, o Gemini ou o Claude no seu tutor de Medicina. Explica, testa, corrige e organiza o seu estudo. PDF no seu e-mail na hora.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400..700&family=Martian+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400..700&family=Instrument+Serif:ital@1&family=Martian+Mono:wght@400;500&display=swap">
 <!-- Pixel do ChatGPT Ads (OpenAI Measurement Pixel) - fonte "Orbyt Medicina - 40 Prompts" -->
 <script>
 (function (w, d, s, u) {
@@ -33,6 +33,7 @@ oaiq("init", { pixelId: "9XiKvStxRXDEi93APHe2ak" });
   --alerta:#E5484D; --alerta-suave:#FDECEC; --ok:#16A34A;
   --f-disp:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
   --f-corpo:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-serif:"Instrument Serif",Georgia,"Times New Roman",serif;
   --f-mono:"Martian Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
   --gut:max(clamp(16px,4vw,40px),env(safe-area-inset-left,0px));
   --gut-d:max(clamp(16px,4vw,40px),env(safe-area-inset-right,0px));
@@ -112,17 +113,16 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
 .selos span b{color:var(--laranja);font-weight:700}
 
 /* prova e selos da capa */
-.prova-capa{display:flex;align-items:center;flex-wrap:wrap;gap:.6rem .9rem;font-size:.92rem;color:var(--mudo-esc)}
-.prova-capa>span{display:inline-flex;align-items:center;gap:.45rem}
-.prova-capa b{color:#fff;font-weight:700}
+.prova-capa{display:grid;gap:.5rem;justify-items:start;color:var(--mudo-esc)}
+.prova-capa p{margin:0}
+.pc-alunos{display:flex;align-items:baseline;flex-wrap:wrap;gap:.15rem .6rem;font-size:1.02rem;color:var(--texto-esc)}
+.pc-alunos em{font-family:var(--f-serif);font-style:italic;font-weight:400;font-size:clamp(2.3rem,3.4vw,3rem);line-height:1.05;letter-spacing:-.01em;color:#fff;white-space:nowrap;padding-bottom:.16em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 C 50 2, 120 2, 198 6' fill='none' stroke='%23FF5A1F' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat left bottom/100% .26em}
+.pc-nota{display:inline-flex;align-items:center;gap:.5rem;font-size:.92rem}
+.pc-nota b{color:#fff;font-weight:700}
 .prova-capa .estrelas{display:inline-flex;gap:2px;color:#FFB020}
 .prova-capa .estrelas svg{width:15px;height:15px}
-.prova-capa .sep{width:1px;height:16px;background:var(--linha-esc)}
-.prova-capa .alunos svg{width:18px;height:18px;color:var(--laranja)}
-.selos-capa{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:auto auto 1fr;gap:.6rem;width:100%;max-width:580px}
+.selos-capa{list-style:none;margin:0;padding:0;display:flex}
 .selos-capa li{display:flex;align-items:center;gap:.6rem;padding:.65rem .9rem;border:1px solid var(--linha-esc);border-radius:16px;background:rgba(255,255,255,.04);color:#fff;font-size:.8rem;font-weight:600;line-height:1.15;min-width:0}
-.selos-capa .s40 b{font-family:var(--f-disp);font-size:1.9rem;line-height:1;color:var(--laranja);letter-spacing:-.04em}
-.selos-capa svg{width:22px;height:22px;color:var(--laranja);flex:0 0 auto}
 .selos-capa .ias{flex-direction:column;align-items:flex-start;gap:.35rem}
 .selos-capa .ias small{font-family:var(--f-mono);font-size:.56rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--mudo-esc)}
 .ia-lista{display:flex;flex-wrap:wrap;gap:.3rem}
@@ -400,15 +400,14 @@ body.com-barra .balao-prova{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
   .msg.aval ul{font-size:clamp(.74rem,1.75svh,.84rem);margin:.3rem 0 .35rem}
   .chat-corpo{height:auto}
   .chat-pe,.chat-legenda{display:none}
-  .prova-capa{order:4;justify-content:center;font-size:clamp(.8rem,1.9svh,.92rem);gap:.4rem .7rem}
-  .t1-chat{order:5}
-  .prova-capa .sep{display:none}
-  .selos-capa{order:6;max-width:560px;gap:.45rem;grid-template-columns:1fr 1fr}
-  .selos-capa .ias{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:center;gap:.5rem}
-  .selos-capa .s40,.selos-capa .rapido{justify-content:center}
-  .selos-capa li{padding:.5rem .65rem;gap:.45rem;font-size:.72rem;text-align:left}
-  .selos-capa .s40 b{font-size:1.5rem}
-  .selos-capa svg{width:18px;height:18px}
+  .t1-chat{order:4}
+  .prova-capa{order:5;justify-items:center;gap:.3rem}
+  .pc-alunos{justify-content:center;font-size:clamp(.84rem,2svh,.98rem)}
+  .pc-alunos em{font-size:clamp(1.75rem,4.6svh,2.3rem)}
+  .pc-nota{font-size:clamp(.78rem,1.85svh,.9rem)}
+  .selos-capa{order:6;width:100%;max-width:560px}
+  .selos-capa li{padding:.5rem .65rem;font-size:.72rem}
+  .selos-capa .ias{flex:1 1 auto;flex-direction:row;align-items:center;justify-content:center;gap:.5rem}
   .ia-chip{font-size:.66rem;padding:.22rem .42rem;gap:.28rem}
   .ia-chip i{width:6px;height:6px}
   .orbita{left:-60%;top:2%;width:220%}
@@ -560,10 +559,11 @@ body.com-barra .balao-prova{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
   .chat-topo .tag{font-size:.6rem}
   .msg{font-size:1.02rem;padding:.7rem 1rem}
   .msg.aval ul{font-size:.95rem}
-  .prova-capa{font-size:1.05rem}
+  .pc-alunos{font-size:1.15rem}
+  .pc-alunos em{font-size:2.8rem}
+  .pc-nota{font-size:1.05rem}
   .selos-capa{max-width:none}
   .selos-capa li{font-size:.92rem;padding:.8rem 1rem}
-  .selos-capa .s40 b{font-size:2.1rem}
   .ia-chip{font-size:.85rem}
   /* a diferença: só o título, as duas respostas grandes lado a lado */
   .t2 .cab .lead{display:none}
@@ -710,13 +710,10 @@ body.com-barra .balao-prova{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
       <h1>Transforme o ChatGPT no seu <em>tutor de Medicina.</em></h1>
       <p class="lead">Copie, cole e a IA vira sua professora, seu paciente e seu examinador.</p>
       <div class="prova-capa">
-        <span class="av-nota"><span class="estrelas" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><span><b>4,9</b>/5 de avaliação</span></span>
-        <span class="sep" aria-hidden="true"></span>
-        <span class="alunos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span><b>+5 mil</b> alunos já compraram</span></span>
+        <p class="pc-alunos"><em>+5 mil alunos</em> <span>já compraram</span></p>
+        <p class="pc-nota"><span class="estrelas" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><span><b>4,9</b>/5 de avaliação</span></p>
       </div>
       <ul class="selos-capa">
-        <li class="s40"><b>40</b><span>prompts<br>prontos</span></li>
-        <li class="rapido"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><span>Entrega<br>imediata</span></li>
         <li class="ias"><small>Funciona no</small><span class="ia-lista"><span class="ia-chip"><i style="background:#10A37F"></i>ChatGPT</span><span class="ia-chip"><i style="background:#4F8DF7"></i>Gemini</span><span class="ia-chip"><i style="background:#D97757"></i>Claude</span></span></li>
       </ul>
     </div>

@@ -176,6 +176,10 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
 .res-produto span{font-size:.82rem;color:var(--mudo-esc)}
 .prova-pill{display:inline-flex;align-items:center;gap:.45rem;margin-top:.5rem;font-style:normal;font-size:.8rem;font-weight:600;color:#BBF7D0;background:rgba(74,222,128,.14);border:1px solid rgba(74,222,128,.4);border-radius:999px;padding:.3rem .7rem .3rem .55rem;white-space:nowrap}
 .prova-pill strong{color:#4ADE80;font-weight:800}
+.entrega-pill{display:inline-flex;align-items:center;gap:.4rem;margin-top:.4rem;font-style:normal;font-size:.8rem;font-weight:600;color:#FFD9CB;background:rgba(255,90,31,.14);border:1px solid rgba(255,90,31,.45);border-radius:999px;padding:.3rem .7rem .3rem .5rem;white-space:nowrap}
+.entrega-pill svg{width:14px;height:14px;color:var(--laranja);flex:0 0 auto}
+.entrega-pill strong{color:#fff;font-weight:700}
+.res-produto .entrega-pill span{font-size:inherit;color:inherit}
 .res-produto .txt > span{display:block}
 .linhas{display:grid;gap:.45rem;border-top:1px solid var(--linha-esc);padding-top:.9rem;font-size:.9rem}
 .linhas div{display:flex;justify-content:space-between;gap:1rem;color:var(--mudo-esc)}
@@ -210,6 +214,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
   .res-produto .txt > span{grid-column:2;grid-row:2;align-self:start}
   .res-produto .val-mob{grid-column:3;grid-row:1 / 3}
   .prova-pill{grid-column:1 / -1;grid-row:3;justify-self:stretch;justify-content:center;margin-top:.7rem;padding:.4rem .7rem}
+  .entrega-pill{grid-column:1 / -1;grid-row:4;justify-self:stretch;justify-content:center;margin-top:.4rem;padding:.4rem .7rem}
   .res-produto .val-mob{display:grid;justify-items:end;line-height:1.05;white-space:nowrap}
   .val-mob s{font-size:.72rem;color:var(--mudo-esc)}
   .val-mob b{font-family:var(--f-disp);font-weight:800;font-size:1.35rem;letter-spacing:-.03em;color:#fff}
@@ -338,13 +343,13 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
     <aside class="resumo" aria-label="Resumo do pedido">
       <div class="res-produto">
         <img src="/40prompts-estudante-medicina/img/capa.webp" alt="" width="720" height="1019">
-        <div class="txt"><b>40 Prompts para Estudar Medicina com IA</b><span>Guia prático 2026 · PDF</span><em class="prova-pill"><span class="pulso"></span><span>Todo dia, <strong class="vendas">+45</strong> estudantes compram</span></em></div>
+        <div class="txt"><b>40 Prompts para Estudar Medicina com IA</b><span>Guia prático 2026 · PDF</span><em class="prova-pill"><span class="pulso"></span><span>Todo dia, <strong class="vendas">+45</strong> estudantes compram</span></em><em class="entrega-pill"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><span><strong>Entrega imediata</strong> no seu e-mail</span></em></div>
         <span class="val-mob"><s class="de-txt">R$ 59,90</s><b class="preco-txt">R$ 27,90</b></span>
       </div>
       <div class="linhas">
         <div><span>Produto</span><span class="de-txt">R$ 59,90</span></div>
         <div class="desc"><span>Desconto de hoje</span><span id="descTxt">- R$ 32,00</span></div>
-        <div><span>Entrega</span><span>No e-mail, na hora</span></div>
+        <div><span>Entrega</span><span>Imediata, no e-mail</span></div>
         <div class="total"><span>Total</span><b class="preco-txt">R$ 27,90</b></div>
       </div>
       <ul class="res-lista">
