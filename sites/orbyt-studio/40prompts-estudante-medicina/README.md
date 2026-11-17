@@ -1,12 +1,12 @@
 # LP 40 Prompts de Medicina (Orbyt Studio para Medicina)
 
-Site estático publicado na Cloudflare (Workers & Pages, ligado a este repositório).
+Página do site da Orbyt na slug `/40prompts-estudante-medicina/`.
 
-- `index.html`: landing page.
-- `checkout/index.html`: checkout (endereço `/checkout/`).
+- `index.html`: landing page, em `orbytstudio.com.br/40prompts-estudante-medicina/`.
+- `checkout/index.html`: checkout, em `orbytstudio.com.br/40prompts-estudante-medicina/checkout/`.
 - `img/`: imagens da LP.
 
-Configuração na Cloudflare: diretório raiz `sites/prompts-medicina`, sem comando de build, pasta de saída `.` (a própria raiz).
+Os links internos usam o caminho completo com a slug, então a pasta tem de ficar na raiz do site com esse nome.
 
 Preço e preço "de": variáveis `PRECO` e `PRECO_DE` no fim de cada página. Média de vendas por dia: `VENDAS_BASE`.
 
