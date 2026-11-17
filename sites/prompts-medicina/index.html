@@ -259,7 +259,7 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
 .leva li svg{width:20px;height:20px;color:var(--laranja);margin-top:.15em}
 .leva li b{color:#fff;font-weight:600}
 .leva li span{color:var(--mudo-esc)}
-.cartao{background:var(--papel);color:var(--grafite);border-radius:24px;padding:clamp(1.3rem,2.6vw,2rem);display:grid;gap:1.1rem;box-shadow:0 40px 80px -30px rgba(0,0,0,.7)}
+.cartao{min-width:0;max-width:100%;background:var(--papel);color:var(--grafite);border-radius:24px;padding:clamp(1.3rem,2.6vw,2rem);display:grid;gap:1.1rem;box-shadow:0 40px 80px -30px rgba(0,0,0,.7)}
 .produto{display:flex;gap:1rem;align-items:center}
 .produto img{width:64px;height:auto;flex:0 0 auto;border-radius:8px;box-shadow:0 10px 20px -10px rgba(22,24,27,.6),0 0 0 1px var(--linha)}
 .produto b{display:block;font-family:var(--f-disp);font-size:1.12rem;letter-spacing:-.01em;line-height:1.2}
@@ -268,8 +268,7 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
 .preco .valor{font-family:var(--f-disp);font-weight:800;font-size:clamp(3.2rem,5.4vw,4.4rem);letter-spacing:-.045em;line-height:.9;display:flex;align-items:flex-start;gap:.12em}
 .preco .valor small{font-size:.32em;font-weight:600;letter-spacing:0;margin-top:.4em;color:var(--ardosia)}
 .selo-oferta{display:flex;justify-content:space-between;align-items:center;gap:.6rem;flex-wrap:wrap;background:var(--laranja-suave);border:1px solid #FFC9B3;border-radius:12px;padding:.55rem .8rem;font-family:var(--f-mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--laranja-2);font-weight:500}
-.selo-oferta{flex-wrap:nowrap}
-.selo-oferta span{white-space:nowrap}
+.selo-oferta{justify-content:center;text-align:center}
 .selo-oferta .prova{display:inline-flex;align-items:center;gap:.4rem;color:var(--grafite);text-transform:none;letter-spacing:.02em}
 .selo-oferta .prova i{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(22,163,74,.18)}
 .selo-oferta b{font-weight:500;color:var(--grafite)}
@@ -313,6 +312,17 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
 .rodape .logo{color:#fff;font-size:.95rem}
 .rodape .aviso-legal{flex-basis:100%;font-size:.76rem;opacity:.8;max-width:80ch}
 
+.balao-prova{position:fixed;z-index:55;left:calc(16px + env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));max-width:min(340px,calc(100vw - 32px));display:flex;align-items:center;gap:.75rem;background:var(--papel);color:var(--grafite);border:1px solid var(--linha);border-radius:16px;padding:.75rem .8rem .75rem .75rem;box-shadow:0 24px 50px -20px rgba(22,24,27,.55);transform:translateY(calc(100% + 30px));opacity:0;transition:transform .45s cubic-bezier(.2,1.2,.4,1),opacity .3s}
+.balao-prova.ver{transform:none;opacity:1}
+.balao-prova[hidden]{display:flex!important;visibility:hidden}
+.balao-prova.ver[hidden]{visibility:visible}
+.bp-icone{width:38px;height:38px;border-radius:50%;background:#E8F7EE;display:grid;place-items:center;flex:0 0 auto}
+.bp-icone i{width:10px;height:10px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(22,163,74,.6);animation:bpPulso 1.6s infinite}
+@keyframes bpPulso{0%{box-shadow:0 0 0 0 rgba(22,163,74,.5)}70%{box-shadow:0 0 0 9px rgba(22,163,74,0)}100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}}
+.balao-prova p{font-size:.86rem;line-height:1.35;color:var(--ardosia)}
+.balao-prova p b{color:var(--grafite);display:block}
+.balao-prova p b .vendas{color:var(--ok)}
+.bp-fechar{border:0;background:none;color:var(--ardosia);font-size:1.2rem;line-height:1;cursor:pointer;padding:.2rem;align-self:flex-start}
 .aviso{position:fixed;z-index:60;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--grafite);color:#fff;padding:.7rem 1.1rem;border-radius:999px;font-size:.88rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;white-space:nowrap}
 .aviso.ver{opacity:1;transform:translate(-50%,0)}
 
@@ -831,7 +841,7 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
         <img src="/img/capa.webp" alt="" width="720" height="1019">
         <div><b>40 Prompts para Estudar Medicina com IA</b><span>Guia prático 2026 · PDF</span></div>
       </div>
-      <div class="selo-oferta"><span>Oferta só hoje</span><span class="prova"><i></i><b class="vendas">+45</b> estudantes compram por dia</span></div>
+      <div class="selo-oferta"><span>Preço promocional só hoje</span></div>
       <div class="preco">
         <div><s class="de">De <span class="de-txt">R$ 59,90</span></s><div class="valor"><small>R$</small><span class="preco-num">27,90</span></div></div>
         <div class="cond">Pagamento único<br>Pix ou cartão</div>
@@ -889,6 +899,11 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
 </div>
 </main>
 
+<div class="balao-prova" id="balaoProva" role="status" aria-live="polite" hidden>
+  <span class="bp-icone"><i></i></span>
+  <p><b><span class="vendas">+45</span> estudantes de Medicina</b> garantem os 40 prompts por dia</p>
+  <button type="button" class="bp-fechar" id="bpFechar" aria-label="Fechar">×</button>
+</div>
 <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
 
 <script>
@@ -906,6 +921,17 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
   // prova social: média de vendas por dia (offline). Quando o pagamento estiver ligado, soma as vendas reais do dia.
   var VENDAS_BASE = 45;
   document.querySelectorAll(".vendas").forEach(function(el){ el.textContent = "+" + VENDAS_BASE; });
+
+  // balão de prova social: sobe aos 20 s, fica 8 s; volta aos 75 s
+  var balao = document.getElementById("balaoProva"), fechou = false, tBalao;
+  function mostraBalao(){
+    if (fechou) return;
+    balao.hidden = false; requestAnimationFrame(function(){ balao.classList.add("ver"); });
+    clearTimeout(tBalao); tBalao = setTimeout(escondeBalao, 8000);
+  }
+  function escondeBalao(){ balao.classList.remove("ver"); setTimeout(function(){ if (!balao.classList.contains("ver")) balao.hidden = true; }, 500); }
+  document.getElementById("bpFechar").addEventListener("click", function(){ fechou = true; escondeBalao(); });
+  setTimeout(mostraBalao, 20000); setTimeout(mostraBalao, 75000);
 
   // faixa de urgência: texto corrido, devagar
   var itensFaixa = ["Preço promocional só hoje", "De <s>" + fmtDe + "</s> por <b>R$ " + fmt + "</b>"];

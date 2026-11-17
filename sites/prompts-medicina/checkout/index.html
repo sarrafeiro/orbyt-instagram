@@ -160,6 +160,9 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
 .res-produto img{width:70px;height:auto;border-radius:8px;flex:0 0 auto;box-shadow:0 12px 24px -10px rgba(0,0,0,.7)}
 .res-produto b{display:block;font-family:var(--f-disp);font-size:1.08rem;color:#fff;letter-spacing:-.01em;line-height:1.2}
 .res-produto span{font-size:.82rem;color:var(--mudo-esc)}
+.prova-pill{display:inline-flex;align-items:center;gap:.45rem;margin-top:.5rem;font-style:normal;font-size:.8rem;font-weight:600;color:#BBF7D0;background:rgba(74,222,128,.14);border:1px solid rgba(74,222,128,.4);border-radius:999px;padding:.3rem .7rem .3rem .55rem;white-space:nowrap}
+.prova-pill strong{color:#4ADE80;font-weight:800}
+.res-produto .txt > span{display:block}
 .linhas{display:grid;gap:.45rem;border-top:1px solid var(--linha-esc);padding-top:.9rem;font-size:.9rem}
 .linhas div{display:flex;justify-content:space-between;gap:1rem;color:var(--mudo-esc)}
 .linhas .desc{color:#4ADE80}
@@ -186,7 +189,13 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
   .res-produto img{width:44px}
   .res-produto b{font-size:.95rem}
   .res-produto{justify-content:space-between}
-  .res-produto .txt{flex:1;min-width:0}
+  .res-produto{display:grid;grid-template-columns:auto minmax(0,1fr) auto;column-gap:.8rem;row-gap:.1rem;align-items:center}
+  .res-produto img{grid-row:1 / 3}
+  .res-produto .txt{display:contents}
+  .res-produto .txt > b{grid-column:2;grid-row:1;align-self:end}
+  .res-produto .txt > span{grid-column:2;grid-row:2;align-self:start}
+  .res-produto .val-mob{grid-column:3;grid-row:1 / 3}
+  .prova-pill{grid-column:1 / -1;grid-row:3;justify-self:stretch;justify-content:center;margin-top:.7rem;padding:.4rem .7rem}
   .res-produto .val-mob{display:grid;justify-items:end;line-height:1.05;white-space:nowrap}
   .val-mob s{font-size:.72rem;color:var(--mudo-esc)}
   .val-mob b{font-family:var(--f-disp);font-weight:800;font-size:1.35rem;letter-spacing:-.03em;color:#fff}
@@ -232,7 +241,6 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
   </div>
   <i class="res-barra" id="resBarra"></i>
 </div>
-<div class="prova-ck"><div class="wrap"><span class="pulso"></span><span><b class="vendas">+45</b> estudantes de Medicina compram por dia</span></div></div>
 <div class="faixa">Prévia · o pagamento ainda não está ligado ao Mercado Pago</div>
 
 <main>
@@ -271,7 +279,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
           <ul>
             <li><span>O preço de hoje vale só enquanto o tempo lá em cima não zerar.</span></li>
             <li><span>Amanhã ele volta para <span class="de-txt">R$ 59,90</span>.</span></li>
-            <li><span><b class="vendas">+45</b> estudantes compram por dia. Você recebe o PDF segundos depois do Pix.</span></li>
+            <li><span>Você recebe o PDF segundos depois do Pix.</span></li>
           </ul>
         </div>
         <button class="btn btn-laranja pagar" type="submit" id="btnPagar">Gerar Pix de <span class="preco-txt">R$ 27,90</span></button>
@@ -321,7 +329,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
     <aside class="resumo" aria-label="Resumo do pedido">
       <div class="res-produto">
         <img src="/img/capa.webp" alt="" width="720" height="1019">
-        <div class="txt"><b>40 Prompts para Estudar Medicina com IA</b><span>Guia prático 2026 · PDF</span></div>
+        <div class="txt"><b>40 Prompts para Estudar Medicina com IA</b><span>Guia prático 2026 · PDF</span><em class="prova-pill"><span class="pulso"></span><span><strong class="vendas">+45</strong> estudantes compram por dia</span></em></div>
         <span class="val-mob"><s class="de-txt">R$ 59,90</s><b class="preco-txt">R$ 27,90</b></span>
       </div>
       <div class="linhas">
