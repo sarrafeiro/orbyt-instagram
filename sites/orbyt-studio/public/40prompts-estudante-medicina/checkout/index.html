@@ -63,7 +63,6 @@ button,input{font:inherit}
 .prova-ck b{color:#4ADE80;font-weight:700}
 .pulso{width:8px;height:8px;border-radius:50%;background:#4ADE80;box-shadow:0 0 0 0 rgba(74,222,128,.6);animation:pul 1.6s infinite;flex:0 0 auto}
 @keyframes pul{0%{box-shadow:0 0 0 0 rgba(74,222,128,.55)}70%{box-shadow:0 0 0 9px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
-.faixa{background:#FFF4CC;color:#7A5B00;text-align:center;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:.45rem 1rem}
 
 main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
 .grade{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(1.2rem,3vw,2.2rem);align-items:start}
@@ -100,10 +99,11 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
 .painel-pg.on{display:grid;gap:.6rem}
 .pix-info{display:grid;grid-template-columns:auto 1fr;gap:.7rem;align-items:start;font-size:.88rem;color:var(--ardosia);background:var(--gelo);border-radius:12px;padding:.85rem .95rem}
 .pix-info svg{width:20px;height:20px;color:var(--ok);margin-top:.1em}
-.brick{border:1.5px dashed var(--linha);border-radius:14px;padding:.9rem;display:grid;gap:.6rem;background:#FAFBFC}
-.brick .dupla{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
-.falso{border:1.5px solid var(--linha);border-radius:10px;padding:.75rem .85rem;font-size:.92rem;color:#A0A7B0;background:var(--papel)}
-.brick p{font-size:.76rem;color:var(--ardosia);text-align:center}
+.brick-mp{min-height:120px}
+.brick-carrega{font-size:.85rem;color:var(--ardosia);text-align:center;padding:2.5rem 0}
+.brick-nota{font-size:.76rem;color:var(--ardosia);text-align:center}
+.erro-pg{display:none;font-size:.88rem;color:var(--alerta);background:#FFF1F0;border-radius:12px;padding:.7rem .9rem}
+.erro-pg.on{display:block}
 .pagar{width:100%}
 .urgencia{border:1.5px solid #FFC9B3;background:#FFF6F2;border-radius:14px;padding:.85rem 1rem;display:grid;gap:.55rem}
 .urg-preco{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap}
@@ -123,7 +123,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
 .pix-valor{font-family:var(--f-disp);font-weight:800;font-size:1.6rem;letter-spacing:-.03em;white-space:nowrap}
 .pix-corpo{display:grid;grid-template-columns:auto 1fr;gap:1.2rem;align-items:center}
 .qr{width:200px;height:200px;padding:10px;border:1px solid var(--linha);border-radius:16px;background:#fff;position:relative}
-.qr svg{width:100%;height:100%}
+.qr img{width:100%;height:100%;display:block;image-rendering:pixelated}
 .qr small{position:absolute;left:0;right:0;bottom:-1.4rem;text-align:center;font-size:.64rem;color:var(--ardosia)}
 .como{list-style:none;margin:0;padding:0;display:grid;gap:.55rem;counter-reset:p}
 .como li{display:grid;grid-template-columns:auto 1fr;gap:.6rem;font-size:.9rem;line-height:1.4;counter-increment:p}
@@ -137,7 +137,6 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
 .roda{width:16px;height:16px;border-radius:50%;border:2px solid var(--linha);border-top-color:var(--laranja);animation:gira .8s linear infinite;flex:0 0 auto}
 @keyframes gira{to{transform:rotate(360deg)}}
 .timer{font-family:var(--f-mono);font-size:.72rem;color:var(--ardosia)}
-.simular{border:1.5px dashed #C9A227;background:#FFFBEA;color:#7A5B00;border-radius:12px;padding:.7rem;font-weight:600;font-size:.85rem;cursor:pointer}
 .voltar{background:none;border:0;color:var(--ardosia);text-decoration:underline;text-underline-offset:3px;cursor:pointer;font-size:.86rem;justify-self:center}
 
 /* processando e aprovado */
@@ -241,7 +240,6 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
   </div>
   <i class="res-barra" id="resBarra"></i>
 </div>
-<div class="faixa">Prévia · o pagamento ainda não está ligado ao Mercado Pago</div>
 
 <main>
   <div class="wrap grade">
@@ -252,7 +250,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
           <h1 class="bloco-tit"><span>1</span>Seus dados</h1>
           <div class="campos">
             <div class="campo cheio"><label for="fNome">Nome completo</label><input id="fNome" autocomplete="name" placeholder="Como está no seu documento"><span class="erro-txt">Digite nome e sobrenome.</span></div>
-            <div class="campo"><label for="fEmail">E-mail</label><input id="fEmail" type="email" inputmode="email" autocomplete="email" placeholder="voce@email.com"><span class="dica">O PDF vai para este e-mail.</span><span class="erro-txt">Confira o e-mail. O PDF vai para ele.</span></div>
+            <div class="campo"><label for="fEmail">E-mail</label><input id="fEmail" type="email" inputmode="email" autocomplete="email" placeholder="voce@email.com"><span class="dica">Para o recibo e o suporte da sua compra.</span><span class="erro-txt">Confira o e-mail.</span></div>
             <div class="campo"><label for="fCpf">CPF</label><input id="fCpf" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" maxlength="14"><span class="erro-txt">CPF inválido. Confira os números.</span></div>
           </div>
         </div>
@@ -263,15 +261,12 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
             <button type="button" class="metodo" role="radio" aria-checked="false" data-m="cartao"><i></i><span><b>Cartão</b><small>Crédito, à vista</small></span></button>
           </div>
           <div class="painel-pg on" id="pgPix">
-            <div class="pix-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><p>Na próxima tela aparecem o QR Code e o código copia e cola. Pagou, o PDF chega no seu e-mail na hora.</p></div>
+            <div class="pix-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><p>Na próxima tela aparecem o QR Code e o código copia e cola. Pagou, o download do PDF libera na hora.</p></div>
           </div>
           <div class="painel-pg" id="pgCartao">
-            <div class="brick" aria-label="Espaço do formulário de cartão">
-              <div class="falso">Número do cartão</div>
-              <div class="dupla"><div class="falso">Validade (MM/AA)</div><div class="falso">Código</div></div>
-              <div class="falso">Nome impresso no cartão</div>
-              <p>Aqui entra o formulário seguro do Mercado Pago. O número do cartão não passa pelo nosso site.</p>
-            </div>
+            <div id="cardPaymentBrick_container" class="brick-mp"><p class="brick-carrega">Carregando o formulário seguro do Mercado Pago...</p></div>
+            <p class="brick-nota">O número do cartão vai direto para o Mercado Pago. Não passa pelo nosso site.</p>
+            <p class="erro-pg" id="erroCartao" role="alert"></p>
           </div>
         </div>
         <div class="urgencia">
@@ -279,7 +274,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
           <ul>
             <li><span>O preço de hoje vale só enquanto o tempo lá em cima não zerar.</span></li>
             <li><span>Amanhã ele volta para <span class="de-txt">R$ 59,90</span>.</span></li>
-            <li><span>Você recebe o PDF segundos depois do Pix.</span></li>
+            <li><span>O download do PDF libera segundos depois do pagamento.</span></li>
           </ul>
         </div>
         <button class="btn btn-laranja pagar" type="submit" id="btnPagar">Gerar Pix de <span class="preco-txt">R$ 27,90</span></button>
@@ -293,7 +288,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
           <span class="pix-valor preco-txt">R$ 27,90</span>
         </div>
         <div class="pix-corpo">
-          <div class="qr" id="qr"><small>QR Code ilustrativo</small></div>
+          <div class="qr" id="qr"></div>
           <ol class="como">
             <li>Abra o app do seu banco e entre na área Pix.</li>
             <li>Escolha "Ler QR Code" ou "Pix copia e cola".</li>
@@ -302,7 +297,6 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
         </div>
         <div class="copia"><input id="pixCodigo" readonly aria-label="Código Pix copia e cola"><button type="button" id="copiarPix">Copiar código</button></div>
         <div class="status"><span class="esp"><i class="roda"></i>Aguardando pagamento</span><span class="timer">Expira em <b id="timer">30:00</b></span></div>
-        <button type="button" class="simular" id="simular">Prévia: simular pagamento aprovado</button>
         <button type="button" class="voltar" data-voltar>Voltar e trocar a forma de pagamento</button>
       </div>
 
@@ -316,7 +310,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
         <div class="centro">
           <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
           <h2>Pagamento aprovado!</h2>
-          <p>Enviamos o PDF para <b id="emailEco">seu e-mail</b>. Se não aparecer em alguns minutos, olhe o spam e as promoções.</p>
+          <p>Seu PDF está liberado. Baixe agora e salve no celular ou no computador.</p>
           <a class="btn btn-escuro" href="#" id="baixar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Baixar o PDF agora</a>
           <div class="prox">
             <b>Próximo passo</b>
@@ -335,7 +329,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
       <div class="linhas">
         <div><span>Produto</span><span class="de-txt">R$ 59,90</span></div>
         <div class="desc"><span>Desconto de hoje</span><span id="descTxt">- R$ 32,00</span></div>
-        <div><span>Entrega</span><span>No e-mail, na hora</span></div>
+        <div><span>Entrega</span><span>Download na hora</span></div>
         <div class="total"><span>Total</span><b class="preco-txt">R$ 27,90</b></div>
       </div>
       <ul class="res-lista">
@@ -350,6 +344,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
 <footer class="rodape">Ao comprar, você concorda com os termos de uso. Dúvidas sobre a compra: <a href="#">fale com a gente</a>.</footer>
 <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
 
+<script src="https://sdk.mercadopago.com/js/v2"></script>
 <script>
 (function(){
   "use strict";
@@ -431,32 +426,153 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
   function marca(id, erro){ document.getElementById(id).parentNode.classList.toggle("erro", erro); return !erro; }
   ["fNome","fEmail","fCpf"].forEach(function(id){ document.getElementById(id).addEventListener("input", function(){ this.parentNode.classList.remove("erro"); }); });
 
-  var email = "";
-  document.getElementById("eForm").addEventListener("submit", function(e){
-    e.preventDefault();
+  // ===== PAGAMENTO (Mercado Pago, via servidor da Orbyt em /api/mp) =====
+  var MP_PUBLIC_KEY = "APP_USR-70ff7ed5-b845-4f0f-8230-1ca7a783e1fd";
+  var CHAVE_PEDIDO = "ck40Pedido";
+  var ocupado = false, pedido = null, tPoll, linkPdf = "";
+  var erroCartao = document.getElementById("erroCartao");
+
+  function dadosComprador(){
     var nome = document.getElementById("fNome").value.trim();
-    email = document.getElementById("fEmail").value.trim();
+    var email = document.getElementById("fEmail").value.trim();
     var ok = marca("fNome", nome.split(/\s+/).length < 2);
     ok = marca("fEmail", !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) && ok;
     ok = marca("fCpf", !cpfOk(fCpf.value)) && ok;
-    if (!ok){ var e1 = document.querySelector(".campo.erro input"); if (e1) e1.focus(); return; }
-    document.getElementById("emailEco").textContent = email;
-    // AQUI entra a chamada ao servidor (Cloudflare Worker) que cria o pagamento no Mercado Pago.
-    if (metodo === "pix"){
-      desenharQr();
-      document.getElementById("pixCodigo").value = "00020126PREVIA-PIX-ILUSTRATIVO-" + Date.now().toString(36).toUpperCase();
-      iniciarTimer(); ir("ePix");
-    } else {
-      ir("eProc"); setTimeout(aprovado, 1600);
-    }
-  });
-  document.querySelectorAll("[data-voltar]").forEach(function(b){ b.addEventListener("click", function(){ clearInterval(tTimer); ir("eForm"); }); });
-  document.getElementById("simular").addEventListener("click", aprovado);
-  function aprovado(){
-    clearInterval(tTimer); ir("eOk");
-    px("Purchase", Object.assign({metodo: metodo, origem: origem}, produto));
+    if (!ok){ var e1 = document.querySelector(".campo.erro input"); if (e1) e1.focus(); return null; }
+    return {nome: nome, email: email, cpf: fCpf.value.replace(/\D/g, "")};
   }
-  document.getElementById("baixar").addEventListener("click", function(e){ e.preventDefault(); avisar("Prévia: aqui abre o PDF"); });
+  function api(caminho, corpo){
+    return fetch(caminho, corpo ? {method: "POST", headers: {"content-type": "application/json"}, body: JSON.stringify(corpo)} : {})
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(d){ d._http = r.status; return d; }); });
+  }
+  function travar(sim, texto){
+    ocupado = sim; btnPagar.disabled = sim;
+    if (sim) btnPagar.textContent = texto || "Aguarde...";
+    else btnPagar.textContent = metodo === "pix" ? "Gerar Pix de " + precoTxt : "Pagar " + precoTxt + " no cartão";
+  }
+  function guardar(p){ try { localStorage.setItem(CHAVE_PEDIDO, JSON.stringify(p)); } catch(e){} }
+  function esquecer(){ try { localStorage.removeItem(CHAVE_PEDIDO); } catch(e){} }
+
+  document.getElementById("eForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    if (ocupado) return;
+    erroCartao.classList.remove("on");
+    var c = dadosComprador(); if (!c) return;
+    if (metodo === "pix") pagarPix(c); else pagarCartao(c);
+  });
+
+  function pagarPix(c){
+    travar(true, "Gerando o Pix...");
+    api("/api/mp/pix", c).then(function(d){
+      travar(false);
+      if (!d.id || !d.qr_code){ avisar(d.erro || "Não deu para gerar o Pix. Tente de novo."); return; }
+      pedido = {id: d.id, metodo: "pix", qr: d.qr_code, img: d.qr_code_base64, criado: Date.now()};
+      guardar(pedido); mostrarPix();
+    }).catch(function(){ travar(false); avisar("Sem conexão. Tente de novo."); });
+  }
+
+  function mostrarPix(){
+    var qr = document.getElementById("qr");
+    qr.innerHTML = pedido.img ? '<img alt="QR Code do Pix" src="data:image/png;base64,' + pedido.img + '">' : "";
+    document.getElementById("pixCodigo").value = pedido.qr;
+    iniciarTimer(Math.max(0, 1800 - Math.floor((Date.now() - pedido.criado) / 1000)));
+    ir("ePix"); acompanhar();
+  }
+
+  function acompanhar(){
+    clearTimeout(tPoll);
+    if (!pedido) return;
+    api("/api/mp/status?id=" + encodeURIComponent(pedido.id)).then(function(d){
+      if (d.status === "processed" && d.download){ aprovado(d.download); return; }
+      if (d.status === "expired" || d.status === "canceled" || d.status === "failed"){
+        esquecer(); clearInterval(tTimer); pedido = null; ir("eForm"); avisar("O Pix expirou. Gere outro."); return;
+      }
+      tPoll = setTimeout(acompanhar, 4000);
+    }).catch(function(){ tPoll = setTimeout(acompanhar, 6000); });
+  }
+
+  // cartão: formulário seguro (Brick) do Mercado Pago
+  var brick = null, brickEmail = null, criandoBrick = false;
+  function montarBrick(){
+    if (criandoBrick || typeof window.MercadoPago !== "function") return;
+    var em = document.getElementById("fEmail").value.trim();
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em);
+    if (brick && (brickEmail === em || !emailOk)) return;
+    criandoBrick = true;
+    var antes = brick ? brick.unmount() : null;
+    Promise.resolve(antes).then(function(){
+      var mp = new window.MercadoPago(MP_PUBLIC_KEY, {locale: "pt-BR"});
+      var conf = {
+        initialization: {amount: PRECO},
+        customization: {visual: {hidePaymentButton: true, hideFormTitle: true, style: {theme: "default", customVariables: {baseColor: "#16181B", borderRadiusMedium: "12px", borderRadiusLarge: "14px"}}}, paymentMethods: {maxInstallments: 1, types: {excluded: ["debit_card"]}}},
+        callbacks: {
+          onReady: function(){ criandoBrick = false; },
+          onSubmit: function(){ return Promise.resolve(); },
+          onError: function(err){ criandoBrick = false; try { console.log("brick", err); } catch(e){} }
+        }
+      };
+      if (emailOk) conf.initialization.payer = {email: em};
+      brickEmail = emailOk ? em : "";
+      return mp.bricks().create("cardPayment", "cardPaymentBrick_container", conf);
+    }).then(function(ctrl){ brick = ctrl; criandoBrick = false; })
+      .catch(function(){ criandoBrick = false; document.getElementById("cardPaymentBrick_container").innerHTML = '<p class="brick-carrega">Não carregou o formulário do cartão. Recarregue a página ou pague com Pix.</p>'; });
+  }
+  document.querySelectorAll('.metodo[data-m="cartao"]').forEach(function(b){ b.addEventListener("click", montarBrick); });
+  document.getElementById("fEmail").addEventListener("blur", function(){ if (metodo === "cartao") montarBrick(); });
+
+  function pagarCartao(c){
+    if (!brick){ montarBrick(); avisar("Carregando o formulário do cartão..."); return; }
+    travar(true, "Conferindo o cartão...");
+    brick.getFormData().then(function(f){
+      if (!f || !f.token){ travar(false); avisar("Confira os dados do cartão."); return; }
+      var extra = {};
+      try { extra = brick.getAdditionalData ? brick.getAdditionalData() : {}; } catch(e){}
+      return Promise.resolve(extra).then(function(ad){
+        ad = ad || {};
+        ir("eProc");
+        return api("/api/mp/cartao", Object.assign({}, c, {
+          token: f.token, payment_method_id: f.payment_method_id, issuer_id: f.issuer_id,
+          payment_type_id: ad.paymentTypeId || f.payment_type_id || "credit_card"
+        }));
+      }).then(function(d){
+        travar(false);
+        if (!d) return;
+        if (d.status === "processed" && d.download){ aprovado(d.download); return; }
+        if ((d.status === "processing" || d.status === "action_required") && d.id){
+          pedido = {id: d.id, metodo: "cartao", criado: Date.now()}; guardar(pedido); acompanhar(); return;
+        }
+        ir("eForm");
+        erroCartao.textContent = d.motivo || d.erro || "O cartão foi recusado. Tente outro cartão ou pague com Pix.";
+        erroCartao.classList.add("on");
+        brickEmail = null; brick = null; montarBrick();
+      });
+    }).catch(function(){ travar(false); ir("eForm"); avisar("Confira os dados do cartão."); });
+  }
+
+  document.querySelectorAll("[data-voltar]").forEach(function(b){ b.addEventListener("click", function(){ clearInterval(tTimer); clearTimeout(tPoll); ir("eForm"); }); });
+
+  function aprovado(link){
+    clearInterval(tTimer); clearTimeout(tPoll);
+    linkPdf = link || "";
+    document.getElementById("baixar").href = linkPdf;
+    ir("eOk");
+    var m = (pedido && pedido.metodo) || metodo;
+    var jaContou = false;
+    try { jaContou = sessionStorage.getItem("ck40Comprou") === (pedido ? pedido.id : "c"); sessionStorage.setItem("ck40Comprou", pedido ? pedido.id : "c"); } catch(e){}
+    if (!jaContou) px("Purchase", Object.assign({metodo: m, origem: origem}, produto));
+    try { clearInterval(tRel); reserva.style.display = "none"; } catch(e){}
+    try { localStorage.setItem(CHAVE_PEDIDO, JSON.stringify({id: pedido ? pedido.id : "", metodo: m, download: linkPdf, criado: Date.now()})); } catch(e){}
+  }
+
+  // voltou para a página? retoma o pedido em andamento ou mostra o download de novo
+  try {
+    var salvo = JSON.parse(localStorage.getItem(CHAVE_PEDIDO) || "null");
+    if (salvo && salvo.download && Date.now() - salvo.criado < 7 * 864e5){ pedido = salvo; aprovado(salvo.download); }
+    else if (salvo && salvo.id && Date.now() - salvo.criado < 1800e3){
+      pedido = salvo;
+      if (salvo.metodo === "pix" && salvo.qr) mostrarPix(); else { ir("eProc"); acompanhar(); }
+    } else if (salvo) esquecer();
+  } catch(e){}
 
   var bCopia = document.getElementById("copiarPix");
   bCopia.addEventListener("click", function(){
@@ -466,22 +582,12 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
     catch(err){ document.getElementById("pixCodigo").select(); avisar("Código selecionado"); }
   });
 
-  function desenharQr(){
-    var n = 29, cel = "", semente = 11;
-    function rnd(){ semente = (semente * 9301 + 49297) % 233280; return semente / 233280; }
-    function olho(x, y){ return '<rect x="' + x + '" y="' + y + '" width="7" height="7"/><rect x="' + (x+1) + '" y="' + (y+1) + '" width="5" height="5" fill="#fff"/><rect x="' + (x+2) + '" y="' + (y+2) + '" width="3" height="3"/>'; }
-    for (var y = 0; y < n; y++) for (var x = 0; x < n; x++){
-      var canto = (x < 8 && y < 8) || (x > n - 9 && y < 8) || (x < 8 && y > n - 9);
-      if (!canto && rnd() > .52) cel += '<rect x="' + x + '" y="' + y + '" width="1" height="1"/>';
-    }
-    var qr = document.getElementById("qr");
-    qr.innerHTML = '<svg viewBox="0 0 ' + n + ' ' + n + '" shape-rendering="crispEdges" aria-hidden="true"><g fill="#16181B">' + cel + olho(0,0) + olho(n-7,0) + olho(0,n-7) + '</g></svg><small>QR Code ilustrativo</small>';
-  }
   var tTimer;
-  function iniciarTimer(){
-    var s = 30 * 60, el = document.getElementById("timer");
-    el.textContent = "30:00"; clearInterval(tTimer);
-    tTimer = setInterval(function(){ s--; if (s < 0){ clearInterval(tTimer); return; } el.textContent = String(Math.floor(s / 60)).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0"); }, 1000);
+  function iniciarTimer(seg){
+    var s = typeof seg === "number" ? seg : 30 * 60, el = document.getElementById("timer");
+    function pinta(){ el.textContent = String(Math.floor(s / 60)).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0"); }
+    pinta(); clearInterval(tTimer);
+    tTimer = setInterval(function(){ s--; if (s < 0){ clearInterval(tTimer); return; } pinta(); }, 1000);
   }
 })();
 </script>
