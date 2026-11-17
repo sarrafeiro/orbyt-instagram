@@ -26,6 +26,10 @@ export default {
       if (p === "/api/mp/status" && req.method === "GET") return await status(env, url, ctx);
       if (p === "/api/mp/webhook") return await webhook(req, env, url, ctx);
       if (p === "/api/download" && req.method === "GET") return await download(env, url);
+      if (p === "/api/saude/capi") {
+        const r = await fetch("https://bzr.openai.com/v1/events?pid=" + OA_PIXEL, { method: "POST", headers: { authorization: "Bearer " + env.OPENAI_CAPI_KEY, "content-type": "application/json" }, body: JSON.stringify({ validate_only: true, events: [{ id: "teste-validacao-1", type: "page_viewed", timestamp_ms: Date.now(), source_url: OA_ORIGEM + "/40prompts-estudante-medicina/", action_source: "web", user: { countries: ["BR"] }, data: { type: "contents" } }] }) });
+        return json({ status: r.status, resposta: (await r.text()).slice(0, 800) });
+      }
       if (p === "/api/saude") return await saude(env);
       if (p === "/api/oa/evento" && req.method === "POST") return await eventoOa(req, env, ctx);
       if (p.startsWith("/api/")) return json({ erro: "rota não existe" }, 404);
