@@ -322,7 +322,8 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
 .balao-prova p{font-size:.86rem;line-height:1.35;color:var(--ardosia)}
 .balao-prova p b{color:var(--grafite);display:block}
 .balao-prova p b .vendas{color:var(--ok)}
-.bp-fechar{border:0;background:none;color:var(--ardosia);font-size:1.2rem;line-height:1;cursor:pointer;padding:.2rem;align-self:flex-start}
+.bp-fechar{border:1px solid var(--linha);background:var(--gelo);color:var(--grafite);width:30px;height:30px;border-radius:50%;font-size:1.1rem;line-height:1;cursor:pointer;flex:0 0 auto;align-self:flex-start}
+@media (max-width:640px){.balao-prova{left:12px;right:12px;max-width:none;bottom:calc(12px + env(safe-area-inset-bottom,0px));padding:.9rem}.balao-prova p{font-size:.9rem}}
 .aviso{position:fixed;z-index:60;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--grafite);color:#fff;padding:.7rem 1.1rem;border-radius:999px;font-size:.88rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;white-space:nowrap}
 .aviso.ver{opacity:1;transform:translate(-50%,0)}
 
@@ -901,7 +902,7 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
 
 <div class="balao-prova" id="balaoProva" role="status" aria-live="polite" hidden>
   <span class="bp-icone"><i></i></span>
-  <p><b><span class="vendas">+45</span> estudantes de Medicina</b> garantem os 40 prompts por dia</p>
+  <p><b>Todo dia, <span class="vendas">+45</span> estudantes de Medicina</b> garantem o pacote dos 40 prompts.</p>
   <button type="button" class="bp-fechar" id="bpFechar" aria-label="Fechar">×</button>
 </div>
 <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
@@ -922,16 +923,15 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
   var VENDAS_BASE = 45;
   document.querySelectorAll(".vendas").forEach(function(el){ el.textContent = "+" + VENDAS_BASE; });
 
-  // balão de prova social: sobe aos 20 s, fica 8 s; volta aos 75 s
+  // balão de prova social: sobe aos 20 s e fica até a pessoa fechar
   var balao = document.getElementById("balaoProva"), fechou = false, tBalao;
   function mostraBalao(){
     if (fechou) return;
     balao.hidden = false; requestAnimationFrame(function(){ balao.classList.add("ver"); });
-    clearTimeout(tBalao); tBalao = setTimeout(escondeBalao, 8000);
   }
   function escondeBalao(){ balao.classList.remove("ver"); setTimeout(function(){ if (!balao.classList.contains("ver")) balao.hidden = true; }, 500); }
   document.getElementById("bpFechar").addEventListener("click", function(){ fechou = true; escondeBalao(); });
-  setTimeout(mostraBalao, 20000); setTimeout(mostraBalao, 75000);
+  setTimeout(mostraBalao, 20000);
 
   // faixa de urgência: texto corrido, devagar
   var itensFaixa = ["Preço promocional só hoje", "De <s>" + fmtDe + "</s> por <b>R$ " + fmt + "</b>"];
