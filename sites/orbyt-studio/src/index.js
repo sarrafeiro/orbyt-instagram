@@ -28,7 +28,7 @@ export default {
       if (p === "/api/download" && req.method === "GET") return await download(env, url);
       if (p === "/api/saude/capi") {
         const r = await fetch("https://bzr.openai.com/v1/events?pid=" + OA_PIXEL, { method: "POST", headers: { authorization: "Bearer " + env.OPENAI_CAPI_KEY, "content-type": "application/json" }, body: JSON.stringify({ validate_only: true, events: [{ id: "teste-validacao-1", type: "page_viewed", timestamp_ms: Date.now(), source_url: OA_ORIGEM + "/40prompts-estudante-medicina/", action_source: "web", user: { countries: ["BR"] }, data: { type: "contents" } }] }) });
-        return json({ status: r.status, resposta: (await r.text()).slice(0, 800) });
+        return json({ validacao: { status: r.status, resposta: (await r.text()).slice(0, 800) }, ultimo_envio_real: env.PEDIDOS ? await env.PEDIDOS.get("diag:capi", "json") : null });
       }
       if (p === "/api/saude") return await saude(env);
       if (p === "/api/oa/evento" && req.method === "POST") return await eventoOa(req, env, ctx);
@@ -256,7 +256,9 @@ async function capi(env, eventos) {
     headers: { authorization: "Bearer " + env.OPENAI_CAPI_KEY, "content-type": "application/json" },
     body: JSON.stringify({ validate_only: false, events: eventos }),
   });
-  if (!r.ok) console.log("capi falhou", r.status, (await r.text()).slice(0, 500));
+  const txt = (await r.text()).slice(0, 500);
+  if (!r.ok) console.log("capi falhou", r.status, txt);
+  try { if (env.PEDIDOS) await env.PEDIDOS.put("diag:capi", JSON.stringify({ quando: new Date().toISOString(), status: r.status, resposta: txt, tipos: eventos.map((e) => e.type) }), { expirationTtl: 60 * 60 * 24 * 7 }); } catch (e) {}
   return r.ok;
 }
 
