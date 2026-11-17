@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Modelo 3 de Odontologia · Orbyt Studio</title>
+<meta property="og:title" content="Modelo 3 de Odontologia · Orbyt Studio">
+<meta property="og:description" content="Veja o site pronto e peça o seu: no ar em até 2 dias úteis.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://orbytstudio.com.br/img/og-orbyt.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Orbyt Studio: seu site no ar em até 2 dias úteis">
+<meta property="og:site_name" content="Orbyt Studio">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2316181B'/%3E%3Ccircle cx='16' cy='16' r='8.5' fill='none' stroke='%23F1F3F5' stroke-width='3'/%3E%3Ccircle cx='22.8' cy='10' r='4.3' fill='%2316181B'/%3E%3Ccircle cx='22.8' cy='10' r='2.8' fill='%23FF5A1F'/%3E%3C/svg%3E">
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','2017780665599678');fbq('track','PageView');</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* Layout: editorial em duas colunas no desktop, coluna única no celular; fotos grandes, muito respiro, um só acento. */
+:root{
+  --bone:#F6F2EB;      /* fundo */
+  --paper:#FFFDF9;     /* superfície clara */
+  --ink:#1C1F1D;       /* texto */
+  --ink-2:#5B625E;     /* texto secundário */
+  --line:#E2DBD0;      /* linhas */
+  --moss:#1F4D3A;      /* acento principal */
+  --moss-2:#2E6B52;    /* acento hover */
+  --moss-soft:#E6EEE9; /* acento diluído */
+  --wa:#25D366;        /* WhatsApp */
+  --display:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bone);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+figure{margin:0}
+a{color:inherit}
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.js .rv.in{opacity:1;transform:none}
+.js .rv.d1{transition-delay:.1s}
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--moss);z-index:70;transition:width .1s linear}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.05;margin:0;letter-spacing:-.025em}
+h1{font-size:clamp(2.3rem,5.4vw,4.2rem);letter-spacing:-.035em;font-weight:800}
+h2{font-size:clamp(1.75rem,3.4vw,2.7rem)}
+h3{font-size:1.25rem;letter-spacing:-.015em}
+p{margin:0}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+.eyebrow{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--moss);font-weight:700;background:var(--moss-soft);padding:.35rem .7rem;border-radius:999px;width:max-content;max-width:100%}
+.lead{font-size:1.02rem;color:var(--ink-2);max-width:60ch;line-height:1.6}
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.9rem 1.4rem;border-radius:12px;font-weight:700;text-decoration:none;border:1px solid transparent;transition:transform .15s,background .15s;cursor:pointer;font-family:var(--body);font-size:1rem}
+.btn:hover{transform:translateY(-1px)}
+.btn:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--moss-2);outline-offset:3px}
+.btn-primary{background:var(--moss);color:#fff}
+.btn-primary:hover{background:var(--moss-2)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{background:var(--paper)}
+.btn-wa{background:var(--wa);color:#073b1d}
+.btn-wa:hover{background:#1fc45b}
+section{padding-block:clamp(3.2rem,7vw,5.5rem)}
+.sec-head{display:grid;gap:.8rem;max-width:860px;margin-bottom:clamp(1.6rem,4vw,2.6rem);justify-items:start}
+
+/* ---------- foto com fallback ---------- */
+.ph{position:relative;overflow:hidden;background:linear-gradient(145deg,#E9E2D6,#D6CCBC);border-radius:14px}
+.ph img{width:100%;height:100%;object-fit:cover}
+.ph .fallback{display:none;position:absolute;inset:0;place-items:center;text-align:center;padding:1.5rem;color:#6B5E4D;font-size:.9rem;line-height:1.4}
+.ph .fallback b{display:block;font-family:var(--display);font-size:1.1rem;font-weight:700;color:#4A4036;margin-bottom:.25rem}
+.ph.is-broken img{display:none}.ph.is-broken .fallback{display:grid}
+.ph .fallback svg{width:38px;height:38px;margin:0 auto .6rem;opacity:.5}
+
+/* ---------- header ---------- */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:rgba(246,242,235,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:72px}
+.logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.logo-mark{width:38px;height:38px;border-radius:10px;background:var(--moss);display:grid;place-items:center;color:#fff;font-family:var(--display);font-size:1.1rem;font-weight:800}
+.logo-name{font-family:var(--display);font-size:1.15rem;font-weight:800;line-height:1;letter-spacing:-.02em}
+.logo-sub{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.nav-links{display:flex;gap:1.6rem;list-style:none;margin:0;padding:0}
+.nav-links a{text-decoration:none;font-size:.92rem;font-weight:500;color:var(--ink-2)}
+.nav-links a:hover{color:var(--moss)}
+.nav .btn{padding:.7rem 1.2rem;font-size:.9rem}
+.menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--ink);width:42px;height:42px;border-radius:50%;cursor:pointer;place-items:center}
+.menu-btn svg{width:20px;height:20px}
+.mnav{position:fixed;inset:0;z-index:39;background:var(--bone);color:var(--ink);display:none;flex-direction:column;justify-content:center;gap:1.3rem;padding:6rem 2rem 2rem;text-align:center}
+.mnav.open{display:flex}
+.mnav a{font-family:var(--display);font-size:2rem;text-decoration:none;color:var(--ink)}
+.mnav .btn{font-family:var(--body);font-size:1rem;align-self:center;margin-top:1rem}
+@media (max-width:900px){.nav-links{display:none}.menu-btn{display:grid}.nav .btn.btn-primary{display:none}.nav{height:64px}}
+
+/* ---------- hero ---------- */
+.hero{padding-block:clamp(6rem,12vh,8rem) 0}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.hero-copy{display:grid;gap:1.3rem;justify-items:start}
+.hero h1 em{font-style:normal;color:var(--moss)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.8rem}
+.hero-note{display:flex;align-items:center;gap:.8rem;color:var(--ink-2);font-size:.9rem}
+.hero-clients{display:none}
+.stars{color:#C9A227;letter-spacing:.05em}
+.hero-photo{aspect-ratio:4/5;border-radius:28px;max-width:100%}
+.hero-photo-wrap{position:relative}
+.hero-badge{position:absolute;left:-14px;bottom:36px;background:var(--paper);border:1px solid var(--line);padding:.9rem 1.1rem;border-radius:14px;box-shadow:0 18px 40px -24px rgba(28,31,29,.35);display:grid;gap:.1rem;min-width:170px}
+.hero-badge b{font-family:var(--display);font-size:1.8rem;font-weight:800;line-height:1;color:var(--moss);letter-spacing:-.03em}
+.hero-badge span{font-size:.78rem;color:var(--ink-2)}
+@media (max-width:900px){
+  .hero{position:relative;overflow:hidden;color:#fff;padding-top:0}
+  .hero .wrap.hero-grid{grid-template-columns:1fr;width:100%;position:relative}
+  .hero-photo-wrap{position:absolute;inset:0;z-index:0}
+  .hero-photo{aspect-ratio:auto;height:100%;border-radius:0}
+  .hero-photo img{filter:brightness(.55) saturate(.8)}
+  .hero-photo-wrap::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,31,29,.55) 0%,rgba(28,31,29,.25) 40%,rgba(28,31,29,.85) 100%)}
+  .hero-badge{display:none}
+  .hero-copy{position:relative;z-index:1;text-align:center;justify-items:center;padding:7rem 16px 2.6rem;gap:1.1rem}
+  .hero-copy .eyebrow{color:#fff;background:rgba(255,255,255,.16);width:auto;max-width:100%;white-space:normal;text-align:center;line-height:1.4}
+  .hero-copy{min-width:0;max-width:100%}
+  .hero-copy > *{max-width:100%;min-width:0}
+  .hero h1{color:#fff;font-size:clamp(2.2rem,9vw,2.9rem)}
+  .hero h1 em{color:#A9D1BD}
+  .hero-copy .lead{color:rgba(255,255,255,.88);max-width:none;font-size:1.02rem}
+  .hero-actions{justify-content:center;width:100%}
+  .hero-actions .btn{width:100%;justify-content:center;max-width:420px}
+  .hero-actions .btn-ghost{color:#fff;border-color:rgba(255,255,255,.45)}
+  .hero-note{justify-content:center;color:rgba(255,255,255,.85)}
+  .trust{margin-top:0;color:var(--ink)}
+  .hero-photo .fallback{opacity:.25}
+}
+
+/* ---------- faixa de confiança ---------- */
+.trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:clamp(3rem,6vw,5rem);background:var(--paper)}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;padding-block:1.6rem}
+.trust-item{display:grid;gap:.15rem;padding-inline:1rem;border-left:1px solid var(--line)}
+.trust-item:first-child{border-left:0;padding-left:0}
+.trust-item b{font-family:var(--display);font-size:1.7rem;font-weight:800;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.trust-item span{font-size:.82rem;color:var(--ink-2)}
+@media (max-width:720px){.trust-grid{grid-template-columns:1fr 1fr;row-gap:1.2rem;text-align:center}.trust-item{padding-inline:.6rem;border-left:0}.trust-item:nth-child(odd){border-right:1px solid var(--line)}}
+
+/* ---------- sobre ---------- */
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2rem,5vw,5rem);align-items:center}
+.about-photos{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.about-photos .ph:first-child{grid-column:1/-1;aspect-ratio:16/10}
+.about-photos .ph{aspect-ratio:1}
+.about-copy{display:grid;gap:1.3rem}
+.about-copy .sig{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--moss);border-left:3px solid var(--moss);padding-left:1rem}
+.about-list{display:grid;gap:.7rem;list-style:none;padding:0;margin:0}
+.about-list li{display:flex;gap:.7rem;align-items:flex-start;color:var(--ink-2)}
+.about-list li::before{content:"";flex:0 0 8px;height:8px;border-radius:50%;background:var(--moss);margin-top:.55rem}
+.readmore{display:none}
+@media (max-width:900px){
+  .about-copy .lead{font-size:1rem}
+  .about-copy .more{display:none}.about-copy.open .more{display:block}
+  .readmore{display:inline;background:none;border:0;padding:0;color:var(--moss);font:600 .9rem var(--body);text-decoration:underline;text-underline-offset:4px;cursor:pointer;justify-self:start}
+  .about-copy.open .readmore{display:none}
+  .about-list{display:grid;gap:0;margin-top:.4rem;counter-reset:dif;border-top:1px solid var(--line)}
+  .about-list li{display:grid;grid-template-columns:2.6rem 1fr;gap:.9rem;align-items:start;padding:1rem 0;border-bottom:1px solid var(--line);color:var(--ink);font-size:.98rem;line-height:1.45}
+  .about-list li::before{content:"0" counter(dif);counter-increment:dif;display:block;width:auto;height:auto;border-radius:0;background:none;margin:0;font-family:var(--display);font-size:1.9rem;line-height:1;color:var(--moss);font-weight:500}
+  .about-photos{grid-template-columns:1fr 1fr}
+  .about-photos .ph:first-child{aspect-ratio:16/9}
+}
+@media (max-width:900px){.about-grid{grid-template-columns:1fr}}
+
+/* ---------- dentista ---------- */
+.doc{background:var(--moss);color:#F3F1EA}
+.doc .eyebrow{color:#A9D1BD}
+.doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:center}
+.doc-photo{aspect-ratio:4/5;border-radius:28px;background:linear-gradient(145deg,#2E6B52,#173B2C)}
+.doc-photo .fallback{color:#CFE3D8}.doc-photo .fallback b{color:#fff}
+.doc-copy{display:grid;gap:1.2rem}
+.doc-copy p{color:#D9E5DE}
+.cred{display:grid;gap:.6rem;list-style:none;padding:0;margin:0;border-top:1px solid rgba(255,255,255,.18);padding-top:1.2rem}
+.cred li{display:grid;grid-template-columns:auto 1fr;gap:.8rem;font-size:.95rem;color:#D9E5DE}
+.cred li span:first-child{font-family:var(--display);font-size:.85rem;font-weight:700;color:#A9D1BD;min-width:3rem}
+@media (max-width:900px){.doc-grid{grid-template-columns:1fr}.doc-photo{max-width:420px}}
+
+/* ---------- tratamentos (carrossel com foto) ---------- */
+.treat-head{display:flex;justify-content:space-between;align-items:end;gap:1rem;flex-wrap:wrap}
+.treat-nav{display:flex;gap:.5rem}
+.treat-nav button{width:46px;height:46px;border-radius:50%;border:1px solid var(--moss);background:transparent;cursor:pointer;display:grid;place-items:center;color:var(--moss);transition:background .15s,color .15s}
+.treat-nav button:hover{background:var(--moss);color:#fff}
+.treat-nav svg{width:18px;height:18px}
+.rails{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:.3rem .2rem 1rem;cursor:grab}
+.rails::-webkit-scrollbar{display:none}
+.rails.drag{cursor:grabbing;scroll-snap-type:none}
+.rail{display:contents}
+.tcard{flex:0 0 calc((100% - 2rem)/3);scroll-snap-align:start;position:relative;aspect-ratio:3/4;border-radius:20px;overflow:hidden;color:#fff;text-decoration:none;background:var(--moss);user-select:none}
+.tcard .ph{position:absolute;inset:0;border-radius:0;transition:transform .6s}
+.tcard:hover .ph{transform:scale(1.05)}
+.tcard .ph img{filter:saturate(.85)}
+.tcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,31,29,0) 35%,rgba(28,31,29,.9) 100%)}
+.tcard-copy{position:absolute;inset:auto 0 0 0;z-index:2;padding:1.3rem;display:grid;gap:.4rem}
+.tcard-copy small{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#A9D1BD;font-weight:700}
+.tcard-copy h3{color:#fff;font-size:1.35rem}
+.tcard-copy p{color:rgba(255,255,255,.85);font-size:.9rem;max-height:0;overflow:hidden;opacity:0;transition:max-height .4s,opacity .3s}
+.tcard:hover .tcard-copy p,.tcard.on .tcard-copy p{max-height:120px;opacity:1}
+.tcard-copy span{font-size:.85rem;font-weight:600;color:#fff;display:inline-flex;gap:.4rem;align-items:center;margin-top:.2rem}
+.tcard-copy span::after{content:"→";transition:translate .2s}
+.tcard:hover .tcard-copy span::after{translate:4px 0}
+.rail-dots{display:flex;justify-content:center;gap:.5rem;margin-top:.4rem}
+.rail-dots i{width:6px;height:6px;border-radius:50%;background:var(--line);transition:background .2s,width .2s}
+.rail-dots i.on{background:var(--moss);width:18px;border-radius:3px}
+@media (max-width:900px){.tcard .tcard-copy p{max-height:120px;opacity:1}}
+
+/* ---------- tecnologia ---------- */
+.tech-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,5vw,5rem);align-items:center}
+.tech-photo{aspect-ratio:16/11}
+.tech-list{display:grid;gap:1.4rem}
+.tech-item{display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start}
+.tech-item .n{font-family:var(--display);font-size:.8rem;font-weight:800;color:var(--moss);line-height:1;min-width:2.4rem;background:var(--moss-soft);border-radius:999px;padding:.45rem .6rem;text-align:center}
+.tech-item h3{font-size:1.1rem}
+.tech-item p{color:var(--ink-2);font-size:.95rem}
+@media (max-width:900px){.tech-grid{grid-template-columns:1fr}}
+
+/* ---------- jornada ---------- */
+.journey{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;counter-reset:step}
+.step{display:grid;gap:.7rem;position:relative;padding:1.4rem;background:var(--paper);border:1px solid var(--line);border-radius:16px}
+.step::before{counter-increment:step;content:"0" counter(step);font-family:var(--display);font-size:.8rem;font-weight:800;color:#fff;background:var(--moss);line-height:1;width:max-content;padding:.45rem .6rem;border-radius:999px}
+.step h3{font-size:1.1rem}
+.step p{color:var(--ink-2);font-size:.95rem}
+@media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
+
+/* ---------- antes e depois ---------- */
+.ba{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.ba-row,.ba-viewport,.ba-track{display:contents}
+.ba-rowhead{display:none}
+@media (min-width:901px){.ba-row:nth-child(2){display:none}}
+.ba-card{display:grid;gap:.7rem}
+.ba-card .ph{aspect-ratio:4/3}
+.ba-card figcaption{font-size:.9rem;color:var(--ink-2)}
+.ba-card figcaption b{color:var(--ink);font-weight:600}
+.ba-split{position:relative}
+.ba-split .after{position:absolute;inset:0;clip-path:inset(0 0 0 50%)}
+.ba-split .handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.15)}
+.ba-split .handle::after{content:"◂ ▸";position:absolute;top:50%;left:50%;translate:-50% -50%;background:#fff;color:var(--moss);border-radius:999px;padding:.35rem .6rem;font-size:.75rem;font-weight:700;white-space:nowrap}
+.ba-split input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba-split .tag{position:absolute;bottom:.7rem;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.55);color:#fff;padding:.3rem .55rem;border-radius:2px;pointer-events:none}
+.ba-split .tag.l{left:.7rem}.ba-split .tag.r{right:.7rem}
+.ba-note{margin-top:1.4rem;font-size:.82rem;color:var(--ink-2);max-width:70ch}
+@media (max-width:900px){.ba{grid-template-columns:1fr}}
+
+/* ---------- depoimentos ---------- */
+.testi{background:var(--moss-soft)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.quote{background:var(--paper);padding:1.6rem;display:grid;gap:1.2rem;align-content:space-between;border:1px solid var(--line);border-radius:16px}
+.quote p{font-family:var(--display);font-size:1.05rem;line-height:1.5;font-weight:500}
+.quote .who{display:flex;align-items:center;gap:.8rem}
+.quote .who .ph{width:44px;height:44px;border-radius:50%;flex:0 0 44px}
+.quote .who .ph .fallback{padding:0;font-size:.9rem;font-weight:700;color:var(--moss)}
+.quote .who b{display:block;font-size:.92rem}
+.quote .who span{font-size:.8rem;color:var(--ink-2)}
+.quote .src{font-size:.75rem;color:var(--ink-2);display:flex;gap:.4rem;align-items:center}
+@media (max-width:900px){.testi-grid{grid-template-columns:1fr}}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:780px}
+details{border-top:1px solid var(--line);padding:1.1rem 0}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:1rem;align-items:center;font-weight:600;font-size:1.05rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--display);font-size:1.4rem;font-weight:700;color:var(--moss);line-height:1;transition:rotate .2s}
+details[open] summary::after{rotate:45deg}
+details p{color:var(--ink-2);padding-top:.8rem;max-width:62ch}
+
+/* ---------- local + contato ---------- */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem)}
+.loc{display:grid;gap:1.4rem;align-content:start}
+.loc-map{aspect-ratio:16/10}
+.loc dl{display:grid;grid-template-columns:auto 1fr;gap:.5rem 1.2rem;margin:0}
+.loc dt{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);padding-top:.2rem}
+.loc dd{margin:0}
+.form{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:clamp(1.4rem,3vw,2.2rem);display:grid;gap:1rem;align-content:start}
+.form h3{font-size:1.5rem}
+.form label{display:grid;gap:.35rem;font-size:.85rem;font-weight:600}
+.form input,.form select,.form textarea{font:inherit;padding:.85rem .95rem;border:1px solid var(--line);border-radius:10px;background:var(--bone);color:var(--ink);width:100%}
+.form input:focus,.form select:focus,.form textarea:focus{outline:2px solid var(--moss);border-color:transparent}
+.form .row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form small{color:var(--ink-2);font-size:.78rem}
+.form .ok{display:none;background:var(--moss-soft);padding:1rem;border-radius:4px;font-size:.95rem}
+.form.sent .ok{display:block}
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
+@media (max-width:480px){.form .row{grid-template-columns:1fr}}
+
+/* ---------- CTA final ---------- */
+.final{background:var(--moss);color:#F3F1EA;text-align:center}
+.final .wrap{display:grid;gap:1.4rem;justify-items:center}
+.final h2{color:#fff;max-width:18ch}
+.final p{color:#D9E5DE;max-width:50ch}
+
+/* ---------- rodapé ---------- */
+footer{padding-block:2.5rem;border-top:1px solid var(--line);font-size:.85rem;color:var(--ink-2)}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2rem}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:.4rem}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--moss)}
+.foot-bottom{margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem;font-size:.78rem}
+@media (max-width:720px){.foot{grid-template-columns:1fr}}
+
+/* ---------- flutuantes ---------- */
+.fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;width:58px;height:58px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 14px 30px -10px rgba(0,0,0,.45);text-decoration:none}
+.fab svg{width:30px;height:30px;fill:#fff}
+.fab .pulse{position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa);animation:pulse 2.2s infinite}
+@keyframes pulse{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+.cookie{position:fixed;left:18px;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:45;background:var(--ink);color:#F3F1EA;padding:1rem 1.2rem;border-radius:6px;display:flex;gap:1rem;align-items:center;justify-content:space-between;flex-wrap:wrap;font-size:.85rem;max-width:640px;margin-inline:auto}
+.cookie a{color:#A9D1BD}
+.cookie button{background:#fff;color:var(--ink);border:0;padding:.6rem 1rem;border-radius:999px;font-weight:600;cursor:pointer;font-family:var(--body)}
+.cookie[hidden]{display:none}
+
+/* ---------- modo guia ---------- */
+.guide-bar{position:fixed;left:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:60;background:#111;color:#fff;border-radius:999px;padding:.5rem .6rem .5rem 1rem;display:flex;gap:.8rem;align-items:center;font-size:.8rem;box-shadow:0 10px 30px -10px rgba(0,0,0,.5);max-width:calc(100% - 32px)}
+.guide-bar button{background:#FFD166;color:#111;border:0;border-radius:999px;padding:.45rem .9rem;font-weight:700;cursor:pointer;font-family:var(--body);font-size:.8rem;white-space:nowrap}
+@media (max-width:900px){.guide-bar{padding:.3rem;gap:0;left:auto;right:12px;bottom:auto;top:calc(74px + env(safe-area-inset-top,0px))}.guide-bar span{display:none}.guide-bar button{font-size:.7rem;padding:.35rem .6rem}}
+[data-guide]{position:relative}
+body.guide [data-guide]{outline:2px dashed #E09F1F;outline-offset:3px}
+body.guide [data-guide]::after{content:attr(data-guide);position:absolute;top:-10px;left:8px;z-index:5;background:#E09F1F;color:#111;font:700 .68rem/1 var(--body);letter-spacing:.04em;padding:.35rem .55rem;border-radius:3px;pointer-events:none;white-space:nowrap;max-width:calc(100% - 16px);overflow:hidden;text-overflow:ellipsis}
+/* ---------- celular: tipografia e ritmo entre seções ---------- */
+@media (max-width:900px){
+  h2{font-size:clamp(1.7rem,7.4vw,2.2rem);line-height:1.08}
+  .sec-head{gap:.7rem;margin-bottom:1.4rem}
+  .lead{font-size:.98rem}
+  body{font-size:15.5px}
+  section{padding-block:3rem;position:relative}
+  #sobre,#tecnologia,#duvidas{background:var(--paper)}
+  #tratamentos,#local{background:var(--bone)}
+  #resultados{background:var(--moss-soft)}
+  .js .rv{transform:translateY(28px)}
+  .js .rv.in{transform:none}
+  .js .rv{transition-duration:.8s}
+  .js .rv.fine{transform:translateY(16px);transition-duration:.6s}
+  .js .rv.fine.in{transform:none}
+  summary{font-size:1rem;font-weight:700}
+  .about-list li{font-size:.95rem}
+  .about-list li::before{font-size:.8rem;font-weight:800;color:#fff;background:var(--moss);border-radius:999px;padding:.4rem .55rem;width:max-content;height:auto}
+  .hero h1{font-size:clamp(2rem,8.6vw,2.6rem)}
+}
+/* ---------- transições entre seções ---------- */
+section[data-nav]{position:relative}
+/* desktop: linha que desenha + navegação lateral + profundidade */
+@media (min-width:901px){
+  section[data-nav]::before{content:"";position:absolute;top:0;left:50%;translate:-50% 0;width:min(1180px,100% - 32px);height:2px;background:linear-gradient(90deg,var(--moss) 0,var(--moss) 100%);transform-origin:left;transform:scaleX(0);transition:transform 1.1s cubic-bezier(.22,1,.36,1)}
+  section[data-nav].seen::before{transform:scaleX(1)}
+  .doc::before{background:#A9D1BD!important}
+  .sidenav{position:fixed;right:22px;top:50%;translate:0 -50%;z-index:45;display:grid;gap:10px;opacity:0;transition:opacity .4s}
+  .sidenav.show{opacity:1}
+  .sidenav a{position:relative;width:10px;height:10px;border-radius:50%;background:var(--line);border:2px solid transparent;display:block;transition:background .25s,transform .25s}
+  .sidenav a:hover{transform:scale(1.3)}
+  .sidenav a.on{background:var(--moss);transform:scale(1.25)}
+  .sidenav a span{position:absolute;right:22px;top:50%;translate:0 -50%;background:var(--ink);color:#fff;font:600 .72rem/1 var(--body);padding:.45rem .65rem;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s,translate .2s;translate:6px -50%}
+  .sidenav a:hover span{opacity:1;translate:0 -50%}
+  .plx{will-change:transform}
+}
+/* celular: etiqueta flutuante ao trocar de seção + pulo do rótulo */
+@media (max-width:900px){
+  .sidenav{display:none}
+  .sectoast{position:fixed;left:50%;top:calc(76px + env(safe-area-inset-top,0px));translate:-50% -8px;z-index:46;background:var(--moss);color:#fff;font:700 .72rem/1 var(--body);letter-spacing:.08em;text-transform:uppercase;padding:.55rem .9rem;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .3s,translate .3s;box-shadow:0 10px 24px -12px rgba(0,0,0,.4)}
+  .sectoast.show{opacity:1;translate:-50% 0}
+  .js .sec-head.rv .eyebrow{transform:scale(.85);opacity:0;transition:transform .5s cubic-bezier(.34,1.56,.64,1) .15s,opacity .4s .15s}
+  .js .sec-head.rv.in .eyebrow{transform:none;opacity:1}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.sectoast,.sidenav{display:none}}
+
+/* ===== VARIANTE: rolagem travada (uma seção por tela) ===== */
+html{scroll-snap-type:y mandatory;scroll-padding-top:0}
+.hero,section[data-nav],footer{scroll-snap-align:start;scroll-snap-stop:always}
+section[data-nav]{min-height:calc(100svh - var(--orbyt-b));display:grid;align-content:center;padding-block:clamp(5rem,9vh,7rem) clamp(3rem,6vh,5rem);box-sizing:border-box}
+section[data-nav] > .wrap{width:min(1180px,100% - 32px)}
+.hero{height:calc(100svh - var(--orbyt-b));min-height:0;display:grid;grid-template-rows:1fr auto;align-content:stretch;overflow:hidden}
+.hero .wrap.hero-grid{align-self:center;align-items:center}
+.hero-photo{aspect-ratio:auto;height:min(58vh,560px);max-width:440px;margin-left:auto}
+.hero h1{font-size:clamp(2.2rem,4.4vw,3.6rem)}
+.hero .trust{margin-top:0}
+.hero .trust-grid{padding-block:1.1rem}
+section[data-nav]{height:auto}
+.hero .trust{margin-top:1.5rem}
+header{position:fixed;left:0;right:0}
+main{padding-top:0}
+footer{min-height:40svh;display:grid;align-content:center}
+/* seções com muito conteúdo rolam por dentro antes de pular */
+#tratamentos,#duvidas,#local,#resultados{min-height:calc(100svh - var(--orbyt-b))}
+/* dica de rolagem na capa */
+.scrollhint{position:absolute;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));translate:-50% 0;z-index:3;display:grid;justify-items:center;gap:.3rem;color:var(--ink-2);font:600 .68rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;pointer-events:none}
+.scrollhint i{width:1px;height:28px;background:currentColor;opacity:.6;animation:hint 1.6s ease-in-out infinite;transform-origin:top}
+@keyframes hint{0%{transform:scaleY(0)}60%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+.hero{position:relative}
+@media (max-width:900px){
+  html{scroll-snap-type:y mandatory}
+  .snapgroup{display:contents}
+  /* ===== capa ===== */
+  .hero{height:calc(100svh - var(--orbyt-b));min-height:0;overflow:hidden;display:block;position:relative}
+  .hero .wrap.hero-grid{position:static;width:100%;display:block}
+  .hero-photo-wrap{position:absolute;inset:0;z-index:0}
+  .hero-photo{height:100%;width:100%;aspect-ratio:auto;border-radius:0;max-width:none}
+  .hero-badge{display:none}
+  .hero-copy{position:absolute;inset:0;z-index:1;display:grid;align-content:end;justify-items:center;text-align:center;padding:4.6rem 18px 9.4rem;gap:.8rem}
+  .hero-copy .eyebrow{background:rgba(255,255,255,.14);font-size:.66rem}
+  .hero h1{font-size:clamp(2.3rem,10vw,3rem);line-height:1}
+  .hero-copy .lead{font-size:1rem;max-width:34ch;color:rgba(255,255,255,.9)}
+  .hero-clients{display:block;color:#fff;font-size:.9rem;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.25);padding:.45rem .9rem;border-radius:999px}
+  .hero-clients b{font-weight:800;color:#A9D1BD}
+  .hero-note{color:rgba(255,255,255,.9);font-size:.86rem}
+  .hero .trust{display:block;position:absolute;left:0;right:0;bottom:0;z-index:2;margin:0;background:rgba(255,253,249,.96);border:0;backdrop-filter:blur(8px)}
+  .hero .trust-grid{grid-template-columns:repeat(4,1fr);gap:0;padding:.8rem 10px;text-align:center}
+  .hero .trust-item{padding-inline:.3rem;border-left:1px solid var(--line);gap:0}
+  .hero .trust-item:first-child{border-left:0}
+  .hero .trust-item b{font-size:1rem;letter-spacing:-.02em}
+  .hero .trust-item span{font-size:.6rem;line-height:1.15;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .scrollhint{display:none}
+  /* ===== telas ===== */
+  section[data-nav],.mgroup{height:calc(100svh - var(--orbyt-b));min-height:0;overflow:hidden;scroll-snap-align:start;scroll-snap-stop:always;display:flex;flex-direction:column;padding:64px 0 .8rem;box-sizing:border-box;position:relative}
+  #tratamentos,#resultados,#duvidas,#local{min-height:0}
+  section[data-nav] > .wrap{width:100%;display:flex;flex-direction:column;flex:1;min-height:0}
+  section[data-nav]::before{display:none}
+  #local{overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .sec-head{margin:.9rem 0 .7rem;gap:.45rem}
+  h2{font-size:clamp(1.75rem,7.6vw,2.2rem);line-height:1.02}
+  .lead{font-size:.95rem}
+  /* ===== a clínica ===== */
+  .about-grid{display:flex;flex-direction:column;gap:0;flex:1;min-height:0}
+  .about-photos{display:block}
+  .about-photos .ph:not(:first-child){display:none}
+  .about-photos .ph:first-child{height:33svh;aspect-ratio:auto;border-radius:0 0 26px 26px}
+  .about-copy{padding:1rem 16px 0;gap:.6rem;flex:1;justify-content:center}
+  .about-copy > .eyebrow{display:none}
+  .about-copy .lead,.readmore{display:none}
+  .about-list li{padding:.6rem 0;font-size:.95rem}
+  .about-copy .sig{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;font-size:1.45rem;line-height:1.25;text-align:center;border:0;padding:.6rem 1rem 0;color:var(--moss);justify-self:center;max-width:26ch}
+  .about-copy .sig::before{content:"\201C";display:block;font-size:2.6rem;line-height:.5;color:var(--moss);opacity:.5;margin-bottom:.4rem}
+  /* ===== dentista ===== */
+  .doc-grid{display:flex;flex-direction:column;gap:0;flex:1;min-height:0}
+  .doc-photo{order:-1;height:38svh;aspect-ratio:auto;max-width:none;border-radius:0 0 26px 26px;background:linear-gradient(145deg,#2E6B52,#173B2C)}
+  .doc-copy{padding:0 16px 0;gap:.7rem;flex:1;justify-content:flex-start;align-content:start}
+  .doc .eyebrow{display:inline-flex;align-items:center;gap:.6rem;width:max-content;max-width:100%;margin:-1.25rem 0 .2rem 0;position:relative;z-index:2;background:rgba(20,38,30,.62);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.28);color:#F3F1EA;font-size:.62rem;letter-spacing:.18em;font-weight:600;padding:.6rem 1rem .6rem .85rem;border-radius:999px;box-shadow:0 14px 34px -16px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.18)}
+  .doc .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:#A9D1BD;box-shadow:0 0 0 0 rgba(169,209,189,.75);animation:livedot 2.2s ease-out infinite}
+  @keyframes livedot{0%{box-shadow:0 0 0 0 rgba(169,209,189,.75)}70%{box-shadow:0 0 0 9px rgba(169,209,189,0)}100%{box-shadow:0 0 0 0 rgba(169,209,189,0)}}
+  .doc h2{font-size:clamp(1.7rem,7.4vw,2.1rem)}
+  .doc-copy p{font-size:.92rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .cred{gap:.3rem;padding-top:.7rem}
+  .cred li{font-size:.84rem}
+  .cred li:nth-child(n+4){display:none}
+  .doc-copy .btn{background:var(--wa)!important;color:#073b1d!important;border-color:transparent!important;justify-content:center;font-weight:700;margin-top:auto}
+  /* ===== tratamentos: duas fileiras que andam sozinhas ===== */
+  #tratamentos .wrap{padding-inline:16px}
+  .treat-head{display:block}
+  .treat-nav{display:none}
+  #tratamentos .sec-head{margin:.3rem 0 .7rem}
+  #tratamentos .sec-head .lead{display:none}
+  #tratamentos h2{font-size:clamp(1.55rem,6.6vw,1.9rem)}
+  .rails{display:flex;flex-direction:column;gap:.7rem;flex:1;min-height:0;overflow:visible;padding:0;cursor:default;scroll-snap-type:none}
+  .rail{display:flex;gap:.7rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;flex:1 1 0;min-height:0;margin-inline:-16px;padding-inline:16px;scroll-padding-inline:16px}
+  .rail::-webkit-scrollbar{display:none}
+  .tcard{flex:0 0 72%;aspect-ratio:auto;align-self:stretch;scroll-snap-align:start;border-radius:18px}
+  .tcard .tcard-copy p{display:none}
+  .tcard-copy{padding:1rem}
+  .tcard-copy h3{font-size:1.2rem}
+  .tcard-copy small{font-size:.62rem}
+  .rail-dots{display:none}
+  /* ===== resultados: duas fileiras com setas ===== */
+  #resultados .wrap{padding-inline:16px}
+  #resultados .sec-head{margin:.3rem 0 .5rem}
+  #resultados h2{font-size:clamp(1.55rem,6.6vw,1.9rem)}
+  .ba{display:flex;flex-direction:column;gap:.6rem;flex:1;min-height:0}
+  .ba-row{display:flex;flex-direction:column;flex:1 1 0;min-height:0}
+  .ba-viewport{position:relative;flex:1 1 0;min-height:0;overflow:hidden;display:block;border-radius:16px}
+  .ba-track{display:flex;gap:.7rem;height:100%;transition:transform .5s cubic-bezier(.22,1,.36,1);will-change:transform}
+  .ba-card{flex:0 0 100%;display:grid;grid-template-rows:1fr auto;gap:.3rem;min-height:0}
+  .ba-card .ph{aspect-ratio:auto;height:auto;min-height:0;border-radius:16px;overflow:hidden}
+  .ba-card .ph img{position:absolute;inset:0;width:100%;height:100%}
+  .ba-card figcaption{font-size:.76rem;padding-inline:.2rem}
+  .ba-split .tag{bottom:.55rem;font-size:.6rem}
+  .ba-rowhead{display:flex;position:absolute;top:.55rem;left:.55rem;right:.55rem;z-index:4;justify-content:space-between;align-items:center;pointer-events:none}
+  .ba-label{display:inline-flex;align-items:center;gap:.45rem;background:rgba(20,22,21,.55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:.45rem .7rem;border-radius:999px;border:1px solid rgba(255,255,255,.2)}
+  .ba-cnt{font-style:normal;font-weight:500;letter-spacing:0;opacity:.8;font-variant-numeric:tabular-nums}
+  .ba-arrows{display:flex;gap:.35rem;pointer-events:auto}
+  .ba-arrows button{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(20,22,21,.55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;display:grid;place-items:center;cursor:pointer;transition:background .15s,transform .15s}
+  .ba-arrows button:active{background:var(--moss);transform:scale(.94)}
+  .ba-arrows svg{width:15px;height:15px}
+  .ba-note{display:none}
+  /* ===== tecnologia ===== */
+  .tech-grid{display:flex;flex-direction:column;gap:0;flex:1;min-height:0}
+  .tech-photo{height:36svh;aspect-ratio:auto;border-radius:0 0 26px 26px}
+  .tech-grid > div{padding:1rem 16px 0;flex:1;display:flex;flex-direction:column;justify-content:center}
+  .tech-grid .sec-head{margin:0 0 .8rem}
+  .tech-list{gap:.7rem}
+  .tech-item p{font-size:.86rem}
+  /* ===== como funciona + depoimentos: uma tela ===== */
+  .mgroup{padding:64px 16px .9rem;background:var(--moss-soft);justify-content:center;gap:.4rem}
+  .mgroup > section{height:auto;min-height:0;overflow:visible;scroll-snap-align:none;scroll-snap-stop:normal;padding:0;flex:0 0 auto;display:block;background:transparent;border:0}
+  .mgroup > section > .wrap{display:block;width:100%}
+  .journey .sec-head{margin:.2rem 0 .75rem}
+  .journey h2{font-size:clamp(1.45rem,6.2vw,1.8rem)}
+  .steps{grid-template-columns:1fr 1fr;gap:.6rem;position:relative;isolation:isolate}
+  .steps::before{content:"";position:absolute;left:1.35rem;top:2.6rem;bottom:2.6rem;border-left:2px dashed var(--moss);opacity:.35;z-index:0}
+  .step{padding:.85rem .9rem;gap:.35rem;border-radius:14px;background:#fff;border:1px solid rgba(31,77,58,.12);position:relative;z-index:1}
+  .step::before{font-size:.66rem;padding:.3rem .5rem}
+  .step:nth-child(odd)::after{content:"";position:absolute;top:1.45rem;right:-.6rem;width:.6rem;border-top:2px dashed var(--moss);opacity:.55}
+  .step h3{font-size:.92rem;line-height:1.2}
+  .step p{font-size:.78rem;line-height:1.35;color:var(--ink-2)}
+  .testi .sec-head{margin:1rem 0 .6rem}
+  .testi .sec-head .eyebrow{display:none}
+  .testi h2{font-size:clamp(1.2rem,5vw,1.4rem)}
+  .testi-grid{display:flex;gap:.6rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:-16px;padding-inline:16px;scroll-padding-inline:16px}
+  .testi-grid::-webkit-scrollbar{display:none}
+  .quote{flex:0 0 calc(50% - .3rem);scroll-snap-align:start;padding:.85rem .9rem;gap:.55rem;border-radius:14px;background:#fff;border:1px solid rgba(31,77,58,.12);align-content:space-between}
+  .quote p{font-size:.8rem;line-height:1.4;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+  .quote .who{gap:.5rem}
+  .quote .who .ph{width:30px;height:30px;flex:0 0 30px}
+  .quote .who b{font-size:.76rem}
+  .quote .who span{font-size:.66rem}
+  .quote .src{display:none}
+  /* ===== dúvidas / contato ===== */
+  #duvidas .wrap{padding-inline:16px;justify-content:center}
+  details{padding:.75rem 0}
+  details p{font-size:.9rem}
+  #local .wrap{padding-inline:16px}
+  .contact-grid{gap:1rem}
+  .loc-map{aspect-ratio:16/7}
+  .loc dl{font-size:.9rem}
+  footer{scroll-snap-align:start;min-height:0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-snap-type:none}.scrollhint{display:none}}
+
+/* grupo: Tecnologia + Como funciona em uma tela (desktop) */
+@media (min-width:901px){
+  .snapgroup{min-height:calc(100svh - var(--orbyt-b));scroll-snap-align:start;scroll-snap-stop:always;display:grid;align-content:center;gap:0;padding-block:5.5rem 2.5rem;box-sizing:border-box}
+  .snapgroup section{min-height:0;scroll-snap-align:none;scroll-snap-stop:normal;padding-block:0;display:block}
+  .snapgroup #tecnologia::before{top:-1.2rem}
+  .snapgroup .journey{background:transparent;border:0;margin-top:2.2rem}
+  .snapgroup .journey .sec-head{margin-bottom:1.2rem}
+  .snapgroup .journey h2{font-size:clamp(1.4rem,2.2vw,1.9rem)}
+  .snapgroup .tech-grid{gap:clamp(1.5rem,4vw,3.5rem);align-items:center}
+  .snapgroup .tech-photo{aspect-ratio:auto;height:min(34vh,330px)}
+  .snapgroup .tech-list{gap:.9rem}
+  .snapgroup .tech-item p{font-size:.9rem}
+  .snapgroup .tech-grid .sec-head{margin-bottom:1.2rem}
+  .snapgroup .steps{gap:1rem}
+  .snapgroup .step{padding:1rem 1.1rem}
+  .snapgroup .step p{font-size:.88rem}
+}
+</style>
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style id="orbyt-barra-css">
+:root{--orbyt-b:calc(66px + env(safe-area-inset-bottom,0px))}
+#guideBar,.cookie{display:none!important}
+body{padding-bottom:var(--orbyt-b)!important}
+.fab{bottom:calc(var(--orbyt-b) + 18px)!important}
+.backtri{bottom:calc(var(--orbyt-b) + 20px)!important}
+.tabela{bottom:var(--orbyt-b)!important}
+.orbyt-barra{position:fixed;left:0;right:0;bottom:0;z-index:95;display:flex;align-items:center;gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:#16181B;color:#EEF1F4;font:500 14px/1.2 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:0;text-transform:none;box-shadow:0 -12px 30px -18px rgba(0,0,0,.65)}
+.orbyt-barra *{box-sizing:border-box}
+.orbyt-barra a{text-decoration:none;display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:999px;font:600 15px/1 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:0;text-transform:none;white-space:nowrap;color:#EEF1F4}
+.orbyt-barra a:focus-visible{outline:3px solid #FF5A1F;outline-offset:2px}
+.orbyt-voltar{gap:8px;padding:0 16px;border:1.5px solid #4A515A}
+.orbyt-voltar:hover{border-color:#EEF1F4}
+.orbyt-info{flex:1;min-width:0;display:grid;gap:3px;padding-left:4px}
+.orbyt-info b{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.orbyt-info span{color:#A6AEB8;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.orbyt-troca{display:flex;align-items:center;gap:5px}
+.orbyt-troca > span{color:#A6AEB8;font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;margin-right:5px}
+.orbyt-barra .orbyt-troca a{width:40px;height:40px;min-height:40px;border:1.5px solid #4A515A;font-size:14px;font-variant-numeric:tabular-nums}
+.orbyt-barra .orbyt-troca a:hover{border-color:#EEF1F4}
+.orbyt-barra .orbyt-troca a[aria-current="page"]{background:#EEF1F4;border-color:#EEF1F4;color:#16181B}
+.orbyt-barra .orbyt-quero{background:#FF5A1F;color:#16181B;padding:0 20px}
+.orbyt-barra .orbyt-quero:hover{background:#EB4B10}
+.orbyt-curto{display:none}
+@media (max-width:820px){
+  .orbyt-barra{gap:8px;padding-inline:12px}
+  .orbyt-info,.orbyt-troca > span,.orbyt-voltar span,.orbyt-longo{display:none}
+  .orbyt-voltar{width:46px;padding:0;font-size:18px!important}
+  .orbyt-troca{gap:4px}
+  .orbyt-barra .orbyt-troca a{width:38px;height:38px;min-height:38px}
+  .orbyt-barra .orbyt-quero{flex:1;min-width:0;padding:0 10px}
+  .orbyt-curto{display:inline}
+}
+</style>
+</head>
+<body>
+<!-- barra do modo guia (só nesta versão de demonstração; removida no site do cliente) -->
+<div class="progress" id="prog"></div>
+<nav class="sidenav" id="sidenav" aria-label="Seções"></nav>
+<div class="sectoast" id="sectoast" aria-hidden="true"></div>
+<div class="guide-bar" id="guideBar">
+  <span id="guideText">Modo guia: as etiquetas amarelas mostram onde entra o conteúdo do cliente</span>
+  <button id="guideBtn" type="button">Ver como cliente</button>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#topo" data-guide="Logo e nome do consultório">
+      <span class="logo-mark">V</span>
+      <span><span class="logo-name">Clínica Vale</span><br><span class="logo-sub">Odontologia · Savassi</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#sobre">A clínica</a></li>
+      <li><a href="#tratamentos">Tratamentos</a></li>
+      <li><a href="#tecnologia">Tecnologia</a></li>
+      <li><a href="#depoimentos">Depoimentos</a></li>
+      <li><a href="#local">Onde estamos</a></li>
+    </ul>
+    <a class="btn btn-primary wa-link" href="#" data-msg="Olá! Vim pelo site e gostaria de agendar uma avaliação.">Agendar <span>avaliação</span></a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Menu">
+  <a href="#sobre">A clínica</a><a href="#tratamentos">Tratamentos</a><a href="#tecnologia">Tecnologia</a><a href="#resultados">Resultados</a><a href="#depoimentos">Depoimentos</a><a href="#local">Onde estamos</a>
+  <a class="btn btn-wa wa-link" href="#" data-msg="Olá! Vim pelo site e gostaria de agendar uma avaliação.">Agendar avaliação pelo WhatsApp</a>
+</nav>
+
+<main id="topo">
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="scrollhint" aria-hidden="true">Role<i></i></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow" data-guide="Especialidade principal + bairro">Odontologia estética e reabilitação oral · Savassi, BH</span>
+      <h1 data-guide="Frase principal (promessa)">O sorriso que você <em>sempre quis</em>, com o cuidado que você merece.</h1>
+      <p class="lead" data-guide="Texto curto de apresentação">Implantes, lentes de contato dental e alinhadores invisíveis em um só lugar, com planejamento digital e uma equipe que explica cada etapa antes de começar.</p>
+      <div class="hero-actions">
+        <a class="btn btn-wa wa-link" href="#" data-msg="Olá! Vim pelo site e gostaria de agendar uma avaliação.">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>
+          Agendar avaliação pelo WhatsApp
+        </a>
+        <a class="btn btn-ghost" href="#tratamentos">Conhecer os tratamentos</a>
+      </div>
+      <p class="hero-clients" data-guide="Número de clientes (editável)"><b>+3.000</b> sorrisos tratados desde 2012</p>
+      <div class="hero-note" data-guide="Nota do Google (puxar do perfil)">
+        <span class="stars">★★★★★</span>
+        <span><strong>4,9</strong> no Google · 312 avaliações</span>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <figure class="ph hero-photo" data-guide="Foto principal: consultório ou paciente sorrindo">
+        <img src="../../fotos/photo-1629909613654-28e377c37b09-g.jpg" alt="Sala de atendimento da Clínica Vale, iluminada e moderna" loading="eager">
+        <div class="fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="16" cy="9" r="1.5"/></svg><b>Foto principal</b>Consultório ou paciente sorrindo<br>(vertical, boa luz)</div>
+      </figure>
+      <div class="hero-badge" data-guide="Número de destaque"><b>+3.000</b><span>sorrisos tratados desde 2012</span></div>
+    </div>
+  </div>
+
+  <div class="trust">
+    <div class="wrap trust-grid" data-guide="4 números de confiança">
+      <div class="trust-item"><b>12</b><span>anos de clínica</span></div>
+      <div class="trust-item"><b>4,9</b><span>nota no Google</span></div>
+      <div class="trust-item"><b>5</b><span>especialidades em um só lugar</span></div>
+      <div class="trust-item"><b>CRO-MG</b><span>Dra. Helena Vasconcelos · 48.210</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SOBRE ===================== -->
+<section id="sobre" data-nav="A clínica">
+  <div class="wrap about-grid">
+    <div class="about-photos rv" data-guide="3 fotos do consultório (recepção, sala, detalhe)">
+      <figure class="ph"><img src="../../fotos/photo-1588776814546-1ffcf47267a5.jpg" alt="Dentista atendendo paciente" loading="lazy"><div class="fallback"><b>Foto da recepção</b>ambiente amplo, horizontal</div></figure>
+      <figure class="ph"><img src="../../fotos/photo-1598256989800-fe5f95da9787.jpg" alt="Cadeira odontológica" loading="lazy"><div class="fallback"><b>Sala de atendimento</b>quadrada</div></figure>
+      <figure class="ph"><img src="../../fotos/photo-1606811841689-23dfddce3e95.jpg" alt="Instrumentos odontológicos" loading="lazy"><div class="fallback"><b>Detalhe</b>equipamento ou fachada</div></figure>
+    </div>
+    <div class="about-copy rv">
+      <span class="eyebrow">A clínica</span>
+      <h2 data-guide="Título da seção sobre">Uma clínica pensada para quem tem medo de dentista.</h2>
+      <p class="lead" data-guide="História do consultório (2 parágrafos)">A Clínica Vale nasceu em 2012, numa sala de 30 m² na Savassi, com uma ideia simples: ninguém deveria adiar um tratamento por medo ou por não entender o que vai ser feito. Hoje são quatro consultórios, planejamento 100% digital e a mesma regra do primeiro dia.</p>
+      <p class="lead more" id="aboutMore">Antes de qualquer procedimento, você vê o plano no computador, sabe quanto custa, quanto tempo leva e quais são as alternativas. Sem surpresa.</p>
+      <button class="readmore" id="readMore" type="button">Continuar lendo</button>
+      <ul class="about-list" data-guide="3 diferenciais">
+        <li>Avaliação com scanner intraoral, sem moldagem com massa</li>
+        <li>Sedação consciente para pacientes ansiosos</li>
+        <li>Parcelamento em até 12 vezes e convênios selecionados</li>
+      </ul>
+      <p class="sig">"Cuidar do sorriso é cuidar da história de cada pessoa."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DENTISTA ===================== -->
+<section class="doc" id="equipe" data-nav="Dentista">
+  <div class="wrap doc-grid">
+    <div class="doc-copy rv">
+      <span class="eyebrow">Quem vai cuidar de você</span>
+      <h2 data-guide="Nome do(a) dentista">Dra. Helena Vasconcelos</h2>
+      <p data-guide="Mini biografia (1 parágrafo)">Cirurgiã-dentista formada pela UFMG, especialista em Implantodontia e mestre em Prótese Dentária. Há 14 anos reabilita sorrisos com foco em casos estéticos complexos e em pacientes que chegam com medo. Coordena a equipe de cinco profissionais da Clínica Vale.</p>
+      <ul class="cred" data-guide="Formação e registros">
+        <li><span>CRO</span><span>CRO-MG 48.210 · Especialista em Implantodontia</span></li>
+        <li><span>2010</span><span>Graduação em Odontologia, UFMG</span></li>
+        <li><span>2013</span><span>Especialização em Implantodontia, São Leopoldo Mandic</span></li>
+        <li><span>2017</span><span>Mestrado em Prótese Dentária, PUC Minas</span></li>
+      </ul>
+      <a class="btn btn-ghost wa-link" style="color:#fff;border-color:rgba(255,255,255,.35)" href="#" data-msg="Olá, Dra. Helena! Vim pelo site e gostaria de conversar sobre uma avaliação.">Falar com a Dra. Helena</a>
+    </div>
+    <figure class="ph doc-photo" data-guide="Foto do(a) dentista (vertical, fundo limpo)">
+      <img src="../../fotos/photo-1559839734-2b71ea197ec2.jpg" alt="Dra. Helena Vasconcelos" loading="lazy">
+      <div class="fallback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><b>Foto do(a) dentista</b>retrato vertical, com jaleco, fundo limpo</div>
+    </figure>
+  </div>
+</section>
+
+<!-- ===================== TRATAMENTOS ===================== -->
+<section id="tratamentos" data-nav="Tratamentos">
+  <div class="wrap">
+    <div class="treat-head">
+      <div class="sec-head rv" style="margin-bottom:1.6rem">
+        <span class="eyebrow">Tratamentos</span>
+        <h2>Do clareamento à reabilitação completa.</h2>
+        <p class="lead">Toque em um tratamento para conversar sobre ele.</p>
+      </div>
+      <div class="treat-nav">
+        <button type="button" id="railPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button type="button" id="railNext" aria-label="Próximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+    <div class="rails rv d1" id="rail" data-guide="Tratamentos (4 a 8): foto, categoria, nome, texto. Desliza de lado">
+      <div class="rail rail-a">
+      <a class="tcard wa-link" href="#" data-msg="Olá! Quero saber mais sobre implantes dentários.">
+        <figure class="ph"><img src="../../fotos/photo-1606811841689-23dfddce3e95.jpg" alt="" loading="lazy" draggable="false"><div class="fallback"><b>Foto</b>Implantes dentários</div></figure>
+        <div class="tcard-copy"><small>Reabilitação</small><h3>Implantes dentários</h3><p>Reposição de um ou vários dentes com planejamento guiado por tomografia. Carga imediata em casos selecionados.</p><span>Saber mais</span></div>
+      </a>
+      <a class="tcard wa-link" href="#" data-msg="Olá! Quero saber mais sobre lentes de contato dental.">
+        <figure class="ph"><img src="../../fotos/photo-1522337660859-02fbefca4702.jpg" alt="" loading="lazy" draggable="false"><div class="fallback"><b>Foto</b>Lentes de contato dental</div></figure>
+        <div class="tcard-copy"><small>Estética</small><h3>Lentes de contato dental</h3><p>Facetas ultrafinas de porcelana para corrigir cor, formato e espaços. Previsualização digital antes de começar.</p><span>Saber mais</span></div>
+      </a>
+      <a class="tcard wa-link" href="#" data-msg="Olá! Quero saber mais sobre clareamento dental.">
+        <figure class="ph"><img src="../../fotos/photo-1588776814546-1ffcf47267a5.jpg" alt="" loading="lazy" draggable="false"><div class="fallback"><b>Foto</b>Clareamento</div></figure>
+        <div class="tcard-copy"><small>Estética</small><h3>Clareamento</h3><p>Em consultório ou caseiro supervisionado, com controle de sensibilidade. Resultado em até 3 sessões.</p><span>Saber mais</span></div>
+      </a>
+      </div>
+      <div class="rail rail-b">
+      <a class="tcard wa-link" href="#" data-msg="Olá! Quero saber mais sobre alinhadores invisíveis.">
+        <figure class="ph"><img src="../../fotos/photo-1609840114035-3c981b782dfe.jpg" alt="" loading="lazy" draggable="false"><div class="fallback"><b>Foto</b>Alinhadores invisíveis</div></figure>
+        <div class="tcard-copy"><small>Ortodontia</small><h3>Alinhadores invisíveis</h3><p>Sem brackets, com simulação do resultado no primeiro dia. Acompanhamento a cada 6 semanas.</p><span>Saber mais</span></div>
+      </a>
+      <a class="tcard wa-link" href="#" data-msg="Olá! Quero saber mais sobre harmonização orofacial.">
+        <figure class="ph"><img src="../../fotos/photo-1512290923902-8a9f81dc236c.jpg" alt="" loading="lazy" draggable="false"><div class="fallback"><b>Foto</b>Harmonização orofacial</div></figure>
+        <div class="tcard-copy"><small>Harmonização</small><h3>Harmonização orofacial</h3><p>Toxina e preenchimento integrados ao planejamento do sorriso, com naturalidade como meta.</p><span>Saber mais</span></div>
+      </a>
+      <a class="tcard wa-link" href="#" data-msg="Olá! Preciso de um atendimento de urgência.">
+        <figure class="ph"><img src="../../fotos/photo-1629909613654-28e377c37b09.jpg" alt="" loading="lazy" draggable="false"><div class="fallback"><b>Foto</b>Prevenção e urgências</div></figure>
+        <div class="tcard-copy"><small>Cuidado</small><h3>Prevenção e urgências</h3><p>Limpeza, restaurações e canal. Urgência no mesmo dia para pacientes da clínica.</p><span>Saber mais</span></div>
+      </a>
+      </div>
+    </div>
+    <div class="rail-dots" id="railDots"></div>
+  </div>
+</section>
+
+<!-- ===================== ANTES E DEPOIS ===================== -->
+<section id="resultados" data-nav="Resultados">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Resultados</span>
+      <h2>Arraste para comparar.</h2>
+    </div>
+    <div class="ba rv d1" data-guide="Casos antes e depois (com autorização do paciente)">
+      <div class="ba-row">
+        <div class="ba-viewport">
+          <div class="ba-rowhead"><span class="ba-label">Casos recentes <em class="ba-cnt">1/3</em></span><span class="ba-arrows"><button type="button" class="ba-prev" aria-label="Caso anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" class="ba-next" aria-label="Próximo caso"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></button></span></div>
+          <div class="ba-track">
+        <figure class="ba-card">
+          <div class="ph ba-split" style="background:linear-gradient(145deg,#D9D0C1,#B7AB97)">
+            <img src="img/ba1-antes.jpg" alt="Antes do tratamento" loading="lazy">
+            <img class="after" src="img/ba1-depois.jpg" alt="Depois do tratamento" loading="lazy">
+            <div class="fallback"><b>Antes / depois</b>duas fotos do mesmo paciente, mesmo enquadramento</div>
+            <span class="tag l">Antes</span><span class="tag r">Depois</span>
+            <div class="handle"></div>
+            <input type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois" id="ba1">
+          </div>
+          <figcaption><b>Clareamento dental</b> · 2 sessões</figcaption>
+        </figure>
+        <figure class="ba-card">
+          <div class="ph ba-split" style="background:linear-gradient(145deg,#D9D0C1,#B7AB97)">
+            <img src="img/ba2-antes.jpg" alt="Antes do tratamento" loading="lazy">
+            <img class="after" src="img/ba2-depois.jpg" alt="Depois do tratamento" loading="lazy">
+            <div class="fallback"><b>Antes / depois</b>caso 2</div>
+            <span class="tag l">Antes</span><span class="tag r">Depois</span>
+            <div class="handle"></div>
+            <input type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois" id="ba2">
+          </div>
+          <figcaption><b>Implante no dente da frente</b> · 4 meses</figcaption>
+        </figure>
+        <figure class="ba-card">
+          <div class="ph ba-split" style="background:linear-gradient(145deg,#D9D0C1,#B7AB97)">
+            <img src="img/ba3-antes.jpg" alt="Antes do tratamento" loading="lazy">
+            <img class="after" src="img/ba3-depois.jpg" alt="Depois do tratamento" loading="lazy">
+            <div class="fallback"><b>Antes / depois</b>caso 3</div>
+            <span class="tag l">Antes</span><span class="tag r">Depois</span>
+            <div class="handle"></div>
+            <input type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois" id="ba3">
+          </div>
+          <figcaption><b>Lentes de contato em 10 dentes</b> · 3 sessões</figcaption>
+        </figure>
+          </div>
+        </div>
+      </div>
+      <div class="ba-row">
+        <div class="ba-viewport">
+          <div class="ba-rowhead"><span class="ba-label">Mais transformações <em class="ba-cnt">1/3</em></span><span class="ba-arrows"><button type="button" class="ba-prev" aria-label="Caso anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" class="ba-next" aria-label="Próximo caso"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></button></span></div>
+          <div class="ba-track">
+        <figure class="ba-card">
+          <div class="ph ba-split" style="background:linear-gradient(145deg,#D9D0C1,#B7AB97)">
+            <img src="../../fotos/photo-1494790108377-be9c29b29330-pb.jpg" alt="Antes do tratamento" loading="lazy">
+            <img class="after" src="../../fotos/photo-1494790108377-be9c29b29330.jpg" alt="Depois do tratamento" loading="lazy">
+            <div class="fallback"><b>Antes / depois</b>caso 4</div>
+            <span class="tag l">Antes</span><span class="tag r">Depois</span>
+            <div class="handle"></div>
+            <input type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois" id="ba4">
+          </div>
+          <figcaption><b>Clareamento em consultório</b> · 2 sessões</figcaption>
+        </figure>
+        <figure class="ba-card">
+          <div class="ph ba-split" style="background:linear-gradient(145deg,#D9D0C1,#B7AB97)">
+            <img src="../../fotos/photo-1472099645785-5658abf4ff4e-pb.jpg" alt="Antes do tratamento" loading="lazy">
+            <img class="after" src="../../fotos/photo-1472099645785-5658abf4ff4e.jpg" alt="Depois do tratamento" loading="lazy">
+            <div class="fallback"><b>Antes / depois</b>caso 5</div>
+            <span class="tag l">Antes</span><span class="tag r">Depois</span>
+            <div class="handle"></div>
+            <input type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois" id="ba5">
+          </div>
+          <figcaption><b>Reabilitação total com implantes</b> · 6 meses</figcaption>
+        </figure>
+        <figure class="ba-card">
+          <div class="ph ba-split" style="background:linear-gradient(145deg,#D9D0C1,#B7AB97)">
+            <img src="../../fotos/photo-1438761681033-6461ffad8d80-pb.jpg" alt="Antes do tratamento" loading="lazy">
+            <img class="after" src="../../fotos/photo-1438761681033-6461ffad8d80.jpg" alt="Depois do tratamento" loading="lazy">
+            <div class="fallback"><b>Antes / depois</b>caso 6</div>
+            <span class="tag l">Antes</span><span class="tag r">Depois</span>
+            <div class="handle"></div>
+            <input type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois" id="ba6">
+          </div>
+          <figcaption><b>Harmonização orofacial</b> · 1 sessão</figcaption>
+        </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="ba-note swipehint">Imagens divulgadas com autorização por escrito dos pacientes, com finalidade educativa. Resultados variam de pessoa para pessoa e dependem de avaliação individual.</p>
+  </div>
+</section>
+
+<!-- ===================== TECNOLOGIA ===================== -->
+<div class="snapgroup">
+<section id="tecnologia" data-nav="Tecnologia e método">
+  <div class="wrap tech-grid">
+    <figure class="ph tech-photo" data-guide="Foto de equipamento (scanner, tomógrafo)">
+      <img src="../../fotos/photo-1609840114035-3c981b782dfe.jpg" alt="Equipamento odontológico digital" loading="lazy">
+      <div class="fallback"><b>Foto de equipamento</b>scanner, tomógrafo ou sala com tecnologia</div>
+    </figure>
+    <div>
+      <div class="sec-head" style="margin-bottom:2rem">
+        <span class="eyebrow">Tecnologia</span>
+        <h2>Menos adivinhação, mais precisão.</h2>
+      </div>
+      <div class="tech-list" data-guide="3 equipamentos ou diferenciais técnicos">
+        <div class="tech-item"><span class="n">01</span><div><h3>Scanner intraoral</h3><p>Molde digital em minutos, sem massa na boca. O plano de tratamento é desenhado em 3D na sua frente.</p></div></div>
+        <div class="tech-item"><span class="n">02</span><div><h3>Tomografia na própria clínica</h3><p>Imagem completa dos ossos e nervos para implantes mais seguros, sem precisar ir a outro lugar.</p></div></div>
+        <div class="tech-item"><span class="n">03</span><div><h3>Sedação consciente</h3><p>Para quem tem medo: você fica relaxado e acordado, com acompanhamento de anestesista durante todo o procedimento.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== JORNADA ===================== -->
+<section class="journey" id="como-funciona">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Como funciona</span>
+      <h2>Da primeira mensagem ao sorriso pronto.</h2>
+    </div>
+    <div class="steps rv d1" data-guide="Etapas do atendimento">
+      <div class="step"><h3>Você chama no WhatsApp</h3><p>Nossa equipe responde em até 2 horas em horário comercial e agenda sua avaliação.</p></div>
+      <div class="step"><h3>Avaliação e scanner</h3><p>Consulta de 50 minutos com exame clínico, scanner e, se preciso, tomografia.</p></div>
+      <div class="step"><h3>Plano por escrito</h3><p>Você recebe o plano com etapas, prazos, valores e formas de pagamento. Decide com calma.</p></div>
+      <div class="step"><h3>Tratamento e acompanhamento</h3><p>Sessões agendadas no seu ritmo e revisões incluídas por 12 meses após a conclusão.</p></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ===================== DEPOIMENTOS ===================== -->
+<section class="testi" id="depoimentos" data-nav="Depoimentos">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Depoimentos</span>
+      <h2>Quem já passou por aqui.</h2>
+    </div>
+    <div class="testi-grid rv d1" data-guide="3 avaliações reais do Google">
+      <blockquote class="quote">
+        <p>"Tinha pavor de dentista desde criança. A Dra. Helena explicou tudo, fiz com sedação e nem vi o tempo passar. Hoje sorrio em foto."</p>
+        <div class="who"><div class="ph"><img src="../../fotos/photo-1494790108377-be9c29b29330.jpg" alt="" loading="lazy"><div class="fallback">MF</div></div><div><b>Mariana F.</b><span>Implante e lentes · 2025</span></div></div>
+        <span class="src">★★★★★ · Avaliação no Google</span>
+      </blockquote>
+      <blockquote class="quote">
+        <p>"Fiz orçamento em três lugares. Aqui foi o único que me mostrou o plano no computador e me deu tudo por escrito. Fechei na hora."</p>
+        <div class="who"><div class="ph"><img src="../../fotos/photo-1507003211169-0a1dd7228f2d.jpg" alt="" loading="lazy"><div class="fallback">RA</div></div><div><b>Rodrigo A.</b><span>Reabilitação completa · 2024</span></div></div>
+        <span class="src">★★★★★ · Avaliação no Google</span>
+      </blockquote>
+      <blockquote class="quote">
+        <p>"Atendimento impecável do começo ao fim. Recepção atenciosa, horário cumprido e o resultado do clareamento ficou natural."</p>
+        <div class="who"><div class="ph"><img src="../../fotos/photo-1438761681033-6461ffad8d80.jpg" alt="" loading="lazy"><div class="fallback">CL</div></div><div><b>Carla L.</b><span>Clareamento · 2025</span></div></div>
+        <span class="src">★★★★★ · Avaliação no Google</span>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section id="duvidas" data-nav="Dúvidas">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Dúvidas frequentes</span>
+      <h2>O que todo mundo pergunta antes de agendar.</h2>
+    </div>
+    <div class="faq rv d1" data-guide="5 perguntas frequentes">
+      <details open><summary>A avaliação é paga?</summary><p>A primeira avaliação custa R$ 180 e inclui exame clínico e scanner intraoral. Se você fechar o tratamento, esse valor é abatido do total.</p></details>
+      <details><summary>Vocês aceitam convênio?</summary><p>Atendemos Odontoprev, Amil Dental e Bradesco Dental para procedimentos cobertos. Para estética (lentes, clareamento, alinhadores) o atendimento é particular, com parcelamento em até 12 vezes.</p></details>
+      <details><summary>Quanto custa um implante?</summary><p>Depende do caso. Um implante unitário com coroa costuma ficar entre R$ 4.500 e R$ 7.000. O valor exato só sai depois da tomografia, e você recebe tudo por escrito antes de decidir.</p></details>
+      <details><summary>Tenho muito medo. Como funciona a sedação?</summary><p>A sedação consciente é feita com acompanhamento de médico anestesista. Você fica relaxado, responde a comandos e não guarda memória desconfortável do procedimento. É indicada após avaliação.</p></details>
+      <details><summary>Onde estaciono?</summary><p>Temos convênio com o estacionamento ao lado do prédio (Rua Pernambuco, 1.010), com 2 horas gratuitas para pacientes.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LOCAL + CONTATO ===================== -->
+<section id="local" style="padding-top:0" data-nav="Contato">
+  <div class="wrap contact-grid">
+    <div class="loc">
+      <div class="sec-head" style="margin-bottom:0">
+        <span class="eyebrow">Onde estamos</span>
+        <h2>Savassi, a 5 minutos da Praça da Liberdade.</h2>
+      </div>
+      <figure class="ph loc-map" data-guide="Foto da fachada ou mapa">
+        <img src="../../fotos/photo-1551076805-e1869033e561.jpg" alt="Fachada da clínica" loading="lazy">
+        <div class="fallback"><b>Fachada ou mapa</b>foto do prédio ou imagem do mapa</div>
+      </figure>
+      <dl data-guide="Endereço, horário e contatos">
+        <dt>Endereço</dt><dd>Rua Pernambuco, 1.000, sala 804 · Savassi · Belo Horizonte, MG · 30130-151</dd>
+        <dt>Horário</dt><dd>Segunda a sexta, 8h às 19h · Sábado, 8h às 13h</dd>
+        <dt>WhatsApp</dt><dd><span id="phoneText">(31) 99999-0000</span> <button type="button" id="copyPhone" class="btn btn-ghost" style="padding:.3rem .7rem;font-size:.78rem;margin-left:.4rem">Copiar</button></dd>
+        <dt>E-mail</dt><dd>contato@clinicavale.com.br</dd>
+      </dl>
+      <div style="display:flex;gap:.8rem;flex-wrap:wrap">
+        <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=Rua+Pernambuco+1000+Savassi+Belo+Horizonte" target="_blank" rel="noopener">Abrir no Google Maps</a>
+        <a class="btn btn-ghost" href="https://waze.com/ul?q=Rua%20Pernambuco%201000%20Belo%20Horizonte" target="_blank" rel="noopener">Abrir no Waze</a>
+      </div>
+    </div>
+
+    <form class="form rv d1" id="leadForm" data-guide="Formulário que abre o WhatsApp com a mensagem pronta">
+      <h3>Agende sua avaliação</h3>
+      <p style="color:var(--ink-2);font-size:.95rem">Preencha e a mensagem já vai pronta para o nosso WhatsApp. Respondemos em até 2 horas em horário comercial.</p>
+      <div class="row">
+        <label>Seu nome<input type="text" id="fName" name="nome" required autocomplete="name" placeholder="Como quer ser chamado(a)"></label>
+        <label>WhatsApp<input type="tel" id="fPhone" name="telefone" required autocomplete="tel" placeholder="(31) 9 9999-9999"></label>
+      </div>
+      <label>O que você procura?
+        <select id="fTreat" name="tratamento">
+          <option>Avaliação geral</option><option>Implantes</option><option>Lentes de contato dental</option><option>Clareamento</option><option>Alinhadores invisíveis</option><option>Harmonização orofacial</option><option>Urgência</option>
+        </select>
+      </label>
+      <label>Melhor período<select id="fPeriod" name="periodo"><option>Manhã</option><option>Tarde</option><option>Sábado</option></select></label>
+      <label>Quer contar algo antes? (opcional)<textarea id="fMsg" name="mensagem" rows="3" placeholder="Ex.: tenho medo de dentista, prefiro sedação"></textarea></label>
+      <button class="btn btn-wa" type="submit" id="fSubmit">Enviar pelo WhatsApp</button>
+      <div class="ok" id="formOk">Abrimos o WhatsApp em uma nova aba com sua mensagem pronta. Se não abriu, chame direto no <strong>(31) 99999-0000</strong>.</div>
+      <small>Seus dados são usados apenas para responder ao seu contato. <a href="#privacidade">Política de privacidade</a>.</small>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer id="privacidade">
+  <div class="wrap">
+    <div class="foot">
+      <div style="display:grid;gap:.6rem;align-content:start">
+        <span class="logo-name">Clínica Vale Odontologia</span>
+        <p>Responsável técnica: Dra. Helena Vasconcelos · CRO-MG 48.210<br>Clínica registrada no CRO-MG sob nº EPAO 12.345</p>
+        <p>Rua Pernambuco, 1.000, sala 804 · Savassi · Belo Horizonte, MG</p>
+      </div>
+      <div><p style="font-weight:700;color:var(--ink);margin-bottom:.6rem">Navegue</p><ul><li><a href="#sobre">A clínica</a></li><li><a href="#tratamentos">Tratamentos</a></li><li><a href="#resultados">Resultados</a></li><li><a href="#depoimentos">Depoimentos</a></li><li><a href="#local">Onde estamos</a></li></ul></div>
+      <div><p style="font-weight:700;color:var(--ink);margin-bottom:.6rem">Contato</p><ul><li>(31) 99999-0000</li><li>contato@clinicavale.com.br</li><li><a href="https://instagram.com/" target="_blank" rel="noopener">@clinicavaleodonto</a></li><li><a href="#" id="privLink">Política de privacidade</a></li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Clínica Vale Odontologia. Todos os direitos reservados.</span>
+      <span>Este site não substitui consulta. Procure um cirurgião-dentista.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="fab wa-link" href="#" data-msg="Olá! Vim pelo site e gostaria de agendar uma avaliação." aria-label="Falar no WhatsApp">
+  <span class="pulse"></span>
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>
+</a>
+
+<div class="cookie" id="cookie">
+  <span>Usamos cookies para medir visitas e melhorar o site. <a href="#privacidade">Saiba mais</a>.</span>
+  <button type="button" id="cookieOk">Entendi</button>
+</div>
+
+<script>
+(function(){
+  // rolagem travada: no celular, "Como funciona" + "Depoimentos" dividem uma tela; no desktop, "Tecnologia" + "Como funciona". Reage à troca de tamanho.
+  var mq = window.matchMedia('(max-width:900px)');
+  var J = document.getElementById('como-funciona'), D = document.getElementById('depoimentos'), SG = document.querySelector('.snapgroup'), TEC = document.getElementById('tecnologia');
+  function layout(){
+    var g = document.querySelector('.mgroup');
+    if (mq.matches) {
+      if (g) return;
+      g = document.createElement('div'); g.className = 'mgroup';
+      D.parentNode.insertBefore(g, D); g.appendChild(J); g.appendChild(D);
+      J.setAttribute('data-nav','Como funciona'); TEC.setAttribute('data-nav','Tecnologia');
+    } else {
+      if (!g) return;
+      SG.appendChild(J); g.parentNode.insertBefore(D, g); g.remove();
+      J.removeAttribute('data-nav'); TEC.setAttribute('data-nav','Tecnologia e método');
+    }
+  }
+  layout(); if (mq.addEventListener) mq.addEventListener('change', layout); else mq.addListener(layout);
+  // ---------- CONFIGURAÇÃO DO CLIENTE (troque só aqui) ----------
+  var WHATSAPP = "5531990730997"; // DDI + DDD + número, só dígitos
+
+  // Links do WhatsApp
+  document.querySelectorAll('.wa-link').forEach(function(a){
+    var msg = a.getAttribute('data-msg') || 'Olá! Vim pelo site.';
+    a.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(msg);
+    a.target = '_blank'; a.rel = 'noopener';
+  });
+
+  // Fotos: se não carregar, mostra o espaço marcado
+  document.querySelectorAll('.ph img').forEach(function(img){
+    function broken(){ img.closest('.ph').classList.add('is-broken'); }
+    img.addEventListener('error', broken);
+    if (img.complete && img.naturalWidth === 0) broken();
+  });
+
+  // Antes e depois
+  document.querySelectorAll('.ba-split').forEach(function(box){
+    var r = box.querySelector('input'), after = box.querySelector('.after'), h = box.querySelector('.handle');
+    function upd(){ var v = r.value; after.style.clipPath = 'inset(0 0 0 ' + v + '%)'; h.style.left = v + '%'; }
+    r.addEventListener('input', upd); upd();
+  });
+
+  // Formulário -> WhatsApp
+  var form = document.getElementById('leadForm');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var n = document.getElementById('fName').value.trim(), p = document.getElementById('fPhone').value.trim();
+    var t = document.getElementById('fTreat').value, per = document.getElementById('fPeriod').value, m = document.getElementById('fMsg').value.trim();
+    var txt = 'Olá! Vim pelo site e quero agendar uma avaliação.\n\nNome: ' + n + '\nWhatsApp: ' + p + '\nInteresse: ' + t + '\nMelhor período: ' + per + (m ? '\nObservação: ' + m : '');
+    var url = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(txt);
+    var a = document.createElement('a'); a.href = url; a.target = '_blank'; a.rel = 'noopener'; document.body.appendChild(a); a.click(); a.remove();
+    form.classList.add('sent');
+    // Aqui entra o evento do Pixel: fbq('track','Lead');
+  });
+
+  // Copiar telefone
+  document.getElementById('copyPhone').addEventListener('click', function(){
+    var t = document.getElementById('phoneText').textContent, b = this;
+    function done(){ b.textContent = 'Copiado'; setTimeout(function(){ b.textContent = 'Copiar'; }, 1500); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, function(){ var s = window.getSelection(), rg = document.createRange(); rg.selectNodeContents(document.getElementById('phoneText')); s.removeAllRanges(); s.addRange(rg); });
+  });
+
+  // menu do celular
+  var mb = document.getElementById('menuBtn'), mn = document.getElementById('mnav');
+  var ICO_OPEN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>', ICO_CLOSE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+  function closeMenu(){ mn.classList.remove('open'); mb.setAttribute('aria-expanded','false'); mb.innerHTML = ICO_OPEN; document.body.style.overflow = ''; }
+  mb.addEventListener('click', function(){ var open = mn.classList.toggle('open'); mb.setAttribute('aria-expanded', open); mb.innerHTML = open ? ICO_CLOSE : ICO_OPEN; document.body.style.overflow = open ? 'hidden' : ''; });
+  mn.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+
+  // revelação ao rolar + barra de progresso
+  document.documentElement.classList.add('js');
+  // celular: cada texto, item e cartão entra sozinho ao rolar, em sequência
+  if (window.matchMedia('(max-width:900px)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var fine = document.querySelectorAll('section[data-nav] :is(p, h3, li, details, .step, .tech-item, .quote, .ba-card, dl, .btn, .readmore, .cred li)');
+    var seenParent = new Map();
+    fine.forEach(function(el){
+      if (el.closest('.tcard') || el.closest('.rail') || el.closest('.ba') || el.closest('.about-list li') && el.tagName !== 'LI') return;
+      if (el.classList.contains('rv')) return;
+      var par = el.parentElement, k = seenParent.get(par) || 0; seenParent.set(par, k + 1);
+      el.classList.add('rv','fine'); el.style.transitionDelay = Math.min(k, 6) * 70 + 'ms';
+    });
+  }
+  var rvs = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }); }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+    rvs.forEach(function(el){ io.observe(el); });
+  } else { rvs.forEach(function(el){ el.classList.add('in'); }); }
+  var prog = document.getElementById('prog');
+  function onProg(){ var d = document.documentElement; prog.style.width = (d.scrollTop / (d.scrollHeight - d.clientHeight) * 100) + '%'; }
+  window.addEventListener('scroll', onProg, {passive:true}); onProg();
+
+  // tratamentos (desktop): carrossel com setas, pontinhos, arrastar e passagem automática suave
+  if (!mq.matches) {
+  var rail = document.getElementById('rail'), rdots = document.getElementById('railDots'), tcards = rail.querySelectorAll('.tcard'), rauto = null, rpaused = false;
+  function tW(){ var c = tcards[0]; return c ? c.getBoundingClientRect().width + 16 : 320; }
+  function rfits(){ return tcards.length * tW() <= rail.clientWidth + 10; }
+  function rdotsBuild(){ rdots.innerHTML=''; if (rfits()) return; tcards.forEach(function(_,i){ var d=document.createElement('i'); d.addEventListener('click', function(){ rail.scrollTo({left:i*tW(),behavior:'smooth'}); }); rdots.appendChild(d); }); rdotsUpd(); }
+  function rdotsUpd(){ var i = Math.round(rail.scrollLeft / tW()); rdots.querySelectorAll('i').forEach(function(d,k){ d.classList.toggle('on', k===i); }); tcards.forEach(function(c,k){ c.classList.toggle('on', k===i); }); }
+  rail.addEventListener('scroll', rdotsUpd, {passive:true});
+  function rtick(){ if (rpaused || rfits()) return; var max = rail.scrollWidth - rail.clientWidth; if (rail.scrollLeft >= max - 4) rail.scrollTo({left:0,behavior:'smooth'}); else rail.scrollBy({left:tW(),behavior:'smooth'}); }
+  rauto = setInterval(rtick, 4000);
+  rail.addEventListener('mouseenter', function(){ rpaused = true; }); rail.addEventListener('mouseleave', function(){ rpaused = false; });
+  rail.addEventListener('touchstart', function(){ rpaused = true; }, {passive:true}); rail.addEventListener('touchend', function(){ setTimeout(function(){ rpaused = false; }, 5000); });
+  document.getElementById('railPrev').addEventListener('click', function(){ rail.scrollBy({left:-tW(),behavior:'smooth'}); });
+  document.getElementById('railNext').addEventListener('click', function(){ rail.scrollBy({left:tW(),behavior:'smooth'}); });
+  var rdrag=false, rsx=0, rsl=0;
+  rail.addEventListener('mousedown', function(e){ rdrag=true; rsx=e.pageX; rsl=rail.scrollLeft; rail.classList.add('drag'); });
+  window.addEventListener('mouseup', function(){ if(rdrag){ rdrag=false; rail.classList.remove('drag'); } });
+  rail.addEventListener('mousemove', function(e){ if(!rdrag) return; e.preventDefault(); rail.scrollLeft = rsl - (e.pageX - rsx); });
+  rail.addEventListener('click', function(e){ if (Math.abs(rail.scrollLeft - rsl) > 6) e.preventDefault(); }, true);
+  rdotsBuild(); window.addEventListener('resize', rdotsBuild);
+  }
+  // tratamentos (celular): as duas fileiras andam sozinhas, em sentidos opostos; param quando a pessoa toca
+  if (mq.matches) {
+    var tPaused = false;
+    document.querySelectorAll('#tratamentos .rail').forEach(function(row, i){
+      var dir = i % 2 === 0 ? 1 : -1;
+      if (dir < 0) setTimeout(function(){ row.scrollLeft = row.scrollWidth; }, 50);
+      row.addEventListener('touchstart', function(){ tPaused = true; }, {passive:true});
+      row.addEventListener('touchend', function(){ setTimeout(function(){ tPaused = false; }, 4500); });
+      setInterval(function(){
+        if (tPaused || document.hidden) return;
+        var card = row.querySelector('.tcard'), step = card ? card.getBoundingClientRect().width + 11 : 280, max = row.scrollWidth - row.clientWidth;
+        if (dir > 0) { if (row.scrollLeft >= max - 4) row.scrollTo({left:0,behavior:'smooth'}); else row.scrollBy({left:step,behavior:'smooth'}); }
+        else { if (row.scrollLeft <= 4) row.scrollTo({left:max,behavior:'smooth'}); else row.scrollBy({left:-step,behavior:'smooth'}); }
+      }, 3600 + i * 700);
+    });
+  }
+  // resultados (celular): setas trocam o caso; sem passagem automática, para não atrapalhar quem está comparando
+  document.querySelectorAll('.ba-row').forEach(function(row){
+    var track = row.querySelector('.ba-track'), cards = track.querySelectorAll('.ba-card'), idx = 0, cnt = row.querySelector('.ba-cnt');
+    function go(n){ idx = (n + cards.length) % cards.length; track.style.transform = 'translateX(calc(' + (-100 * idx) + '% - ' + (0.7 * idx) + 'rem))'; if (cnt) cnt.textContent = (idx + 1) + '/' + cards.length; }
+    row.querySelector('.ba-prev').addEventListener('click', function(){ go(idx - 1); });
+    row.querySelector('.ba-next').addEventListener('click', function(){ go(idx + 1); });
+    go(0);
+  });
+
+  // "continuar lendo" (só celular)
+  var rm = document.getElementById('readMore');
+  if (rm) rm.addEventListener('click', function(){ rm.closest('.about-copy').classList.add('open'); });
+
+  // transições entre seções (desktop: linha + navegação lateral + profundidade; celular: etiqueta)
+  var secs = document.querySelectorAll('section[data-nav]'), sidenav = document.getElementById('sidenav'), toast = document.getElementById('sectoast');
+  var isMobile = function(){ return window.matchMedia('(max-width:900px)').matches; };
+  secs.forEach(function(s){
+    var a = document.createElement('a'); a.href = '#' + s.id; a.setAttribute('aria-label', s.getAttribute('data-nav'));
+    a.innerHTML = '<span>' + s.getAttribute('data-nav') + '</span>'; sidenav.appendChild(a);
+  });
+  var dots = sidenav.querySelectorAll('a'), lastSec = null, toastT = null;
+  function setActive(s){
+    if (s === lastSec) return; lastSec = s;
+    dots.forEach(function(d){ d.classList.toggle('on', !!s && d.getAttribute('href') === '#' + s.id); });
+    if (s && isMobile()) { toast.textContent = s.getAttribute('data-nav'); toast.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(function(){ toast.classList.remove('show'); }, 1100); }
+  }
+  if ('IntersectionObserver' in window) {
+    var seenIO = new IntersectionObserver(function(es){ es.forEach(function(en){ if (en.isIntersecting) en.target.classList.add('seen'); }); }, {threshold:.08});
+    secs.forEach(function(s){ seenIO.observe(s); });
+  }
+  function onSec(){
+    var mid = window.innerHeight * .4, cur = null;
+    document.querySelectorAll('section[data-nav]').forEach(function(s){ var r = s.getBoundingClientRect(); if (r.top <= mid && r.bottom > mid) cur = s; });
+    setActive(cur);
+    sidenav.classList.toggle('show', window.scrollY > window.innerHeight * .6);
+    // profundidade leve nas fotos (desktop)
+    if (!isMobile()) {
+      document.querySelectorAll('section[data-nav] .ph:not(.ba-split):not(.tcard .ph)').forEach(function(ph){
+        var r = ph.getBoundingClientRect(); if (r.bottom < 0 || r.top > window.innerHeight) return;
+        var p = (r.top + r.height/2 - window.innerHeight/2) / window.innerHeight; // -0.5..0.5
+        var img = ph.querySelector('img'); if (img) { img.style.transform = 'translateY(' + (p * -14) + 'px) scale(1.06)'; }
+      });
+    }
+  }
+  window.addEventListener('scroll', onSec, {passive:true}); window.addEventListener('resize', onSec); onSec();
+
+  // Cookies
+  var ck = document.getElementById('cookie');
+  try { if (localStorage.getItem('ck') === '1') ck.hidden = true; } catch(e){}
+  document.getElementById('cookieOk').addEventListener('click', function(){ ck.hidden = true; try { localStorage.setItem('ck','1'); } catch(e){} });
+
+  // Modo guia
+  var body = document.body, btn = document.getElementById('guideBtn'), txt = document.getElementById('guideText');
+  body.classList.add('guide');
+  btn.addEventListener('click', function(){
+    var on = body.classList.toggle('guide');
+    btn.textContent = on ? 'Ver como cliente' : 'Mostrar etiquetas';
+    txt.textContent = on ? 'Modo guia: as etiquetas amarelas mostram onde entra o conteúdo do cliente' : 'Visualização como o paciente vê';
+  });
+})();
+</script>
+
+<!-- ===== Barra da Orbyt Studio (só na vitrine de modelos) ===== -->
+<div class="orbyt-barra" role="region" aria-label="Orbyt Studio">
+  <a class="orbyt-voltar" href="../../../index.html#odontologia" aria-label="Voltar para os modelos da Orbyt Studio">←<span>Modelos</span></a>
+  <div class="orbyt-info"><b>Odontologia · Moderno, tela a tela</b><span>Modelo da Orbyt Studio. Os dados desta página são de demonstração.</span></div>
+  <nav class="orbyt-troca" aria-label="Modelos de Odontologia"><span>Modelo</span><a href="../1/index.html" aria-label="Modelo 1: Moderno">1</a><a href="../2/index.html" aria-label="Modelo 2: Clássico">2</a><a href="../3/index.html" aria-label="Modelo 3: Moderno, tela a tela" aria-current="page">3</a><a href="../4/index.html" aria-label="Modelo 4: Clássico, tela a tela">4</a></nav>
+  <a class="orbyt-quero" id="orbytQuero" href="https://wa.me/5531990730997?text=Oi%21%20Vi%20o%20modelo%203%20de%20odontologia%20%28Moderno%2C%20tela%20a%20tela%29%20da%20Orbyt%20e%20quero%20um%20site%20assim." target="_blank" rel="noopener"><span class="orbyt-longo">Quero um site assim</span><span class="orbyt-curto">Quero este</span></a>
+</div>
+<script>
+(function(){
+  var URL = "https://wa.me/5531990730997?text=Oi%21%20Vi%20o%20modelo%203%20de%20odontologia%20%28Moderno%2C%20tela%20a%20tela%29%20da%20Orbyt%20e%20quero%20um%20site%20assim.";
+  // o modelo abre sempre no topo, mesmo quando o navegador ou a prévia guardam a rolagem da página anterior
+  var noTopo = true;
+  ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(function(ev){ window.addEventListener(ev, function(){ noTopo = false; }, {passive: true, once: true}); });
+  function topo(){ if (!noTopo) return; try { window.scrollTo({top: 0, left: 0, behavior: 'instant'}); } catch(e){ window.scrollTo(0, 0); } }
+  try { history.scrollRestoration = 'manual'; } catch(e){}
+  topo(); window.addEventListener('load', topo);
+  [120, 400, 900, 1500].forEach(function(ms){ setTimeout(topo, ms); });
+  // vitrine: sem etiquetas do modo guia
+  document.body.classList.remove('guide');
+  // todo botão de WhatsApp do modelo leva para a Orbyt, com a mensagem deste modelo
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a[href*="wa.me/"],a[href*="api.whatsapp.com"]') : null;
+    if (!a) return;
+    a.href = URL; a.target = '_blank'; a.rel = 'noopener';
+    try { if (window.fbq) window.fbq('track', 'Contact', {origem: 'modelo-odontologia-3', content_name: 'modelo-odontologia-3', content_category: 'odontologia'}); } catch(err){}
+  }, true);
+  try { if (window.fbq) window.fbq('track', 'ViewContent', {content_name: 'modelo-odontologia-3', content_category: 'odontologia'}); } catch(err){}
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Site para advogados | Orbyt Studio</title>
+<meta name="description" content="Site completo para escritório de advocacia em 2 dias úteis, com mini diagnóstico por assunto, feito seguindo o Provimento 205/2021 da OAB. R$ 797, uma vez só. Você só paga depois de aprovar.">
+<link rel="canonical" href="https://orbytstudio.com.br/advogados/">
+<meta property="og:title" content="Site para advogados em 2 dias úteis · Orbyt Studio">
+<meta property="og:description" content="Site completo para escritório de advocacia em 2 dias úteis, com mini diagnóstico por assunto, feito seguindo o Provimento 205/2021 da OAB. R$ 797, uma vez só. Você só paga depois de aprovar.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://orbytstudio.com.br/advogados/">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://orbytstudio.com.br/img/og-orbyt.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Orbyt Studio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#16181B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2316181B'/%3E%3Ccircle cx='16' cy='16' r='8.5' fill='none' stroke='%23F1F3F5' stroke-width='3'/%3E%3Ccircle cx='22.8' cy='10' r='4.3' fill='%2316181B'/%3E%3Ccircle cx='22.8' cy='10' r='2.8' fill='%23FF5A1F'/%3E%3C/svg%3E">
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','2017780665599678');fbq('track','PageView');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400..700&family=Martian+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: 4 telas em sequência. 1 escura (a dor, com a busca do cliente), 2 clara com o mini diagnóstico rodando dentro de um navegador, 3 branca com o site modelo e a oferta, 4 clara com a Orbyt, chamada final escura. Identidade da Orbyt Studio. */
+:root{
+  --gelo:#F1F3F5; --papel:#FFFFFF; --nevoa:#E6EAEE; --grafite:#16181B; --grafite-2:#1F2226; --ardosia:#59606A;
+  --laranja:#FF5A1F; --laranja-2:#E84A10; --laranja-suave:#FFE9E0;
+  --linha:#D7DCE1; --linha-esc:#2C3036; --texto-esc:#ECEEF0; --mudo-esc:#9AA2AC;
+  --alerta:#E5484D; --alerta-suave:#FDECEC;
+  --wa:#25D366; --wa-esc:#0B5C4B; --wa-fundo:#ECE5DD;
+  --t-graf:#1B1C1E; --t-graf-2:#26282B; --t-tinta:#E9E5DC; --t-mudo:#A7A49C; --t-linha:#34363A; --t-bronze:#B8865A;
+  --f-disp:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+  --f-corpo:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"Martian Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --f-serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --f-plex:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --gut:max(clamp(16px,4vw,40px),env(safe-area-inset-left,0px));
+  --gut-d:max(clamp(16px,4vw,40px),env(safe-area-inset-right,0px));
+  --h-topo:64px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--gelo);color:var(--grafite);font-family:var(--f-corpo);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{margin:0;font-family:var(--f-disp);font-weight:700;letter-spacing:-.025em;line-height:1.04;text-wrap:balance}
+p{margin:0}
+button{font:inherit}
+:focus-visible{outline:3px solid var(--laranja);outline-offset:3px}
+.wrap{width:100%;max-width:1240px;margin-inline:auto;padding-left:var(--gut);padding-right:var(--gut-d)}
+.olho{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--laranja);display:inline-flex;align-items:center;gap:.6rem}
+.olho .n{color:var(--ardosia)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:.95rem 1.4rem;border-radius:999px;font-weight:600;font-size:1rem;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background .15s,transform .15s,border-color .15s,color .15s;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn svg{width:18px;height:18px;flex:0 0 auto}
+.btn-laranja{background:var(--laranja);color:#fff}
+.btn-laranja:hover{background:var(--laranja-2)}
+.btn-contorno-claro{border-color:rgba(255,255,255,.32);color:#fff;background:transparent}
+.btn-contorno-claro:hover{border-color:#fff}
+.btn-contorno{border-color:var(--grafite);color:var(--grafite);background:transparent}
+.btn-contorno:hover{background:var(--grafite);color:#fff}
+.btn-wa{background:var(--wa);color:#06331c}
+.btn-wa:hover{background:#1fc35b}
+
+/* topo */
+.topo{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:rgba(22,24,27,.94);color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--linha-esc);transition:background .25s,color .25s,border-color .25s}
+.topo.claro{background:rgba(255,255,255,.94);color:var(--grafite);border-color:var(--linha)}
+.topo-linha{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:64px}
+.logo{display:flex;align-items:center;gap:.55rem;text-decoration:none;font-family:var(--f-disp);font-weight:700;font-size:1.15rem;letter-spacing:-.02em}
+.logo svg{width:30px;height:30px}
+.logo small{font-family:var(--f-mono);font-weight:400;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;opacity:.6;margin-left:.2rem}
+.menu{display:flex;gap:.3rem;list-style:none;margin:0;padding:0}
+.menu a{display:flex;align-items:baseline;gap:.4rem;text-decoration:none;font-size:.9rem;padding:.5rem .8rem;border-radius:999px;opacity:.72;transition:opacity .15s,background .15s}
+.menu a b{font-family:var(--f-mono);font-weight:400;font-size:.66rem;color:var(--laranja)}
+.menu a:hover,.menu a.ativo{opacity:1}
+.menu a.ativo{background:rgba(255,90,31,.14)}
+.topo .btn{padding:.6rem 1.05rem;font-size:.9rem}
+.topo-acoes{display:flex;align-items:center;gap:.45rem}
+.btn-topo-linha{border-color:currentColor;color:inherit;background:transparent}
+@media (min-width:981px){.so-cel{display:none!important}}
+@media (max-width:980px){
+  .so-desk{display:none!important}
+  .menu{display:none}
+  .topo-linha{height:56px;gap:.6rem}
+  .logo{font-size:1rem;gap:.42rem;flex:0 0 auto}
+  .logo svg{width:24px;height:24px}
+  .logo small{display:none}
+  .topo-acoes{gap:.35rem;min-width:0}
+  .topo .btn{padding:.5rem .7rem;font-size:.76rem;gap:.3rem}
+  .topo .btn svg{display:none}
+}
+@media (max-width:420px){
+  .logo .lg-2{display:none}
+  .topo .btn{padding:.48rem .62rem;font-size:.74rem}
+}
+
+/* tela 1 */
+.t1{background:var(--grafite);color:var(--texto-esc);position:relative;overflow:hidden;padding-top:var(--h-topo)}
+.t1-grade{position:relative;z-index:1;display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(2rem,5vw,4.5rem);align-items:center;min-height:calc(100svh - var(--h-topo));padding-block:clamp(2rem,5svh,4rem)}
+.orbita{position:absolute;z-index:0;pointer-events:none;left:-18%;top:6%;width:120%;height:auto;opacity:.9}
+.t1-copia{display:flex;flex-direction:column;gap:clamp(1rem,2.6svh,1.6rem);min-width:0}
+.t1 h1{font-size:clamp(2.1rem,min(3.7vw,6.6svh),3.6rem);color:#fff}
+.t1 h1 em{font-style:normal;color:var(--laranja);display:block}
+.t1 .lead{font-size:clamp(1rem,1.25vw,1.15rem);color:var(--mudo-esc);max-width:52ch}
+.t1 .lead b{color:#fff;font-weight:600}
+.acoes{display:flex;flex-wrap:wrap;gap:.7rem}
+.args{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--linha-esc);padding-top:1.1rem;margin-top:.4rem}
+.arg{display:grid;gap:.25rem;padding-right:1rem;align-content:start}
+.arg+.arg{padding-left:1rem;border-left:1px solid var(--linha-esc)}
+.arg b{font-family:var(--f-mono);font-weight:500;font-size:.74rem;letter-spacing:.06em;color:#fff;text-transform:uppercase}
+.arg span{font-size:.84rem;color:var(--mudo-esc);line-height:1.35}
+
+/* busca falsa */
+.busca{background:var(--papel);color:var(--grafite);border-radius:20px;padding:clamp(.9rem,1.6vw,1.2rem);box-shadow:0 40px 80px -30px rgba(0,0,0,.65);display:grid;gap:.75rem;min-width:0}
+.busca-campo{display:flex;align-items:center;gap:.6rem;border:1px solid var(--linha);border-radius:999px;padding:.65rem 1rem;font-size:.95rem}
+.busca-campo svg{width:18px;height:18px;color:var(--ardosia);flex:0 0 auto}
+.busca-campo .cursor{display:inline-block;width:2px;height:1.05em;background:var(--laranja);vertical-align:-.15em;margin-left:1px;animation:pisca 1s steps(1) infinite}
+@keyframes pisca{50%{opacity:0}}
+.busca-meta{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.08em;color:var(--ardosia);text-transform:uppercase;padding-inline:.3rem}
+.res{display:grid;grid-template-columns:auto 1fr auto;gap:.2rem .7rem;align-items:start;padding:.7rem .75rem;border-radius:12px;border:1px solid transparent}
+.res+.res{border-top-color:var(--nevoa);border-top-left-radius:0;border-top-right-radius:0}
+.res .fav{grid-row:span 3;width:30px;height:30px;border-radius:50%;background:var(--nevoa);display:grid;place-items:center;font-family:var(--f-mono);font-size:.7rem;color:var(--ardosia)}
+.res .fonte{font-size:.74rem;color:var(--ardosia);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.res .tit{font-weight:600;font-size:.98rem;line-height:1.25;min-width:0}
+.res .desc{font-size:.82rem;color:var(--ardosia);line-height:1.35;min-width:0}
+.res .tag{grid-row:1/span 2;grid-column:3;align-self:center;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .55rem;border-radius:999px;background:var(--alerta-suave);color:var(--alerta);white-space:nowrap}
+.res.vence{border:1.5px solid var(--laranja);background:var(--laranja-suave);border-radius:12px;position:relative}
+.res.vence .fav{background:var(--t-graf);color:var(--t-bronze);font-family:var(--f-serif);font-size:.82rem}
+.res.vence .tag{background:var(--laranja);color:#fff}
+.res.vence .clique{position:absolute;right:18px;bottom:-12px;width:30px;height:30px}
+.res.vence .clique::before{content:"";position:absolute;left:2px;top:0;width:26px;height:26px;border-radius:50%;background:rgba(255,90,31,.35);animation:onda 1.8s ease-out infinite}
+.res.vence .clique svg{position:relative;width:24px;height:24px}
+@keyframes onda{0%{transform:scale(.4);opacity:1}100%{transform:scale(1.6);opacity:0}}
+.busca-legenda{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;color:var(--mudo-esc);text-align:center;margin-top:1rem;text-transform:uppercase}
+.busca-legenda b{color:#fff;font-weight:500}
+
+/* celular: a capa ocupa exatamente a primeira tela, tudo centralizado; a busca fica no meio e encolhe para caber */
+.selos{display:grid;grid-template-columns:1fr 1fr;gap:.45rem;width:100%}
+.selos span{display:flex;align-items:center;justify-content:center;gap:.4rem;min-height:2.5rem;padding:.4rem .5rem;border:1px solid var(--linha-esc);border-radius:12px;background:rgba(255,255,255,.04);font-weight:600;font-size:.82rem;line-height:1.2;color:#fff}
+.selos span b{color:var(--laranja);font-weight:700;white-space:nowrap}
+.selos .oab{border-color:rgba(37,211,102,.5);background:rgba(37,211,102,.12)}
+.selos .oab i{width:18px;height:18px;border-radius:50%;background:var(--wa);display:grid;place-items:center;flex:0 0 auto}
+.selos .oab svg{width:11px;height:11px;color:#06331c}
+@media (max-width:980px){
+  .t1-grade{--g:clamp(.5rem,1.5svh,.85rem);display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--g);height:calc(100svh - var(--h-topo));min-height:0;padding-block:clamp(.8rem,2.4svh,1.4rem) clamp(.8rem,2.2svh,1.3rem)}
+  .t1-copia{display:contents}
+  .t1-copia .olho{order:1;justify-content:center}
+  .t1 h1{order:2;font-size:clamp(1.7rem,min(7.8vw,4.5svh),2.4rem);line-height:1.04}
+  .t1 .lead{order:3;font-size:clamp(.86rem,2.15svh,.98rem);line-height:1.42;max-width:38ch}
+  .t1-busca{order:4;flex:1 1 auto;min-height:0;width:100%;position:relative}
+  .acoes{order:5;display:block;width:100%}
+  .acoes .btn{width:100%;padding-block:clamp(.72rem,1.8svh,.9rem)}
+  .acoes .btn-contorno-claro{display:none}
+  .selos{order:6;margin-top:calc(.45rem - var(--g))}
+  .orbita{left:-60%;top:2%;width:220%}
+  .t1-busca .busca{position:absolute;left:50%;top:50%;width:min(100%,400px);transform:translate(-50%,-50%) scale(var(--esc,1));padding:.55rem;gap:.35rem;border-radius:16px;text-align:left;box-shadow:0 24px 50px -24px rgba(0,0,0,.75)}
+  .busca-meta,.busca-legenda{display:none}
+  .busca-campo{padding:.42rem .8rem;font-size:.8rem;gap:.5rem}
+  .busca-campo svg{width:15px;height:15px}
+  .res{grid-template-columns:auto minmax(0,1fr) auto;gap:0 .55rem;padding:.42rem .5rem}
+  .res .fav{width:24px;height:24px;font-size:.55rem;grid-row:span 2}
+  .res .fonte{display:none}
+  .res .tit{font-size:.8rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .res .desc{font-size:.7rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .res .tag{font-size:.5rem;padding:.22rem .42rem}
+  .res.vence .clique{right:8px;bottom:-11px;transform:scale(.8)}
+}
+body.aperta-1 .t1 h1{font-size:clamp(1.45rem,6.6vw,1.9rem)}
+body.aperta-1 .t1-grade{--g:.45rem}
+body.aperta-2 .t1 .lead{display:none}
+
+/* telas claras */
+.tela{padding-block:clamp(4rem,9vw,7rem)}
+.cab{display:grid;gap:1rem;max-width:760px;margin-bottom:clamp(2rem,4vw,3rem)}
+.cab h2{font-size:clamp(1.9rem,3.6vw,3.2rem)}
+.cab .lead{font-size:1.08rem;color:var(--ardosia);max-width:60ch}
+@media (min-width:981px){.tela{min-height:100svh;display:flex;align-items:center}.tela>.wrap{width:100%}}
+
+/* tela 2 */
+.t2{background:var(--gelo)}
+.t2-grade{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(2rem,4.5vw,4rem);align-items:start}
+.t2-grade>*,.t3-grade>*,.t4-topo>*,.duvidas>*,.t1-grade>*,.vitrine>*{min-width:0}
+.t2-copia{display:flex;flex-direction:column;gap:1.3rem;min-width:0;position:sticky;top:calc(var(--h-topo) + 2rem)}
+.t2-copia h2{font-size:clamp(1.9rem,3.2vw,2.9rem)}
+.t2-copia .lead{font-size:1.06rem;color:var(--ardosia)}
+.cliques{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+.cliques li{display:grid;grid-template-columns:auto 1fr;gap:.15rem .9rem;padding:.85rem 1rem;border-radius:14px;border:1px solid var(--linha);background:var(--papel);transition:border-color .25s,background .25s,transform .25s}
+.cliques li .num{grid-row:span 2;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-mono);font-size:.78rem;background:var(--nevoa);color:var(--ardosia);transition:background .25s,color .25s}
+.cliques li b{font-family:var(--f-disp);font-size:1.08rem;letter-spacing:-.01em}
+.cliques li span{font-size:.88rem;color:var(--ardosia);line-height:1.4}
+.cliques li.agora{border-color:var(--laranja);transform:translateX(6px)}
+.cliques li.agora .num{background:var(--laranja);color:#fff}
+.cliques li.feito .num{background:var(--grafite);color:#fff}
+.nota-oab{display:grid;grid-template-columns:auto 1fr;gap:.8rem;align-items:start;font-size:.86rem;color:var(--ardosia);border-top:1px solid var(--linha);padding-top:1.1rem}
+.nota-oab svg{width:22px;height:22px;color:var(--grafite)}
+.nota-oab b{color:var(--grafite)}
+
+/* navegador */
+.nav-quadro{border-radius:16px;overflow:hidden;overflow:clip;background:var(--t-graf);box-shadow:0 50px 90px -40px rgba(22,24,27,.55),0 0 0 1px rgba(22,24,27,.08);min-width:0}
+.nav-barra{display:flex;align-items:center;gap:.8rem;padding:.65rem .9rem;background:#2A2D31;color:#C9CDD2}
+.nav-barra .bol{display:flex;gap:6px}
+.nav-barra .bol i{width:10px;height:10px;border-radius:50%;background:#4A4E54}
+.nav-barra .url{flex:1;min-width:0;display:flex;align-items:center;gap:.45rem;background:#1D1F22;border-radius:999px;padding:.35rem .8rem;font-size:.78rem;color:#AEB4BB;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.nav-barra .url svg{width:12px;height:12px;flex:0 0 auto}
+.nav-barra .selo{font-family:var(--f-mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--laranja);white-space:nowrap}
+.ao-vivo{display:flex;align-items:center;gap:.55rem;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--grafite);margin-bottom:.8rem}
+.ao-vivo i{width:9px;height:9px;border-radius:50%;background:var(--laranja);box-shadow:0 0 0 0 rgba(255,90,31,.6);animation:vivo 1.6s infinite}
+@keyframes vivo{0%{box-shadow:0 0 0 0 rgba(255,90,31,.55)}70%{box-shadow:0 0 0 10px rgba(255,90,31,0)}100%{box-shadow:0 0 0 0 rgba(255,90,31,0)}}
+
+/* o mini diagnóstico, no visual do site modelo */
+.demo{container-type:inline-size;background:var(--t-graf);color:var(--t-tinta);font-family:var(--f-plex);padding:clamp(1.1rem,3vw,2rem);display:grid;gap:1.1rem;position:relative;overflow:hidden;overflow:clip}
+.demo::before{content:"";position:absolute;right:-20%;bottom:-45%;width:70%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(184,134,90,.16),transparent 65%);pointer-events:none}
+.d-cab{display:grid;gap:.5rem;position:relative}
+.d-cab .ey{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--t-bronze);font-weight:600}
+.d-cab h3{font-family:var(--f-serif);font-weight:500;letter-spacing:0;font-size:clamp(1.35rem,4.2cqi,1.9rem);color:#fff;line-height:1.12}
+.d-cab p{font-size:.86rem;color:var(--t-mudo);max-width:56ch}
+.tri{position:relative;background:var(--t-graf-2);border:1px solid var(--t-linha);padding:clamp(.9rem,2.4cqi,1.3rem);display:grid;gap:.9rem;min-height:300px;align-content:start}
+.tri-prog{display:flex;gap:.5rem;align-items:center;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t-mudo)}
+.tri-prog span{min-width:7.5em}
+.tri-prog i{flex:1;height:2px;background:var(--t-linha);position:relative;overflow:hidden}
+.tri-prog i::after{content:"";position:absolute;inset:0;background:var(--t-bronze);transform:translateX(-100%);transition:transform .4s}
+.tri-prog i.on::after{transform:none}
+.tri-passo{display:none;gap:.85rem}
+.tri-passo.on{display:grid;animation:surge .35s ease}
+@keyframes surge{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.tri-q{font-family:var(--f-serif);font-size:clamp(1.15rem,3.4cqi,1.45rem);color:#fff;line-height:1.2}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+@container (min-width:620px){.chips{grid-template-columns:repeat(3,1fr)}}
+.chip{background:transparent;border:1px solid var(--t-linha);color:var(--t-tinta);padding:.7rem .8rem;text-align:left;cursor:pointer;font:500 .88rem/1.3 var(--f-plex);display:grid;gap:.15rem;transition:border-color .15s,background .15s;border-radius:2px;position:relative;min-width:0}
+.chip small{color:var(--t-mudo);font-size:.72rem;font-weight:400}
+.chip:hover{border-color:var(--t-bronze);background:rgba(184,134,90,.08)}
+.chip.sel{border-color:var(--t-bronze);background:rgba(184,134,90,.16)}
+.chip.dica::after{content:"";position:absolute;right:10px;top:10px;width:10px;height:10px;border-radius:50%;background:var(--laranja);animation:vivo 1.6s infinite}
+.dica-txt{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--laranja)}
+.tri-res{display:grid;grid-template-columns:1fr;gap:1.1rem}
+@container (min-width:600px){.tri-res{grid-template-columns:1.1fr .9fr}}
+.tri-col{display:grid;gap:.6rem;align-content:start;min-width:0}
+.tri-col h4{margin:0;font-family:var(--f-serif);font-weight:500;color:#fff;font-size:1.4rem;line-height:1.15}
+.tri-col .intro{color:var(--t-mudo);font-size:.88rem}
+.tri-col strong{color:#fff;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.tri-lista{list-style:none;margin:0;padding:0;display:grid;gap:.35rem;font-size:.86rem}
+.tri-lista li{padding-left:1.1rem;position:relative}
+.tri-lista li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;background:var(--t-bronze);border-radius:50%}
+.tri-lista.docs li::before{border-radius:1px;background:transparent;border:1.5px solid var(--t-bronze);width:7px;height:7px;top:.45em}
+.quem{display:flex;gap:.75rem;align-items:center;padding:.65rem .8rem;border:1px solid var(--t-linha);background:var(--t-graf)}
+.quem img{width:48px;height:48px;border-radius:50%;object-fit:cover;filter:grayscale(1) contrast(1.05);flex:0 0 48px;background:#3A3B3E}
+.quem small{display:block;color:var(--t-bronze);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase}
+.quem b{display:block;color:#fff;font-weight:600;font-size:.92rem}
+.quem span{font-size:.76rem;color:var(--t-mudo)}
+.btn-escr{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background:var(--wa);color:#073b1d;border:0;padding:.8rem 1.1rem;font:600 .9rem var(--f-plex);border-radius:2px;cursor:pointer;width:100%}
+.btn-escr svg{width:18px;height:18px}
+.btn-escr.chama{box-shadow:0 0 0 0 rgba(37,211,102,.6);animation:chamaWa 1.8s infinite}
+@keyframes chamaWa{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55)}70%{box-shadow:0 0 0 12px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+.tri-nota{font-size:.7rem;color:var(--t-mudo);border-top:1px solid var(--t-linha);padding-top:.6rem}
+.tri-volta{background:none;border:0;color:var(--t-mudo);cursor:pointer;font:500 .8rem var(--f-plex);padding:0;text-decoration:underline;text-underline-offset:3px;justify-self:start}
+.tri-volta:hover{color:#fff}
+
+/* chegada no WhatsApp */
+.zap{display:grid;grid-template-columns:1fr;gap:1.1rem;align-items:center}
+@container (min-width:600px){.zap{grid-template-columns:.95fr 1.05fr}}
+.zap-tel{border-radius:14px;overflow:hidden;background:var(--wa-fundo);box-shadow:0 20px 40px -20px rgba(0,0,0,.6);font-family:var(--f-corpo)}
+.zap-topo{background:var(--wa-esc);color:#fff;display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem}
+.zap-topo .av{width:30px;height:30px;border-radius:50%;background:var(--t-bronze);display:grid;place-items:center;font-family:var(--f-serif);font-size:.9rem;color:#fff}
+.zap-topo b{display:block;font-size:.86rem;font-weight:600;line-height:1.1}
+.zap-topo span{font-size:.7rem;opacity:.8}
+.zap-chat{padding:.9rem .8rem 1.1rem;display:grid;gap:.5rem;background-image:radial-gradient(rgba(0,0,0,.035) 1px,transparent 1px);background-size:12px 12px}
+.zap-dia{justify-self:center;font-size:.64rem;background:#E1F2FB;color:#4A5A66;padding:.2rem .6rem;border-radius:6px;text-transform:uppercase;letter-spacing:.04em}
+.balao{justify-self:start;max-width:88%;background:#fff;color:#111B21;border-radius:0 10px 10px 10px;padding:.5rem .7rem .35rem;font-size:.86rem;line-height:1.4;box-shadow:0 1px 1px rgba(0,0,0,.08);animation:surge .4s ease .15s both}
+.balao time{display:block;text-align:right;font-size:.62rem;color:#667781;margin-top:.15rem}
+.zap-txt{display:grid;gap:.75rem}
+.zap-txt h4{margin:0;font-family:var(--f-disp);font-weight:700;letter-spacing:-.02em;font-size:1.4rem;line-height:1.1;color:#fff}
+.zap-txt p{font-size:.88rem;color:var(--t-mudo);font-family:var(--f-corpo)}
+.zap-txt .btn{font-family:var(--f-corpo);white-space:normal;text-align:center}
+
+/* tela 3 */
+.t3{background:var(--papel)}
+.t3-grade{display:grid;grid-template-columns:1.3fr .7fr;gap:clamp(1.5rem,3.5vw,3rem);align-items:start}
+.abas{display:inline-flex;gap:.3rem;background:var(--gelo);border:1px solid var(--linha);border-radius:999px;padding:.3rem;margin-bottom:1rem;max-width:100%;overflow-x:auto;scrollbar-width:none}
+.abas::-webkit-scrollbar{display:none}
+.aba{border:0;background:transparent;border-radius:999px;padding:.55rem 1rem;cursor:pointer;font-weight:600;font-size:.9rem;color:var(--ardosia);white-space:nowrap;display:flex;gap:.45rem;align-items:baseline}
+.aba b{font-family:var(--f-mono);font-weight:400;font-size:.66rem}
+.aba.on{background:var(--grafite);color:#fff}
+.vitrine{display:grid;grid-template-columns:1fr auto;gap:clamp(1rem,2.5vw,1.8rem);align-items:end}
+.foto{position:relative;aspect-ratio:16/10;overflow:hidden;overflow:clip;background:var(--t-graf)}
+.foto img{position:absolute;top:0;left:0;width:100%;height:auto;max-width:none;animation:rolar 18s ease-in-out 1.2s infinite alternate}
+.foto:hover img{animation-play-state:paused}
+@keyframes rolar{0%,10%{transform:translateY(0)}90%,100%{transform:translateY(-66.667%)}}
+.cel{width:clamp(150px,15vw,200px);padding:7px;border-radius:30px;background:#0E0F11;box-shadow:0 30px 60px -25px rgba(22,24,27,.6),inset 0 0 0 1.5px #3B3E43}
+.cel-tela{border-radius:24px;overflow:hidden;background:var(--t-graf);position:relative}
+.cel-tela .barra{height:22px;background:#1B1C1E;position:relative}
+.cel-tela .barra i{position:absolute;top:6px;left:50%;transform:translateX(-50%);width:34%;height:12px;border-radius:8px;background:#000}
+.cel-tela img{width:100%;height:auto;aspect-ratio:520/1125;object-fit:cover;object-position:top}
+.vitrine-pe{display:flex;flex-wrap:wrap;gap:.8rem 1.4rem;align-items:center;margin-top:1.2rem}
+.vitrine-pe p{font-size:.88rem;color:var(--ardosia);max-width:44ch}
+.inclui{margin-top:2rem;display:grid;gap:.9rem}
+.inclui h3{font-size:1.2rem;letter-spacing:-.015em}
+.inclui ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.55rem 1.5rem}
+.inclui li{display:grid;grid-template-columns:auto 1fr;gap:.6rem;font-size:.92rem;align-items:start}
+.inclui li svg{width:18px;height:18px;color:var(--laranja);margin-top:.15em}
+.oferta{background:var(--grafite);color:var(--texto-esc);border-radius:22px;padding:clamp(1.4rem,2.6vw,2rem);display:grid;gap:1.1rem;position:sticky;top:calc(var(--h-topo) + 1.5rem)}
+.oferta .olho{color:var(--laranja)}
+.preco{font-family:var(--f-disp);font-weight:800;font-size:clamp(3rem,5.4vw,4.4rem);letter-spacing:-.04em;line-height:.95;color:#fff}
+.preco small{font-size:.32em;font-weight:600;letter-spacing:0;vertical-align:.9em;margin-right:.15em;color:var(--mudo-esc)}
+.oferta .sub{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mudo-esc)}
+.oferta ul{list-style:none;margin:0;padding:0;display:grid;gap:.6rem;border-top:1px solid var(--linha-esc);padding-top:1rem}
+.oferta li{display:grid;grid-template-columns:auto 1fr;gap:.6rem;font-size:.95rem;align-items:start}
+.oferta li svg{width:18px;height:18px;color:var(--laranja);margin-top:.15em}
+.oferta .frase{font-size:.92rem;color:#fff;border-left:2px solid var(--laranja);padding-left:.8rem}
+.oferta .btn{width:100%;white-space:normal;text-align:center}
+.oferta .mini{font-size:.78rem;color:var(--mudo-esc);text-align:center}
+@media (max-width:980px){
+  html{scroll-padding-top:var(--h-topo)}
+  .tela{padding-block:2.8rem}
+  /* tela 2: jornada 1-2-3 em cima do diagnóstico, que fica do tamanho da tela */
+  .t2-grade{display:flex;flex-direction:column;align-items:stretch;gap:0}
+  .t2-copia,.t2-demo{display:contents}
+  .t2-copia .olho{order:1;justify-content:center;margin-bottom:.7rem}
+  .t2-copia h2{order:2;text-align:center;font-size:clamp(1.4rem,6.2vw,1.8rem);margin-bottom:.5rem}
+  .t2-copia .lead{order:3;text-align:center;font-size:.94rem;margin-bottom:1rem}
+  .ao-vivo{order:4;justify-content:center;margin-bottom:.55rem;font-size:.62rem}
+  .cliques{order:5;display:flex;gap:.4rem;padding:.55rem;background:var(--t-graf);border-radius:16px 16px 0 0;border-bottom:1px solid var(--t-linha);scroll-margin-top:calc(var(--h-topo) + 10px)}
+  .cliques li{display:flex;align-items:center;gap:.45rem;flex:0 0 auto;padding:.28rem;border-radius:999px;border:1px solid var(--t-linha);background:transparent;transform:none}
+  .cliques li .num{width:26px;height:26px;font-size:.7rem;background:var(--t-graf-2);color:var(--t-mudo)}
+  .cliques li b{display:none;font-size:.86rem;color:#fff;padding-right:.5rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cliques li span:not(.num){display:none}
+  .cliques li.agora{flex:1 1 auto;min-width:0;border-color:var(--laranja);background:rgba(255,90,31,.14);transform:none}
+  .cliques li.agora b{display:block}
+  .cliques li.agora .num{background:var(--laranja);color:#fff}
+  .cliques li.feito{cursor:pointer}
+  .cliques li.feito .num{background:var(--wa);color:#06331c;font-size:0}
+  .cliques li.feito .num::before{content:"\2713";font-size:.8rem;font-weight:700}
+  .t2 .nav-quadro{order:6;border-radius:0 0 16px 16px}
+  .t2 .nav-barra{display:none}
+  .nota-oab{order:7;margin-top:.9rem;border-top:0;padding-top:0;font-size:.72rem;gap:.55rem;line-height:1.45}
+  .nota-oab svg{width:16px;height:16px}
+  .demo{padding:.6rem;gap:.6rem}
+  .d-cab{gap:.2rem}
+  .d-cab .ey{font-size:.58rem}
+  .d-cab h3{font-size:clamp(.98rem,4.3vw,1.12rem)}
+  .d-cab p{display:none}
+  .tri{padding:.7rem;min-height:0;gap:.6rem;border:0}
+  .tri-prog{display:none}
+  .tri-q{font-size:1.12rem}
+  .chip{padding:.6rem .62rem;font-size:.84rem}
+  .chip small{font-size:.68rem}
+  .dica-txt{text-align:center}
+  .tri-res{display:flex;flex-direction:column;gap:.45rem}
+  .tri-col{display:contents}
+  .tri-col h4{order:1;font-size:1.28rem}
+  .tri-col .intro{order:2;font-size:.88rem;line-height:1.45}
+  .res-abas{order:3;display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding:3px;border:1px solid var(--t-linha);border-radius:999px}
+  .res-abas button{border:0;background:transparent;color:var(--t-mudo);font:600 .6rem var(--f-plex);letter-spacing:.03em;text-transform:uppercase;padding:.52rem .15rem;border-radius:999px;cursor:pointer;white-space:nowrap}
+  .res-abas button.on{background:var(--t-bronze);color:var(--t-graf)}
+  .tri-col strong{display:none}
+  #rSaber,#rBom,#rDocs{order:4;font-size:.9rem;gap:.45rem;line-height:1.45}
+  .tri-res:not([data-aba="saber"]) #rSaber,.tri-res:not([data-aba="bom"]) #rBom,.tri-res:not([data-aba="docs"]) #rDocs{display:none}
+  .quem{order:5;padding:.5rem .6rem;gap:.6rem}
+  .quem img{width:38px;height:38px;flex-basis:38px}
+  .quem b{font-size:.85rem}
+  .quem span{font-size:.7rem;display:block;line-height:1.35}
+  .zap-txt .tri-volta{justify-self:center}
+  .btn-escr{padding:.78rem}
+  .res-cta{order:6;position:sticky;bottom:0;z-index:2;background:var(--t-graf-2);padding:.55rem 0 .7rem;box-shadow:0 -14px 12px -2px var(--t-graf-2)}
+  .tri{padding-bottom:0}
+  .tri > .tri-passo.on{padding-bottom:.7rem}
+  .tri-nota{font-size:.6rem;padding-top:.35rem;line-height:1.35}
+  #s3 > .tri-volta{display:none}
+  .zap{gap:.7rem}
+  .zap-topo{padding:.45rem .7rem}
+  .zap-topo .av{width:26px;height:26px;font-size:.8rem}
+  .zap-topo span,.zap-dia{display:none}
+  .zap-chat{padding:.65rem .65rem .75rem}
+  .balao{font-size:.82rem}
+  .zap-txt{gap:.55rem;text-align:center;justify-items:center}
+  .zap-txt h4{font-size:1.08rem}
+  .zap-txt p{font-size:.82rem}
+  .zap-txt .btn{width:100%;padding-block:.8rem}
+  /* tela 3: cartões de modelo de arrastar, no padrão do site da Orbyt */
+  .t3 .cab{text-align:center;justify-items:center;margin-bottom:1rem;gap:.7rem}
+  .t3 .cab .lead{font-size:.94rem}
+  .t3-grade{display:block}
+  .oferta{position:static}
+}
+.mc-dica{display:flex;align-items:center;justify-content:center;gap:.5rem;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ardosia);margin:0 0 .6rem}
+.mc-dica::after{content:"\2192";font-size:.9rem;letter-spacing:0;color:var(--laranja)}
+.mc-trilho{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gut);margin-left:calc(-1 * var(--gut));margin-right:calc(-1 * var(--gut-d));padding:16px var(--gut-d) 12px var(--gut);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.mc-trilho::-webkit-scrollbar{display:none}
+.mc{flex:0 0 84%;scroll-snap-align:center;display:grid;gap:.8rem;align-content:start;text-decoration:none;background:var(--gelo);border:1px solid var(--linha);border-radius:18px;padding:10px 10px 16px;min-width:0}
+.mc-moldura{position:relative;padding-top:10px}
+.mc--tela .mc-moldura::before,.mc--tela .mc-moldura::after{content:"";position:absolute;height:22px;border:1px solid var(--linha);border-bottom:0;border-radius:10px 10px 0 0}
+.mc--tela .mc-moldura::before{left:9%;right:9%;top:0;background:var(--nevoa)}
+.mc--tela .mc-moldura::after{left:4.5%;right:4.5%;top:5px;background:var(--papel)}
+.mc-tela{position:relative;z-index:1;margin:0;background:var(--papel);border:1px solid var(--linha);border-radius:10px;overflow:hidden}
+.mc-barra{display:flex;align-items:center;gap:5px;padding:7px 10px;background:var(--nevoa);border-bottom:1px solid var(--linha)}
+.mc-barra i{width:7px;height:7px;border-radius:50%;background:var(--linha);flex:none}
+.mc-barra span{margin-left:6px;flex:1;min-width:0;background:var(--papel);border-radius:999px;padding:2px 9px;font:500 .56rem/1.4 var(--f-mono);color:var(--ardosia);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mc-visor{display:block;aspect-ratio:16/10;overflow:hidden;background:var(--t-graf)}
+.mc-visor img{display:block;width:100%;height:auto;max-width:none}
+.mc-selo{position:absolute;z-index:2;left:8px;bottom:8px;display:inline-flex;align-items:center;gap:.4rem;font:500 .54rem/1 var(--f-mono);letter-spacing:.07em;text-transform:uppercase;background:var(--grafite);color:#fff;padding:.4rem .55rem;border-radius:999px}
+.mc-selo::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--laranja)}
+.mc-info{display:grid;gap:.4rem;justify-items:center;text-align:center}
+.mc-info .rot{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ardosia)}
+.mc-info h3{font-size:1.2rem;letter-spacing:-.02em}
+.mc-tem{list-style:none;margin:.1rem 0 0;padding:0;display:grid;gap:.35rem;text-align:left;font-size:.88rem;justify-self:center}
+.mc-tem li{display:grid;grid-template-columns:auto 1fr;gap:.6rem;align-items:start;line-height:1.38}
+.mc-tem li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--laranja);margin-top:.48em}
+.mc-seta{display:inline-flex;align-items:center;gap:.45rem;font-weight:600;font-size:.95rem;border-bottom:1.5px solid var(--laranja);padding-bottom:2px;margin-top:.35rem}
+.mc-seta::after{content:"\2197"}
+.mc-pontos{display:flex;justify-content:center;gap:.4rem;margin-top:.2rem}
+.mc-pontos i{width:6px;height:6px;border-radius:50%;background:var(--linha);transition:width .2s,background .2s}
+.mc-pontos i.on{width:18px;border-radius:3px;background:var(--grafite)}
+@media (prefers-reduced-motion:no-preference){
+  .mc.em-cena .mc-visor img{animation:mcRolar 9s ease-in-out .5s infinite alternate}
+  .mc--tela.em-cena .mc-visor img{animation:mcTelas 7s cubic-bezier(.7,0,.2,1) .5s infinite}
+}
+@keyframes mcRolar{to{transform:translateY(-66.666%)}}
+@keyframes mcTelas{0%,22%{transform:translateY(0)}32%,55%{transform:translateY(-33.333%)}65%,88%{transform:translateY(-66.666%)}100%{transform:translateY(0)}}
+
+/* tela de preços (só no celular) */
+.t-precos{background:var(--gelo)}
+.t-precos .cab{text-align:center;justify-items:center;margin-bottom:1.3rem;gap:.7rem}
+.srvs{display:grid;grid-template-columns:1fr 1fr;gap:16px 10px}
+.srv{position:relative;background:var(--papel);border:1px solid var(--linha);border-radius:16px;padding:14px 12px;display:grid;gap:.6rem;justify-items:center;text-align:center;align-content:start;min-width:0}
+@supports (grid-template-rows:subgrid){.srv:not(.srv--deitado){grid-row:span 6;grid-template-rows:subgrid;row-gap:.6rem}}
+.srv--destaque{border:1.5px solid var(--laranja)}
+.srv--destaque::before{content:"Recomendado";position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--laranja);color:#fff;font:500 .52rem/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;padding:.3rem .55rem;border-radius:999px;white-space:nowrap}
+.srv .rot{font-family:var(--f-mono);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ardosia)}
+.srv h3{font-size:1.04rem;letter-spacing:-.02em;line-height:1.1}
+.srv .prazo{font-family:var(--f-mono);font-size:.54rem;letter-spacing:.06em;text-transform:uppercase;background:var(--nevoa);padding:.32rem .5rem;border-radius:999px;white-space:nowrap;align-self:start}
+.srv .preco-m{display:grid;justify-items:center;width:100%;padding-block:.5rem .55rem;border-block:1px solid var(--linha)}
+.srv .preco-m small{font-size:.66rem;color:var(--ardosia);line-height:1.2}
+.srv .preco-m b{font-family:var(--f-disp);font-weight:800;font-size:1.7rem;letter-spacing:-.045em;line-height:1;white-space:nowrap;font-variant-numeric:tabular-nums}
+.srv ul{list-style:none;margin:0;padding:0;display:grid;gap:.3rem;font-size:.76rem;text-align:left;justify-self:stretch;align-content:start}
+.srv li{display:grid;grid-template-columns:auto 1fr;gap:.4rem;line-height:1.3}
+.srv li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--laranja);margin-top:.45em}
+.srv .btn{width:100%;padding:.62rem .5rem;font-size:.86rem;align-self:end}
+.srv--deitado{grid-column:1 / -1;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);column-gap:14px;align-items:center}
+.srv--deitado .srv-esq{display:grid;gap:.45rem;justify-items:center}
+.srv--deitado .srv-dir{display:grid;gap:.6rem}
+.srv--deitado .preco-m{border:0;padding:0}
+.srv--deitado .preco-m b{font-size:1.45rem}
+.srv--deitado ul{font-size:.8rem}
+.precos-pe{margin-top:1.1rem;display:grid;gap:.5rem;justify-items:center;text-align:center;font-size:.84rem;color:var(--ardosia)}
+.precos-pe b{color:var(--grafite)}
+.precos-pe .frase{font-family:var(--f-disp);font-weight:600;font-size:1.02rem;color:var(--grafite);letter-spacing:-.01em}
+
+/* tela 4 */
+.t4{background:var(--gelo)}
+.t4-topo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:end;margin-bottom:clamp(2.5rem,5vw,3.5rem)}
+.t4-topo h2{font-size:clamp(2.2rem,4.6vw,4rem)}
+.t4-topo h2 span{display:block;color:var(--ardosia);font-weight:600}
+.t4-topo p{font-size:1.06rem;color:var(--ardosia);max-width:54ch}
+.fatos{display:flex;flex-wrap:wrap;gap:.5rem 1.6rem;margin-top:1.2rem;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--grafite)}
+.fatos span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--laranja);margin-right:.5rem;vertical-align:.15em}
+.jornada{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-bottom:clamp(3rem,6vw,4.5rem)}
+.jornada::before{content:"";position:absolute;left:0;right:0;top:19px;height:1px;background:var(--linha)}
+.etapa{position:relative;display:grid;gap:.5rem;align-content:start;padding-right:1.4rem}
+.etapa .num{width:38px;height:38px;border-radius:50%;background:var(--papel);border:1px solid var(--linha);display:grid;place-items:center;font-family:var(--f-mono);font-size:.78rem;position:relative}
+.etapa:last-child .num{background:var(--laranja);border-color:var(--laranja);color:#fff}
+.etapa h3{font-size:1.15rem;letter-spacing:-.015em;margin-top:.4rem}
+.etapa p{font-size:.9rem;color:var(--ardosia)}
+.duvidas{display:grid;grid-template-columns:.7fr 1.3fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+.duvidas h3{font-size:clamp(1.5rem,2.6vw,2.1rem)}
+.lista-d details{border-top:1px solid var(--linha);padding:1rem 0}
+.lista-d details:last-child{border-bottom:1px solid var(--linha)}
+.lista-d summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:1rem;align-items:center;font-family:var(--f-disp);font-weight:600;font-size:1.12rem;letter-spacing:-.01em}
+.lista-d summary::-webkit-details-marker{display:none}
+.lista-d summary::after{content:"+";font-family:var(--f-mono);font-weight:400;color:var(--laranja);font-size:1.2rem;transition:rotate .2s;flex:0 0 auto}
+.lista-d details[open] summary::after{rotate:45deg}
+.lista-d details p{color:var(--ardosia);padding-top:.6rem;max-width:62ch;font-size:.95rem}
+@media (max-width:980px){
+  .t4{background:var(--papel)}
+  .t4-topo,.duvidas{grid-template-columns:1fr}
+  .t4-topo{gap:.9rem;margin-bottom:1.5rem;text-align:center;justify-items:center}
+  .t4-topo > div{justify-items:center}
+  .t4-topo h2{font-size:clamp(1.8rem,8vw,2.3rem)}
+  .t4-topo p{font-size:.92rem;margin-inline:auto}
+  .fatos{display:none}
+  .jornada{grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.8rem}
+  .jornada::before{display:none}
+  .etapa{display:flex;align-items:center;gap:.55rem;padding:.55rem .6rem;border:1px solid var(--linha);border-radius:12px;background:var(--gelo)}
+  .etapa .num{width:28px;height:28px;font-size:.64rem;flex:0 0 28px}
+  .etapa h3{font-size:.8rem;margin:0;line-height:1.2;letter-spacing:-.01em}
+  .etapa p{display:none}
+  .duvidas{gap:.6rem}
+  .duvidas h3{font-size:1.35rem;text-align:center}
+  .lista-d details{padding:.75rem 0}
+  .lista-d summary{font-size:.98rem}
+  .lista-d details p{font-size:.86rem}
+  .final{padding-block:3rem}
+  .final .wrap{justify-items:center;text-align:center;gap:1rem}
+  .final h2{font-size:clamp(1.8rem,8vw,2.4rem)}
+  .final p{font-size:.95rem}
+  .final .numero{justify-content:center}
+  .rodape .wrap{flex-direction:column;text-align:center;gap:.6rem}
+}
+
+/* chamada final */
+.final{background:var(--grafite);color:var(--texto-esc);padding-block:clamp(4rem,9vw,6.5rem);position:relative;overflow:hidden}
+.final .wrap{position:relative;z-index:1;display:grid;gap:1.4rem;justify-items:start}
+.final h2{font-size:clamp(2rem,4.4vw,3.8rem);color:#fff;max-width:18ch}
+.final h2 em{font-style:normal;color:var(--laranja)}
+.final p{color:var(--mudo-esc);font-size:1.08rem;max-width:52ch}
+.final .numero{font-family:var(--f-mono);font-size:.8rem;letter-spacing:.06em;color:var(--mudo-esc);display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}
+.final .numero span{color:#fff;user-select:all}
+.copiar{background:transparent;border:1px solid var(--linha-esc);color:var(--mudo-esc);border-radius:999px;padding:.3rem .8rem;font:.72rem var(--f-mono);cursor:pointer}
+.copiar:hover{color:#fff;border-color:#fff}
+.final .orbita{left:30%;top:-10%;width:90%;opacity:.7}
+.rodape{background:var(--grafite);color:var(--mudo-esc);border-top:1px solid var(--linha-esc);padding-block:1.8rem calc(1.8rem + env(safe-area-inset-bottom,0px));font-size:.82rem}
+.rodape .wrap{display:flex;flex-wrap:wrap;gap:.8rem 2rem;justify-content:space-between;align-items:center}
+.rodape .logo{color:#fff;font-size:1rem}
+.rodape .logo svg{width:24px;height:24px}
+.rodape a{text-decoration:none}
+.rodape a:hover{color:#fff}
+.rodape .ficticio{flex-basis:100%;font-size:.74rem;opacity:.75}
+
+/* botão flutuante (celular) */
+.flutua{position:fixed;z-index:45;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));display:none;box-shadow:0 16px 34px -12px rgba(0,0,0,.55);opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .25s,transform .25s}
+.flutua.ver{opacity:1;transform:none;pointer-events:auto}
+
+.aviso{position:fixed;z-index:60;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--grafite);color:#fff;padding:.7rem 1.1rem;border-radius:999px;font-size:.88rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+.aviso.ver{opacity:1;transform:translate(-50%,0)}
+
+/* diagnóstico: opções em lista numerada e resultado com letra maior (computador e celular) */
+.tri-lista.bom li::before{border-radius:2px;width:8px;height:2px;top:.75em}
+@media (min-width:981px){
+  .tri{min-height:clamp(470px,60svh,590px);display:flex;flex-direction:column;gap:1rem}
+  .tri-passo.on{display:flex;flex-direction:column;flex:1 1 auto;gap:.9rem}
+  .tri-q{font-size:1.5rem}
+  #s1 .chips,#s2 .chips{flex:1 1 auto;display:flex;flex-direction:column;gap:0}
+  .chips .chip{flex:1 1 0;min-height:3.1rem;max-height:6.2rem;container-type:size;display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-rows:auto auto;align-content:center;align-items:center;column-gap:1.1rem;row-gap:.12rem;padding:0 .5rem 0 .25rem;border:0;border-bottom:1px solid var(--t-linha);border-radius:0;background:transparent;text-align:left;transition:background .2s,padding .2s}
+  .chips .chip:first-child{border-top:1px solid var(--t-linha)}
+  .chips .chip::before{content:attr(data-n);grid-column:1;grid-row:1 / 3;font-family:var(--f-serif);font-style:italic;font-size:1.05rem;color:var(--t-bronze);min-width:1.8em}
+  .chips .chip > span{grid-column:2;font-size:1.12rem;font-weight:500;line-height:1.2;color:var(--t-tinta)}
+  .chips .chip small{grid-column:2;display:block;font-size:.84rem;line-height:1.3}
+  .chips .chip::after{content:"\2192";grid-column:3;grid-row:1 / 3;position:static;width:auto;height:auto;background:none;border-radius:0;animation:none;color:var(--t-bronze);opacity:.6;font-size:1.15rem;transition:translate .2s,opacity .2s}
+  .chips .chip.dica::after{color:var(--laranja);opacity:1;animation:empurra 1.4s ease-in-out infinite}
+  .chips .chip:hover{background:rgba(184,134,90,.08);padding-left:.6rem;border-color:var(--t-linha)}
+  .chips .chip:hover::after{translate:4px 0;opacity:1}
+  .chips .chip.sel{background:rgba(184,134,90,.14)}
+  @container (max-height:52px){.chips .chip small{display:none}}
+  .dica-txt{display:none}
+  .tri-col{gap:.7rem}
+  .tri-col h4{font-size:1.7rem}
+  .tri-col .intro{font-size:1rem;line-height:1.55;color:#CFCAC0}
+  .tri-col strong{font-size:.74rem;margin-top:.3rem}
+  .tri-lista{font-size:.96rem;gap:.5rem;line-height:1.45}
+  .quem img{width:56px;height:56px;flex-basis:56px}
+  .quem b{font-size:1rem}
+  .btn-escr{padding:.95rem 1.1rem;font-size:1rem}
+  .tri-nota{font-size:.76rem}
+}
+
+/* ===== CELULAR: rolagem travada, uma tela por vez (mesma ideia do modelo 2 de advocacia) ===== */
+@media (max-width:980px){
+  html{scroll-snap-type:y mandatory}
+  .t1,.tela,.final{scroll-snap-align:start;scroll-snap-stop:always}
+  .tela{height:calc(100svh - var(--h-topo));min-height:0;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;padding-block:clamp(.8rem,2.2svh,1.3rem) clamp(.7rem,2svh,1.1rem);scrollbar-width:none}
+  .tela::-webkit-scrollbar{display:none}
+  .tela > .wrap{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+
+  /* tela 2: o diagnóstico ocupa o que sobra da tela */
+  .t2-grade{flex:1 1 auto;min-height:0}
+  .t2-copia .lead{display:none}
+  .t2-copia .olho{margin-bottom:.45rem}
+  .t2-copia h2{font-size:clamp(1.35rem,min(6vw,3.6svh),1.75rem);margin-bottom:.6rem}
+  .ao-vivo{margin-bottom:.5rem}
+  .t2 .nav-quadro{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+  .demo{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+  .tri{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow-y:auto;scrollbar-width:none}
+  .tri::-webkit-scrollbar{display:none}
+  .tri-passo.on{display:flex;flex-direction:column;flex:1 1 auto;min-height:0;gap:.75rem}
+  .tri-q{font-size:clamp(1.05rem,4.6vw,1.25rem)}
+  #s1 .chips,#s2 .chips{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:0}
+  .chips .chip{flex:1 1 0;min-height:2.7rem;max-height:5.6rem;container-type:size;display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-rows:auto auto;align-content:center;align-items:center;column-gap:.9rem;row-gap:.1rem;padding:0 .35rem 0 .15rem;border:0;border-bottom:1px solid var(--t-linha);border-radius:0;background:transparent;text-align:left;transition:background .2s,padding .2s}
+  .chips .chip:first-child{border-top:1px solid var(--t-linha)}
+  .chips .chip::before{content:attr(data-n);grid-column:1;grid-row:1 / 3;font-family:var(--f-serif);font-style:italic;font-size:clamp(.82rem,15cqh,1rem);color:var(--t-bronze);min-width:1.6em}
+  .chips .chip > span{grid-column:2;font-size:clamp(.95rem,19cqh,1.14rem);font-weight:500;line-height:1.2;color:var(--t-tinta)}
+  .chips .chip small{grid-column:2;display:block;font-size:clamp(.7rem,12cqh,.82rem);line-height:1.3}
+  .chips .chip::after{content:"\2192";grid-column:3;grid-row:1 / 3;position:static;width:auto;height:auto;background:none;border-radius:0;animation:none;color:var(--t-bronze);opacity:.6;font-size:1.05rem;transition:translate .2s,opacity .2s}
+  .chips .chip.dica::after{color:var(--laranja);opacity:1;animation:empurra 1.4s ease-in-out infinite}
+  .chips .chip.sel{background:rgba(184,134,90,.12)}
+  .chips .chip:active{background:rgba(184,134,90,.16);padding-left:.45rem}
+  @container (max-height:50px){.chips .chip small{display:none}}
+  .dica-txt{display:none}
+  #s2 .tri-volta{flex:0 0 auto}
+  #s4.on{justify-content:center}
+  .nota-oab{margin-top:.6rem;flex:0 0 auto}
+
+  /* tela 3: o cartão do modelo ocupa a tela e o print rola maior */
+  .t3-grade{display:none}
+  .t3 .cab{margin-bottom:.4rem;gap:.45rem}
+  .t3 .cab .lead{display:none}
+  .t3 .cab h2{font-size:clamp(1.45rem,min(6.4vw,3.8svh),1.85rem)}
+  .mc-bloco{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+  .mc-dica{margin:0}
+  .mc-trilho{flex:1 1 auto;min-height:0;padding-top:12px;padding-bottom:10px}
+  .mc{flex:0 0 88%;display:flex;flex-direction:column;gap:.7rem;min-height:0}
+  .mc-moldura{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+  .mc-tela{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+  .mc-visor{flex:1 1 auto;min-height:0;aspect-ratio:auto;position:relative}
+  .mc-visor img{position:absolute;top:0;left:0}
+  .mc-info{gap:.3rem}
+  .mc-info h3{font-size:1.12rem}
+  .mc-tem{font-size:.82rem;gap:.25rem}
+  .mc-seta{margin-top:.2rem}
+  .mc.em-cena .mc-visor img{animation:mcRolarV 11s ease-in-out .5s infinite alternate}
+  .mc--tela.em-cena .mc-visor img{animation:mcTelasV 7.5s cubic-bezier(.7,0,.2,1) .5s infinite}
+
+  /* preços: tudo numa tela */
+  .t-precos > .wrap{justify-content:center}
+  .t-precos .cab{margin-bottom:1rem;gap:.4rem}
+  .t-precos h2{font-size:clamp(1.45rem,6.4vw,1.85rem)}
+  .srvs{gap:14px 8px}
+  .srv{padding:12px 10px;gap:.45rem}
+  @supports (grid-template-rows:subgrid){.srv:not(.srv--deitado){row-gap:.45rem}}
+  .srv .preco-m{padding-block:.4rem .45rem}
+  .srv .preco-m b{font-size:1.55rem}
+  .srv ul li:nth-child(4){display:none}
+  .srv .btn{padding:.55rem .5rem}
+  .srv--deitado{padding:12px}
+  .precos-pe{margin-top:.8rem;gap:.3rem;font-size:.78rem}
+  .precos-pe .frase{font-size:.95rem}
+
+  /* Orbyt + dúvidas numa tela */
+  .t4 > .wrap{justify-content:center}
+  .t4-topo{margin-bottom:1rem;gap:.5rem}
+  .t4-topo h2{font-size:clamp(1.55rem,7vw,2rem)}
+  .t4-topo p{font-size:.86rem}
+  .jornada{margin-bottom:1.1rem}
+  .duvidas h3{font-size:1.15rem}
+  .lista-d details{padding:.55rem 0}
+  .lista-d summary{font-size:.92rem}
+
+  /* chamada final + rodapé fecham a última tela */
+  .final{min-height:calc(100svh - var(--h-topo) - var(--h-rod,140px));display:flex;align-items:center}
+  .final .wrap{width:100%;justify-items:center;text-align:center}
+  .final .numero{justify-content:center}
+}
+@keyframes empurra{50%{translate:4px 0}}
+@keyframes mcRolarV{to{transform:translateY(calc(var(--fh,200px) - 100%))}}
+@keyframes mcTelasV{0%,22%{transform:translateY(0)}32%,55%{transform:translateY(calc((var(--fh,200px) - 100%) / 2))}65%,88%{transform:translateY(calc(var(--fh,200px) - 100%))}100%{transform:translateY(0)}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<header class="topo" id="topo">
+  <div class="wrap topo-linha">
+    <a class="logo" href="#problema" aria-label="Orbyt Studio, início">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><ellipse cx="16" cy="16" rx="12.5" ry="12.5" stroke="currentColor" stroke-width="2"/><circle cx="25" cy="7.4" r="3.6" fill="#FF5A1F"/></svg>
+      <span>Orbyt<span class="lg-2"> Studio</span></span> <small>para advogados</small>
+    </a>
+    <ul class="menu" id="menu">
+      <li><a href="#problema" data-alvo="problema"><b>01</b>O problema</a></li>
+      <li><a href="#diagnostico" data-alvo="diagnostico"><b>02</b>Mini diagnóstico</a></li>
+      <li><a href="#modelo" data-alvo="modelo"><b>03</b>Site modelo</a></li>
+      <li><a href="#orbyt" data-alvo="orbyt"><b>04</b>Orbyt Studio</a></li>
+    </ul>
+    <div class="topo-acoes">
+    <a class="btn btn-topo-linha so-cel" href="#modelo">Ver site modelo</a>
+    <a class="btn btn-laranja wa-orbyt" href="#" data-origem="topo" data-msg="Olá! Vi a página para advogados e quero um site para o meu escritório. O nome do escritório é: ">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>
+      <span>Quero meu site</span>
+    </a>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- TELA 1: a dor -->
+<section class="t1" id="problema" data-tema="escuro">
+  <svg class="orbita" viewBox="0 0 1200 700" fill="none" aria-hidden="true">
+    <ellipse id="trilha" cx="600" cy="350" rx="560" ry="250" transform="rotate(-12 600 350)" stroke="rgba(255,255,255,.07)" stroke-width="1.2"/>
+    <ellipse cx="600" cy="350" rx="430" ry="180" transform="rotate(-12 600 350)" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+    <circle r="7" fill="#FF5A1F" class="satelite">
+      <animateMotion dur="26s" repeatCount="indefinite" rotate="auto"><mpath href="#trilha"/></animateMotion>
+    </circle>
+  </svg>
+  <div class="wrap t1-grade">
+    <div class="t1-copia" id="capa">
+      <span class="olho">Para advogados e escritórios</span>
+      <h1>Seu cliente pesquisa o seu nome no Google antes de te chamar. <em>O que ele encontra?</em></h1>
+      <p class="lead"><span class="so-desk">Alguém te indica. A pessoa não liga na hora: primeiro ela procura você. </span>Se acha um Instagram parado ou um site de 2015, fecha a aba e chama outro advogado. <b>Você perde o cliente e nem fica sabendo que ele existiu.</b></p>
+      <div class="acoes">
+        <a class="btn btn-laranja" href="#diagnostico">Ver o mini diagnóstico
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </a>
+        <a class="btn btn-contorno-claro" href="#modelo">Ver o site modelo</a>
+      </div>
+      <div class="args so-desk">
+        <div class="arg"><b>2 dias úteis</b><span>Seu site completo no ar</span></div>
+        <div class="arg"><b>R$ 797</b><span>Uma vez só, sem mensalidade</span></div>
+        <div class="arg"><b>100% depois</b><span>Você só paga se aprovar</span></div>
+        <div class="arg"><b>Regras da OAB</b><span>Feito seguindo o Provimento 205</span></div>
+      </div>
+      <div class="selos so-cel">
+        <span>Entrega em 2 dias úteis</span>
+        <span>Por apenas&nbsp;<b>R$ 797</b></span>
+        <span>Pagamento pós-entrega</span>
+        <span class="oab"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Regras da OAB</span>
+      </div>
+    </div>
+
+    <div class="t1-busca">
+      <div class="busca" role="img" aria-label="Simulação de busca pelo nome de um advogado: Instagram parado, cadastro sem telefone, site desatualizado e, abaixo, o escritório concorrente com site completo.">
+        <div class="busca-campo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <span>rodrigo matos advogado bh<i class="cursor"></i></span>
+        </div>
+        <span class="busca-meta">O que a pessoa indicada encontra</span>
+        <div>
+          <div class="res">
+            <span class="fav">IG</span>
+            <span class="fonte">instagram.com › rodrigomatos.adv</span>
+            <span class="tit">Rodrigo Matos (@rodrigomatos.adv)</span>
+            <span class="desc">12 publicações · última há 2 anos</span>
+            <span class="tag">Parado</span>
+          </div>
+          <div class="res">
+            <span class="fav">GA</span>
+            <span class="fonte">guia de advogados › belo horizonte</span>
+            <span class="tit">Advogados em BH: lista de nomes</span>
+            <span class="desc">Rodrigo Matos · Trabalhista · telefone não informado</span>
+            <span class="tag">Sem contato</span>
+          </div>
+          <div class="res">
+            <span class="fav">RM</span>
+            <span class="fonte">site · Rodrigo Matos Advocacia</span>
+            <span class="tit">Página em construção</span>
+            <span class="desc">Última atualização: 12/03/2015 · não abre direito no celular</span>
+            <span class="tag">Site de 2015</span>
+          </div>
+          <div class="res vence">
+            <span class="fav">AF</span>
+            <span class="fonte">andradeferraz.adv.br</span>
+            <span class="tit">Andrade &amp; Ferraz Advocacia · Belo Horizonte</span>
+            <span class="desc">Guia por assunto · Áreas · Equipe com OAB · Falar no WhatsApp</span>
+            <span class="tag">Leva o cliente</span>
+            <span class="clique" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3l14 7.5-6.2 1.7L10 18.5z" fill="#16181B" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg></span>
+          </div>
+        </div>
+      </div>
+      <p class="busca-legenda">A pessoa fecha a aba. <b>E chama quem tem site.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- TELA 2: o mini diagnóstico -->
+<section class="tela t2" id="diagnostico" data-tema="claro">
+  <div class="wrap t2-grade">
+    <div class="t2-copia">
+      <span class="olho"><span class="n">02</span> Mini diagnóstico</span>
+      <h2>Em 3 cliques o cliente entende o assunto dele e chama você no WhatsApp.</h2>
+      <p class="lead">É o diferencial do seu site. Teste aqui: é exatamente o que o seu cliente vai ver.</p>
+      <ol class="cliques" id="cliques">
+        <li class="agora" data-p="1"><span class="num">1</span><b>Escolhe o assunto</b><span>Trabalho, família, INSS, consumidor, imóveis ou empresas.</span></li>
+        <li data-p="2"><span class="num">2</span><b>Vê como funciona</b><span>Informação geral, os documentos que costumam ser pedidos e quem do escritório atende a área.</span></li>
+        <li data-p="3"><span class="num">3</span><b>Chama você</b><span>A mensagem chega pronta no seu WhatsApp, já dizendo o assunto.</span></li>
+      </ol>
+      <div class="nota-oab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+        <p><b>Dentro do Provimento 205/2021 da OAB.</b> É informação geral por assunto, sem consulta automática e sem promessa de resultado. No seu site ele aparece como "Guia rápido por assunto", montado com as suas áreas de atuação.</p>
+      </div>
+    </div>
+
+    <div class="t2-demo">
+      <div class="ao-vivo"><i></i>Funcionando de verdade · toque num assunto</div>
+      <div class="nav-quadro">
+        <div class="nav-barra">
+          <span class="bol"><i></i><i></i><i></i></span>
+          <span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>andradeferraz.adv.br/#guia</span>
+          <span class="selo">Site modelo</span>
+        </div>
+        <div class="demo" id="demo">
+          <div class="d-cab">
+            <span class="ey">Guia rápido por assunto</span>
+            <h3>Informações gerais sobre os assuntos mais procurados.</h3>
+            <p>Escolha um assunto e veja como ele funciona e quais documentos costumam ser pedidos. A análise de cada situação é feita pelo advogado, no atendimento.</p>
+          </div>
+          <div class="tri" id="tri">
+            <div class="tri-prog"><span id="triRotulo">Passo 1 de 3</span><i class="on"></i><i id="p2"></i><i id="p3"></i></div>
+
+            <div class="tri-passo on" id="s1">
+              <p class="tri-q">Sobre qual assunto você quer informações?</p>
+              <div class="chips" id="chips1"></div>
+              <span class="dica-txt" id="dicaTxt">Toque em um assunto para começar</span>
+            </div>
+
+            <div class="tri-passo" id="s2">
+              <p class="tri-q">Qual assunto?</p>
+              <div class="chips" id="chips2"></div>
+              <button class="tri-volta" type="button" data-volta="1">← Voltar</button>
+            </div>
+
+            <div class="tri-passo" id="s3">
+              <div class="tri-res" id="triRes" data-aba="saber">
+                <div class="tri-col">
+                  <h4 id="rTitulo"></h4>
+                  <p class="intro" id="rIntro"></p>
+                  <div class="res-abas so-cel" role="tablist" aria-label="O que ver">
+                    <button type="button" role="tab" class="on" aria-selected="true" data-aba="saber">Como funciona</button>
+                    <button type="button" role="tab" aria-selected="false" data-aba="bom">Bom saber</button>
+                    <button type="button" role="tab" aria-selected="false" data-aba="docs">Documentos</button>
+                  </div>
+                  <strong>Como funciona</strong>
+                  <ul class="tri-lista" id="rSaber"></ul>
+                  <strong>Bom saber</strong>
+                  <ul class="tri-lista bom" id="rBom"></ul>
+                </div>
+                <div class="tri-col">
+                  <strong>Documentos que costumam ser pedidos</strong>
+                  <ul class="tri-lista docs" id="rDocs"></ul>
+                  <div class="quem" id="rQuem"></div>
+                  <div class="res-cta"><button class="btn-escr chama" id="rBtn" type="button">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>
+                    Falar com o escritório
+                  </button></div>
+                </div>
+              </div>
+              <p class="tri-nota">Conteúdo informativo e geral. Não substitui a análise individual por um advogado.</p>
+              <button class="tri-volta" type="button" data-volta="1">← Começar de novo</button>
+            </div>
+
+            <div class="tri-passo" id="s4">
+              <div class="zap">
+                <div class="zap-tel">
+                  <div class="zap-topo"><span class="av">E</span><div><b>Seu escritório</b><span>WhatsApp Business</span></div></div>
+                  <div class="zap-chat">
+                    <span class="zap-dia">Hoje</span>
+                    <div class="balao" id="zapMsg"><span></span><time id="zapHora">09:41</time></div>
+                  </div>
+                </div>
+                <div class="zap-txt">
+                  <h4>É assim que chega no seu WhatsApp.</h4>
+                  <p>O cliente já diz o assunto e sabe quais documentos separar.<span class="so-desk"> Você atende quem está pronto para conversar, sem perder tempo com triagem.</span></p>
+                  <a class="btn btn-laranja wa-orbyt" href="#" data-origem="diagnostico" data-msg="Olá! Testei o mini diagnóstico e quero um site assim para o meu escritório. O nome do escritório é: ">Quero isso no meu site</a>
+                  <button class="tri-volta" type="button" data-volta="1">Testar outro assunto</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TELA 3: o site modelo -->
+<section class="tela t3" id="modelo" data-tema="claro">
+  <div class="wrap">
+    <div class="cab">
+      <span class="olho"><span class="n">03</span> Site modelo</span>
+      <h2>O site inteiro já está pronto. Abre, mexe, testa.</h2>
+      <p class="lead"><span class="so-desk">O mini diagnóstico é uma parte. O site completo está no ar e é o seu ponto de partida: o</span><span class="so-cel">O</span> seu fica igual, com o nome, a equipe, as áreas e as fotos do seu escritório.</p>
+    </div>
+    <div class="t3-grade">
+      <div class="so-desk">
+        <div class="abas" role="tablist" aria-label="Escolha o modelo">
+          <button class="aba on" type="button" role="tab" aria-selected="true" data-modelo="1"><b>1</b>Rolagem contínua</button>
+          <button class="aba" type="button" role="tab" aria-selected="false" data-modelo="2"><b>2</b>Tela a tela</button>
+        </div>
+        <div class="vitrine">
+          <div class="nav-quadro">
+            <div class="nav-barra">
+              <span class="bol"><i></i><i></i><i></i></span>
+              <span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>andradeferraz.adv.br</span>
+            </div>
+            <div class="foto"><img id="fotoModelo" src="/img/modelo-advocacia-1.webp" alt="Site modelo de advocacia: capa, guia por assunto e áreas de atuação" width="960" height="1800"></div>
+          </div>
+          <div class="cel" aria-hidden="true"><div class="cel-tela"><div class="barra"><i></i></div><img src="/img/capa-advocacia-cel.webp" alt="" width="520" height="1125"></div></div>
+        </div>
+        <div class="vitrine-pe">
+          <a class="btn btn-contorno" id="abrirModelo" href="/modelos/advocacia/1/" target="_blank" rel="noopener" data-modelo="advocacia-1">Abrir o modelo 1 completo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+          <p id="descModelo">Rolagem contínua: o cliente desce a página e vê tudo em sequência. Abre no celular e no computador.</p>
+        </div>
+        <div class="inclui">
+          <h3>O que vem no seu site</h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Capa com a sua frase, cidade e registros da OAB</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Mini diagnóstico com as suas áreas</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Áreas de atuação com foto e exemplos</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Equipe com nome e número da OAB</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Como funciona o atendimento</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Espaço para artigos e perguntas frequentes</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Formulário que vai direto para o seu WhatsApp</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Endereço com Google Maps e Waze</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="oferta so-desk" aria-label="Oferta">
+        <span class="olho">Site completo · Pix ou cartão</span>
+        <div class="preco"><small>R$</small>797</div>
+        <span class="sub">Uma vez só · sem mensalidade</span>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Pronto em 2 dias úteis</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Você só paga depois de aprovar</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Até 2 rodadas de ajuste</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Site e domínio no seu nome</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Pix ou cartão parcelado</li>
+        </ul>
+        <p class="frase">Menos do que um único cliente que você está perdendo hoje.</p>
+        <a class="btn btn-laranja wa-orbyt" href="#" data-origem="oferta" data-msg="Olá! Vi o site modelo de advocacia e quero um assim. O nome do meu escritório é: ">Quero o meu site</a>
+        <p class="mini">Mande o nome do escritório. A gente monta o site sem custo e você só paga se aprovar.</p>
+      </aside>
+    </div>
+    <div class="so-cel mc-bloco">
+      <p class="mc-dica">Arraste para o lado · 2 modelos</p>
+      <div class="mc-trilho" id="mcTrilho">
+        <a class="mc" href="/modelos/advocacia/1/" target="_blank" rel="noopener" data-modelo="advocacia-1">
+          <div class="mc-moldura">
+            <figure class="mc-tela" aria-hidden="true">
+              <div class="mc-barra"><i></i><i></i><i></i><span>advocacia · modelo 1</span></div>
+              <div class="mc-visor"><img src="/img/modelo-advocacia-1.webp" alt="" width="960" height="1800" loading="lazy" decoding="async"></div>
+            </figure>
+            <span class="mc-selo">Rolagem contínua</span>
+          </div>
+          <div class="mc-info">
+            <p class="rot">Modelo 1</p>
+            <h3>Rolagem contínua</h3>
+            <ul class="mc-tem">
+              <li>Mini diagnóstico em três cliques</li>
+              <li>Dentro das regras de publicidade da OAB</li>
+              <li>Áreas de atuação com exemplos reais</li>
+            </ul>
+            <span class="mc-seta">Abrir o modelo</span>
+          </div>
+        </a>
+        <a class="mc mc--tela" href="/modelos/advocacia/2/" target="_blank" rel="noopener" data-modelo="advocacia-2">
+          <div class="mc-moldura">
+            <figure class="mc-tela" aria-hidden="true">
+              <div class="mc-barra"><i></i><i></i><i></i><span>advocacia · modelo 2</span></div>
+              <div class="mc-visor"><img src="/img/modelo-advocacia-2.webp" alt="" width="960" height="1800" loading="lazy" decoding="async"></div>
+            </figure>
+            <span class="mc-selo">Tela a tela</span>
+          </div>
+          <div class="mc-info">
+            <p class="rot">Modelo 2</p>
+            <h3>Tela a tela</h3>
+            <ul class="mc-tem">
+              <li>Uma tela por vez, como um app</li>
+              <li>Mini diagnóstico em tela cheia</li>
+              <li>Dentro das regras de publicidade da OAB</li>
+            </ul>
+            <span class="mc-seta">Abrir o modelo</span>
+          </div>
+        </a>
+      </div>
+      <div class="mc-pontos" id="mcPontos" aria-hidden="true"><i class="on"></i><i></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- PREÇOS (só no celular) -->
+<section class="tela t-precos so-cel" id="precos" data-tema="claro">
+  <div class="wrap">
+    <div class="cab">
+      <span class="olho">Preços</span>
+      <h2>Preço e prazo na mesa.</h2>
+    </div>
+    <div class="srvs">
+      <article class="srv srv--destaque">
+        <span class="rot">Site de advocacia</span>
+        <h3>Site com modelo</h3>
+        <span class="prazo">2 dias úteis</span>
+        <div class="preco-m"><small>preço fechado</small><b>R$ 797</b></div>
+        <ul>
+          <li>Modelo de advocacia completo</li>
+          <li>Mini diagnóstico com as suas áreas</li>
+          <li>Sua marca, equipe e fotos</li>
+          <li>Até 2 ajustes</li>
+        </ul>
+        <a class="btn btn-laranja wa-orbyt" href="#" data-origem="preco-modelo" data-msg="Olá! Quero o site com modelo de advocacia (R$ 797). O nome do meu escritório é: ">Quero este</a>
+      </article>
+      <article class="srv">
+        <span class="rot">Sob medida</span>
+        <h3>Site 100% personalizado</h3>
+        <span class="prazo">5 dias úteis</span>
+        <div class="preco-m"><small>a partir de</small><b>R$ 1.497</b></div>
+        <ul>
+          <li>Call de alinhamento antes de começar</li>
+          <li>Layout exclusivo do escritório</li>
+          <li>1ª versão em 3 dias úteis</li>
+          <li>Publicado na sua conta</li>
+        </ul>
+        <a class="btn btn-contorno wa-orbyt" href="#" data-origem="preco-personalizado" data-msg="Olá! Quero um site 100% personalizado para o meu escritório (a partir de R$ 1.497). O nome do escritório é: ">Quero este</a>
+      </article>
+      <article class="srv srv--deitado">
+        <div class="srv-esq">
+          <span class="rot">Página única</span>
+          <h3>Landing page</h3>
+          <span class="prazo">2 dias úteis</span>
+          <div class="preco-m"><small>preço fechado</small><b>R$ 399</b></div>
+        </div>
+        <div class="srv-dir">
+          <ul>
+            <li>Uma página para uma área ou campanha</li>
+            <li>Botões de WhatsApp</li>
+            <li>Pixel instalado para anúncios</li>
+          </ul>
+          <a class="btn btn-contorno wa-orbyt" href="#" data-origem="preco-landing" data-msg="Olá! Quero uma landing page para o meu escritório (R$ 399). O nome do escritório é: ">Quero esta</a>
+        </div>
+      </article>
+    </div>
+    <div class="precos-pe">
+      <p class="frase">Menos do que um único cliente que você está perdendo hoje.</p>
+      <p>Em todos: <b>pagamento pós-entrega</b>, Pix ou cartão parcelado e sem mensalidade.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TELA 4: a Orbyt -->
+<section class="tela t4" id="orbyt" data-tema="claro">
+  <div class="wrap">
+    <div class="t4-topo">
+      <div style="display:grid;gap:1rem">
+        <span class="olho"><span class="n">04</span> Quem faz</span>
+        <h2>Orbyt Studio. <span>Sites que fazem o cliente chamar.</span></h2>
+      </div>
+      <div>
+        <p>Estúdio de Belo Horizonte, no digital desde 2015. A gente faz sites de alta conversão para quem vive de cliente<span class="so-desk">: escritórios de advocacia, consultórios e barbearias. Cada segmento tem o seu modelo, pensado para o jeito que o cliente dele procura e decide</span>.</p>
+        <div class="fatos"><span>No digital desde 2015</span><span>Modelo próprio por segmento</span><span>Belo Horizonte, MG</span></div>
+      </div>
+    </div>
+
+    <div class="jornada">
+      <div class="etapa"><span class="num">01</span><h3>Você manda o nome do escritório</h3><p>No WhatsApp, com as suas áreas de atuação. Se tiver, fotos e equipe.</p></div>
+      <div class="etapa"><span class="num">02</span><h3>A gente monta o seu site</h3><p>Em até 2 dias úteis, no modelo de advocacia, com os seus dados.</p></div>
+      <div class="etapa"><span class="num">03</span><h3>Você confere e pede ajustes</h3><p>Até 2 rodadas de ajuste incluídas no preço.</p></div>
+      <div class="etapa"><span class="num">04</span><h3>Aprovou, pagou, está no ar</h3><p>Pix ou cartão parcelado. O site vai para o seu domínio, numa conta no seu nome.</p></div>
+    </div>
+
+    <div class="duvidas">
+      <h3>Dúvidas de quem é advogado.</h3>
+      <div class="lista-d">
+        <details open><summary>E se eu não gostar do site?</summary><p>Você não paga. A gente monta primeiro, você confere e só paga depois de aprovar.</p></details>
+        <details><summary>Tem mensalidade?</summary><p>Não. São R$ 797 uma vez só. A hospedagem fica numa conta gratuita no seu nome. O único custo à parte é a renovação anual do domínio, paga direto ao Registro.br.</p></details>
+        <details><summary>O site segue as regras da OAB?</summary><p>Ele é feito seguindo o Provimento 205/2021: conteúdo informativo, sem promessa de resultado, sem valor de honorários e com os registros da OAB no rodapé. A OAB não homologa sites, então a conferência final do texto é sua, e a gente ajusta o que você pedir.</p></details>
+        <details><summary>Posso mudar os assuntos do mini diagnóstico?</summary><p>Pode. Os assuntos são montados com as suas áreas de atuação. Se você só atua com trabalhista e previdenciário, o guia fala só disso.</p></details>
+        <details><summary>Preciso entender de tecnologia?</summary><p>Não. Você manda as informações pelo WhatsApp e recebe o site pronto. Na entrega, a gente publica tudo junto com você numa chamada rápida.</p></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="chamada" data-tema="escuro">
+  <svg class="orbita" viewBox="0 0 1200 700" fill="none" aria-hidden="true"><ellipse cx="600" cy="350" rx="560" ry="250" transform="rotate(-12 600 350)" stroke="rgba(255,255,255,.07)" stroke-width="1.2"/><circle cx="1090" cy="215" r="7" fill="#FF5A1F"/></svg>
+  <div class="wrap">
+    <span class="olho">Comece hoje</span>
+    <h2>Mande o nome do seu escritório no <em>WhatsApp.</em></h2>
+    <p>A gente cria o seu site sem custo. Você só paga depois que aprovar.</p>
+    <a class="btn btn-wa wa-orbyt" href="#" data-origem="final" data-msg="Olá! Quero um site para o meu escritório de advocacia. O nome do escritório é: ">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>
+      Chamar no WhatsApp
+    </a>
+    <div class="numero">WhatsApp <span id="numeroTxt">(31) 99073-0997</span><button class="copiar" type="button" id="copiar">Copiar</button></div>
+  </div>
+</section>
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <a class="logo" href="/">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><ellipse cx="16" cy="16" rx="12.5" ry="12.5" stroke="currentColor" stroke-width="2"/><circle cx="25" cy="7.4" r="3.6" fill="#FF5A1F"/></svg>
+      Orbyt Studio
+    </a>
+    <span>Orbyt Studio · CNPJ 68.575.840/0001-16 · Belo Horizonte, MG</span>
+    <a href="/">orbytstudio.com.br</a>
+    <span class="ficticio">Nomes, números de OAB e dados do site modelo e da busca acima são fictícios.</span>
+  </div>
+</footer>
+
+<a class="btn btn-wa flutua wa-orbyt" id="flutua" href="#" data-origem="flutuante" data-msg="Olá! Vi a página para advogados e quero um site para o meu escritório. O nome do escritório é: ">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>
+  Quero meu site
+</a>
+<div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  "use strict";
+  // ===== CONFIGURAÇÃO =====
+  var WHATSAPP = "5531990730997";
+  var MODELOS = {
+    "1": {img:"/img/modelo-advocacia-1.webp", url:"/modelos/advocacia/1/", nome:"advocacia-1", txt:"Rolagem contínua: o cliente desce a página e vê tudo em sequência. Abre no celular e no computador."},
+    "2": {img:"/img/modelo-advocacia-2.webp", url:"/modelos/advocacia/2/", nome:"advocacia-2", txt:"Tela a tela: cada parte do site ocupa a tela inteira e passa como um aplicativo. Abre no celular e no computador."}
+  };
+
+  // Pixel da Meta: só dispara quando o código base estiver colado no site
+  function px(evento, dados, custom){
+    try { if (typeof window.fbq === "function") window.fbq(custom ? "trackCustom" : "track", evento, dados || {}); } catch(e){}
+  }
+  function wa(msg){ return "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(msg); }
+
+  document.querySelectorAll(".wa-orbyt").forEach(function(a){
+    a.href = wa(a.getAttribute("data-msg") || "Olá! Vim pela página para advogados.");
+    a.target = "_blank"; a.rel = "noopener";
+    a.addEventListener("click", function(){ px("Contact", {origem: a.getAttribute("data-origem") || "lp-advogado", content_category: "advocacia"}); });
+  });
+
+  // ===== topo: altura, tema e tela atual =====
+  var raiz = document.documentElement, corpo = document.body;
+  var topo = document.getElementById("topo");
+  var celular = window.matchMedia("(max-width:980px)");
+  var telas = ["problema","diagnostico","modelo","precos","orbyt"].map(function(id){ return document.getElementById(id); });
+  var todasSecoes = Array.prototype.slice.call(document.querySelectorAll("main > section"));
+  var linksTela = document.querySelectorAll(".menu [data-alvo]");
+  var flutua = document.getElementById("flutua"), chamada = document.getElementById("chamada");
+  var grade = document.querySelector(".t1-grade");
+  function hTopo(){ return topo.offsetHeight; }
+  function visivel(el){ return el && el.getClientRects().length > 0; }
+
+  function atualizar(){
+    var h = hTopo();
+    var tema = "escuro";
+    for (var i = 0; i < todasSecoes.length; i++){
+      if (!visivel(todasSecoes[i])) continue;
+      var r = todasSecoes[i].getBoundingClientRect();
+      if (r.top <= h && r.bottom > h){ tema = todasSecoes[i].getAttribute("data-tema"); break; }
+    }
+    topo.classList.toggle("claro", tema === "claro");
+    var meio = window.innerHeight * 0.42, atual = "problema";
+    telas.forEach(function(t){ if (visivel(t) && t.getBoundingClientRect().top <= meio) atual = t.id; });
+    linksTela.forEach(function(a){ a.classList.toggle("ativo", a.getAttribute("data-alvo") === atual); });
+    var passouCapa = window.scrollY > grade.offsetHeight * 0.7;
+    var fim = chamada.getBoundingClientRect().top < window.innerHeight;
+    flutua.classList.toggle("ver", passouCapa && !fim && atual !== "diagnostico" && atual !== "precos");
+  }
+
+  // primeira tela do celular: a busca ocupa o espaço que sobra e encolhe para caber;
+  // se ficar pequena demais, o título diminui e depois o texto de apoio sai
+  var busca = document.querySelector(".t1-busca .busca"), caixaBusca = document.querySelector(".t1-busca");
+  function escalaBusca(){
+    busca.style.setProperty("--esc", 1);
+    var e = Math.min(1, (caixaBusca.clientHeight - 6) / busca.offsetHeight, caixaBusca.clientWidth / busca.offsetWidth);
+    return e;
+  }
+  function ajustarCapa(){
+    raiz.style.setProperty("--h-topo", hTopo() + "px");
+    corpo.classList.remove("aperta-1","aperta-2");
+    if (!celular.matches){ busca.style.removeProperty("--esc"); return; }
+    var e = escalaBusca();
+    if (e < 0.8){ corpo.classList.add("aperta-1"); e = escalaBusca(); }
+    if (e < 0.72){ corpo.classList.add("aperta-2"); e = escalaBusca(); }
+    busca.style.setProperty("--esc", Math.max(0.4, e).toFixed(3));
+  }
+  var pedido = false;
+  function pedir(){ if (pedido) return; pedido = true; requestAnimationFrame(function(){ pedido = false; atualizar(); }); }
+  window.addEventListener("scroll", pedir, {passive:true});
+  window.addEventListener("resize", function(){ ajustarCapa(); pedir(); });
+  window.addEventListener("load", ajustarCapa);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustarCapa);
+  ajustarCapa(); atualizar();
+
+  // dúvidas: no celular todas começam fechadas, para a rolagem ficar curta
+  if (celular.matches) document.querySelectorAll(".lista-d details[open]").forEach(function(d){ d.open = false; });
+
+  // modelos no celular: o print do cartão que está na tela rola sozinho e os pontinhos acompanham
+  var mcs = Array.prototype.slice.call(document.querySelectorAll(".mc")), pontos = document.querySelectorAll("#mcPontos i");
+  if ("IntersectionObserver" in window){
+    var vigia = new IntersectionObserver(function(itens){
+      itens.forEach(function(it){
+        var dentro = it.intersectionRatio >= 0.7;
+        it.target.classList.toggle("em-cena", dentro);
+        if (dentro){ var k = mcs.indexOf(it.target); pontos.forEach(function(pt, n){ pt.classList.toggle("on", n === k); }); }
+      });
+    }, {threshold:[0, 0.7, 1]});
+    mcs.forEach(function(m){ vigia.observe(m); });
+  }
+  // altura de cada visor (o print rola até o fim, qualquer que seja o tamanho do cartão) e do rodapé (fecha a última tela)
+  var rodape = document.querySelector(".rodape");
+  function medirCelular(){
+    document.querySelectorAll(".mc-visor").forEach(function(v){ v.style.setProperty("--fh", v.clientHeight + "px"); });
+    raiz.style.setProperty("--h-rod", rodape.offsetHeight + "px");
+  }
+  medirCelular();
+  window.addEventListener("resize", medirCelular); window.addEventListener("load", medirCelular);
+  if ("ResizeObserver" in window){ var ro = new ResizeObserver(medirCelular); document.querySelectorAll(".mc-visor").forEach(function(v){ ro.observe(v); }); }
+  mcs.forEach(function(m){ m.addEventListener("click", function(){ px("ViewContent", {content_name: "modelo-" + m.getAttribute("data-modelo"), content_category: "advocacia", origem: "lp-advogado-cel"}); }); });
+
+  // movimento reduzido: o satélite fica parado
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+    document.querySelectorAll("animateMotion").forEach(function(a){ a.parentNode.setAttribute("cx","1150"); a.parentNode.setAttribute("cy","220"); a.remove(); });
+  }
+
+  // ===== MINI DIAGNÓSTICO (mesmo conteúdo do site modelo, já ajustado ao Provimento 205) =====
+  var EQUIPE = {
+    camila:{nome:"Camila Andrade",oab:"OAB/MG 112.340",papel:"Sócia · Família, Cível e Imobiliário",img:"/modelos/fotos/photo-1573496359142-b8d87734a5a2.jpg"},
+    rafael:{nome:"Rafael Ferraz",oab:"OAB/MG 118.905",papel:"Sócio · Trabalhista, Previdenciário e Empresarial",img:"/modelos/fotos/photo-1560250097-0b93528c311a.jpg"},
+    juliana:{nome:"Juliana Prado",oab:"OAB/MG 176.220",papel:"Advogada · Previdenciário e Consumidor",img:"/modelos/fotos/photo-1580489944761-15a19d654956.jpg"},
+    marcos:{nome:"Marcos Vieira",oab:"OAB/MG 181.034",papel:"Advogado · Trabalhista e Empresarial",img:"/modelos/fotos/photo-1519085360753-af0119f7cbe7.jpg"}
+  };
+  var GUIA = [
+    {label:"Trabalho e demissão",sub:"Rescisão, horas extras, vínculo",opts:[
+      {label:"Verbas rescisórias",res:{title:"Verbas rescisórias",
+        intro:"Na demissão sem justa causa, a empresa paga um conjunto de valores calculados com base no salário e no tempo de casa. O cálculo muda conforme o tipo de desligamento.",
+        know:["Costumam entrar saldo de salário, aviso prévio, 13º e férias proporcionais com 1/3, além do FGTS do mês.","Na dispensa sem justa causa, a empresa deposita multa de 40% sobre o saldo do FGTS.","O aviso prévio é de 30 dias, com 3 dias a mais por ano completo de trabalho, até 90 dias.","No pedido de demissão e no acordo entre as partes, as regras de FGTS e de aviso são diferentes."],
+        bom:["A empresa tem até 10 dias, contados do fim do contrato, para pagar as verbas e entregar os documentos.","O seguro-desemprego pode ser pedido do 7º ao 120º dia depois da demissão.","Para questionar na Justiça, o prazo é de 2 anos após a saída, alcançando os últimos 5 anos de contrato."],
+        docs:["Carteira de trabalho (física ou digital)","Termo de rescisão (TRCT)","Últimos holerites","Extrato do FGTS","Mensagens ou e-mails sobre o desligamento"],who:"rafael"}},
+      {label:"Trabalho sem carteira assinada",res:{title:"Reconhecimento de vínculo",
+        intro:"Quando alguém trabalha com frequência, recebendo pagamento e seguindo ordens, a lei trata essa relação como emprego, mesmo sem a carteira assinada.",
+        know:["Os pontos analisados costumam ser frequência, pagamento, subordinação e trabalho feito pela própria pessoa.","O nome do contrato (PJ, autônomo, freelancer) não decide sozinho: vale como o trabalho acontece na prática.","Com o registro, o período passa a contar para férias, 13º, FGTS e INSS.","Conversas, comprovantes de pagamento e testemunhas são provas comuns."],
+        bom:["O prazo para buscar o reconhecimento na Justiça é de 2 anos após o fim da relação.","Os valores alcançam, em regra, os últimos 5 anos de trabalho."],
+        docs:["Comprovantes de pagamento (Pix, transferências)","Conversas com o contratante","Escalas, crachá, uniforme ou e-mails de rotina","Contrato assinado, se houver","Nome de colegas que conheçam a rotina"],who:"rafael"}},
+      {label:"Horas extras e jornada",res:{title:"Horas extras e jornada",
+        intro:"A jornada padrão é de até 8 horas por dia e 44 por semana. O que passa disso é hora extra, com adicional mínimo de 50% sobre a hora normal.",
+        know:["Empresas com mais de 20 empregados são obrigadas a controlar o ponto.","Banco de horas permite compensar as horas em vez de pagar, dentro das regras do acordo.","Trabalho urbano entre 22h e 5h tem adicional noturno de pelo menos 20%.","Em jornadas acima de 6 horas, o intervalo para refeição é de no mínimo 1 hora."],
+        bom:["Para questionar, o prazo é de 2 anos após a saída, alcançando os últimos 5 anos.","No banco de horas feito por acordo individual, a compensação deve acontecer em até 6 meses."],
+        docs:["Espelhos de ponto ou prints do sistema","Holerites","Mensagens de trabalho fora do horário","Escalas e e-mails de convocação","Contrato de trabalho"],who:"rafael"}}
+    ]},
+    {label:"Família",sub:"Divórcio, guarda, pensão",opts:[
+      {label:"Divórcio",res:{title:"Divórcio",
+        intro:"O divórcio pode ser feito em cartório ou na Justiça. O caminho depende de haver acordo entre o casal e de como estão as questões dos filhos.",
+        know:["Com acordo entre o casal, o divórcio pode ser feito em cartório, sempre com advogado.","Com filhos menores, guarda, convivência e pensão são decididas antes na Justiça; depois disso, o divórcio pode ser feito em cartório.","Sem acordo, o caminho é judicial.","A divisão dos bens segue o regime de casamento e pode ser feita junto ou depois."],
+        bom:["Não existe tempo mínimo de casamento ou de separação para pedir o divórcio.","A partilha dos bens pode ficar para depois, sem impedir o divórcio."],
+        docs:["Certidão de casamento atualizada","Documentos pessoais do casal","Certidão de nascimento dos filhos, se houver","Relação de bens e dívidas","Pacto antenupcial, se houver"],who:"camila"}},
+      {label:"Guarda ou convivência com os filhos",res:{title:"Guarda e convivência",
+        intro:"A guarda compartilhada é a regra na lei. O que muda de família para família é a organização da rotina e da convivência com cada um.",
+        know:["Guarda compartilhada é dividir as decisões, não necessariamente dividir o tempo ao meio.","O plano de convivência define dias, férias, datas comemorativas e quem leva e busca.","O acordo entre os pais pode ser homologado pela Justiça e passa a valer como decisão.","A mediação é um caminho previsto em lei para buscar acordo."],
+        bom:["A guarda e a convivência podem ser revistas quando a rotina ou a situação da criança muda.","Mudar a criança de cidade depende de acordo entre os pais ou de decisão judicial."],
+        docs:["Certidão de nascimento dos filhos","Comprovante de residência","Rotina atual (escola, atividades, saúde)","Mensagens relevantes com o outro genitor","Decisão ou acordo anterior, se houver"],who:"camila"}},
+      {label:"Pensão alimentícia",res:{title:"Pensão alimentícia",
+        intro:"O valor da pensão considera a necessidade de quem recebe e a possibilidade de quem paga. Não existe um percentual fixo definido na lei.",
+        know:["Pode ser fixada, revisada para mais ou para menos, ou cobrada quando não é paga.","A pensão para filhos não termina sozinha aos 18 anos: o fim depende de decisão judicial.","Acordos entre as partes podem ser homologados pela Justiça.","O atraso pode levar a desconto em folha, protesto e, nos casos previstos em lei, prisão civil."],
+        bom:["A prisão civil pode ser pedida pelas 3 últimas parcelas em atraso e pelas que vencerem durante o processo.","Quando muda a renda de quem paga ou a necessidade de quem recebe, cabe pedido de revisão."],
+        docs:["Certidão de nascimento","Comprovantes de despesas da criança","Comprovantes de renda das partes","Decisão ou acordo anterior, se existir","Extratos dos pagamentos feitos"],who:"camila"}}
+    ]},
+    {label:"INSS e aposentadoria",sub:"Aposentadoria, auxílio, BPC, pensão",opts:[
+      {label:"Pedido negado pelo INSS",res:{title:"Pedido indeferido pelo INSS",
+        intro:"Quando o INSS nega um benefício, a carta de indeferimento informa o motivo. É por ela que a análise começa.",
+        know:["Muitas negativas vêm de períodos que não aparecem no CNIS e podem ser comprovados com documentos.","É possível recorrer no próprio INSS ou levar o pedido à Justiça.","Também dá para fazer um novo pedido, com os documentos que faltaram.","O extrato CNIS, no Meu INSS, mostra todo o histórico de contribuições."],
+        bom:["O recurso administrativo tem prazo de 30 dias a partir da ciência da decisão.","Quando o INSS faz uma exigência durante o pedido, ela também tem prazo para ser cumprida."],
+        docs:["Carta de indeferimento","Extrato CNIS (Meu INSS)","Carteiras de trabalho e carnês","Laudos médicos, se for benefício por incapacidade","Número do protocolo do pedido"],who:"juliana"}},
+      {label:"Regras de aposentadoria",res:{title:"Planejamento de aposentadoria",
+        intro:"Desde a reforma de 2019, existem a regra geral e as regras de transição. A melhor opção depende do histórico de cada pessoa.",
+        know:["Na regra geral, a idade mínima é de 62 anos para mulheres e 65 para homens, além do tempo de contribuição.","Quem já contribuía antes da reforma pode se encaixar em regras de transição.","O valor do benefício depende da regra usada no cálculo.","Períodos rurais, especiais ou sem registro podem ser incluídos com provas."],
+        bom:["Erros no histórico do CNIS podem ser corrigidos antes de fazer o pedido.","A revisão de um benefício já concedido tem prazo de 10 anos."],
+        docs:["Extrato CNIS","Carteiras de trabalho","PPP ou laudos de atividade especial, se houver","Documentos de atividade rural, se houver","Carnês de contribuição"],who:"juliana"}},
+      {label:"Auxílio-doença, BPC ou pensão por morte",res:{title:"Benefícios por incapacidade, BPC e pensão",
+        intro:"Cada benefício tem requisitos próprios. Uns dependem de contribuição e perícia, outros da renda da família ou do vínculo com quem faleceu.",
+        know:["O auxílio por incapacidade temporária (antigo auxílio-doença) exige perícia e, em regra, 12 contribuições.","O BPC/LOAS é para idosos a partir de 65 anos ou pessoas com deficiência, conforme a renda da família.","A pensão por morte depende da condição de segurado de quem faleceu e do tipo de dependente.","Laudos detalhados e atualizados fazem diferença na perícia."],
+        bom:["A pensão por morte pedida em até 90 dias do óbito (180 dias para filhos menores de 16) é paga desde a data do óbito.","No BPC, a renda considerada é por pessoa da família, e o CadÚnico precisa estar atualizado."],
+        docs:["Laudos e exames recentes","Comprovantes de renda da família (BPC)","CadÚnico atualizado (BPC)","Certidão de óbito e prova de dependência (pensão)","Extrato CNIS"],who:"juliana"}}
+    ]},
+    {label:"Consumidor",sub:"Plano de saúde, cobranças, produtos",opts:[
+      {label:"Cobertura de plano de saúde",res:{title:"Negativa de plano de saúde",
+        intro:"A cobertura de procedimentos, exames e internações segue o contrato e as regras da ANS. Quando há negativa, entender o motivo é o primeiro passo.",
+        know:["A indicação médica por escrito é o documento central.","A operadora deve informar o motivo da negativa, e o registro pode ser pedido por escrito.","A ANS recebe reclamações pelos seus canais oficiais.","Carência, rede credenciada e tipo de plano influenciam a cobertura."],
+        bom:["Em urgência e emergência, a carência máxima prevista em lei é de 24 horas.","Guarde todos os protocolos de atendimento, com data e hora."],
+        docs:["Negativa por escrito do plano","Pedido e relatório médico","Contrato do plano","Comprovantes de pagamento","Protocolos de atendimento"],who:"juliana"}},
+      {label:"Cobrança e negativação",res:{title:"Cobrança indevida e negativação",
+        intro:"Toda cobrança precisa ter origem comprovada. E a inclusão do nome em cadastro de inadimplentes exige aviso prévio ao consumidor.",
+        know:["É possível pedir à empresa a origem e o detalhamento da dívida.","O aviso deve ser enviado antes de o nome entrar no cadastro.","Os protocolos de atendimento registram o histórico da reclamação.","Dá para consultar o próprio CPF de graça nos sites dos cadastros de crédito."],
+        bom:["Depois que a dívida é paga, o credor tem 5 dias úteis para pedir a retirada do nome do cadastro.","Uma dívida não pode ficar no cadastro de inadimplentes por mais de 5 anos."],
+        docs:["Comprovante da negativação (Serasa/SPC)","Faturas e extratos","Protocolos de atendimento","Contrato, se existir","Comprovantes de pagamento"],who:"camila"}},
+      {label:"Produto ou serviço com defeito",res:{title:"Vício de produto ou serviço",
+        intro:"O Código de Defesa do Consumidor define prazos para reclamar e o que acontece quando o problema não é resolvido.",
+        know:["O fornecedor tem até 30 dias para resolver o defeito.","Sem solução nesse prazo, o consumidor escolhe entre troca, devolução do valor ou abatimento no preço.","Em defeito escondido, o prazo para reclamar começa quando o problema aparece.","Compras fora da loja (internet, telefone) têm 7 dias para desistência."],
+        bom:["Para defeito aparente, o prazo de reclamação é de 30 dias (produto não durável) ou 90 dias (durável).","Registrar a reclamação no SAC e no consumidor.gov.br deixa histórico."],
+        docs:["Nota fiscal","Fotos ou vídeos do problema","Protocolos de atendimento","Conversas com a empresa","Termo de garantia, se houver"],who:"camila"}}
+    ]},
+    {label:"Imóveis",sub:"Regularização, aluguel, compra na planta",opts:[
+      {label:"Imóvel sem escritura",res:{title:"Regularização e usucapião",
+        intro:"Para a lei, dono é quem tem o imóvel registrado no cartório. Quando a escritura não existe, há caminhos para regularizar.",
+        know:["Contrato de compra sem registro, o chamado contrato de gaveta, não transfere a propriedade.","A usucapião reconhece a posse prolongada e pode ser feita em cartório ou na Justiça.","Em cartório, ela costuma ser mais rápida quando não há disputa, e exige advogado.","Comprovantes de posse ao longo do tempo são a base do pedido."],
+        bom:["O tempo de posse exigido varia de 2 a 15 anos, conforme a modalidade.","Contas, IPTU e declarações de vizinhos ajudam a provar o tempo de posse."],
+        docs:["Contrato de compra ou recibo, se houver","Contas de água, luz e IPTU","Planta ou memorial do imóvel","Declarações de vizinhos","Certidão da matrícula, se existir"],who:"camila"}},
+      {label:"Aluguel",res:{title:"Locação",
+        intro:"A Lei do Inquilinato regula prazos, reajustes, garantias, despejo e a devolução do imóvel.",
+        know:["A multa por saída antecipada é proporcional ao tempo que falta no contrato.","Reformas estruturais são do proprietário; as de uso e conservação, do inquilino.","O contrato pode ter só uma garantia: caução, fiador, seguro-fiança ou outra prevista em lei.","Despejo exige ação judicial, salvo acordo entre as partes."],
+        bom:["O reajuste do aluguel é anual, pelo índice previsto no contrato.","A caução em dinheiro é limitada a 3 meses de aluguel."],
+        docs:["Contrato de locação","Laudo de vistoria de entrada","Comprovantes de pagamento","Conversas com a outra parte","Notificações enviadas ou recebidas"],who:"camila"}},
+      {label:"Compra na planta: atraso e distrato",res:{title:"Atraso de obra e distrato",
+        intro:"A Lei do Distrato, de 2018, definiu regras para o atraso na entrega e para a desistência da compra na planta.",
+        know:["O contrato costuma prever tolerância de até 180 dias além da data de entrega.","Passada a tolerância, a lei prevê multa ou a possibilidade de encerrar o contrato.","Na desistência pelo comprador, parte do valor pago fica retida.","Contratos assinados antes de 2018 podem seguir regras diferentes."],
+        bom:["A retenção vai, em regra, até 25% do que foi pago, e pode chegar a 50% em empreendimentos com patrimônio de afetação.","O quadro-resumo do contrato precisa trazer essas condições em destaque."],
+        docs:["Contrato e aditivos","Quadro-resumo","Comprovantes de pagamento","Comunicados da construtora","Cronograma da obra"],who:"camila"}}
+    ]},
+    {label:"Empresas",sub:"Abertura, contratos, sócios",opts:[
+      {label:"Abertura de empresa",res:{title:"Abertura e formalização",
+        intro:"Abrir uma empresa envolve escolher o tipo societário, o regime de impostos e registrar o contrato social.",
+        know:["O contrato social define sócios, capital, administração e divisão de lucros.","MEI, ME e EPP têm limites de faturamento e obrigações diferentes.","O regime tributário (Simples, Lucro Presumido ou Real) muda a forma de pagar os impostos.","Algumas atividades exigem licenças e alvarás específicos."],
+        bom:["O registro é feito na Junta Comercial, e o CNPJ sai pelo mesmo processo integrado.","Um acordo de sócios pode prever saída, sucessão e regras de decisão."],
+        docs:["Documentos dos sócios","Descrição da atividade","Estimativa de faturamento","Endereço comercial","Comprovante de residência dos sócios"],who:"rafael"}},
+      {label:"Contratos comerciais",res:{title:"Contratos comerciais",
+        intro:"Contratos com clientes, fornecedores e prestadores deixam claro o que cada parte entrega, quando e por quanto.",
+        know:["Cláusulas de prazo, rescisão, multa e reajuste precisam combinar com o negócio.","Prestador recorrente exige atenção para a relação não ser vista como emprego.","O contrato deve refletir como o serviço acontece na prática.","Contrato verbal também vale, mas é mais difícil de provar."],
+        bom:["Assinatura eletrônica tem validade jurídica.","Guardar e-mails e mensagens da negociação ajuda a mostrar o que foi combinado."],
+        docs:["Contratos atuais","Modelo que você usa hoje","Descrição do serviço ou produto","Propostas e orçamentos aceitos","Histórico de problemas anteriores"],who:"marcos"}},
+      {label:"Entrada e saída de sócios",res:{title:"Entrada e saída de sócios",
+        intro:"A entrada ou a saída de um sócio segue o contrato social e as regras do Código Civil.",
+        know:["O contrato social ou o acordo de sócios define como as quotas são avaliadas.","A alteração precisa ser registrada na Junta Comercial.","A saída pode acontecer por acordo, por retirada ou por decisão dos demais sócios, conforme o caso.","A apuração de haveres calcula quanto o sócio que sai tem a receber."],
+        bom:["O sócio que sai responde por obrigações da época em que fazia parte por até 2 anos após o registro da saída.","Sem registro na Junta Comercial, a saída não vale perante terceiros."],
+        docs:["Contrato social e alterações","Acordo de sócios, se houver","Balanço ou demonstrativos recentes","Documentos dos sócios","Atas de reunião, se houver"],who:"marcos"}}
+    ]}
+  ];
+
+  var tri = document.getElementById("tri");
+  var passos = [null, document.getElementById("s1"), document.getElementById("s2"), document.getElementById("s3"), document.getElementById("s4")];
+  var rotulo = document.getElementById("triRotulo"), p2 = document.getElementById("p2"), p3 = document.getElementById("p3");
+  var chips1 = document.getElementById("chips1"), chips2 = document.getElementById("chips2");
+  var cliques = document.querySelectorAll("#cliques li");
+  var dicaTxt = document.getElementById("dicaTxt");
+  var atualRes = null, comecou = false, passoAtual = 1;
+  // tocar num passo já feito volta para ele
+  cliques.forEach(function(li){
+    li.addEventListener("click", function(){
+      if (!li.classList.contains("feito")) return;
+      var k = parseInt(li.getAttribute("data-p"), 10);
+      if (k === 2 && !chips2.children.length) return;
+      mostrar(k, true);
+    });
+  });
+  // resultado no celular: "Como funciona" e "Documentos" em abas
+  var triRes = document.getElementById("triRes"), abasRes = document.querySelectorAll(".res-abas button");
+  function abaRes(nome){
+    triRes.setAttribute("data-aba", nome);
+    abasRes.forEach(function(b){ var on = b.getAttribute("data-aba") === nome; b.classList.toggle("on", on); b.setAttribute("aria-selected", on); });
+  }
+  abasRes.forEach(function(b){ b.addEventListener("click", function(){ abaRes(b.getAttribute("data-aba")); }); });
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+
+  function mostrar(n, rolar){
+    [1,2,3,4].forEach(function(i){ passos[i].classList.toggle("on", i === n); });
+    rotulo.textContent = n === 4 ? "Chegou no WhatsApp" : "Passo " + n + " de 3";
+    p2.classList.toggle("on", n >= 2); p3.classList.toggle("on", n >= 3);
+    var etapa = n >= 3 ? 3 : n;
+    passoAtual = n;
+    cliques.forEach(function(li){
+      var k = parseInt(li.getAttribute("data-p"), 10);
+      li.classList.toggle("agora", k === etapa);
+      li.classList.toggle("feito", k < etapa || n === 4);
+    });
+    if (n === 1) chips1.querySelectorAll(".chip.sel").forEach(function(c){ c.classList.remove("sel"); });
+  }
+
+  GUIA.forEach(function(t, idx){
+    var b = document.createElement("button"); b.type = "button"; b.className = "chip" + (idx === 0 ? " dica" : ""); b.setAttribute("data-n", "0" + (idx + 1));
+    b.innerHTML = "<span>" + esc(t.label) + "</span><small>" + esc(t.sub) + "</small>";
+    b.addEventListener("click", function(){
+      if (!comecou){ comecou = true; px("MiniDiagnosticoInicio", {assunto: t.label}, true); }
+      chips1.querySelectorAll(".chip").forEach(function(c){ c.classList.remove("sel","dica"); });
+      dicaTxt.hidden = true;
+      b.classList.add("sel");
+      chips2.innerHTML = "";
+      t.opts.forEach(function(o, oi){
+        var c = document.createElement("button"); c.type = "button"; c.className = "chip"; c.setAttribute("data-n", "0" + (oi + 1));
+        c.innerHTML = "<span>" + esc(o.label) + "</span>";
+        c.addEventListener("click", function(){ resultado(o.res); mostrar(3, true); });
+        chips2.appendChild(c);
+      });
+      mostrar(2, true);
+    });
+    chips1.appendChild(b);
+  });
+
+  function resultado(r){
+    atualRes = r;
+    abaRes("saber");
+    document.getElementById("rTitulo").textContent = "Sobre: " + r.title;
+    document.getElementById("rIntro").textContent = r.intro;
+    document.getElementById("rSaber").innerHTML = r.know.map(function(x){ return "<li>" + esc(x) + "</li>"; }).join("");
+    document.getElementById("rDocs").innerHTML = r.docs.map(function(x){ return "<li>" + esc(x) + "</li>"; }).join("");
+    document.getElementById("rBom").innerHTML = (r.bom || []).map(function(x){ return "<li>" + esc(x) + "</li>"; }).join("");
+    tri.scrollTop = 0;
+    var w = EQUIPE[r.who];
+    document.getElementById("rQuem").innerHTML = '<img src="' + w.img + '" alt="" width="48" height="48"><div><small>Atende esta área</small><b>' + esc(w.nome) + "</b><span>" + esc(w.papel) + " · " + w.oab + "</span></div>";
+    px("MiniDiagnosticoResultado", {assunto: r.title}, true);
+  }
+
+  document.getElementById("rBtn").addEventListener("click", function(){
+    if (!atualRes) return;
+    var msg = "Olá! Vi no site as informações sobre " + atualRes.title.toLowerCase() + " e gostaria de falar com o escritório.";
+    var balao = document.getElementById("zapMsg");
+    balao.querySelector("span").textContent = msg;
+    var d = new Date();
+    document.getElementById("zapHora").textContent = String(d.getHours()).padStart(2,"0") + ":" + String(d.getMinutes()).padStart(2,"0");
+    balao.style.animation = "none"; void balao.offsetWidth; balao.style.animation = "";
+    mostrar(4, true);
+    px("MiniDiagnosticoWhatsApp", {assunto: atualRes.title}, true);
+  });
+
+  document.querySelectorAll(".tri-volta").forEach(function(b){
+    b.addEventListener("click", function(){ mostrar(parseInt(b.getAttribute("data-volta"), 10), true); });
+  });
+
+  // ===== site modelo: abas =====
+  var foto = document.getElementById("fotoModelo"), abrir = document.getElementById("abrirModelo"), desc = document.getElementById("descModelo");
+  document.querySelectorAll(".aba").forEach(function(a){
+    a.addEventListener("click", function(){
+      var k = a.getAttribute("data-modelo"), m = MODELOS[k];
+      document.querySelectorAll(".aba").forEach(function(x){ var on = x === a; x.classList.toggle("on", on); x.setAttribute("aria-selected", on); });
+      foto.src = m.img; foto.style.animation = "none"; void foto.offsetWidth; foto.style.animation = "";
+      abrir.href = m.url; abrir.setAttribute("data-modelo", m.nome);
+      abrir.firstChild.nodeValue = "Abrir o modelo " + k + " completo ";
+      desc.textContent = m.txt;
+    });
+  });
+  abrir.addEventListener("click", function(){ px("ViewContent", {content_name: "modelo-" + abrir.getAttribute("data-modelo"), content_category: "advocacia", origem: "lp-advogado"}); });
+
+  // ===== copiar número =====
+  var aviso = document.getElementById("aviso"), tAviso = null;
+  function avisar(t){ aviso.textContent = t; aviso.classList.add("ver"); clearTimeout(tAviso); tAviso = setTimeout(function(){ aviso.classList.remove("ver"); }, 1800); }
+  document.getElementById("copiar").addEventListener("click", function(){
+    var t = document.getElementById("numeroTxt").textContent;
+    function selecionar(){ var s = window.getSelection(), rg = document.createRange(); rg.selectNodeContents(document.getElementById("numeroTxt")); s.removeAllRanges(); s.addRange(rg); avisar("Número selecionado"); }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(function(){ avisar("Número copiado"); }, selecionar);
+      else selecionar();
+    } catch(e){ selecionar(); }
+  });
+})();
+</script>
+
+</body>
+</html>
