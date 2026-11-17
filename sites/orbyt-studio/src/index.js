@@ -26,6 +26,7 @@ export default {
       if (p === "/api/mp/status" && req.method === "GET") return await status(env, url, ctx);
       if (p === "/api/mp/webhook") return await webhook(req, env, url, ctx);
       if (p === "/api/download" && req.method === "GET") return await download(env, url);
+      if (p === "/api/saude") return await saude(env);
       if (p.startsWith("/api/")) return json({ erro: "rota não existe" }, 404);
     } catch (e) {
       console.log("erro", p, e && e.stack || e);
@@ -197,6 +198,14 @@ async function enviarEmail(env, url, o) {
     body: JSON.stringify({ from: env.EMAIL_DE || "Orbyt Studio <pedidos@orbytstudio.com.br>", to: [email], subject: "Seu PDF: " + PRODUTO.nome, html }),
   });
   if (!r.ok) { console.log("email falhou", r.status, await r.text()); await cache.delete(marca); }
+}
+
+// Checagem rápida: confirma que as duas chaves funcionam, sem mostrar nenhuma delas.
+async function saude(env) {
+  let mpOk = false, pdfOk = false;
+  try { const r = await fetch(MP + "/users/me", { headers: { authorization: "Bearer " + env.MP_ACCESS_TOKEN } }); mpOk = r.ok; } catch (e) {}
+  try { const b = new Uint8Array(await abrirPdf(env)); pdfOk = b[0] === 0x25 && b[1] === 0x50; } catch (e) {}
+  return json({ mercado_pago: mpOk, pdf: pdfOk });
 }
 
 // ---------- utilitários ----------
