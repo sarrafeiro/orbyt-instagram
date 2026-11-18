@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>40 Prompts para Estudar Medicina com IA</title>
-<meta name="description" content="40 prompts prontos para transformar o ChatGPT, o Gemini ou o Claude no seu tutor de Medicina. Explica, testa, corrige e organiza o seu estudo. PDF no seu e-mail na hora.">
+<meta name="description" content="40 prompts prontos para transformar o ChatGPT no seu tutor de Medicina. Explica, testa, corrige e organiza o seu estudo. PDF no seu e-mail na hora.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400..700&family=Instrument+Serif:ital@1&family=Martian+Mono:wght@400;500&display=swap">
@@ -123,11 +123,9 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
 .prova-capa .estrelas svg{width:15px;height:15px}
 .selos-capa{list-style:none;margin:0;padding:0;display:flex}
 .selos-capa li{display:flex;align-items:center;gap:.6rem;padding:.65rem .9rem;border:1px solid var(--linha-esc);border-radius:16px;background:rgba(255,255,255,.04);color:#fff;font-size:.8rem;font-weight:600;line-height:1.15;min-width:0}
-.selos-capa .ias{flex-direction:column;align-items:flex-start;gap:.35rem}
-.selos-capa .ias small{font-family:var(--f-mono);font-size:.56rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--mudo-esc)}
-.ia-lista{display:flex;flex-wrap:wrap;gap:.3rem}
-.ia-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.28rem .55rem;border-radius:999px;background:rgba(255,255,255,.08);font-size:.76rem;font-weight:600;white-space:nowrap}
-.ia-chip i{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
+.selos-capa .gpt img{width:30px;height:30px;flex:0 0 auto}
+.selos-capa .gpt b{display:block;font-weight:600}
+.selos-capa .gpt small{display:block;font-size:.86em;font-weight:400;color:var(--mudo-esc);margin-top:.1rem}
 
 
 /* conversa com a IA */
@@ -406,9 +404,8 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
   .pc-nota{font-size:clamp(.78rem,1.85svh,.9rem)}
   .selos-capa{order:6;width:100%;max-width:560px}
   .selos-capa li{padding:.5rem .65rem;font-size:.72rem}
-  .selos-capa .ias{flex:1 1 auto;flex-direction:row;align-items:center;justify-content:center;gap:.5rem}
-  .ia-chip{font-size:.66rem;padding:.22rem .42rem;gap:.28rem}
-  .ia-chip i{width:6px;height:6px}
+  .selos-capa .gpt{flex:1 1 auto;justify-content:center;text-align:left}
+  .selos-capa .gpt img{width:26px;height:26px}
   .orbita{left:-60%;top:2%;width:220%}
 
   /* a diferença: uma resposta por vez, com troca */
@@ -569,7 +566,7 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
   .pc-nota{font-size:1.05rem}
   .selos-capa{max-width:none}
   .selos-capa li{font-size:.92rem;padding:.8rem 1rem}
-  .ia-chip{font-size:.85rem}
+  .selos-capa .gpt img{width:34px;height:34px}
   /* a diferença: só o título, as duas respostas grandes lado a lado */
   .t2 .cab .lead{display:none}
   .troca{display:none}
@@ -673,7 +670,6 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
 /* telas baixas (iPhone SE e afins): tira o que é secundário */
 @media (max-width:1080px) and (max-height:700px){
   .t1 .lead{display:none}
-  .selos-capa .ias small{display:none}
   .titulos{display:none}
   .passos span{display:none}
   .garantia span{display:none}
@@ -749,7 +745,7 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
         <p class="pc-nota"><span class="estrelas" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span><span><b>4,9</b>/5 de avaliação</span></p>
       </div>
       <ul class="selos-capa">
-        <li class="ias"><small>Funciona no</small><span class="ia-lista"><span class="ia-chip"><i style="background:#10A37F"></i>ChatGPT</span><span class="ia-chip"><i style="background:#4F8DF7"></i>Gemini</span><span class="ia-chip"><i style="background:#D97757"></i>Claude</span></span></li>
+        <li class="gpt"><img src="img/chatgpt.png" alt="" width="30" height="30"><span><b>Funciona em todas as versões do ChatGPT</b><small>Na grátis ou na paga</small></span></li>
       </ul>
     </div>
 
@@ -904,7 +900,7 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
       <ul class="leva">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><p><b>40 prompts prontos, em 7 blocos.</b> <span>Da configuração da IA à véspera da prova.</span></p></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><p><b>Simulado, Anki, OSCE e prova oral.</b> <span>A IA vira paciente, examinador e professor.</span></p></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><p><b>ChatGPT, Gemini e Claude.</b> <span>Na versão grátis ou paga.</span></p></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><p><b>Todas as versões do ChatGPT.</b> <span>Na grátis ou na paga.</span></p></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg><p><b>5 regras para estudar com IA sem se enganar.</b> <span>O que conferir e onde.</span></p></li>
       </ul>
     </div>
@@ -921,7 +917,7 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
       <ul class="inclui-mob so-mob">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>40 prompts em 7 blocos de estudo</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Simulado, Anki, OSCE e prova oral</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>ChatGPT, Gemini e Claude, grátis ou pago</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>ChatGPT grátis ou pago</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>PDF no seu e-mail na hora</li>
       </ul>
       <p class="escassez">Preço promocional <b>só hoje</b>.</p>
@@ -942,7 +938,7 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
       <p>Se ficou alguma dúvida, a resposta provavelmente está aqui.</p>
     </div>
     <div class="lista-d">
-      <details open><summary>Funciona no ChatGPT grátis?</summary><p>Funciona. Os prompts rodam em qualquer IA, na versão grátis ou paga: ChatGPT, Gemini e Claude. Os que pedem para anexar PDF ou print rendem mais quando a sua conta permite anexar arquivo.</p></details>
+      <details open><summary>Funciona no ChatGPT grátis?</summary><p>Funciona. Os prompts rodam em todas as versões do ChatGPT, na grátis ou na paga. Os que pedem para anexar PDF ou print rendem mais quando a sua conta permite anexar arquivo.</p></details>
       <details><summary>Como eu recebo?</summary><p>Assim que o pagamento é aprovado, o PDF chega no e-mail que você informou e o botão para baixar aparece na mesma tela. No Pix, a aprovação é na hora.</p></details>
       <details><summary>Serve para qual período?</summary><p>Do primeiro período ao internato. No Prompt 1 você informa o seu período e as matérias do semestre, e a IA ajusta o nível. Tem blocos para prova da faculdade, OSCE, prova oral, ENAMED e residência.</p></details>
       <details><summary>Preciso entender de IA?</summary><p>Não. É copiar, colar e trocar o que está entre colchetes. Exemplo: [TEMA] vira "síndrome nefrótica". O resto você cola do jeito que está.</p></details>
@@ -966,7 +962,7 @@ mark{background:var(--laranja-suave);color:var(--laranja-2);padding:0 .2em;borde
   <div class="wrap">
     <a class="logo" href="#inicio"><svg class="orb" viewBox="0 0 32 32" fill="none" aria-hidden="true"><ellipse cx="16" cy="16" rx="12.5" ry="12.5" stroke="currentColor" stroke-width="2"/><circle cx="25" cy="7.4" r="3.6" fill="#FF5A1F"/></svg><span>Orbyt Studio <span style="font-weight:400;opacity:.6">para Medicina</span></span></a>
     <span class="sub-rod">40 Prompts para Estudar Medicina com IA · Guia prático 2026</span>
-    <p class="aviso-legal">Material de apoio ao estudo. Não substitui aula, livro-texto, diretriz oficial nem a orientação dos seus professores e preceptores. ChatGPT, Gemini e Claude são marcas dos seus respectivos donos; este material não tem vínculo com elas.</p>
+    <p class="aviso-legal">Material de apoio ao estudo. Não substitui aula, livro-texto, diretriz oficial nem a orientação dos seus professores e preceptores. ChatGPT é marca da OpenAI. Este material é independente e não tem vínculo com a OpenAI.</p>
   </div>
 </footer>
 </div>
