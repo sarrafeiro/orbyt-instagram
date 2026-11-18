@@ -98,6 +98,8 @@ export default {
       if (p === "/api/saude/extras") return await saudeExtra(env, url);
       if (p === "/api/saude") return await saude(env);
       if (p === "/api/oa/evento" && req.method === "POST") return await eventoOa(req, env, ctx);
+      if (p === "/api/funil/sessao" && req.method === "POST") return await funilSessao(req, env);
+      if (p === "/api/funil" && req.method === "GET") return await funilRelatorio(env, url);
       if (p.startsWith("/api/")) return json({ erro: "rota não existe" }, 404);
     } catch (e) {
       console.log("erro", p, e && e.stack || e);
@@ -145,7 +147,7 @@ async function criarPix(req, env, url, ctx) {
   corpo.transactions = { payments: [{ amount: corpo.total_amount, payment_method: { id: "pix", type: "bank_transfer" }, expiration_time: "PT30M" }] };
   const r = await mp(env, "POST", "/v1/orders", corpo);
   if (!r.ok) { console.log("pix falhou", r.status, JSON.stringify(r.data)); return json({ erro: "Não deu para gerar o Pix agora. Tente de novo." }, 502); }
-  await guardarComprador(env, r.data.id, payer, atribuicao(req, b), sel);
+  await guardarComprador(env, r.data.id, payer, atribuicao(req, b), sel, "pix");
   const pg = (((r.data.transactions || {}).payments || [])[0] || {}).payment_method || {};
   return json({ id: r.data.id, status: r.data.status, total: totalCentavos(sel), qr_code: pg.qr_code, qr_code_base64: pg.qr_code_base64, ticket_url: pg.ticket_url });
 }
@@ -160,7 +162,7 @@ async function criarCartao(req, env, url, ctx) {
   corpo.transactions = { payments: [{ amount: corpo.total_amount, payment_method: { id: String(b.payment_method_id), type: tipo, token: String(b.token), installments: 1 } }] };
   const r = await mp(env, "POST", "/v1/orders", corpo);
   const o = r.data || {};
-  if (o.id) await guardarComprador(env, o.id, payer, atribuicao(req, b), sel);
+  if (o.id) await guardarComprador(env, o.id, payer, atribuicao(req, b), sel, "cartao");
   const pgto = ((o.transactions || {}).payments || [])[0] || {};
   const det = pgto.status_detail || o.status_detail || (o.errors && o.errors[0] && o.errors[0].code) || "";
   if (o.status === "processed") {
@@ -323,17 +325,26 @@ async function enviarEmail(env, url, o) {
     r = await enviar([principal], "pedido-" + o.id + "-guia");
   }
   if (r.ok) {
-    if (comp && env.PEDIDOS) await env.PEDIDOS.put("pedido:" + o.id, JSON.stringify(Object.assign(comp, { emailEnviado: new Date().toISOString() })), { expirationTtl: 60 * 60 * 24 * 90 });
+    if (comp && env.PEDIDOS) await salvarPedido(env, o.id, Object.assign(comp, { emailEnviado: new Date().toISOString() }));
     console.log("email enviado", o.id);
   }
   else console.log("email falhou", o.id, r.status, (await r.text()).slice(0, 500));
 }
 
 // Guarda e-mail e nome do comprador por 90 dias. O Mercado Pago não devolve esses dados na consulta do pedido.
-async function guardarComprador(env, id, payer, atrib, sel) {
+async function guardarComprador(env, id, payer, atrib, sel, metodo) {
   if (!env.PEDIDOS || !id) return;
-  const extra = sel ? { fase: sel.fase, itens: sel.itens, total: totalCentavos(sel) } : {};
-  await env.PEDIDOS.put("pedido:" + id, JSON.stringify(Object.assign({ email: payer.email, first_name: payer.first_name, last_name: payer.last_name, criado: new Date().toISOString() }, extra, atrib || {})), { expirationTtl: 60 * 60 * 24 * 90 });
+  const extra = sel ? { fase: sel.fase, itens: sel.itens, total: totalCentavos(sel), metodo: metodo || "" } : {};
+  // Se a gravação falhar (cota do KV, instabilidade), a venda segue: o registro só serve para e-mail e relatório.
+  try { await salvarPedido(env, id, Object.assign({ email: payer.email, first_name: payer.first_name, last_name: payer.last_name, criado: new Date().toISOString() }, extra, atrib || {})); }
+  catch (e) { console.log("pedido não gravado", id, String((e && e.message) || e)); }
+}
+
+function diaBR(t) { return new Date((t || Date.now()) - 3 * 3600e3).toISOString().slice(0, 10); }
+
+async function salvarPedido(env, id, o) {
+  const meta = { d: diaBR(o.criado ? Date.parse(o.criado) : 0), f: o.fase || 0, x: (o.itens || []).map((k) => (EXTRAS[k] ? EXTRAS[k].letra : "")).join(""), t: o.total || PRODUTO.centavos, m: o.metodo || "", p: o.emailEnviado || o.capiEnviado ? 1 : 0 };
+  await env.PEDIDOS.put("pedido:" + id, JSON.stringify(o), { expirationTtl: 60 * 60 * 24 * 90, metadata: meta });
 }
 
 // ---------- ChatGPT Ads: API de conversão (servidor) ----------
@@ -411,7 +422,7 @@ async function conversaoCompra(env, o) {
   if (await capi(env, [ev])) {
     const atual = (await env.PEDIDOS.get("pedido:" + o.id, "json")) || comp;
     atual.capiEnviado = new Date().toISOString();
-    await env.PEDIDOS.put("pedido:" + o.id, JSON.stringify(atual), { expirationTtl: 60 * 60 * 24 * 90 });
+    await salvarPedido(env, o.id, atual);
     console.log("capi compra enviada", o.id);
   }
 }
@@ -433,6 +444,82 @@ async function saude(env) {
   try { const r = await fetch(MP + "/users/me", { headers: { authorization: "Bearer " + env.MP_ACCESS_TOKEN } }); mpOk = r.ok; } catch (e) {}
   try { const b = new Uint8Array(await abrirPdf(env)); pdfOk = b[0] === 0x25 && b[1] === 0x50; } catch (e) {}
   return json({ mercado_pago: mpOk, pdf: pdfOk, email: !!env.RESEND_API_KEY, pedidos: !!env.PEDIDOS, chatgpt_capi: !!env.OPENAI_CAPI_KEY });
+}
+
+// ---------- funil do checkout (tracking de produto, sem dado pessoal) ----------
+// A página manda um resumo anônimo quando a pessoa sai sem gerar pedido: até onde ela chegou.
+// Quem gera pedido já fica registrado em "pedido:". O relatório junta os dois: /api/funil?k=<senha>
+const FUNIL_HASH = "6ff70af390e6a4fcb4051ad704fac51a21fa599af4c36ae3e4f863035fb2a98b";
+const funilFreio = new Map();
+
+async function funilSessao(req, env) {
+  if (!env.PEDIDOS) return json({ ok: false });
+  const origem = req.headers.get("origin");
+  if (origem && !/^(https:\/\/(www\.)?orbytstudio\.com\.br|http:\/\/localhost(:\d+)?)$/.test(origem)) return json({ ok: false }, 403);
+  const ip = req.headers.get("cf-connecting-ip") || "x", agora = Date.now(), f = funilFreio.get(ip) || [0, agora];
+  if (agora - f[1] > 600e3) { f[0] = 0; f[1] = agora; }
+  if (++f[0] > 6) return json({ ok: false }, 429);
+  if (funilFreio.size > 5000) funilFreio.clear();
+  funilFreio.set(ip, f);
+  let b;
+  try { const txt = await req.text(); if (txt.length > 600) return json({ ok: false }, 400); b = JSON.parse(txt); } catch (e) { return json({ ok: false }, 400); }
+  const sid = String((b && b.sid) || "");
+  if (!/^[a-z0-9]{8,24}$/.test(sid)) return json({ ok: false }, 400);
+  const sel = lerSelecao(b);
+  const meta = { d: b.dados ? 1 : 0, f: sel.fase, x: sel.itens.map((k) => EXTRAS[k].letra).join(""), v: b.viuPag ? 1 : 0, c: b.clicou ? 1 : 0, s: Math.max(0, Math.min(7200, Math.round(Number(b.seg) || 0))) };
+  try { await env.PEDIDOS.put("sessao:" + diaBR() + ":" + sid, "1", { metadata: meta, expirationTtl: 60 * 60 * 24 * 60 }); } catch (e) { console.log("funil não gravado", String((e && e.message) || e)); }
+  return json({ ok: true });
+}
+
+async function funilRelatorio(env, url) {
+  if (!env.PEDIDOS || (await sha256(url.searchParams.get("k") || "")) !== FUNIL_HASH) return new Response("Não encontrado.", { status: 404 });
+  const dias = Math.max(1, Math.min(14, Number(url.searchParams.get("dias")) || 7));
+  const zero = () => ({ abriu: 0, dados: 0, fase: 0, viu: 0, pedido: 0, pago: 0, extra: 0, combo: 0, receita: 0, f1: 0, f2: 0, f3: 0 });
+  const lista = [], porDia = {};
+  for (let i = 0; i < dias; i++) { const d = diaBR(Date.now() - i * 864e5); lista.push(d); porDia[d] = zero(); }
+  for (const d of lista) {            // quem saiu sem gerar pedido
+    let cursor;
+    do {
+      const r = await env.PEDIDOS.list({ prefix: "sessao:" + d + ":", cursor });
+      for (const k of r.keys) { const m = k.metadata || {}, n = porDia[d]; n.abriu++; if (m.d) n.dados++; if (m.f) { n.fase++; n["f" + m.f]++; } if (m.v) n.viu++; }
+      cursor = r.list_complete ? null : r.cursor;
+    } while (cursor);
+  }
+  let cursor;                          // quem gerou Pix ou passou o cartão
+  do {
+    const r = await env.PEDIDOS.list({ prefix: "pedido:", cursor });
+    for (const k of r.keys) {
+      const m = k.metadata, n = m && porDia[m.d];
+      if (!n) continue;
+      n.abriu++; n.dados++; n.viu++; n.pedido++;
+      if (m.f) { n.fase++; n["f" + m.f]++; }
+      if (m.p) { n.pago++; n.receita += m.t || 0; if (m.x) n.extra++; if (m.x && m.x.length === 3) n.combo++; }
+    }
+    cursor = r.list_complete ? null : r.cursor;
+  } while (cursor);
+  const tot = zero();
+  for (const d of lista) for (const c in tot) tot[c] += porDia[d][c];
+  if (url.searchParams.get("formato") === "json") return json({ dias, total: tot, porDia });
+  const pct = (a, b) => (b ? Math.round((a / b) * 100) + "%" : "0%");
+  const grana = (c) => "R$ " + (c / 100).toFixed(2).replace(".", ",");
+  const passos = [["Abriram o checkout", "abriu"], ["Preencheram os dados", "dados"], ["Escolheram a fase", "fase"], ["Chegaram no botão de pagar", "viu"], ["Geraram Pix ou passaram o cartão", "pedido"], ["Pagaram", "pago"]];
+  const semVer = tot.fase - Math.min(tot.viu, tot.fase);
+  let h = '<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Funil do checkout</title><style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#F4F5F7;color:#16181B;margin:0;padding:20px;line-height:1.45}main{max-width:720px;margin:0 auto}h1{font-size:1.35rem;margin:0 0 4px}h2{font-size:1rem;margin:26px 0 8px}p{margin:0 0 10px;color:#5B6470;font-size:.92rem}.c{background:#fff;border-radius:14px;padding:14px 16px;margin-bottom:12px}.l{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #EEF0F3}.l:last-child{border-bottom:0}.l b{font-variant-numeric:tabular-nums;white-space:nowrap}.l small{color:#8A929C;font-weight:400;margin-left:6px}.a{background:#FFF1EA;border:1.5px solid #FF5A1F;border-radius:14px;padding:14px 16px;margin-bottom:12px}.a b{font-size:1.2rem}table{width:100%;border-collapse:collapse;font-size:.84rem;background:#fff;border-radius:14px;overflow:hidden}th,td{padding:8px 6px;text-align:right;border-bottom:1px solid #EEF0F3;font-variant-numeric:tabular-nums;white-space:nowrap}th:first-child,td:first-child{text-align:left;padding-left:12px}th{font-size:.7rem;color:#5B6470;font-weight:600}.r{overflow-x:auto}</style></head><body><main>';
+  h += "<h1>Funil do checkout</h1><p>40 Prompts de Medicina · últimos " + dias + " dias (horário de Brasília)</p>";
+  h += '<div class="a"><b>' + semVer + " de " + tot.fase + " (" + pct(semVer, tot.fase) + ")</b><br>escolheram a fase e saíram sem chegar no botão de pagar. É esse número que diz se a rolagem depois dos extras está derrubando gente.</div>";
+  h += '<div class="c">';
+  for (const [nome, c] of passos) h += '<div class="l"><span>' + nome + "</span><b>" + tot[c] + "<small>" + pct(tot[c], tot.abriu) + "</small></b></div>";
+  h += '</div><div class="c">';
+  h += '<div class="l"><span>Pagos com algum extra</span><b>' + tot.extra + "<small>" + pct(tot.extra, tot.pago) + "</small></b></div>";
+  h += '<div class="l"><span>Pagos com o combo</span><b>' + tot.combo + "<small>" + pct(tot.combo, tot.pago) + "</small></b></div>";
+  h += '<div class="l"><span>Receita</span><b>' + grana(tot.receita) + "</b></div>";
+  h += '<div class="l"><span>Ticket médio</span><b>' + grana(tot.pago ? Math.round(tot.receita / tot.pago) : 0) + "</b></div>";
+  h += '<div class="l"><span>Fase escolhida</span><b>básico ' + tot.f1 + " · clínico " + tot.f2 + " · internato " + tot.f3 + "</b></div></div>";
+  h += '<h2>Por dia</h2><div class="r"><table><tr><th>Dia</th><th>Abriu</th><th>Fase</th><th>Botão</th><th>Pedido</th><th>Pago</th><th>Extra</th><th>Receita</th></tr>';
+  for (const d of lista) { const n = porDia[d]; h += "<tr><td>" + d.slice(8) + "/" + d.slice(5, 7) + "</td><td>" + n.abriu + "</td><td>" + n.fase + "</td><td>" + n.viu + "</td><td>" + n.pedido + "</td><td>" + n.pago + "</td><td>" + n.extra + "</td><td>" + grana(n.receita) + "</td></tr>"; }
+  h += "</table></div>";
+  h += '<p style="margin-top:14px">Como ler: "Abriram" conta quem gerou pedido mais quem saiu e o navegador conseguiu avisar. Alguns celulares fecham a página sem avisar, então o número real de visitas é um pouco maior. Pedidos e pagamentos são exatos. Troque o período com &amp;dias=14 no fim do endereço.</p></main></body></html>';
+  return new Response(h, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store", "x-robots-tag": "noindex" } });
 }
 
 // Confere um extra por vez (abre e vê se é PDF). Ex.: /api/saude/extras?n=f1-osce

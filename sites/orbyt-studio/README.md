@@ -19,6 +19,14 @@ Ligado na Cloudflare em 17/11/2026 (Settings > Builds do projeto `orbyt-studio`)
 - Segredos na Cloudflare (orbyt-studio > Settings > Variables and Secrets, tipo Secret): `MP_ACCESS_TOKEN`, `PDF_KEY` e, quando tiver e-mail, `RESEND_API_KEY`.
 - Trocar o PDF: criptografar de novo com a mesma chave e substituir `src/40prompts.bin`.
 
+## Funil do checkout (tracking de produto)
+
+- Relatório: `/api/funil?k=<senha>` (página simples; `&dias=14` muda o período, `&formato=json` devolve os números). A senha não fica no repositório, só o hash dela (`FUNIL_HASH`).
+- Quem gera pedido (Pix ou cartão) já fica em `pedido:<id>` no KV, com um resumo em metadata (dia, fase, extras, total, método, pago).
+- Quem sai sem gerar pedido: a página manda um resumo anônimo para `/api/funil/sessao` quando a aba some (até onde chegou: dados, fase, viu o botão de pagar). Fica em `sessao:<dia>:<id>` por 60 dias. Não vai nome, e-mail nem CPF.
+- O relatório só usa a listagem do KV (lê a metadata), então não abre registro por registro.
+- Limite a vigiar: cada sessão abandonada e cada pedido gastam gravações do KV. Se a gravação falhar, a venda segue normalmente.
+
 ## Extras do checkout (order bump por fase)
 
 - No checkout a pessoa escolhe a fase (ciclo básico, ciclo clínico, internato) e pode marcar 3 extras: OSCE (R$ 8,90), Simulados ENAMED (R$ 8,90) e Kit de prompts da fase (R$ 6,90). Os 3 juntos saem por R$ 12,90 e levam o Kit Acadêmico de bônus.
