@@ -3,7 +3,7 @@
 //
 // Segredos (Cloudflare > orbyt-studio > Settings > Variables and Secrets, tipo Secret):
 //   MP_ACCESS_TOKEN  Access Token de PRODUÇÃO da aplicação "Orbyt Medicina" no Mercado Pago
-//   PDF_KEY          chave que abre o PDF criptografado (src/40prompts.bin)
+//   PDF_KEY          chave que abre os PDFs criptografados (src/40prompts.bin e public/.../dl/*.bin)
 //   RESEND_API_KEY   (opcional) se existir, o PDF também vai por e-mail
 
 import PDF_CRIPTO from "./40prompts.bin";
@@ -96,7 +96,6 @@ export default {
         return json({ validacao: { status: r.status, resposta: (await r.text()).slice(0, 800) }, ultimo_envio_real: env.PEDIDOS ? await env.PEDIDOS.get("diag:capi", "json") : null });
       }
       if (p === "/api/saude/extras") return await saudeExtra(env, url);
-      if (p === "/api/admin/cifrar" && req.method === "POST") return await cifrarAdmin(req, env);
       if (p === "/api/saude") return await saude(env);
       if (p === "/api/oa/evento" && req.method === "POST") return await eventoOa(req, env, ctx);
       if (p.startsWith("/api/")) return json({ erro: "rota não existe" }, 404);
@@ -441,19 +440,6 @@ async function saudeExtra(env, url) {
   if (!/^(f[123]-(osce|enamed|kit)|academico)$/.test(n)) return json({ erro: "nome inválido" }, 400);
   try { const b = new Uint8Array(await abrirArquivo(env, url, { bin: n })); return json({ extra: n, ok: b[0] === 0x25 && b[1] === 0x50, bytes: b.length }); }
   catch (e) { return json({ extra: n, ok: false }); }
-}
-
-// Cifra um PDF com a PDF_KEY, para ele poder ir para a pasta pública dl/. Só com a senha de manutenção.
-const ADMIN_HASH = "9d4a5e9fe25e61bc8b98c47e24bbd38c85911b23231a5f0a99d4a32b9fe882ec";
-async function cifrarAdmin(req, env) {
-  if ((await sha256(req.headers.get("x-admin") || "")) !== ADMIN_HASH) return json({ erro: "não autorizado" }, 403);
-  const dados = new Uint8Array(await req.arrayBuffer());
-  if (dados.length < 1000 || dados.length > 8e6 || dados[0] !== 0x25 || dados[1] !== 0x50) return json({ erro: "arquivo inválido" }, 400);
-  const iv = crypto.getRandomValues(new Uint8Array(12));
-  const chave = await crypto.subtle.importKey("raw", b64(env.PDF_KEY), "AES-GCM", false, ["encrypt"]);
-  const ct = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, chave, dados));
-  const saida = new Uint8Array(12 + ct.length); saida.set(iv); saida.set(ct, 12);
-  return new Response(saida, { headers: { "content-type": "application/octet-stream", "cache-control": "no-store" } });
 }
 
 // ---------- utilitários ----------

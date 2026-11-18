@@ -128,6 +128,48 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
 .urgencia ul{list-style:none;margin:0;padding:0;display:grid;gap:.3rem;font-size:.86rem;color:var(--grafite)}
 .urgencia li{display:grid;grid-template-columns:1rem 1fr;gap:.45rem;line-height:1.35}
 .urgencia li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--laranja);margin-top:.45em}
+/* fase do curso e extras (order bump) */
+.fase-dica{font-size:.84rem;color:var(--ardosia);margin-top:-.4rem}
+.fases{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
+.fase{display:grid;gap:.1rem;justify-items:center;align-content:center;text-align:center;border:1.5px solid var(--linha);border-radius:14px;padding:.75rem .35rem;background:var(--papel);cursor:pointer;color:var(--grafite);min-width:0}
+.fase b{font-size:.95rem;line-height:1.15}
+.fase small{font-size:.72rem;color:var(--ardosia)}
+.fase.on{border-color:var(--laranja);background:#FFF6F2;box-shadow:inset 0 0 0 1px var(--laranja)}
+.bump{display:grid;gap:.55rem;border:1.5px dashed var(--laranja);background:#FFFAF7;border-radius:16px;padding:.9rem;animation:surge .3s ease}
+.bump[hidden]{display:none}
+.bump-olho{display:flex;align-items:center;gap:.5rem;font-family:var(--f-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--laranja-2,#E0480F)}
+.bump-olho b{font-weight:500}
+.bump-olho .pulso{background:var(--laranja);animation:none}
+.bump-linha{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:.7rem;align-items:center;width:100%;text-align:left;border:1.5px solid var(--linha);border-radius:14px;padding:.75rem .8rem;background:var(--papel);cursor:pointer;color:var(--grafite)}
+.ck{width:22px;height:22px;border-radius:7px;border:1.5px solid #C2C8CF;background:#fff;display:grid;place-items:center;flex:0 0 auto}
+.bump-linha.on{border-color:var(--grafite);background:var(--gelo)}
+.bump-linha.on .ck{background:var(--laranja);border-color:var(--laranja)}
+.bump-linha.on .ck::after{content:"";width:11px;height:6px;border-left:2.4px solid #fff;border-bottom:2.4px solid #fff;transform:translateY(-1px) rotate(-45deg)}
+.bump-txt b{display:block;font-size:.95rem;line-height:1.2}
+.bump-txt small{display:block;font-size:.78rem;color:var(--ardosia);line-height:1.3;margin-top:.15rem}
+.bump-preco{display:grid;justify-items:end;line-height:1.15;white-space:nowrap}
+.bump-preco b{font-family:var(--f-disp);font-weight:800;font-size:1rem;letter-spacing:-.02em}
+.bump-preco s{font-size:.74rem;color:var(--ardosia)}
+.bump-combo{border-color:var(--laranja);box-shadow:0 12px 26px -18px rgba(255,90,31,.8)}
+.bump-combo.on{border-color:var(--laranja);background:#FFF1EA}
+.bump-combo .bump-preco b{color:var(--laranja-2,#E0480F);font-size:1.25rem}
+.bump-selo{display:inline-block;font-family:var(--f-mono);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;background:var(--laranja);color:#fff;padding:.2rem .45rem;border-radius:999px;margin-bottom:.3rem}
+.bump.combo .bump-linha[data-i] .bump-preco b{text-decoration:line-through;color:var(--ardosia);font-weight:600}
+.bump-dica{display:flex;align-items:center;justify-content:space-between;gap:.7rem;width:100%;text-align:left;border:0;border-radius:12px;padding:.7rem .8rem;background:var(--grafite);color:#fff;font-size:.86rem;line-height:1.3;cursor:pointer}
+.bump-dica[hidden]{display:none}
+.bump-dica b{color:#FFB199}
+.bump-dica i{font-style:normal;font-weight:700;white-space:nowrap;background:var(--laranja);border-radius:999px;padding:.35rem .7rem;font-size:.8rem}
+.bump-ou{display:flex;align-items:center;gap:.6rem;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ardosia);margin-block:.1rem}
+.bump-ou::before,.bump-ou::after{content:"";flex:1;height:1px;background:var(--linha)}
+.conta{display:grid;gap:.35rem;border:1px solid var(--linha);border-radius:14px;padding:.8rem .95rem;font-size:.88rem}
+.conta[hidden]{display:none}
+.conta div{display:flex;justify-content:space-between;gap:1rem;color:var(--ardosia)}
+.conta div span:last-child,.conta div b{white-space:nowrap}
+.conta .conta-total{color:var(--grafite);font-weight:600;border-top:1px solid var(--linha);padding-top:.5rem;margin-top:.15rem;align-items:baseline}
+.conta .conta-total b{font-family:var(--f-disp);font-weight:800;font-size:1.3rem;letter-spacing:-.03em}
+.extras-dl{display:grid;gap:.5rem;width:100%;max-width:380px}
+.extras-dl[hidden]{display:none}
+.centro .btn-linha{background:var(--papel);color:var(--grafite);border-color:var(--grafite);font-size:.92rem;padding:.75rem 1rem;line-height:1.25}
 .letra{display:flex;align-items:center;justify-content:center;gap:.45rem;font-size:.78rem;color:var(--ardosia);text-align:center}
 .letra svg{width:14px;height:14px;flex:0 0 auto}
 
@@ -183,6 +225,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
 .res-produto .txt > span{display:block}
 .linhas{display:grid;gap:.45rem;border-top:1px solid var(--linha-esc);padding-top:.9rem;font-size:.9rem}
 .linhas div{display:flex;justify-content:space-between;gap:1rem;color:var(--mudo-esc)}
+.linhas div span:last-child{white-space:nowrap;flex:0 0 auto}
 .linhas .desc{color:#4ADE80}
 .linhas .total{color:#fff;font-weight:600;font-size:1.05rem;border-top:1px solid var(--linha-esc);padding-top:.7rem;margin-top:.2rem}
 .linhas .total b{font-family:var(--f-disp);font-size:1.5rem;letter-spacing:-.03em}
@@ -242,6 +285,13 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
   .pix-cab h2{font-size:1.3rem}
   .pix-valor{font-size:1.35rem}
   .seguro span{display:none}
+  .fase{padding:.7rem .25rem}
+  .fase b{font-size:.86rem}
+  .fase small{font-size:.68rem}
+  .bump{padding:.7rem}
+  .bump-linha{gap:.55rem;padding:.7rem .65rem}
+  .bump-txt b{font-size:.9rem}
+  .bump-txt small{font-size:.76rem}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
@@ -274,8 +324,30 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
             <div class="campo"><label for="fCpf">CPF</label><input id="fCpf" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" maxlength="14"><span class="erro-txt">CPF inválido. Confira os números.</span></div>
           </div>
         </div>
+        <div class="bloco" id="blocoFase">
+          <h2 class="bloco-tit"><span>2</span>Em que fase você está?</h2>
+          <p class="fase-dica">Toque na sua fase e veja o material extra dela. É opcional.</p>
+          <div class="fases" role="radiogroup" aria-label="Fase do curso">
+            <button type="button" class="fase" role="radio" aria-checked="false" data-f="1"><b>Ciclo básico</b><small>1º e 2º ano</small></button>
+            <button type="button" class="fase" role="radio" aria-checked="false" data-f="2"><b>Ciclo clínico</b><small>3º e 4º ano</small></button>
+            <button type="button" class="fase" role="radio" aria-checked="false" data-f="3"><b>Internato</b><small>5º e 6º ano</small></button>
+          </div>
+          <div class="bump" id="bump" hidden>
+            <p class="bump-olho"><span class="pulso"></span><span>Só nesta página · extras do <b id="bumpFase">internato</b></span></p>
+            <button type="button" class="bump-linha bump-combo" id="bumpCombo" role="checkbox" aria-checked="false">
+              <i class="ck"></i>
+              <span class="bump-txt"><span class="bump-selo">Melhor preço</span><b>Levar os 3 juntos</b><small>Economize <span id="comboEco">R$ 11,80</span> e ganhe de bônus o Kit Acadêmico: 20 prompts de seminário, artigo e TCC.</small></span>
+              <span class="bump-preco"><s id="comboDe">R$ 29,70</s><b id="comboPor">R$ 17,90</b></span>
+            </button>
+            <p class="bump-ou">ou escolha separado</p>
+            <button type="button" class="bump-linha" data-i="osce" role="checkbox" aria-checked="false"><i class="ck"></i><span class="bump-txt"><b></b><small></small></span><span class="bump-preco"><b></b></span></button>
+            <button type="button" class="bump-linha" data-i="enamed" role="checkbox" aria-checked="false"><i class="ck"></i><span class="bump-txt"><b></b><small></small></span><span class="bump-preco"><b></b></span></button>
+            <button type="button" class="bump-linha" data-i="kit" role="checkbox" aria-checked="false"><i class="ck"></i><span class="bump-txt"><b></b><small></small></span><span class="bump-preco"><b></b></span></button>
+            <button type="button" class="bump-dica" id="bumpDica" hidden><span id="bumpDicaTxt"></span><i>Levar os 3</i></button>
+          </div>
+        </div>
         <div class="bloco">
-          <h2 class="bloco-tit"><span>2</span>Pagamento</h2>
+          <h2 class="bloco-tit"><span>3</span>Pagamento</h2>
           <div class="metodos" role="radiogroup" aria-label="Forma de pagamento">
             <button type="button" class="metodo on" role="radio" aria-checked="true" data-m="pix"><i></i><span><b>Pix</b><small>Aprovação na hora</small></span></button>
             <button type="button" class="metodo" role="radio" aria-checked="false" data-m="cartao"><i></i><span><b>Cartão</b><small>Crédito, à vista</small></span></button>
@@ -297,7 +369,11 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
             <li><span>O PDF chega no seu e-mail segundos depois do pagamento.</span></li>
           </ul>
         </div>
-        <button class="btn btn-laranja pagar" type="submit" id="btnPagar">Gerar Pix de <span class="preco-txt">R$ 27,90</span></button>
+        <div class="conta" id="conta" hidden>
+          <div><span>40 Prompts para Estudar Medicina com IA</span><span class="preco-txt">R$ 27,90</span></div>
+          <div class="conta-total"><span>Total</span><b class="total-txt">R$ 27,90</b></div>
+        </div>
+        <button class="btn btn-laranja pagar" type="submit" id="btnPagar">Gerar Pix de R$ 27,90</button>
         <p class="letra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Pagamento processado pelo Mercado Pago</p>
       </form>
 
@@ -305,7 +381,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
       <div class="etapa" id="ePix">
         <div class="pix-cab">
           <div><h2>Pague com Pix</h2><p>Escaneie o QR Code ou copie o código.</p></div>
-          <span class="pix-valor preco-txt">R$ 27,90</span>
+          <span class="pix-valor" id="pixValor">R$ 27,90</span>
         </div>
         <div class="pix-corpo">
           <div class="qr" id="qr"></div>
@@ -330,8 +406,9 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
         <div class="centro">
           <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
           <h2>Pagamento aprovado!</h2>
-          <p>Seu PDF está liberado e também foi para o seu e-mail. Se não aparecer, olhe o spam e as promoções.</p>
+          <p id="okTxt">Seu PDF está liberado e também foi para o seu e-mail. Se não aparecer, olhe o spam e as promoções.</p>
           <a class="btn btn-escuro" href="#" id="baixar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Baixar o PDF agora</a>
+          <div class="extras-dl" id="extrasDl" hidden></div>
           <div class="prox">
             <b>Próximo passo</b>
             <p>Abra o PDF, copie o Prompt 1 e cole na sua IA. Ele coloca a conversa no nível de um estudante de Medicina.</p>
@@ -350,7 +427,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
         <div><span>Produto</span><span class="de-txt">R$ 59,90</span></div>
         <div class="desc"><span>Desconto de hoje</span><span id="descTxt">- R$ 32,00</span></div>
         <div><span>Entrega</span><span>Imediata, no e-mail</span></div>
-        <div class="total"><span>Total</span><b class="preco-txt">R$ 27,90</b></div>
+        <div class="total"><span>Total</span><b class="total-txt">R$ 27,90</b></div>
       </div>
       <ul class="res-lista">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>40 prompts em 7 blocos de estudo</li>
@@ -401,7 +478,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
   function px(evento, dados){ try { if (typeof window.fbq === "function") window.fbq("track", evento, dados || {}); } catch(e){} }
   // ChatGPT Ads: valores em centavos (inteiro), moeda BRL
   var CENTAVOS = Math.round(PRECO * 100);
-  function oa(evento, extra){ try { var d = {type: "contents", amount: CENTAVOS, currency: "BRL", contents: [{ id: "40-prompts-medicina", name: "40 Prompts para Estudar Medicina com IA", content_type: "product", quantity: 1 }]}; if (extra) window.oaiq("measure", evento, d, extra); else window.oaiq("measure", evento, d); } catch(e){} }
+  function oa(evento, extra, centavos){ try { var d = {type: "contents", amount: centavos || CENTAVOS, currency: "BRL", contents: [{ id: "40-prompts-medicina", name: "40 Prompts para Estudar Medicina com IA", content_type: "product", quantity: 1 }]}; if (extra) window.oaiq("measure", evento, d, extra); else window.oaiq("measure", evento, d); } catch(e){} }
   async function sha(t){ try { var b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t)); return [...new Uint8Array(b)].map(function(x){ return x.toString(16).padStart(2, "0"); }).join(""); } catch(e){ return ""; } }
   function normNome(t){ return String(t || "").toLowerCase().replace(/[\s!-\/:-@\[-`{-~]/g, ""); }
   async function identificar(c){ try { var p = c.nome.split(/\s+/); var u = {country: "BR", email_sha256: await sha(c.email.trim().toLowerCase()), first_name_sha256: await sha(normNome(p[0])), last_name_sha256: await sha(normNome(p.slice(1).join("")))}; window.oaiq("init", {pixelId: "9XiKvStxRXDEi93APHe2ak", user: u}); } catch(e){} }
@@ -430,7 +507,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
       document.querySelectorAll(".metodo").forEach(function(x){ var on = x === m; x.classList.toggle("on", on); x.setAttribute("aria-checked", on); });
       document.getElementById("pgPix").classList.toggle("on", metodo === "pix");
       document.getElementById("pgCartao").classList.toggle("on", metodo === "cartao");
-      btnPagar.textContent = metodo === "pix" ? "Gerar Pix de " + precoTxt : "Pagar " + precoTxt + " no cartão";
+      btnPagar.textContent = rotuloPagar();
       px("AddPaymentInfo", Object.assign({metodo: metodo}, produto));
     });
   });
@@ -479,7 +556,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
   function travar(sim, texto){
     ocupado = sim; btnPagar.disabled = sim;
     if (sim) btnPagar.textContent = texto || "Aguarde...";
-    else btnPagar.textContent = metodo === "pix" ? "Gerar Pix de " + precoTxt : "Pagar " + precoTxt + " no cartão";
+    else btnPagar.textContent = rotuloPagar();
   }
   function guardar(p){ try { localStorage.setItem(CHAVE_PEDIDO, JSON.stringify(p)); } catch(e){} }
   function esquecer(){ try { localStorage.removeItem(CHAVE_PEDIDO); } catch(e){} }
@@ -495,10 +572,10 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
 
   function pagarPix(c){
     travar(true, "Gerando o Pix...");
-    api("/api/mp/pix", Object.assign({}, c, oaRef())).then(function(d){
+    api("/api/mp/pix", Object.assign({}, c, oaRef(), selecao())).then(function(d){
       travar(false);
       if (!d.id || !d.qr_code){ avisar(d.erro || "Não deu para gerar o Pix. Tente de novo."); return; }
-      pedido = {id: d.id, metodo: "pix", qr: d.qr_code, img: d.qr_code_base64, criado: Date.now()};
+      pedido = {id: d.id, metodo: "pix", qr: d.qr_code, img: d.qr_code_base64, total: d.total || totalC(), criado: Date.now()};
       guardar(pedido); mostrarPix();
     }).catch(function(){ travar(false); avisar("Sem conexão. Tente de novo."); });
   }
@@ -507,6 +584,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
     var qr = document.getElementById("qr");
     qr.innerHTML = pedido.img ? '<img alt="QR Code do Pix" src="data:image/png;base64,' + pedido.img + '">' : "";
     document.getElementById("pixCodigo").value = pedido.qr;
+    document.getElementById("pixValor").textContent = brlC(pedido.total || PRECO_C);
     iniciarTimer(Math.max(0, 1800 - Math.floor((Date.now() - pedido.criado) / 1000)));
     ir("ePix"); acompanhar();
   }
@@ -515,7 +593,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
     clearTimeout(tPoll);
     if (!pedido) return;
     api("/api/mp/status?id=" + encodeURIComponent(pedido.id)).then(function(d){
-      if (d.status === "processed" && d.download){ aprovado(d.download); return; }
+      if (d.status === "processed" && d.download){ aprovado(d.download, d); return; }
       if (d.status === "expired" || d.status === "canceled" || d.status === "failed"){
         esquecer(); clearInterval(tTimer); pedido = null; ir("eForm"); avisar("O Pix expirou. Gere outro."); return;
       }
@@ -535,7 +613,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
     Promise.resolve(antes).then(function(){
       var mp = new window.MercadoPago(MP_PUBLIC_KEY, {locale: "pt-BR"});
       var conf = {
-        initialization: {amount: PRECO},
+        initialization: {amount: totalC() / 100},
         customization: {visual: {hidePaymentButton: true, hideFormTitle: true, style: {theme: "default", customVariables: {baseColor: "#16181B", borderRadiusMedium: "12px", borderRadiusLarge: "14px"}}}, paymentMethods: {maxInstallments: 1, types: {excluded: ["debit_card"]}}},
         callbacks: {
           onReady: function(){ criandoBrick = false; },
@@ -562,14 +640,14 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
       return Promise.resolve(extra).then(function(ad){
         ad = ad || {};
         ir("eProc");
-        return api("/api/mp/cartao", Object.assign({}, c, oaRef(), {
+        return api("/api/mp/cartao", Object.assign({}, c, oaRef(), selecao(), {
           token: f.token, payment_method_id: f.payment_method_id, issuer_id: f.issuer_id,
           payment_type_id: ad.paymentTypeId || f.payment_type_id || "credit_card"
         }));
       }).then(function(d){
         travar(false);
         if (!d) return;
-        if (d.status === "processed" && d.download){ pedido = {id: d.id, metodo: "cartao", criado: Date.now()}; aprovado(d.download); return; }
+        if (d.status === "processed" && d.download){ pedido = {id: d.id, metodo: "cartao", criado: Date.now()}; aprovado(d.download, d); return; }
         if ((d.status === "processing" || d.status === "action_required") && d.id){
           pedido = {id: d.id, metodo: "cartao", criado: Date.now()}; guardar(pedido); acompanhar(); return;
         }
@@ -583,23 +661,111 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
 
   document.querySelectorAll("[data-voltar]").forEach(function(b){ b.addEventListener("click", function(){ clearInterval(tTimer); clearTimeout(tPoll); ir("eForm"); }); });
 
-  function aprovado(link){
+  function aprovado(link, dados){
     clearInterval(tTimer); clearTimeout(tPoll);
     linkPdf = link || "";
     document.getElementById("baixar").href = linkPdf;
+    // extras comprados: um botão de download para cada
+    var extras = dados && Array.isArray(dados.downloads) ? dados.downloads.slice(1) : [];
+    var totalPago = (dados && dados.total) || (pedido && pedido.total) || PRECO_C;
+    var caixaDl = document.getElementById("extrasDl");
+    caixaDl.textContent = "";
+    extras.forEach(function(x){
+      if (!x || !/^https?:\/\//.test(String(x.url || ""))) return;
+      var a = document.createElement("a"); a.className = "btn btn-linha"; a.href = x.url; a.textContent = "Baixar: " + String(x.titulo || "extra");
+      caixaDl.appendChild(a);
+    });
+    caixaDl.hidden = !caixaDl.children.length;
+    if (caixaDl.children.length) document.getElementById("okTxt").textContent = "Seus PDFs estão liberados e também foram para o seu e-mail. Se não aparecerem, olhe o spam e as promoções.";
     ir("eOk");
     var m = (pedido && pedido.metodo) || metodo;
     var jaContou = false;
     try { jaContou = sessionStorage.getItem("ck40Comprou") === (pedido ? pedido.id : "c"); sessionStorage.setItem("ck40Comprou", pedido ? pedido.id : "c"); } catch(e){}
-    if (!jaContou){ px("Purchase", Object.assign({metodo: m, origem: origem}, produto)); oa("order_created", {event_id: pedido && pedido.id ? pedido.id : "ck-" + Date.now()}); }
+    if (!jaContou){ px("Purchase", Object.assign({metodo: m, origem: origem}, produto, {value: totalPago / 100})); oa("order_created", {event_id: pedido && pedido.id ? pedido.id : "ck-" + Date.now()}, totalPago); }
     try { clearInterval(tRel); reserva.style.display = "none"; } catch(e){}
-    try { localStorage.setItem(CHAVE_PEDIDO, JSON.stringify({id: pedido ? pedido.id : "", metodo: m, download: linkPdf, criado: Date.now()})); } catch(e){}
+    try { localStorage.setItem(CHAVE_PEDIDO, JSON.stringify({id: pedido ? pedido.id : "", metodo: m, download: linkPdf, downloads: dados && dados.downloads || [], total: totalPago, criado: Date.now()})); } catch(e){}
   }
+
+  // ===== FASE DO CURSO E EXTRAS (order bump) =====
+  // Os preços daqui são só para mostrar. Quem cobra é o servidor, que recalcula tudo.
+  var PRECO_C = Math.round(PRECO * 100), EXTRAS_C = {osce: 1290, enamed: 990, kit: 690}, COMBO_C = 1790, ORDEM = ["osce", "enamed", "kit"];
+  var SIMULADO = "Simulado por área, formato de prova, caderno de erros e plano até o dia.";
+  var FASES = {
+    1: {rotulo: "ciclo básico",
+      osce: ["32 estações de OSCE do ciclo básico", "Anamnese, sinais vitais e exame físico. A IA faz o paciente e o examinador e te dá a nota."],
+      enamed: ["18 prompts de simulado: ENAMED do 2º ano", SIMULADO],
+      kit: ["30 prompts do ciclo básico", "Anatomia, fisiologia, bioquímica, histologia e imunologia, com a IA de monitora."]},
+    2: {rotulo: "ciclo clínico",
+      osce: ["32 estações de OSCE do ciclo clínico", "Clínica, cirurgia, pediatria, GO, saúde mental e MFC. A IA sorteia o diagnóstico e te avalia."],
+      enamed: ["18 prompts de simulado: ENAMED do 4º ano", SIMULADO],
+      kit: ["30 prompts do ciclo clínico", "Raciocínio clínico, 14 especialidades, exames e discussão de caso."]},
+    3: {rotulo: "internato",
+      osce: ["32 estações de OSCE do internato", "Emergência, enfermaria, cirurgia, GO, pediatria e APS, no nível de conduta."],
+      enamed: ["18 prompts de simulado: ENAMED do 6º ano", SIMULADO],
+      kit: ["30 prompts do internato", "Rodízios, evolução, round, plantão, preceptor e residência."]}
+  };
+  var fase = 0, marcados = {osce: false, enamed: false, kit: false};
+  var bump = document.getElementById("bump"), comboBtn = document.getElementById("bumpCombo"), conta = document.getElementById("conta");
+  function brlC(c){ return brl(c / 100); }
+  function itensSel(){ return fase ? ORDEM.filter(function(k){ return marcados[k]; }) : []; }
+  function extrasC(){ var l = itensSel(); return l.length === 3 ? COMBO_C : l.reduce(function(t, k){ return t + EXTRAS_C[k]; }, 0); }
+  function totalC(){ return PRECO_C + extrasC(); }
+  function selecao(){ return fase ? {fase: fase, itens: itensSel()} : {}; }
+  function rotuloPagar(){ var t = brlC(totalC()); return metodo === "pix" ? "Gerar Pix de " + t : "Pagar " + t + " no cartão"; }
+  function linhaConta(txt, c, classe){ var d = document.createElement("div"); if (classe) d.className = classe; var a = document.createElement("span"), b = document.createElement("span"); a.textContent = txt; b.textContent = brlC(c); d.appendChild(a); d.appendChild(b); return d; }
+  function pintar(){
+    var l = itensSel(), combo = l.length === 3, tot = brlC(totalC());
+    document.querySelectorAll(".total-txt").forEach(function(el){ el.textContent = tot; });
+    if (!ocupado) btnPagar.textContent = rotuloPagar();
+    bump.querySelectorAll(".bump-linha[data-i]").forEach(function(b){ var on = !!marcados[b.getAttribute("data-i")]; b.classList.toggle("on", on); b.setAttribute("aria-checked", on); });
+    comboBtn.classList.toggle("on", combo); comboBtn.setAttribute("aria-checked", combo);
+    bump.classList.toggle("combo", combo);
+    // marcou 1 ou 2: mostra quanto falta (ou quanto economiza) para levar os 3
+    var dica = document.getElementById("bumpDica"), falta = COMBO_C - extrasC();
+    dica.hidden = combo || !l.length;
+    if (!dica.hidden){
+      var dt = document.getElementById("bumpDicaTxt"); dt.textContent = "";
+      var forte = document.createElement("b");
+      if (falta > 0){ forte.textContent = "Por + " + brlC(falta); dt.appendChild(forte); dt.appendChild(document.createTextNode(" você leva os 3 e ganha o Kit Acadêmico.")); }
+      else { forte.textContent = "Os 3 juntos saem por " + brlC(COMBO_C); dt.appendChild(forte); dt.appendChild(document.createTextNode(falta < 0 ? ", " + brlC(-falta) + " a menos do que você marcou." : ", o mesmo que você marcou.")); }
+    }
+    var linhas = [];
+    if (combo) linhas.push(["Combo do " + FASES[fase].rotulo + ": 3 extras + bônus", COMBO_C]);
+    else l.forEach(function(k){ linhas.push([FASES[fase][k][0], EXTRAS_C[k]]); });
+    document.querySelectorAll(".lin-extra").forEach(function(el){ el.remove(); });
+    var totConta = conta.querySelector(".conta-total"), totRes = document.querySelector(".linhas .total");
+    linhas.forEach(function(x){ conta.insertBefore(linhaConta(x[0], x[1], "lin-extra"), totConta); if (totRes) totRes.parentNode.insertBefore(linhaConta(x[0], x[1], "lin-extra"), totRes); });
+    conta.hidden = !linhas.length;
+    if (brick && typeof brick.update === "function"){ try { brick.update({amount: totalC() / 100}); } catch(e){} }
+  }
+  var somaC = ORDEM.reduce(function(t, k){ return t + EXTRAS_C[k]; }, 0);
+  document.getElementById("comboDe").textContent = brlC(somaC);
+  document.getElementById("comboPor").textContent = brlC(COMBO_C);
+  document.getElementById("comboEco").textContent = brlC(somaC - COMBO_C);
+  document.querySelectorAll(".fase").forEach(function(b){
+    b.addEventListener("click", function(){
+      fase = +b.getAttribute("data-f");
+      document.querySelectorAll(".fase").forEach(function(x){ var on = x === b; x.classList.toggle("on", on); x.setAttribute("aria-checked", on); });
+      var F = FASES[fase];
+      document.getElementById("bumpFase").textContent = F.rotulo;
+      ORDEM.forEach(function(k){
+        var el = bump.querySelector('.bump-linha[data-i="' + k + '"]');
+        el.querySelector(".bump-txt b").textContent = F[k][0];
+        el.querySelector(".bump-txt small").textContent = F[k][1];
+        el.querySelector(".bump-preco b").textContent = "+ " + brlC(EXTRAS_C[k]);
+      });
+      bump.hidden = false; pintar();
+    });
+  });
+  bump.querySelectorAll(".bump-linha[data-i]").forEach(function(b){ b.addEventListener("click", function(){ var k = b.getAttribute("data-i"); marcados[k] = !marcados[k]; pintar(); }); });
+  comboBtn.addEventListener("click", function(){ var todos = itensSel().length === 3; ORDEM.forEach(function(k){ marcados[k] = !todos; }); pintar(); });
+  document.getElementById("bumpDica").addEventListener("click", function(){ ORDEM.forEach(function(k){ marcados[k] = true; }); pintar(); });
+  pintar();
 
   // voltou para a página? retoma o pedido em andamento ou mostra o download de novo
   try {
     var salvo = JSON.parse(localStorage.getItem(CHAVE_PEDIDO) || "null");
-    if (salvo && salvo.download && Date.now() - salvo.criado < 7 * 864e5){ pedido = salvo; aprovado(salvo.download); }
+    if (salvo && salvo.download && Date.now() - salvo.criado < 7 * 864e5){ pedido = salvo; aprovado(salvo.download, salvo); }
     else if (salvo && salvo.id && Date.now() - salvo.criado < 1800e3){
       pedido = salvo;
       if (salvo.metodo === "pix" && salvo.qr) mostrarPix(); else { ir("eProc"); acompanhar(); }
