@@ -315,7 +315,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
 </header>
 <div class="reserva" id="reserva" role="timer" aria-live="off">
   <div class="wrap">
-    <span class="res-txt" id="resTxt"><b class="preco-txt">R$ 27,90</b> reservado por</span>
+    <span class="res-txt" id="resTxt"><b class="preco-txt">R$ 29,90</b> reservado por</span>
     <span class="res-tempo" id="resTempo">05:00</span>
   </div>
   <i class="res-barra" id="resBarra"></i>
@@ -327,7 +327,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
       <!-- 1. dados e pagamento -->
       <form class="etapa on" id="eForm" novalidate>
         <div class="urgencia">
-          <div class="urg-preco"><s class="de-txt">R$ 59,90</s><b class="preco-txt">R$ 27,90</b><span class="urg-off">-53% só hoje</span></div>
+          <div class="urg-preco"><s class="de-txt">R$ 59,90</s><b class="preco-txt">R$ 29,90</b><span class="urg-off">-50% só hoje</span></div>
           <p class="urg-txt">O preço de hoje vale só enquanto o tempo lá em cima não zerar.</p>
         </div>
         <div class="bloco">
@@ -376,10 +376,10 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
           </div>
         </div>
         <div class="conta" id="conta" hidden>
-          <div><span>40 Prompts para Estudar Medicina com IA</span><span class="preco-txt">R$ 27,90</span></div>
-          <div class="conta-total"><span>Total</span><b class="total-txt">R$ 27,90</b></div>
+          <div><span>40 Prompts para Estudar Medicina com IA</span><span class="preco-txt">R$ 29,90</span></div>
+          <div class="conta-total"><span>Total</span><b class="total-txt">R$ 29,90</b></div>
         </div>
-        <button class="btn btn-laranja pagar" type="submit" id="btnPagar">Gerar Pix de R$ 27,90</button>
+        <button class="btn btn-laranja pagar" type="submit" id="btnPagar">Gerar Pix de R$ 29,90</button>
         <p class="letra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Pagamento processado pelo Mercado Pago</p>
         </div>
       </form>
@@ -388,7 +388,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
       <div class="etapa" id="ePix">
         <div class="pix-cab">
           <div><h2>Pague com Pix</h2><p>Escaneie o QR Code ou copie o código.</p></div>
-          <span class="pix-valor" id="pixValor">R$ 27,90</span>
+          <span class="pix-valor" id="pixValor">R$ 29,90</span>
         </div>
         <div class="pix-corpo">
           <div class="qr" id="qr"></div>
@@ -428,13 +428,13 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
       <div class="res-produto">
         <img src="/40prompts-estudante-medicina/img/capa.webp" alt="" width="720" height="1019">
         <div class="txt"><b>40 Prompts para Estudar Medicina com IA</b><span>Guia prático 2026 · PDF</span><em class="prova-pill"><span class="pulso"></span><span>Todo dia, <strong class="vendas">+45</strong> estudantes compram</span></em><em class="entrega-pill"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><span><strong>Entrega imediata</strong> no seu e-mail</span></em></div>
-        <span class="val-mob"><s class="de-txt">R$ 59,90</s><b class="preco-txt">R$ 27,90</b></span>
+        <span class="val-mob"><s class="de-txt">R$ 59,90</s><b class="preco-txt">R$ 29,90</b></span>
       </div>
       <div class="linhas">
         <div><span>Produto</span><span class="de-txt">R$ 59,90</span></div>
-        <div class="desc"><span>Desconto de hoje</span><span id="descTxt">- R$ 32,00</span></div>
+        <div class="desc"><span>Desconto de hoje</span><span id="descTxt">- R$ 30,00</span></div>
         <div><span>Entrega</span><span>Imediata, no e-mail</span></div>
-        <div class="total"><span>Total</span><b class="total-txt">R$ 27,90</b></div>
+        <div class="total"><span>Total</span><b class="total-txt">R$ 29,90</b></div>
       </div>
       <ul class="res-lista">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>40 prompts em 7 blocos de estudo</li>
@@ -453,7 +453,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
 (function(){
   "use strict";
   // ===== CONFIGURAÇÃO =====
-  var PRECO = 27.90, PRECO_DE = 59.90;
+  var PRECO = 29.90, PRECO_DE = 59.90;
   var LP = "/40prompts-estudante-medicina/";
 
   var precoTxt = "R$ " + PRECO.toLocaleString("pt-BR", {minimumFractionDigits: PRECO % 1 ? 2 : 0});

@@ -10,8 +10,8 @@ import PDF_CRIPTO from "./40prompts.bin";
 
 const PRODUTO = {
   nome: "40 Prompts para Estudar Medicina com IA",
-  preco: "27.90",
-  centavos: 2790,
+  preco: "29.90",
+  centavos: 2990,
   arquivo: "40-prompts-medicina-ia.pdf",
   prefixo: "40p",
 };
