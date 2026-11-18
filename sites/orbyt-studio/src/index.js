@@ -11,9 +11,74 @@ import PDF_CRIPTO from "./40prompts.bin";
 const PRODUTO = {
   nome: "40 Prompts para Estudar Medicina com IA",
   preco: "27.90",
+  centavos: 2790,
   arquivo: "40-prompts-medicina-ia.pdf",
   prefixo: "40p",
 };
+
+// ---------- extras do checkout (order bump), por fase do curso ----------
+// A pessoa escolhe a fase e marca o que quer. Os 3 juntos saem pelo preço do combo e levam o bônus.
+// Os PDFs ficam criptografados (mesma PDF_KEY) em public/40prompts-estudante-medicina/dl/.
+const FASES = {
+  1: { slug: "ciclo-basico", rotulo: "ciclo básico", ano: "2º ano" },
+  2: { slug: "ciclo-clinico", rotulo: "ciclo clínico", ano: "4º ano" },
+  3: { slug: "internato", rotulo: "internato", ano: "6º ano" },
+};
+const EXTRAS = {
+  osce: { letra: "o", centavos: 1290, titulo: (f) => "OSCE: 32 estações do " + f.rotulo, arquivo: (f) => "osce-" + f.slug + ".pdf" },
+  enamed: { letra: "e", centavos: 990, titulo: (f) => "Simulados ENAMED do " + f.ano, arquivo: (f) => "simulados-enamed-" + f.ano.charAt(0) + "-ano.pdf" },
+  kit: { letra: "k", centavos: 690, titulo: (f) => "Kit de prompts do " + f.rotulo, arquivo: (f) => "kit-de-prompts-" + f.slug + ".pdf" },
+};
+const ORDEM_EXTRAS = ["osce", "enamed", "kit"];
+const COMBO_CENTAVOS = 1790;
+const BONUS = { chave: "academico", titulo: "Kit Acadêmico: seminário, artigo e TCC (bônus)", arquivo: "kit-academico.pdf", bin: "academico" };
+const DIR_EXTRAS = "/40prompts-estudante-medicina/dl/";
+
+function reais(c) { return (c / 100).toFixed(2); }
+
+// O que veio do navegador: fase (1 a 3) e itens marcados. O preço é sempre calculado aqui.
+function lerSelecao(b) {
+  const fase = [1, 2, 3].includes(Number(b && b.fase)) ? Number(b.fase) : 0;
+  const marcados = Array.isArray(b && b.itens) ? b.itens.map(String) : [];
+  return { fase, itens: fase ? ORDEM_EXTRAS.filter((k) => marcados.includes(k)) : [] };
+}
+
+function totalCentavos(sel) {
+  if (sel.itens.length === 3) return PRODUTO.centavos + COMBO_CENTAVOS;
+  return PRODUTO.centavos + sel.itens.reduce((s, k) => s + EXTRAS[k].centavos, 0);
+}
+
+// A seleção viaja dentro da referência do pedido no Mercado Pago (ex.: 40p-pix-f3oek-...),
+// então a entrega não depende de nenhum outro registro.
+function refDe(metodo, sel) {
+  const marca = sel.fase ? "f" + sel.fase + sel.itens.map((k) => EXTRAS[k].letra).join("") + "-" : "";
+  return PRODUTO.prefixo + "-" + metodo + "-" + marca + crypto.randomUUID().slice(0, 18);
+}
+
+function selecaoDaRef(ref) {
+  const m = /^40p-(?:pix|cartao)-f([123])([oek]{0,3})-/.exec(String(ref || ""));
+  if (!m) return { fase: 0, itens: [] };
+  return { fase: Number(m[1]), itens: ORDEM_EXTRAS.filter((k) => m[2].includes(EXTRAS[k].letra)) };
+}
+
+function itensMp(sel) {
+  const l = [{ title: PRODUTO.nome, unit_price: PRODUTO.preco, quantity: 1 }];
+  const f = FASES[sel.fase];
+  if (!f || !sel.itens.length) return l;
+  if (sel.itens.length === 3) l.push({ title: "Combo " + f.rotulo + ": OSCE + Simulados ENAMED + Kit de prompts", unit_price: reais(COMBO_CENTAVOS), quantity: 1 });
+  else for (const k of sel.itens) l.push({ title: EXTRAS[k].titulo(f), unit_price: reais(EXTRAS[k].centavos), quantity: 1 });
+  return l;
+}
+
+// Arquivos a que o pedido dá direito. O primeiro é sempre o guia principal.
+function arquivosDe(sel) {
+  const l = [{ chave: "principal", titulo: PRODUTO.nome, arquivo: PRODUTO.arquivo }];
+  const f = FASES[sel.fase];
+  if (!f) return l;
+  for (const k of sel.itens) l.push({ chave: k, titulo: EXTRAS[k].titulo(f), arquivo: EXTRAS[k].arquivo(f), bin: "f" + sel.fase + "-" + k });
+  if (sel.itens.length === 3) l.push({ chave: BONUS.chave, titulo: BONUS.titulo, arquivo: BONUS.arquivo, bin: BONUS.bin });
+  return l;
+}
 const MP = "https://api.mercadopago.com";
 
 export default {
@@ -30,6 +95,8 @@ export default {
         const r = await fetch("https://bzr.openai.com/v1/events?pid=" + OA_PIXEL, { method: "POST", headers: { authorization: "Bearer " + env.OPENAI_CAPI_KEY, "content-type": "application/json" }, body: JSON.stringify({ validate_only: true, events: [{ id: "teste-validacao-1", type: "page_viewed", timestamp_ms: Date.now(), source_url: OA_ORIGEM + "/40prompts-estudante-medicina/", action_source: "web", user: { countries: ["BR"] }, data: { type: "contents" } }] }) });
         return json({ validacao: { status: r.status, resposta: (await r.text()).slice(0, 800) }, ultimo_envio_real: env.PEDIDOS ? await env.PEDIDOS.get("diag:capi", "json") : null });
       }
+      if (p === "/api/saude/extras") return await saudeExtra(env, url);
+      if (p === "/api/admin/cifrar" && req.method === "POST") return await cifrarAdmin(req, env);
       if (p === "/api/saude") return await saude(env);
       if (p === "/api/oa/evento" && req.method === "POST") return await eventoOa(req, env, ctx);
       if (p.startsWith("/api/")) return json({ erro: "rota não existe" }, 404);
@@ -59,45 +126,47 @@ function lerComprador(b) {
   };
 }
 
-function baseOrder(payer, metodo) {
+function baseOrder(payer, metodo, sel) {
   return {
     type: "online",
     processing_mode: "automatic",
-    total_amount: PRODUTO.preco,
-    external_reference: PRODUTO.prefixo + "-" + metodo + "-" + crypto.randomUUID().slice(0, 18),
-    description: PRODUTO.nome,
+    total_amount: reais(totalCentavos(sel)),
+    external_reference: refDe(metodo, sel),
+    description: PRODUTO.nome + (sel.itens.length ? " + extras do " + FASES[sel.fase].rotulo : ""),
     payer,
-    items: [{ title: PRODUTO.nome, unit_price: PRODUTO.preco, quantity: 1 }],
+    items: itensMp(sel),
   };
 }
 
 async function criarPix(req, env, url, ctx) {
   let b, payer;
   try { b = await req.json(); payer = lerComprador(b); } catch (e) { return erroCliente(e); }
-  const corpo = baseOrder(payer, "pix");
-  corpo.transactions = { payments: [{ amount: PRODUTO.preco, payment_method: { id: "pix", type: "bank_transfer" }, expiration_time: "PT30M" }] };
+  const sel = lerSelecao(b);
+  const corpo = baseOrder(payer, "pix", sel);
+  corpo.transactions = { payments: [{ amount: corpo.total_amount, payment_method: { id: "pix", type: "bank_transfer" }, expiration_time: "PT30M" }] };
   const r = await mp(env, "POST", "/v1/orders", corpo);
   if (!r.ok) { console.log("pix falhou", r.status, JSON.stringify(r.data)); return json({ erro: "Não deu para gerar o Pix agora. Tente de novo." }, 502); }
-  await guardarComprador(env, r.data.id, payer, atribuicao(req, b));
+  await guardarComprador(env, r.data.id, payer, atribuicao(req, b), sel);
   const pg = (((r.data.transactions || {}).payments || [])[0] || {}).payment_method || {};
-  return json({ id: r.data.id, status: r.data.status, qr_code: pg.qr_code, qr_code_base64: pg.qr_code_base64, ticket_url: pg.ticket_url });
+  return json({ id: r.data.id, status: r.data.status, total: totalCentavos(sel), qr_code: pg.qr_code, qr_code_base64: pg.qr_code_base64, ticket_url: pg.ticket_url });
 }
 
 async function criarCartao(req, env, url, ctx) {
   let b, payer;
   try { b = await req.json(); payer = lerComprador(b); } catch (e) { return erroCliente(e); }
   if (!b.token || !b.payment_method_id) return json({ erro: "Confira os dados do cartão." }, 400);
-  const corpo = baseOrder(payer, "cartao");
+  const sel = lerSelecao(b);
+  const corpo = baseOrder(payer, "cartao", sel);
   const tipo = b.payment_type_id === "debit_card" ? "debit_card" : "credit_card";
-  corpo.transactions = { payments: [{ amount: PRODUTO.preco, payment_method: { id: String(b.payment_method_id), type: tipo, token: String(b.token), installments: 1 } }] };
+  corpo.transactions = { payments: [{ amount: corpo.total_amount, payment_method: { id: String(b.payment_method_id), type: tipo, token: String(b.token), installments: 1 } }] };
   const r = await mp(env, "POST", "/v1/orders", corpo);
   const o = r.data || {};
-  if (o.id) await guardarComprador(env, o.id, payer, atribuicao(req, b));
+  if (o.id) await guardarComprador(env, o.id, payer, atribuicao(req, b), sel);
   const pgto = ((o.transactions || {}).payments || [])[0] || {};
   const det = pgto.status_detail || o.status_detail || (o.errors && o.errors[0] && o.errors[0].code) || "";
   if (o.status === "processed") {
     ctx.waitUntil(posVenda(env, url, o));
-    return json({ id: o.id, status: "processed", download: await linkDownload(env, url, o.id) });
+    return json(Object.assign({ id: o.id, status: "processed" }, await entrega(env, url, o)));
   }
   if (o.status === "processing" || o.status === "action_required") {
     return json({ id: o.id, status: o.status });
@@ -127,7 +196,7 @@ async function status(env, url, ctx) {
   if (!String(o.external_reference || "").startsWith(PRODUTO.prefixo + "-")) return json({ erro: "pedido inválido" }, 400);
   const saida = { id: o.id, status: o.status };
   if (o.status === "processed") {
-    saida.download = await linkDownload(env, url, o.id);
+    Object.assign(saida, await entrega(env, url, o));
     ctx.waitUntil(posVenda(env, url, o));
   }
   return json(saida);
@@ -158,24 +227,46 @@ async function download(env, url) {
   if (!/^ORD[0-9A-Z]{10,40}$/.test(id) || t !== (await assinar(env, id))) return paginaErro("Link inválido. Use o botão da página de compra ou o link do e-mail.");
   const r = await mp(env, "GET", "/v1/orders/" + id);
   if (!r.ok || r.data.status !== "processed") return paginaErro("Ainda não encontramos o pagamento deste pedido. Se você acabou de pagar, espere alguns segundos e abra de novo.");
-  const pdf = await abrirPdf(env);
+  const pedido = url.searchParams.get("f") || "principal";
+  const alvo = arquivosDe(selecaoDaRef(r.data.external_reference)).find((a) => a.chave === pedido);
+  if (!alvo) return paginaErro("Este arquivo não faz parte do seu pedido.");
+  const pdf = await abrirArquivo(env, url, alvo);
   return new Response(pdf, {
     headers: {
       "content-type": "application/pdf",
-      "content-disposition": 'attachment; filename="' + PRODUTO.arquivo + '"',
+      "content-disposition": 'attachment; filename="' + alvo.arquivo + '"',
       "cache-control": "private, no-store",
     },
   });
 }
 
-async function abrirPdf(env) {
-  const bruto = new Uint8Array(PDF_CRIPTO);
+async function decifrar(env, bruto) {
   const chave = await crypto.subtle.importKey("raw", b64(env.PDF_KEY), "AES-GCM", false, ["decrypt"]);
   return crypto.subtle.decrypt({ name: "AES-GCM", iv: bruto.slice(0, 12) }, chave, bruto.slice(12));
 }
 
-async function linkDownload(env, url, id) {
-  return url.origin + "/api/download?id=" + id + "&t=" + (await assinar(env, id));
+async function abrirPdf(env) {
+  return decifrar(env, new Uint8Array(PDF_CRIPTO));
+}
+
+// Guia principal: vai dentro do servidor. Extras: ficam criptografados na pasta pública dl/.
+async function abrirArquivo(env, url, a) {
+  if (!a.bin) return abrirPdf(env);
+  const r = await env.ASSETS.fetch(new Request(url.origin + DIR_EXTRAS + a.bin + ".bin"));
+  if (!r.ok) throw new Error("extra fora do ar: " + a.bin + " " + r.status);
+  return decifrar(env, new Uint8Array(await r.arrayBuffer()));
+}
+
+async function linkDownload(env, url, id, chave) {
+  return url.origin + "/api/download?id=" + id + "&t=" + (await assinar(env, id)) + (chave && chave !== "principal" ? "&f=" + chave : "");
+}
+
+// O que a página de compra recebe quando o pagamento aprova: link do guia e de cada extra.
+async function entrega(env, url, o) {
+  const sel = selecaoDaRef(o.external_reference);
+  const downloads = [];
+  for (const a of arquivosDe(sel)) downloads.push({ chave: a.chave, titulo: a.titulo, url: await linkDownload(env, url, o.id, a.chave) });
+  return { download: downloads[0].url, downloads, total: totalCentavos(sel), fase: sel.fase, itens: sel.itens };
 }
 
 async function assinar(env, id) {
@@ -193,28 +284,45 @@ async function enviarEmail(env, url, o) {
   const email = (comp && comp.email) || (o.payer && o.payer.email);
   if (!email) { console.log("pedido sem e-mail", o.id); return; }
   if (comp && comp.emailEnviado) return;
-  const link = await linkDownload(env, url, o.id);
   const nome = ((comp && comp.first_name) || (o.payer && o.payer.first_name) || "").trim();
+  const arqs = [];
+  for (const a of arquivosDe(selecaoDaRef(o.external_reference))) arqs.push(Object.assign({ url: await linkDownload(env, url, o.id, a.chave) }, a));
+  const link = arqs[0].url, extras = arqs.slice(1);
   const pdf = await abrirPdf(env);
-  const html = '<div style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.55;color:#16181B;max-width:520px;margin:0 auto;padding:24px">'
+  const botao = (href, txt, cor) => '<a href="' + href + '" style="display:inline-block;background:' + cor + ';color:#ffffff;padding:13px 22px;border-radius:999px;text-decoration:none;font-weight:bold">' + txt + "</a>";
+  let html = '<div style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.55;color:#16181B;max-width:520px;margin:0 auto;padding:24px">'
     + '<p style="margin:0 0 16px">' + (nome ? "Oi, " + escapar(nome) + "!" : "Oi!") + " Pagamento aprovado.</p>"
     + '<p style="margin:0 0 16px">O seu <b>' + PRODUTO.nome + "</b> está anexado neste e-mail. Se preferir, baixe pelo botão:</p>"
-    + '<p style="margin:0 0 24px"><a href="' + link + '" style="display:inline-block;background:#FF5A1F;color:#ffffff;padding:13px 22px;border-radius:999px;text-decoration:none;font-weight:bold">Baixar o PDF</a></p>'
-    + '<p style="margin:0 0 8px"><b>Próximo passo:</b> abra o PDF, copie o Prompt 1 e cole na sua IA. Ele coloca a conversa no nível de um estudante de Medicina.</p>'
+    + '<p style="margin:0 0 24px">' + botao(link, "Baixar o PDF", "#FF5A1F") + "</p>";
+  if (extras.length) {
+    html += '<p style="margin:0 0 12px"><b>Seus extras</b> também estão liberados:</p>';
+    for (const a of extras) html += '<p style="margin:0 0 12px">' + botao(a.url, "Baixar: " + escapar(a.titulo), "#16181B") + "</p>";
+    html += '<p style="margin:0 0 24px"></p>';
+  }
+  html += '<p style="margin:0 0 8px"><b>Próximo passo:</b> abra o PDF, copie o Prompt 1 e cole na sua IA. Ele coloca a conversa no nível de um estudante de Medicina.</p>'
     + '<p style="margin:24px 0 0;color:#5B6470;font-size:13px">Orbyt Studio para Medicina · orbytstudio.com.br<br>Pedido ' + o.id + "</p></div>";
-  const texto = "Pagamento aprovado. O seu " + PRODUTO.nome + " está anexado. Link para baixar: " + link;
-  const r = await fetch("https://api.resend.com/emails", {
+  let texto = "Pagamento aprovado. O seu " + PRODUTO.nome + " está anexado. Link para baixar: " + link;
+  for (const a of extras) texto += "\n" + a.titulo + ": " + a.url;
+  const principal = { filename: PRODUTO.arquivo, content: paraB64(new Uint8Array(pdf)) };
+  const enviar = (anexos, chave) => fetch("https://api.resend.com/emails", {
     method: "POST",
-    headers: { authorization: "Bearer " + env.RESEND_API_KEY, "content-type": "application/json", "idempotency-key": "pedido-" + o.id },
+    headers: { authorization: "Bearer " + env.RESEND_API_KEY, "content-type": "application/json", "idempotency-key": chave },
     body: JSON.stringify({
       from: env.EMAIL_DE || "Orbyt Studio para Medicina <medicina@orbytstudio.com.br>",
       reply_to: "medicina@orbytstudio.com.br",
       to: [email],
-      subject: "Seu PDF chegou: " + PRODUTO.nome,
+      subject: extras.length ? "Seus PDFs chegaram: 40 Prompts + extras" : "Seu PDF chegou: " + PRODUTO.nome,
       html, text: texto,
-      attachments: [{ filename: PRODUTO.arquivo, content: paraB64(new Uint8Array(pdf)) }],
+      attachments: anexos,
     }),
   });
+  // Os extras vão como anexo buscado pelo próprio Resend no link de download. Se essa busca falhar,
+  // manda só o guia anexado: os botões de download dos extras continuam no corpo do e-mail.
+  let r = await enviar([principal].concat(extras.map((a) => ({ filename: a.arquivo, path: a.url }))), "pedido-" + o.id);
+  if (!r.ok && extras.length) {
+    console.log("email com extras falhou, indo só com o guia", o.id, r.status, (await r.text()).slice(0, 300));
+    r = await enviar([principal], "pedido-" + o.id + "-guia");
+  }
   if (r.ok) {
     if (comp && env.PEDIDOS) await env.PEDIDOS.put("pedido:" + o.id, JSON.stringify(Object.assign(comp, { emailEnviado: new Date().toISOString() })), { expirationTtl: 60 * 60 * 24 * 90 });
     console.log("email enviado", o.id);
@@ -223,9 +331,10 @@ async function enviarEmail(env, url, o) {
 }
 
 // Guarda e-mail e nome do comprador por 90 dias. O Mercado Pago não devolve esses dados na consulta do pedido.
-async function guardarComprador(env, id, payer, atrib) {
+async function guardarComprador(env, id, payer, atrib, sel) {
   if (!env.PEDIDOS || !id) return;
-  await env.PEDIDOS.put("pedido:" + id, JSON.stringify(Object.assign({ email: payer.email, first_name: payer.first_name, last_name: payer.last_name, criado: new Date().toISOString() }, atrib || {})), { expirationTtl: 60 * 60 * 24 * 90 });
+  const extra = sel ? { fase: sel.fase, itens: sel.itens, total: totalCentavos(sel) } : {};
+  await env.PEDIDOS.put("pedido:" + id, JSON.stringify(Object.assign({ email: payer.email, first_name: payer.first_name, last_name: payer.last_name, criado: new Date().toISOString() }, extra, atrib || {})), { expirationTtl: 60 * 60 * 24 * 90 });
 }
 
 // ---------- ChatGPT Ads: API de conversão (servidor) ----------
@@ -243,9 +352,11 @@ function atribuicao(req, b) {
   };
 }
 
-function oaProduto(comValor) {
+function oaProduto(comValor, sel) {
   const d = { type: "contents", contents: [{ id: "40-prompts-medicina", name: PRODUTO.nome, content_type: "product", quantity: 1 }] };
-  if (comValor) { d.amount = Math.round(Number(PRODUTO.preco) * 100); d.currency = "BRL"; }
+  const f = sel && FASES[sel.fase];
+  if (f) for (const k of sel.itens) d.contents.push({ id: "extra-" + k + "-" + f.slug, name: EXTRAS[k].titulo(f), content_type: "product", quantity: 1 });
+  if (comValor) { d.amount = sel ? totalCentavos(sel) : PRODUTO.centavos; d.currency = "BRL"; }
   return d;
 }
 
@@ -295,7 +406,7 @@ async function conversaoCompra(env, o) {
   if (comp.email) u.emails_sha256 = [await sha256(comp.email.trim().toLowerCase())];
   if (comp.first_name) u.first_names_sha256 = [await sha256(normNome(comp.first_name))];
   if (comp.last_name) u.last_names_sha256 = [await sha256(normNome(comp.last_name))];
-  const ev = { id: o.id, type: "order_created", timestamp_ms: Date.now(), source_url: OA_ORIGEM + "/40prompts-estudante-medicina/checkout/", action_source: "web", user: u, data: oaProduto(true) };
+  const ev = { id: o.id, type: "order_created", timestamp_ms: Date.now(), source_url: OA_ORIGEM + "/40prompts-estudante-medicina/checkout/", action_source: "web", user: u, data: oaProduto(true, selecaoDaRef(o.external_reference)) };
   if (comp.oppref) ev.oppref = comp.oppref;
   if (await capi(env, [ev])) {
     const atual = (await env.PEDIDOS.get("pedido:" + o.id, "json")) || comp;
@@ -322,6 +433,27 @@ async function saude(env) {
   try { const r = await fetch(MP + "/users/me", { headers: { authorization: "Bearer " + env.MP_ACCESS_TOKEN } }); mpOk = r.ok; } catch (e) {}
   try { const b = new Uint8Array(await abrirPdf(env)); pdfOk = b[0] === 0x25 && b[1] === 0x50; } catch (e) {}
   return json({ mercado_pago: mpOk, pdf: pdfOk, email: !!env.RESEND_API_KEY, pedidos: !!env.PEDIDOS, chatgpt_capi: !!env.OPENAI_CAPI_KEY });
+}
+
+// Confere um extra por vez (abre e vê se é PDF). Ex.: /api/saude/extras?n=f1-osce
+async function saudeExtra(env, url) {
+  const n = url.searchParams.get("n") || "";
+  if (!/^(f[123]-(osce|enamed|kit)|academico)$/.test(n)) return json({ erro: "nome inválido" }, 400);
+  try { const b = new Uint8Array(await abrirArquivo(env, url, { bin: n })); return json({ extra: n, ok: b[0] === 0x25 && b[1] === 0x50, bytes: b.length }); }
+  catch (e) { return json({ extra: n, ok: false }); }
+}
+
+// Cifra um PDF com a PDF_KEY, para ele poder ir para a pasta pública dl/. Só com a senha de manutenção.
+const ADMIN_HASH = "9d4a5e9fe25e61bc8b98c47e24bbd38c85911b23231a5f0a99d4a32b9fe882ec";
+async function cifrarAdmin(req, env) {
+  if ((await sha256(req.headers.get("x-admin") || "")) !== ADMIN_HASH) return json({ erro: "não autorizado" }, 403);
+  const dados = new Uint8Array(await req.arrayBuffer());
+  if (dados.length < 1000 || dados.length > 8e6 || dados[0] !== 0x25 || dados[1] !== 0x50) return json({ erro: "arquivo inválido" }, 400);
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const chave = await crypto.subtle.importKey("raw", b64(env.PDF_KEY), "AES-GCM", false, ["encrypt"]);
+  const ct = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, chave, dados));
+  const saida = new Uint8Array(12 + ct.length); saida.set(iv); saida.set(ct, 12);
+  return new Response(saida, { headers: { "content-type": "application/octet-stream", "cache-control": "no-store" } });
 }
 
 // ---------- utilitários ----------
