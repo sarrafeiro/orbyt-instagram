@@ -337,8 +337,9 @@ async function guardarComprador(env, id, payer, atrib, sel) {
 }
 
 // ---------- ChatGPT Ads: API de conversão (servidor) ----------
-// Pixel "Orbyt Medicina - 40 Prompts". Chave em OPENAI_CAPI_KEY (Secret). Sem a chave, não envia nada.
-const OA_PIXEL = "9XiKvStxRXDEi93APHe2ak";
+// Pixel "Orbyt Medicina - 40 Prompts", da conta de anúncios "Orbyt para Medicina" (criada em 18/11/2026).
+// Chave em OPENAI_CAPI_KEY (Secret): tem de ser uma chave de conversão dessa mesma conta. Sem a chave, não envia nada.
+const OA_PIXEL = "7CWbN3bYT15ftAS8pMju2m";
 const OA_ORIGEM = "https://orbytstudio.com.br";
 
 function atribuicao(req, b) {
