@@ -25,12 +25,12 @@ const FASES = {
   3: { slug: "internato", rotulo: "internato", ano: "6º ano" },
 };
 const EXTRAS = {
-  osce: { letra: "o", centavos: 1290, titulo: (f) => "OSCE: 32 estações do " + f.rotulo, arquivo: (f) => "osce-" + f.slug + ".pdf" },
-  enamed: { letra: "e", centavos: 990, titulo: (f) => "Simulados ENAMED do " + f.ano, arquivo: (f) => "simulados-enamed-" + f.ano.charAt(0) + "-ano.pdf" },
-  kit: { letra: "k", centavos: 690, titulo: (f) => "Kit de prompts do " + f.rotulo, arquivo: (f) => "kit-de-prompts-" + f.slug + ".pdf" },
+  osce: { letra: "o", centavos: 790, titulo: (f) => "OSCE: 32 estações do " + f.rotulo, arquivo: (f) => "osce-" + f.slug + ".pdf" },
+  enamed: { letra: "e", centavos: 590, titulo: (f) => "Simulados ENAMED do " + f.ano, arquivo: (f) => "simulados-enamed-" + f.ano.charAt(0) + "-ano.pdf" },
+  kit: { letra: "k", centavos: 490, titulo: (f) => "Kit de prompts do " + f.rotulo, arquivo: (f) => "kit-de-prompts-" + f.slug + ".pdf" },
 };
 const ORDEM_EXTRAS = ["osce", "enamed", "kit"];
-const COMBO_CENTAVOS = 1790;
+const COMBO_CENTAVOS = 990;
 const BONUS = { chave: "academico", titulo: "Kit Acadêmico: seminário, artigo e TCC (bônus)", arquivo: "kit-academico.pdf", bin: "academico" };
 const DIR_EXTRAS = "/40prompts-estudante-medicina/dl/";
 
