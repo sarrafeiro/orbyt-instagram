@@ -23,9 +23,12 @@ Ligado na Cloudflare em 17/11/2026 (Settings > Builds do projeto `orbyt-studio`)
 
 - Relatório: `/api/funil?k=<senha>` (página simples; `&dias=14` muda o período, `&formato=json` devolve os números). A senha não fica no repositório, só o hash dela (`FUNIL_HASH`).
 - Quem gera pedido (Pix ou cartão) já fica em `pedido:<id>` no KV, com um resumo em metadata (dia, fase, extras, total, método, pago).
-- Quem sai sem gerar pedido: a página manda um resumo anônimo para `/api/funil/sessao` quando a aba some (até onde chegou: dados, fase, viu o botão de pagar). Fica em `sessao:<dia>:<id>` por 60 dias. Não vai nome, e-mail nem CPF.
-- O relatório só usa a listagem do KV (lê a metadata), então não abre registro por registro.
-- Limite a vigiar: cada sessão abandonada e cada pedido gastam gravações do KV. Se a gravação falhar, a venda segue normalmente.
+- Quem sai sem gerar pedido: a página manda um resumo anônimo para `/api/funil/sessao` quando a aba some (até onde chegou: dados, fase, viu o botão de pagar). Fica na tabela `sessao` do D1 (banco `orbyt-funil`, binding `FUNIL`) por 60 dias. Não vai nome, e-mail nem CPF.
+- Quando a pessoa gera o pedido, a sessão dela é apagada do D1 (a página manda o `sid` junto do pedido), para ninguém contar duas vezes.
+- O relatório soma as sessões do D1 com a listagem dos pedidos no KV (lê só a metadata, não abre registro por registro).
+- Por que D1 e não KV para as sessões: o KV grátis aceita 1.000 gravações por dia; o D1 grátis, 100 mil linhas por dia. Sem o binding `FUNIL` o servidor volta a gravar as sessões no KV sozinho. `/api/saude` mostra `funil: "d1"` ou `"kv"`.
+- O banco não tem `database_id` no `wrangler.jsonc`: o wrangler cria no primeiro deploy e mantém a ligação. A tabela é criada pelo próprio servidor (`funilBanco`).
+- Gravações no KV hoje: 1 por pedido criado e até 3 por pedido pago (e-mail, conversão e diagnóstico). Visita na LP e no checkout não grava nada: o `diag:capi` só é gravado na compra e em falha de envio (a mesma falha no máximo 1 vez a cada 30 min). Se a gravação falhar, a venda segue normalmente.
 
 ## Extras do checkout (order bump por fase)
 

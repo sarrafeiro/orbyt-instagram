@@ -13,6 +13,9 @@
   // Mantém as variáveis e segredos criados no painel da Cloudflare a cada deploy.
   // Guarda o e-mail de cada comprador para o envio do PDF depois que o pagamento confirma.
   "kv_namespaces": [{ "binding": "PEDIDOS", "id": "41ab98434fc948beb4385aa1ec5cd36d" }],
+  // Banco SQL (D1) com as sessões do funil do checkout. Sem "database_id" de propósito:
+  // o wrangler cria o banco "orbyt-funil" no primeiro deploy e mantém a ligação nos seguintes.
+  "d1_databases": [{ "binding": "FUNIL", "database_name": "orbyt-funil" }],
   "keep_vars": true,
   "observability": { "enabled": true }
 }
