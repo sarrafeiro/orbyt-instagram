@@ -581,7 +581,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
 
   function pagarPix(c){
     travar(true, "Gerando o Pix...");
-    api("/api/mp/pix", Object.assign({}, c, oaRef(), selecao())).then(function(d){
+    api("/api/mp/pix", Object.assign({}, c, oaRef(), selecao(), {sid: fu.sid})).then(function(d){
       travar(false);
       if (!d.id || !d.qr_code){ avisar(d.erro || "Não deu para gerar o Pix. Tente de novo."); return; }
       pedido = {id: d.id, metodo: "pix", qr: d.qr_code, img: d.qr_code_base64, total: d.total || totalC(), criado: Date.now()};
@@ -651,7 +651,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
         ad = ad || {};
         ir("eProc");
         return api("/api/mp/cartao", Object.assign({}, c, oaRef(), selecao(), {
-          token: f.token, payment_method_id: f.payment_method_id, issuer_id: f.issuer_id,
+          sid: fu.sid, token: f.token, payment_method_id: f.payment_method_id, issuer_id: f.issuer_id,
           payment_type_id: ad.paymentTypeId || f.payment_type_id || "credit_card"
         }));
       }).then(function(d){

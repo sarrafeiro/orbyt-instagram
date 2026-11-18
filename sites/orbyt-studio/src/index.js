@@ -93,7 +93,7 @@ export default {
       if (p === "/api/download" && req.method === "GET") return await download(env, url);
       if (p === "/api/saude/capi") {
         const r = await fetch("https://bzr.openai.com/v1/events?pid=" + OA_PIXEL, { method: "POST", headers: { authorization: "Bearer " + env.OPENAI_CAPI_KEY, "content-type": "application/json" }, body: JSON.stringify({ validate_only: true, events: [{ id: "teste-validacao-1", type: "page_viewed", timestamp_ms: Date.now(), source_url: OA_ORIGEM + "/40prompts-estudante-medicina/", action_source: "web", user: { countries: ["BR"] }, data: { type: "contents" } }] }) });
-        return json({ validacao: { status: r.status, resposta: (await r.text()).slice(0, 800) }, ultimo_envio_real: env.PEDIDOS ? await env.PEDIDOS.get("diag:capi", "json") : null });
+        return json({ validacao: { status: r.status, resposta: (await r.text()).slice(0, 800) }, ultima_compra_ou_falha: env.PEDIDOS ? await env.PEDIDOS.get("diag:capi", "json") : null });
       }
       if (p === "/api/saude/extras") return await saudeExtra(env, url);
       if (p === "/api/saude") return await saude(env);
@@ -148,6 +148,7 @@ async function criarPix(req, env, url, ctx) {
   const r = await mp(env, "POST", "/v1/orders", corpo);
   if (!r.ok) { console.log("pix falhou", r.status, JSON.stringify(r.data)); return json({ erro: "Não deu para gerar o Pix agora. Tente de novo." }, 502); }
   await guardarComprador(env, r.data.id, payer, atribuicao(req, b), sel, "pix");
+  ctx.waitUntil(funilConverteu(env, b.sid));
   const pg = (((r.data.transactions || {}).payments || [])[0] || {}).payment_method || {};
   return json({ id: r.data.id, status: r.data.status, total: totalCentavos(sel), qr_code: pg.qr_code, qr_code_base64: pg.qr_code_base64, ticket_url: pg.ticket_url });
 }
@@ -162,7 +163,7 @@ async function criarCartao(req, env, url, ctx) {
   corpo.transactions = { payments: [{ amount: corpo.total_amount, payment_method: { id: String(b.payment_method_id), type: tipo, token: String(b.token), installments: 1 } }] };
   const r = await mp(env, "POST", "/v1/orders", corpo);
   const o = r.data || {};
-  if (o.id) await guardarComprador(env, o.id, payer, atribuicao(req, b), sel, "cartao");
+  if (o.id) { await guardarComprador(env, o.id, payer, atribuicao(req, b), sel, "cartao"); ctx.waitUntil(funilConverteu(env, b.sid)); }
   const pgto = ((o.transactions || {}).payments || [])[0] || {};
   const det = pgto.status_detail || o.status_detail || (o.errors && o.errors[0] && o.errors[0].code) || "";
   if (o.status === "processed") {
@@ -380,8 +381,23 @@ async function capi(env, eventos) {
   });
   const txt = (await r.text()).slice(0, 500);
   if (!r.ok) console.log("capi falhou", r.status, txt);
-  try { if (env.PEDIDOS) await env.PEDIDOS.put("diag:capi", JSON.stringify({ quando: new Date().toISOString(), status: r.status, resposta: txt, tipos: eventos.map((e) => e.type) }), { expirationTtl: 60 * 60 * 24 * 7 }); } catch (e) {}
+  await anotarCapi(env, r.status, txt, eventos, r.ok);
   return r.ok;
+}
+
+// Diagnóstico do envio (aparece em /api/saude/capi). Grava só a compra e as falhas, e a mesma falha
+// no máximo 1 vez a cada 30 min. Gravar a cada visita da LP gastava a cota diária de gravações do KV.
+async function anotarCapi(env, status, txt, eventos, ok) {
+  if (!env.PEDIDOS) return;
+  const compra = eventos.some((e) => e.type === "order_created");
+  if (ok && !compra) return;
+  try {
+    if (!ok) {
+      const ant = await env.PEDIDOS.get("diag:capi", "json");
+      if (ant && ant.status === status && Date.now() - Date.parse(ant.quando) < 30 * 60e3) return;
+    }
+    await env.PEDIDOS.put("diag:capi", JSON.stringify({ quando: new Date().toISOString(), status, resposta: txt, tipos: eventos.map((e) => e.type) }), { expirationTtl: 60 * 60 * 24 * 30 });
+  } catch (e) {}
 }
 
 function usuarioBase(a) {
@@ -443,17 +459,41 @@ async function saude(env) {
   let mpOk = false, pdfOk = false;
   try { const r = await fetch(MP + "/users/me", { headers: { authorization: "Bearer " + env.MP_ACCESS_TOKEN } }); mpOk = r.ok; } catch (e) {}
   try { const b = new Uint8Array(await abrirPdf(env)); pdfOk = b[0] === 0x25 && b[1] === 0x50; } catch (e) {}
-  return json({ mercado_pago: mpOk, pdf: pdfOk, email: !!env.RESEND_API_KEY, pedidos: !!env.PEDIDOS, chatgpt_capi: !!env.OPENAI_CAPI_KEY });
+  let funil = env.FUNIL ? "d1" : "kv";
+  if (env.FUNIL) { try { const db = await funilBanco(env); await db.prepare("SELECT 1 FROM sessao LIMIT 1").first(); } catch (e) { funil = "d1 com erro"; console.log("funil: banco com erro", String((e && e.message) || e)); } }
+  return json({ mercado_pago: mpOk, pdf: pdfOk, email: !!env.RESEND_API_KEY, pedidos: !!env.PEDIDOS, chatgpt_capi: !!env.OPENAI_CAPI_KEY, funil });
 }
 
 // ---------- funil do checkout (tracking de produto, sem dado pessoal) ----------
 // A página manda um resumo anônimo quando a pessoa sai sem gerar pedido: até onde ela chegou.
 // Quem gera pedido já fica registrado em "pedido:". O relatório junta os dois: /api/funil?k=<senha>
+// As sessões ficam no D1 (banco SQL da Cloudflare, binding FUNIL): 100 mil gravações por dia no plano grátis,
+// contra 1.000 do KV. Sem o binding, cai no KV como era antes. Pedido continua no KV.
 const FUNIL_HASH = "6ff70af390e6a4fcb4051ad704fac51a21fa599af4c36ae3e4f863035fb2a98b";
 const funilFreio = new Map();
+let funilPronto = false;
+
+async function funilBanco(env) {
+  if (!env.FUNIL) return null;
+  if (!funilPronto) {
+    await env.FUNIL.batch([
+      env.FUNIL.prepare("CREATE TABLE IF NOT EXISTS sessao (sid TEXT PRIMARY KEY, dia TEXT NOT NULL, dados INTEGER NOT NULL DEFAULT 0, fase INTEGER NOT NULL DEFAULT 0, itens TEXT NOT NULL DEFAULT '', viu INTEGER NOT NULL DEFAULT 0, clicou INTEGER NOT NULL DEFAULT 0, seg INTEGER NOT NULL DEFAULT 0) WITHOUT ROWID"),
+      env.FUNIL.prepare("CREATE INDEX IF NOT EXISTS sessao_dia ON sessao (dia)"),
+    ]);
+    funilPronto = true;
+  }
+  return env.FUNIL;
+}
+
+// Gerou pedido: a sessão sai da lista de abandono, para a mesma pessoa não contar duas vezes no relatório.
+async function funilConverteu(env, sid) {
+  sid = String(sid || "");
+  if (!env.FUNIL || !/^[a-z0-9]{8,24}$/.test(sid)) return;
+  try { const db = await funilBanco(env); await db.prepare("DELETE FROM sessao WHERE sid = ?1").bind(sid).run(); } catch (e) { console.log("funil: sessão não baixada", String((e && e.message) || e)); }
+}
 
 async function funilSessao(req, env) {
-  if (!env.PEDIDOS) return json({ ok: false });
+  if (!env.FUNIL && !env.PEDIDOS) return json({ ok: false });
   const origem = req.headers.get("origin");
   if (origem && !/^(https:\/\/(www\.)?orbytstudio\.com\.br|http:\/\/localhost(:\d+)?)$/.test(origem)) return json({ ok: false }, 403);
   const ip = req.headers.get("cf-connecting-ip") || "x", agora = Date.now(), f = funilFreio.get(ip) || [0, agora];
@@ -467,7 +507,11 @@ async function funilSessao(req, env) {
   if (!/^[a-z0-9]{8,24}$/.test(sid)) return json({ ok: false }, 400);
   const sel = lerSelecao(b);
   const meta = { d: b.dados ? 1 : 0, f: sel.fase, x: sel.itens.map((k) => EXTRAS[k].letra).join(""), v: b.viuPag ? 1 : 0, c: b.clicou ? 1 : 0, s: Math.max(0, Math.min(7200, Math.round(Number(b.seg) || 0))) };
-  try { await env.PEDIDOS.put("sessao:" + diaBR() + ":" + sid, "1", { metadata: meta, expirationTtl: 60 * 60 * 24 * 60 }); } catch (e) { console.log("funil não gravado", String((e && e.message) || e)); }
+  try {
+    const db = await funilBanco(env);
+    if (db) await db.prepare("INSERT INTO sessao (sid, dia, dados, fase, itens, viu, clicou, seg) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8) ON CONFLICT(sid) DO UPDATE SET dados = max(dados, excluded.dados), fase = CASE WHEN excluded.fase > 0 THEN excluded.fase ELSE fase END, itens = excluded.itens, viu = max(viu, excluded.viu), clicou = max(clicou, excluded.clicou), seg = max(seg, excluded.seg)").bind(sid, diaBR(), meta.d, meta.f, meta.x, meta.v, meta.c, meta.s).run();
+    else await env.PEDIDOS.put("sessao:" + diaBR() + ":" + sid, "1", { metadata: meta, expirationTtl: 60 * 60 * 24 * 60 });
+  } catch (e) { console.log("funil não gravado", String((e && e.message) || e)); }
   return json({ ok: true });
 }
 
@@ -477,13 +521,24 @@ async function funilRelatorio(env, url) {
   const zero = () => ({ abriu: 0, dados: 0, fase: 0, viu: 0, pedido: 0, pago: 0, extra: 0, combo: 0, receita: 0, f1: 0, f2: 0, f3: 0 });
   const lista = [], porDia = {};
   for (let i = 0; i < dias; i++) { const d = diaBR(Date.now() - i * 864e5); lista.push(d); porDia[d] = zero(); }
-  for (const d of lista) {            // quem saiu sem gerar pedido
-    let cursor;
-    do {
-      const r = await env.PEDIDOS.list({ prefix: "sessao:" + d + ":", cursor });
-      for (const k of r.keys) { const m = k.metadata || {}, n = porDia[d]; n.abriu++; if (m.d) n.dados++; if (m.f) { n.fase++; n["f" + m.f]++; } if (m.v) n.viu++; }
-      cursor = r.list_complete ? null : r.cursor;
-    } while (cursor);
+  let fonte = "kv";                    // quem saiu sem gerar pedido
+  if (env.FUNIL) {
+    fonte = "d1";
+    try {
+      const db = await funilBanco(env);
+      const r = await db.prepare("SELECT dia, COUNT(*) AS abriu, SUM(dados) AS dados, SUM(fase > 0) AS fase, SUM(viu) AS viu, SUM(fase = 1) AS f1, SUM(fase = 2) AS f2, SUM(fase = 3) AS f3 FROM sessao WHERE dia >= ?1 GROUP BY dia").bind(lista[lista.length - 1]).all();
+      for (const l of r.results || []) { const n = porDia[l.dia]; if (n) for (const c of ["abriu", "dados", "fase", "viu", "f1", "f2", "f3"]) n[c] += Number(l[c]) || 0; }
+      await db.prepare("DELETE FROM sessao WHERE dia < ?1").bind(diaBR(Date.now() - 60 * 864e5)).run();   // guarda 60 dias
+    } catch (e) { fonte = "d1 com erro"; console.log("funil: leitura falhou", String((e && e.message) || e)); }
+  } else {
+    for (const d of lista) {
+      let cursor;
+      do {
+        const r = await env.PEDIDOS.list({ prefix: "sessao:" + d + ":", cursor });
+        for (const k of r.keys) { const m = k.metadata || {}, n = porDia[d]; n.abriu++; if (m.d) n.dados++; if (m.f) { n.fase++; n["f" + m.f]++; } if (m.v) n.viu++; }
+        cursor = r.list_complete ? null : r.cursor;
+      } while (cursor);
+    }
   }
   let cursor;                          // quem gerou Pix ou passou o cartão
   do {
@@ -499,7 +554,7 @@ async function funilRelatorio(env, url) {
   } while (cursor);
   const tot = zero();
   for (const d of lista) for (const c in tot) tot[c] += porDia[d][c];
-  if (url.searchParams.get("formato") === "json") return json({ dias, total: tot, porDia });
+  if (url.searchParams.get("formato") === "json") return json({ dias, fonte, total: tot, porDia });
   const pct = (a, b) => (b ? Math.round((a / b) * 100) + "%" : "0%");
   const grana = (c) => "R$ " + (c / 100).toFixed(2).replace(".", ",");
   const passos = [["Abriram o checkout", "abriu"], ["Preencheram os dados", "dados"], ["Escolheram a fase", "fase"], ["Chegaram no botão de pagar", "viu"], ["Geraram Pix ou passaram o cartão", "pedido"], ["Pagaram", "pago"]];
