@@ -138,6 +138,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
 .fase.on{border-color:var(--laranja);background:#FFF6F2;box-shadow:inset 0 0 0 1px var(--laranja)}
 .bump{display:grid;gap:.55rem;border:1.5px dashed var(--laranja);background:#FFFAF7;border-radius:16px;padding:.9rem;animation:surge .3s ease}
 .bump[hidden]{display:none}
+.bump-tit{font-family:var(--f-disp);font-weight:800;font-size:1.2rem;line-height:1.15;letter-spacing:-.02em;color:var(--grafite);margin:0}
 .bump-olho{display:flex;align-items:center;gap:.5rem;font-family:var(--f-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--laranja-2,#E0480F)}
 .bump-olho b{font-weight:500}
 .bump-olho .pulso{background:var(--laranja);animation:none}
@@ -346,13 +347,14 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
             <button type="button" class="fase" role="radio" aria-checked="false" data-f="3"><b>Internato</b><small>5º e 6º ano</small></button>
           </div>
           <div class="bump" id="bump" hidden>
-            <p class="bump-olho"><span class="pulso"></span><span>Extras do <b id="bumpFase">internato</b> · marque o que quiser</span></p>
+            <h3 class="bump-tit">Leve também estes pacotes de prompts</h3>
+            <p class="bump-olho"><span class="pulso"></span><span>Feitos para o <b id="bumpFase">internato</b> · marque o que quiser</span></p>
             <button type="button" class="bump-linha" data-i="osce" role="checkbox" aria-checked="false"><i class="ck"></i><span class="bump-txt"><b></b><small></small></span><span class="bump-preco"><b></b></span></button>
             <button type="button" class="bump-linha" data-i="enamed" role="checkbox" aria-checked="false"><i class="ck"></i><span class="bump-txt"><b></b><small></small></span><span class="bump-preco"><b></b></span></button>
             <button type="button" class="bump-linha" data-i="kit" role="checkbox" aria-checked="false"><i class="ck"></i><span class="bump-txt"><b></b><small></small></span><span class="bump-preco"><b></b></span></button>
             <button type="button" class="bump-combo" id="bumpCombo" role="checkbox" aria-checked="false">
-              <span class="bc-topo"><span class="bump-selo">Só nesta página</span><span class="bc-eco">Economize <span id="comboEco">R$ 10,80</span></span></span>
-              <span class="bc-meio"><i class="ck"></i><span class="bc-tit">Leve <em>os 3 juntos</em></span><span class="bump-preco"><s id="comboDe">R$ 20,70</s><b id="comboPor">R$ 9,90</b></span></span>
+              <span class="bc-topo"><span class="bump-selo">Só nesta página</span><span class="bc-eco">Economize <span id="comboEco">R$ 11,80</span></span></span>
+              <span class="bc-meio"><i class="ck"></i><span class="bc-tit">Leve <em>os 3 juntos</em></span><span class="bump-preco"><s id="comboDe">R$ 24,70</s><b id="comboPor">R$ 12,90</b></span></span>
               <span class="bc-pe" id="comboPe"></span>
             </button>
           </div>
@@ -694,7 +696,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
 
   // ===== FASE DO CURSO E EXTRAS (order bump) =====
   // Os preços daqui são só para mostrar. Quem cobra é o servidor, que recalcula tudo.
-  var PRECO_C = Math.round(PRECO * 100), EXTRAS_C = {osce: 790, enamed: 790, kit: 490}, COMBO_C = 990, ORDEM = ["osce", "enamed", "kit"];
+  var PRECO_C = Math.round(PRECO * 100), EXTRAS_C = {osce: 890, enamed: 890, kit: 690}, COMBO_C = 1290, ORDEM = ["osce", "enamed", "kit"];
   // cada extra: [título na oferta, linha de apoio, nome curto na conta]
   function osce(f){ return ["Treine OSCE com IA: 32 estações prontas", "Focado no " + f + ". A IA faz o paciente e o examinador e te dá a nota.", "OSCE com IA: 32 estações"]; }
   function enamed(ano){ return ["Vá melhor no ENAMED: 18 prompts de simulado", "Focado na etapa do " + ano + ". A IA vira a banca e monta o seu caderno de erros.", "ENAMED: 18 prompts de simulado"]; }

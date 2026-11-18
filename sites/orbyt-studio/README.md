@@ -21,7 +21,7 @@ Ligado na Cloudflare em 17/11/2026 (Settings > Builds do projeto `orbyt-studio`)
 
 ## Extras do checkout (order bump por fase)
 
-- No checkout a pessoa escolhe a fase (ciclo básico, ciclo clínico, internato) e pode marcar 3 extras: OSCE (R$ 7,90), Simulados ENAMED (R$ 7,90) e Kit de prompts da fase (R$ 4,90). Os 3 juntos saem por R$ 9,90 e levam o Kit Acadêmico de bônus.
+- No checkout a pessoa escolhe a fase (ciclo básico, ciclo clínico, internato) e pode marcar 3 extras: OSCE (R$ 8,90), Simulados ENAMED (R$ 8,90) e Kit de prompts da fase (R$ 6,90). Os 3 juntos saem por R$ 12,90 e levam o Kit Acadêmico de bônus.
 - Preços e nomes ficam em dois lugares: `src/index.js` (`EXTRAS`, `COMBO_CENTAVOS`, quem cobra de verdade) e `public/40prompts-estudante-medicina/checkout/index.html` (`EXTRAS_C`, `COMBO_C`, só o que aparece na tela). Mudou um, mude o outro.
 - A escolha viaja na referência do pedido no Mercado Pago (`40p-pix-f3oek-...`: fase 3, o = OSCE, e = ENAMED, k = kit). A entrega lê dali.
 - Os PDFs dos extras ficam criptografados com a mesma `PDF_KEY` em `public/40prompts-estudante-medicina/dl/` (`f1-osce.bin` ... `f3-kit.bin`, `academico.bin`). Formato: 12 bytes de IV + AES-GCM.
