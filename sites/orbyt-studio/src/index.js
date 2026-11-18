@@ -26,7 +26,7 @@ const FASES = {
 };
 const EXTRAS = {
   osce: { letra: "o", centavos: 790, titulo: (f) => "OSCE: 32 estações do " + f.rotulo, arquivo: (f) => "osce-" + f.slug + ".pdf" },
-  enamed: { letra: "e", centavos: 590, titulo: (f) => "Simulados ENAMED do " + f.ano, arquivo: (f) => "simulados-enamed-" + f.ano.charAt(0) + "-ano.pdf" },
+  enamed: { letra: "e", centavos: 790, titulo: (f) => "Simulados ENAMED do " + f.ano, arquivo: (f) => "simulados-enamed-" + f.ano.charAt(0) + "-ano.pdf" },
   kit: { letra: "k", centavos: 490, titulo: (f) => "Kit de prompts do " + f.rotulo, arquivo: (f) => "kit-de-prompts-" + f.slug + ".pdf" },
 };
 const ORDEM_EXTRAS = ["osce", "enamed", "kit"];
