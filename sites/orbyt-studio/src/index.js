@@ -99,6 +99,7 @@ export default {
       if (p === "/api/saude") return await saude(env);
       if (p === "/api/oa/evento" && req.method === "POST") return await eventoOa(req, env, ctx);
       if (p === "/api/funil/sessao" && req.method === "POST") return await funilSessao(req, env);
+      if (p === "/api/funil/lp" && req.method === "POST") return await funilLp(req, env);
       if (p === "/api/funil" && req.method === "GET") return await funilRelatorio(env, url);
       if (p.startsWith("/api/")) return json({ erro: "rota não existe" }, 404);
     } catch (e) {
@@ -479,6 +480,8 @@ async function funilBanco(env) {
     await env.FUNIL.batch([
       env.FUNIL.prepare("CREATE TABLE IF NOT EXISTS sessao (sid TEXT PRIMARY KEY, dia TEXT NOT NULL, dados INTEGER NOT NULL DEFAULT 0, fase INTEGER NOT NULL DEFAULT 0, itens TEXT NOT NULL DEFAULT '', viu INTEGER NOT NULL DEFAULT 0, clicou INTEGER NOT NULL DEFAULT 0, seg INTEGER NOT NULL DEFAULT 0) WITHOUT ROWID"),
       env.FUNIL.prepare("CREATE INDEX IF NOT EXISTS sessao_dia ON sessao (dia)"),
+      env.FUNIL.prepare("CREATE TABLE IF NOT EXISTS lp (sid TEXT PRIMARY KEY, dia TEXT NOT NULL, tela INTEGER NOT NULL DEFAULT 1, clique TEXT NOT NULL DEFAULT '', seg INTEGER NOT NULL DEFAULT 0, anuncio TEXT NOT NULL DEFAULT '', mob INTEGER NOT NULL DEFAULT 0) WITHOUT ROWID"),
+      env.FUNIL.prepare("CREATE INDEX IF NOT EXISTS lp_dia ON lp (dia)"),
     ]);
     funilPronto = true;
   }
@@ -513,6 +516,64 @@ async function funilSessao(req, env) {
     else await env.PEDIDOS.put("sessao:" + diaBR() + ":" + sid, "1", { metadata: meta, expirationTtl: 60 * 60 * 24 * 60 });
   } catch (e) { console.log("funil não gravado", String((e && e.message) || e)); }
   return json({ ok: true });
+}
+
+// ---------- tracking da LP (sem dado pessoal) ----------
+// A LP avisa até qual tela a pessoa chegou, qual botão de compra tocou, quanto tempo ficou e de qual anúncio veio.
+// Uma linha por visita (sid da aba), atualizada a cada aviso. Fica só no D1, 60 dias.
+const LP_TELAS = ["capa", "diferenca", "blocos", "material", "oferta", "duvidas", "final"];
+const LP_TELA_NOME = ["Capa", "A diferença", "O que tem dentro", "Como chega", "Oferta", "Dúvidas", "Chamada final"];
+const LP_BOTAO_NOME = { topo: "Cabeçalho", diferenca: "A diferença", blocos: "O que tem dentro", material: "Como chega", oferta: "Oferta", duvidas: "Dúvidas", final: "Chamada final" };
+const lpFreio = new Map();
+
+async function funilLp(req, env) {
+  if (!env.FUNIL) return json({ ok: false });
+  const origem = req.headers.get("origin");
+  if (origem && !/^(https:\/\/(www\.)?orbytstudio\.com\.br|http:\/\/localhost(:\d+)?)$/.test(origem)) return json({ ok: false }, 403);
+  const ip = req.headers.get("cf-connecting-ip") || "x", agora = Date.now(), f = lpFreio.get(ip) || [0, agora];
+  if (agora - f[1] > 600e3) { f[0] = 0; f[1] = agora; }
+  if (++f[0] > 20) return json({ ok: false }, 429);
+  if (lpFreio.size > 5000) lpFreio.clear();
+  lpFreio.set(ip, f);
+  let b;
+  try { const txt = await req.text(); if (txt.length > 400) return json({ ok: false }, 400); b = JSON.parse(txt); } catch (e) { return json({ ok: false }, 400); }
+  const sid = String((b && b.sid) || "");
+  if (!/^[a-z0-9]{8,24}$/.test(sid)) return json({ ok: false }, 400);
+  const tela = Math.max(1, Math.min(LP_TELAS.length, Math.round(Number(b.tela) || 1)));
+  const clique = Object.prototype.hasOwnProperty.call(LP_BOTAO_NOME, b.clique) ? b.clique : "";
+  const anuncio = String(b.anuncio || "").replace(/[^A-Za-z0-9_-]/g, "").slice(0, 40);
+  const seg = Math.max(0, Math.min(7200, Math.round(Number(b.seg) || 0)));
+  try {
+    const db = await funilBanco(env);
+    await db.prepare("INSERT INTO lp (sid, dia, tela, clique, seg, anuncio, mob) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7) ON CONFLICT(sid) DO UPDATE SET tela = max(tela, excluded.tela), clique = CASE WHEN clique = '' THEN excluded.clique ELSE clique END, seg = max(seg, excluded.seg), anuncio = CASE WHEN anuncio = '' THEN excluded.anuncio ELSE anuncio END").bind(sid, diaBR(), tela, clique, seg, anuncio, b.mob ? 1 : 0).run();
+  } catch (e) { console.log("lp não gravada", String((e && e.message) || e)); }
+  return json({ ok: true });
+}
+
+async function lpResumo(env, desde) {
+  const db = await funilBanco(env);
+  const q = (sql) => db.prepare(sql).bind(desde).all().then((r) => r.results || []);
+  const [telas, botoes, anuncios, aparelhos, tempos, dias] = await Promise.all([
+    q("SELECT tela, COUNT(*) AS n, SUM(clique <> '') AS k FROM lp WHERE dia >= ?1 GROUP BY tela"),
+    q("SELECT clique, COUNT(*) AS n FROM lp WHERE dia >= ?1 AND clique <> '' GROUP BY clique ORDER BY n DESC"),
+    q("SELECT anuncio, COUNT(*) AS v, SUM(tela >= 5) AS o, SUM(clique <> '') AS k FROM lp WHERE dia >= ?1 GROUP BY anuncio ORDER BY v DESC"),
+    q("SELECT mob, COUNT(*) AS v, SUM(clique <> '') AS k FROM lp WHERE dia >= ?1 GROUP BY mob"),
+    q("SELECT CASE WHEN seg < 5 THEN 0 WHEN seg < 15 THEN 1 WHEN seg < 30 THEN 2 WHEN seg < 60 THEN 3 ELSE 4 END AS f, COUNT(*) AS n FROM lp WHERE dia >= ?1 AND clique = '' GROUP BY f"),
+    q("SELECT dia, COUNT(*) AS v, SUM(clique <> '') AS k FROM lp WHERE dia >= ?1 GROUP BY dia"),
+  ]);
+  const visitas = telas.reduce((a, l) => a + Number(l.n), 0), clicaram = telas.reduce((a, l) => a + Number(l.k || 0), 0);
+  const chegou = LP_TELAS.map((_, i) => telas.filter((l) => l.tela >= i + 1).reduce((a, l) => a + Number(l.n), 0));
+  const saiu = LP_TELAS.map((_, i) => { const l = telas.find((x) => x.tela === i + 1); return l ? Number(l.n) - Number(l.k || 0) : 0; });
+  const faixa = ["menos de 5 s", "5 a 15 s", "15 a 30 s", "30 s a 1 min", "mais de 1 min"].map((nome, i) => { const l = tempos.find((x) => x.f === i); return { faixa: nome, n: l ? Number(l.n) : 0 }; });
+  return {
+    visitas, clicaram,
+    telas: LP_TELAS.map((t, i) => ({ tela: t, nome: LP_TELA_NOME[i], chegaram: chegou[i], sairamAqui: saiu[i] })),
+    botoes: botoes.map((l) => ({ botao: l.clique, nome: LP_BOTAO_NOME[l.clique] || l.clique, n: Number(l.n) })),
+    anuncios: anuncios.map((l) => ({ anuncio: l.anuncio || "(sem anúncio)", visitas: Number(l.v), chegaramNaOferta: Number(l.o || 0), clicaram: Number(l.k || 0) })),
+    aparelhos: aparelhos.map((l) => ({ aparelho: l.mob ? "celular" : "computador", visitas: Number(l.v), clicaram: Number(l.k || 0) })),
+    tempoDeQuemSaiu: faixa,
+    porDia: Object.fromEntries(dias.map((l) => [l.dia, { visitas: Number(l.v), clicaram: Number(l.k || 0) }])),
+  };
 }
 
 async function funilRelatorio(env, url) {
@@ -554,13 +615,33 @@ async function funilRelatorio(env, url) {
   } while (cursor);
   const tot = zero();
   for (const d of lista) for (const c in tot) tot[c] += porDia[d][c];
-  if (url.searchParams.get("formato") === "json") return json({ dias, fonte, total: tot, porDia });
+  let lp = null;
+  if (env.FUNIL) { try { lp = await lpResumo(env, lista[lista.length - 1]); await (await funilBanco(env)).prepare("DELETE FROM lp WHERE dia < ?1").bind(diaBR(Date.now() - 60 * 864e5)).run(); } catch (e) { console.log("lp: leitura falhou", String((e && e.message) || e)); } }
+  if (url.searchParams.get("formato") === "json") return json({ dias, fonte, total: tot, porDia, lp });
   const pct = (a, b) => (b ? Math.round((a / b) * 100) + "%" : "0%");
   const grana = (c) => "R$ " + (c / 100).toFixed(2).replace(".", ",");
   const passos = [["Abriram o checkout", "abriu"], ["Preencheram os dados", "dados"], ["Escolheram a fase", "fase"], ["Chegaram no botão de pagar", "viu"], ["Geraram Pix ou passaram o cartão", "pedido"], ["Pagaram", "pago"]];
   const semVer = tot.fase - Math.min(tot.viu, tot.fase);
   let h = '<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Funil do checkout</title><style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#F4F5F7;color:#16181B;margin:0;padding:20px;line-height:1.45}main{max-width:720px;margin:0 auto}h1{font-size:1.35rem;margin:0 0 4px}h2{font-size:1rem;margin:26px 0 8px}p{margin:0 0 10px;color:#5B6470;font-size:.92rem}.c{background:#fff;border-radius:14px;padding:14px 16px;margin-bottom:12px}.l{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #EEF0F3}.l:last-child{border-bottom:0}.l b{font-variant-numeric:tabular-nums;white-space:nowrap}.l small{color:#8A929C;font-weight:400;margin-left:6px}.a{background:#FFF1EA;border:1.5px solid #FF5A1F;border-radius:14px;padding:14px 16px;margin-bottom:12px}.a b{font-size:1.2rem}table{width:100%;border-collapse:collapse;font-size:.84rem;background:#fff;border-radius:14px;overflow:hidden}th,td{padding:8px 6px;text-align:right;border-bottom:1px solid #EEF0F3;font-variant-numeric:tabular-nums;white-space:nowrap}th:first-child,td:first-child{text-align:left;padding-left:12px}th{font-size:.7rem;color:#5B6470;font-weight:600}.r{overflow-x:auto}</style></head><body><main>';
-  h += "<h1>Funil do checkout</h1><p>40 Prompts de Medicina · últimos " + dias + " dias (horário de Brasília)</p>";
+  h += "<h1>Funil da LP e do checkout</h1><p>40 Prompts de Medicina · últimos " + dias + " dias (horário de Brasília)</p>";
+  if (lp && lp.visitas) {
+    const piorTela = lp.telas.reduce((a, t) => (t.sairamAqui > a.sairamAqui ? t : a), lp.telas[0]);
+    h += '<h2>LP</h2><div class="a"><b>' + lp.clicaram + " de " + lp.visitas + " (" + pct(lp.clicaram, lp.visitas) + ")</b> tocaram num botão de compra. Onde mais gente sai sem tocar: <b>" + piorTela.nome + "</b> (" + piorTela.sairamAqui + (piorTela.sairamAqui === 1 ? " pessoa" : " pessoas") + ").</div>";
+    h += '<div class="c">';
+    lp.telas.forEach((t, i) => { h += '<div class="l"><span>' + (i + 1) + ". " + t.nome + "</span><b>" + t.chegaram + "<small>" + pct(t.chegaram, lp.visitas) + " chegaram · " + t.sairamAqui + " saíram aqui</small></b></div>"; });
+    h += "</div>";
+    h += '<h2>Botão que levou ao checkout</h2><div class="c">';
+    if (!lp.botoes.length) h += '<div class="l"><span>Ninguém tocou ainda</span><b>0</b></div>';
+    lp.botoes.forEach((x) => { h += '<div class="l"><span>' + x.nome + "</span><b>" + x.n + "<small>" + pct(x.n, lp.clicaram) + "</small></b></div>"; });
+    h += "</div>";
+    h += '<h2>Por anúncio</h2><div class="r"><table><tr><th>Anúncio</th><th>Visitas</th><th>Oferta</th><th>Comprar</th></tr>';
+    lp.anuncios.forEach((x) => { h += "<tr><td>" + escHtml(x.anuncio) + "</td><td>" + x.visitas + "</td><td>" + x.chegaramNaOferta + " (" + pct(x.chegaramNaOferta, x.visitas) + ")</td><td>" + x.clicaram + " (" + pct(x.clicaram, x.visitas) + ")</td></tr>"; });
+    h += "</table></div><p>Oferta: chegaram na tela da oferta. Comprar: tocaram num botão de compra.</p>";
+    h += '<h2>Aparelho e tempo</h2><div class="c">';
+    lp.aparelhos.forEach((x) => { h += '<div class="l"><span>' + x.aparelho + "</span><b>" + x.visitas + "<small>" + pct(x.clicaram, x.visitas) + " tocaram em comprar</small></b></div>"; });
+    lp.tempoDeQuemSaiu.forEach((x) => { h += '<div class="l"><span>Saiu sem tocar, ficou ' + x.faixa + "</span><b>" + x.n + "</b></div>"; });
+    h += "</div><h2>Checkout</h2>";
+  } else if (lp) h += '<h2>LP</h2><p>Ainda sem visita registrada desde que o tracking da LP entrou no ar.</p><h2>Checkout</h2>';
   h += '<div class="a"><b>' + semVer + " de " + tot.fase + " (" + pct(semVer, tot.fase) + ")</b><br>escolheram a fase e saíram sem chegar no botão de pagar. É esse número que diz se a rolagem depois dos extras está derrubando gente.</div>";
   h += '<div class="c">';
   for (const [nome, c] of passos) h += '<div class="l"><span>' + nome + "</span><b>" + tot[c] + "<small>" + pct(tot[c], tot.abriu) + "</small></b></div>";
@@ -586,6 +667,8 @@ async function saudeExtra(env, url) {
 }
 
 // ---------- utilitários ----------
+
+function escHtml(t) { return String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]); }
 
 async function mp(env, metodo, caminho, corpo) {
   const h = { authorization: "Bearer " + env.MP_ACCESS_TOKEN, accept: "application/json" };
