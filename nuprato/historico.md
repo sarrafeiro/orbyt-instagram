@@ -205,3 +205,57 @@ Frases de story usadas nesta semana: as 5 acima. Trocas de story usadas: alho, f
 Ideias do banco já usadas nesta semana: feijão sem panela de pressão · janta pra 1 · mito "lavar o arroz" · checklist do que ter em casa · pão de queijo de liquidificador.
 
 Ideias novas pro banco: Black Friday na cozinha (27/11: o que vale estocar) · conversa da amiga "me passa a receita?" (sem chat, como foto ou ficha) · antes e depois pressão x panela comum · ceia de Natal pra pouca gente (dezembro).
+
+## Medição da semana 16/11 a 22/11/2026 (tarefa de domingo 22/11)
+
+Fonte: Trypost (get-channel-insights e list-channel-publications, 16/11 a 22/11). Seguidores: 31 → 31 (0). Alcance somado: 85 (semana anterior 513). Visualizações: 127 (antes 626). Curtidas: 4. Comentários: 0. Salvamentos: 0. Compartilhamentos: 0. Visitas ao perfil: 0. Nesta semana não saiu nenhum reel (as vagas das 14:31 de ter, qui e sáb ficaram vazias): por isso o alcance caiu 83%.
+
+| Post | Formato | Alcance | Visualiz. | Curtidas | Coment. | Salv. | Compart. |
+|---|---|---|---|---|---|---|---|
+| 27 lavar arroz | imagem | 4 | 13 | 1 | 0 | 0 | 0 |
+| 26 janta pra 1 (foto) | carrossel | 4 | 10 | 0 | 0 | 0 | 0 |
+| 25 feijão sem pressão | carrossel | 3 | 6 | 1 | 0 | 0 | 0 |
+| 30 sete trens (foto) | carrossel | 2 | 2 | 1 | 0 | 0 | 0 |
+| 28 fala do seu jeito (foto) | carrossel | 2 | 5 | 1 | 0 | 0 | 0 |
+| 32 sogra almoço (foto) | carrossel | 1 | 2 | 0 | 0 | 0 | 0 |
+| 31 prato do feriado | carrossel | 1 | 1 | 0 | 0 | 0 | 0 |
+| 29 pão de queijo | carrossel | 1 | 3 | 0 | 0 | 0 | 0 |
+| 33 panqueca | carrossel | 0 | 0 | 0 | 0 | 0 | 0 |
+| 34 sobrou churrasco (foto) | carrossel | saiu 22/11 17:40, sem dado ainda | | | | | |
+| Stories (10 com dado) | story | 5 a 8 cada | 6 a 12 | sem dado | 0 | sem dado | 0 |
+
+Melhor story: s07 ficha "Sem farinha pra engrossar?" (alcance 8, 12 visualizações). Fichas e frases das 11:10 rendem um pouco mais que os de anúncio.
+
+**Leitura:** sem reel o perfil fica só nos 31 seguidores. No feed, o que segurou um pouco mais foi mito ou verdade (27) e dor de quantidade (26), seguidos do passo a passo salvável (25). Carrossel com foto teve média 2,3 de alcance, os da marca 1,4: sinal fraco. Oferta e receita de fim de semana (31, 33) foram os piores.
+
+**Decisão da semana 23/11:** metade nas linhas que mais seguraram, com ângulo novo: mito ou verdade (35 óleo no macarrão), quantidade (44 receita dobrada), passo a passo sem pressão (39 carne de panela) e sobra que vira prato (36 mexidão, 40 feijão). O resto variado: 37 erros do bife (número), 38 mecanismo, 41 Black Friday, 42 pizza de frigideira (comunidade), 43 oferta. Recado pro Matheus: o que leva gente nova é o reel; a semana passada mostrou isso pelo avesso.
+
+## Semana 23/11 a 29/11/2026 (tarefa semanal de 22/11)
+
+| Quando | Formato | Capa | Fundo da capa | Tema / gancho | Pasta no repo |
+|---|---|---|---|---|---|
+| Seg 23/11 12:40 | Carrossel 6 | carimbo MITO | creme | Óleo na água não deixa o macarrão grudar | nuprato/posts/2026-11-23-35-oleo-macarrao |
+| Seg 23/11 18:40 | Carrossel 6 | texto gigante + pílula Segunda cansada | grafite | Cansou? Mexidão resolve (arroz e feijão de ontem, ovo) | nuprato/posts/2026-11-23-36-mexidao |
+| Ter 24/11 14:31 | vaga | vídeo de receita do Matheus | | | |
+| Ter 24/11 18:40 | Carrossel 6 | número gigante (3) | creme | 3 erros que deixam o bife duro | nuprato/posts/2026-11-24-37-bife-duro |
+| Qua 25/11 12:40 | Carrossel 6 com foto | foto (namorado-comendo v1) | escuro | Tinha macarrão, frango e meio tomate (mecanismo) | nuprato/posts/2026-11-25-38-tinha-isso |
+| Qua 25/11 18:40 | Carrossel 6 | antes e depois (duas fichas) | papel | Carne de panela sem pressão (40 min x 2h a 2h30) | nuprato/posts/2026-11-25-39-carne-de-panela |
+| Qui 26/11 14:31 | vaga | vídeo de receita do Matheus | | | |
+| Qui 26/11 18:40 | Carrossel 7 | busca do Google | grafite | O que fazer com feijão que sobrou (tutu, caldinho, sopa) | nuprato/posts/2026-11-26-40-sobrou-feijao |
+| Sex 27/11 12:40 | Carrossel 6 | texto gigante + pílula Black Friday | creme | O que vale estocar na cozinha | nuprato/posts/2026-11-27-41-black-friday |
+| Sex 27/11 18:40 | Carrossel 6 | ficha + pílula Sexta à noite | verde | Pizza de frigideira (comenta o sabor) | nuprato/posts/2026-11-27-42-pizza-frigideira |
+| Sáb 28/11 10:40 | Carrossel 5 | texto gigante + pílula Sábado | creme | O prato do sábado é cê que escolhe (oferta) | nuprato/posts/2026-11-28-43-prato-do-sabado |
+| Sáb 28/11 14:31 | vaga | vídeo de receita do Matheus | | | |
+| Dom 29/11 17:40 | Carrossel 6 com foto | foto (sogra-abraco) | escuro | Vem a família toda? A receita dobra, o sal não | nuprato/posts/2026-11-29-44-receita-dobrada |
+
+Posts com foto (38, 44) foram com `is_ai_generated`. Só 2 de 10 com foto: a Kairogen estava com 2 créditos (cena custa 4 no nano-banana-2 desde esta semana), então nenhuma cena nova foi gerada e foram usadas as 2 últimas inéditas. Cenas do TikTok ainda não usadas no Instagram: nenhuma (namorado-comendo v2 já foi). Pra semana que vem ter foto, precisa recarregar a Kairogen.
+
+Stories (nuprato/stories/2026-11-23): seg 11:10 s01 frase "Janta simples também é janta." · seg 17:10 s02 capa do 35 · ter 11:10 s03 ficha "Sem leite pro purê?" · ter 17:10 s04 capa do 37 · qua 11:10 s05 frase "Fala o que tem na geladeira." · qua 17:10 s06 capa do 38 · qui 11:10 s07 ficha "Sem caldo em tablete?" · qui 17:10 s08 capa do 40 · sex 11:10 s09 frase "Estoca o que cê já usa." (Black Friday) · sex 17:10 s10 capa do 41 · sáb 09:10 s11 oferta com selo "Escolhe o prato do sábado. A 1ª receita guiada é grátis." · sáb 18:10 s12 capa do 43 · dom 10:10 s13 ficha "Sem queijo ralado?" (muçarela picadinha) · dom 18:10 s14 frase "Cê fala o prato. A semana agradece."
+
+Frases de story usadas nesta semana: as 5 acima. Trocas de story usadas: leite no purê, caldo em tablete, queijo ralado.
+
+Último número de post usado: 44. Últimas 3 capas: ficha (42), texto gigante (43), foto (44). Grade: 44 foi escuro, o 45 abre claro.
+
+Ideias do banco já usadas nesta semana: Black Friday na cozinha · antes e depois pressão x panela comum (carne de panela).
+
+Ideias novas pro banco: ceia de Natal pra pouca gente (dezembro) · mito ou verdade "sal no começo endurece o feijão" · arroz de forno com sobra · marmita da semana no domingo · farofa de sobra.
