@@ -224,6 +224,12 @@ footer{padding:24px 40px 48px}
 .balao{position:fixed;z-index:20;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));max-width:360px;display:flex;align-items:center;gap:12px;padding:12px 10px 12px 14px;border-radius:18px;background:var(--escuro);color:#DDEFEA;box-shadow:0 24px 48px -20px rgba(11,47,45,.6);opacity:0;transform:translateY(16px);transition:opacity .5s var(--curva),transform .5s var(--curva)}
 .balao.ver{opacity:1;transform:none}
 .balao[hidden]{display:none}
+/* monitor com altura fixa: não muda de tamanho entre um modo e outro (cabe a conversa mais longa) */
+.monitor{height:470px;min-height:0}
+.conversa{min-height:0;overflow:hidden}
+@media(max-width:759px){.monitor{height:450px;min-height:0}}
+@media(max-width:374px){.monitor{height:470px}}
+@media(min-width:1100px){.monitor{height:500px}}
 .balao .vivo2{flex:none;width:10px;height:10px;border-radius:50%;background:var(--sinal);box-shadow:0 0 12px var(--sinal);animation:pisca 1.2s infinite}
 .balao p{margin:0;font-size:14px;line-height:1.4}
 .balao b{color:#fff}
