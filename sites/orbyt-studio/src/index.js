@@ -482,6 +482,8 @@ async function funilBanco(env) {
       env.FUNIL.prepare("CREATE INDEX IF NOT EXISTS sessao_dia ON sessao (dia)"),
       env.FUNIL.prepare("CREATE TABLE IF NOT EXISTS lp (sid TEXT PRIMARY KEY, dia TEXT NOT NULL, tela INTEGER NOT NULL DEFAULT 1, clique TEXT NOT NULL DEFAULT '', seg INTEGER NOT NULL DEFAULT 0, anuncio TEXT NOT NULL DEFAULT '', mob INTEGER NOT NULL DEFAULT 0) WITHOUT ROWID"),
       env.FUNIL.prepare("CREATE INDEX IF NOT EXISTS lp_dia ON lp (dia)"),
+      env.FUNIL.prepare("CREATE TABLE IF NOT EXISTS lp2 (sid TEXT PRIMARY KEY, dia TEXT NOT NULL, tela INTEGER NOT NULL DEFAULT 1, clique TEXT NOT NULL DEFAULT '', seg INTEGER NOT NULL DEFAULT 0, anuncio TEXT NOT NULL DEFAULT '', mob INTEGER NOT NULL DEFAULT 0) WITHOUT ROWID"),
+      env.FUNIL.prepare("CREATE INDEX IF NOT EXISTS lp2_dia ON lp2 (dia)"),
     ]);
     funilPronto = true;
   }
@@ -521,9 +523,11 @@ async function funilSessao(req, env) {
 // ---------- tracking da LP (sem dado pessoal) ----------
 // A LP avisa até qual tela a pessoa chegou, qual botão de compra tocou, quanto tempo ficou e de qual anúncio veio.
 // Uma linha por visita (sid da aba), atualizada a cada aviso. Fica só no D1, 60 dias.
-const LP_TELAS = ["capa", "diferenca", "blocos", "material", "oferta", "duvidas", "final"];
-const LP_TELA_NOME = ["Capa", "A diferença", "O que tem dentro", "Como chega", "Oferta", "Dúvidas", "Chamada final"];
-const LP_BOTAO_NOME = { topo: "Cabeçalho", diferenca: "A diferença", blocos: "O que tem dentro", material: "Como chega", oferta: "Oferta", duvidas: "Dúvidas", final: "Chamada final" };
+// LP v2 (no ar em 23/11/2026): página curta. As visitas da LP antiga (21 a 23/11) ficaram na tabela lp, com outras telas.
+const LP_TELAS = ["capa", "diferenca", "frase", "jornada", "numeros", "oferta", "fim"];
+const LP_TELA_NOME = ["Capa (demonstração)", "Com e sem prompt", "Frase", "Jornada dos 40", "Números", "Oferta e dúvidas", "Fim da página"];
+const LP_BOTAO_NOME = { topo: "Barra do topo", capa: "Botão da capa", oferta: "Botão da oferta" };
+const LP_TABELA = "lp2";
 const lpFreio = new Map();
 
 async function funilLp(req, env) {
@@ -545,7 +549,7 @@ async function funilLp(req, env) {
   const seg = Math.max(0, Math.min(7200, Math.round(Number(b.seg) || 0)));
   try {
     const db = await funilBanco(env);
-    await db.prepare("INSERT INTO lp (sid, dia, tela, clique, seg, anuncio, mob) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7) ON CONFLICT(sid) DO UPDATE SET tela = max(tela, excluded.tela), clique = CASE WHEN clique = '' THEN excluded.clique ELSE clique END, seg = max(seg, excluded.seg), anuncio = CASE WHEN anuncio = '' THEN excluded.anuncio ELSE anuncio END").bind(sid, diaBR(), tela, clique, seg, anuncio, b.mob ? 1 : 0).run();
+    await db.prepare("INSERT INTO " + LP_TABELA + " (sid, dia, tela, clique, seg, anuncio, mob) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7) ON CONFLICT(sid) DO UPDATE SET tela = max(tela, excluded.tela), clique = CASE WHEN clique = '' THEN excluded.clique ELSE clique END, seg = max(seg, excluded.seg), anuncio = CASE WHEN anuncio = '' THEN excluded.anuncio ELSE anuncio END").bind(sid, diaBR(), tela, clique, seg, anuncio, b.mob ? 1 : 0).run();
   } catch (e) { console.log("lp não gravada", String((e && e.message) || e)); }
   return json({ ok: true });
 }
@@ -554,12 +558,12 @@ async function lpResumo(env, desde) {
   const db = await funilBanco(env);
   const q = (sql) => db.prepare(sql).bind(desde).all().then((r) => r.results || []);
   const [telas, botoes, anuncios, aparelhos, tempos, dias] = await Promise.all([
-    q("SELECT tela, COUNT(*) AS n, SUM(clique <> '') AS k FROM lp WHERE dia >= ?1 GROUP BY tela"),
-    q("SELECT clique, COUNT(*) AS n FROM lp WHERE dia >= ?1 AND clique <> '' GROUP BY clique ORDER BY n DESC"),
-    q("SELECT anuncio, COUNT(*) AS v, SUM(tela >= 5) AS o, SUM(clique <> '') AS k FROM lp WHERE dia >= ?1 GROUP BY anuncio ORDER BY v DESC"),
-    q("SELECT mob, COUNT(*) AS v, SUM(clique <> '') AS k FROM lp WHERE dia >= ?1 GROUP BY mob"),
-    q("SELECT CASE WHEN seg < 5 THEN 0 WHEN seg < 15 THEN 1 WHEN seg < 30 THEN 2 WHEN seg < 60 THEN 3 ELSE 4 END AS f, COUNT(*) AS n FROM lp WHERE dia >= ?1 AND clique = '' GROUP BY f"),
-    q("SELECT dia, COUNT(*) AS v, SUM(clique <> '') AS k FROM lp WHERE dia >= ?1 GROUP BY dia"),
+    q("SELECT tela, COUNT(*) AS n, SUM(clique <> '') AS k FROM " + LP_TABELA + " WHERE dia >= ?1 GROUP BY tela"),
+    q("SELECT clique, COUNT(*) AS n FROM " + LP_TABELA + " WHERE dia >= ?1 AND clique <> '' GROUP BY clique ORDER BY n DESC"),
+    q("SELECT anuncio, COUNT(*) AS v, SUM(tela >= 6) AS o, SUM(clique <> '') AS k FROM " + LP_TABELA + " WHERE dia >= ?1 GROUP BY anuncio ORDER BY v DESC"),
+    q("SELECT mob, COUNT(*) AS v, SUM(clique <> '') AS k FROM " + LP_TABELA + " WHERE dia >= ?1 GROUP BY mob"),
+    q("SELECT CASE WHEN seg < 5 THEN 0 WHEN seg < 15 THEN 1 WHEN seg < 30 THEN 2 WHEN seg < 60 THEN 3 ELSE 4 END AS f, COUNT(*) AS n FROM " + LP_TABELA + " WHERE dia >= ?1 AND clique = '' GROUP BY f"),
+    q("SELECT dia, COUNT(*) AS v, SUM(clique <> '') AS k FROM " + LP_TABELA + " WHERE dia >= ?1 GROUP BY dia"),
   ]);
   const visitas = telas.reduce((a, l) => a + Number(l.n), 0), clicaram = telas.reduce((a, l) => a + Number(l.k || 0), 0);
   const chegou = LP_TELAS.map((_, i) => telas.filter((l) => l.tela >= i + 1).reduce((a, l) => a + Number(l.n), 0));
@@ -616,7 +620,7 @@ async function funilRelatorio(env, url) {
   const tot = zero();
   for (const d of lista) for (const c in tot) tot[c] += porDia[d][c];
   let lp = null;
-  if (env.FUNIL) { try { lp = await lpResumo(env, lista[lista.length - 1]); await (await funilBanco(env)).prepare("DELETE FROM lp WHERE dia < ?1").bind(diaBR(Date.now() - 60 * 864e5)).run(); } catch (e) { console.log("lp: leitura falhou", String((e && e.message) || e)); } }
+  if (env.FUNIL) { try { lp = await lpResumo(env, lista[lista.length - 1]); await (await funilBanco(env)).prepare("DELETE FROM " + LP_TABELA + " WHERE dia < ?1").bind(diaBR(Date.now() - 60 * 864e5)).run(); } catch (e) { console.log("lp: leitura falhou", String((e && e.message) || e)); } }
   if (url.searchParams.get("formato") === "json") return json({ dias, fonte, total: tot, porDia, lp });
   const pct = (a, b) => (b ? Math.round((a / b) * 100) + "%" : "0%");
   const grana = (c) => "R$ " + (c / 100).toFixed(2).replace(".", ",");
@@ -626,7 +630,7 @@ async function funilRelatorio(env, url) {
   h += "<h1>Funil da LP e do checkout</h1><p>40 Prompts de Medicina · últimos " + dias + " dias (horário de Brasília)</p>";
   if (lp && lp.visitas) {
     const piorTela = lp.telas.reduce((a, t) => (t.sairamAqui > a.sairamAqui ? t : a), lp.telas[0]);
-    h += '<h2>LP</h2><div class="a"><b>' + lp.clicaram + " de " + lp.visitas + " (" + pct(lp.clicaram, lp.visitas) + ")</b> tocaram num botão de compra. Onde mais gente sai sem tocar: <b>" + piorTela.nome + "</b> (" + piorTela.sairamAqui + (piorTela.sairamAqui === 1 ? " pessoa" : " pessoas") + ").</div>";
+    h += '<h2>LP (versão nova, desde 23/11)</h2><div class="a"><b>' + lp.clicaram + " de " + lp.visitas + " (" + pct(lp.clicaram, lp.visitas) + ")</b> tocaram num botão de compra. Onde mais gente sai sem tocar: <b>" + piorTela.nome + "</b> (" + piorTela.sairamAqui + (piorTela.sairamAqui === 1 ? " pessoa" : " pessoas") + ").</div>";
     h += '<div class="c">';
     lp.telas.forEach((t, i) => { h += '<div class="l"><span>' + (i + 1) + ". " + t.nome + "</span><b>" + t.chegaram + "<small>" + pct(t.chegaram, lp.visitas) + " chegaram · " + t.sairamAqui + " saíram aqui</small></b></div>"; });
     h += "</div>";
@@ -641,7 +645,7 @@ async function funilRelatorio(env, url) {
     lp.aparelhos.forEach((x) => { h += '<div class="l"><span>' + x.aparelho + "</span><b>" + x.visitas + "<small>" + pct(x.clicaram, x.visitas) + " tocaram em comprar</small></b></div>"; });
     lp.tempoDeQuemSaiu.forEach((x) => { h += '<div class="l"><span>Saiu sem tocar, ficou ' + x.faixa + "</span><b>" + x.n + "</b></div>"; });
     h += "</div><h2>Checkout</h2>";
-  } else if (lp) h += '<h2>LP</h2><p>Ainda sem visita registrada desde que o tracking da LP entrou no ar.</p><h2>Checkout</h2>';
+  } else if (lp) h += '<h2>LP (versão nova, desde 23/11)</h2><p>Ainda sem visita registrada na LP nova.</p><h2>Checkout</h2>';
   h += '<div class="a"><b>' + semVer + " de " + tot.fase + " (" + pct(semVer, tot.fase) + ")</b><br>escolheram a fase e saíram sem chegar no botão de pagar. É esse número que diz se a rolagem depois dos extras está derrubando gente.</div>";
   h += '<div class="c">';
   for (const [nome, c] of passos) h += '<div class="l"><span>' + nome + "</span><b>" + tot[c] + "<small>" + pct(tot[c], tot.abriu) + "</small></b></div>";

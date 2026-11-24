@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400..700&family=Instrument+Serif:ital@1&family=Martian+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@1&display=swap">
 <!-- Pixel do ChatGPT Ads (OpenAI Measurement Pixel) - fonte "Orbyt Medicina - 40 Prompts" -->
 <script>
 (function (w, d, s, u) {
@@ -304,6 +304,60 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
   .bump-combo .bump-preco b{font-size:1.55rem}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+/* ===== v2 (23/11/2026): visual da LP nova (verde-água clínico). Só aparência; IDs e lógica iguais. ===== */
+:root{
+  --gelo:#E3F0EC; --papel:#FFFFFF; --nevoa:#D4EBE4; --grafite:#0D3533; --ardosia:#46625F;
+  --laranja:#0E6B63; --laranja-2:#0A5650; --laranja-suave:#D4EBE4;
+  --linha:#C9DED7; --linha-esc:#24524E; --mudo-esc:#9FC4BC; --desconto:#B8432A;
+  --f-disp:Sora,"Inter Tight",system-ui,sans-serif;
+  --f-corpo:"Inter Tight",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"Inter Tight",system-ui,sans-serif;
+}
+.topo{background:transparent;color:var(--grafite)}
+.topo .logo,.topo .seguro{color:var(--grafite)}
+.reserva{background:var(--laranja)}
+.reserva .wrap{min-height:40px}
+.res-tempo{background:rgba(255,255,255,.18);font-family:var(--f-disp);letter-spacing:0}
+.res-barra{background:rgba(255,255,255,.55)}
+.urgencia{display:none}
+.caixa{box-shadow:0 30px 60px -40px rgba(13,53,51,.35)}
+.bloco-tit span{background:var(--laranja);font-family:var(--f-disp);font-weight:700;font-size:.8rem}
+.campo input:focus{border-color:var(--laranja);box-shadow:0 0 0 3px rgba(14,107,99,.15)}
+.fase.on{background:var(--nevoa)}
+.bump{border-color:rgba(14,107,99,.45);background:#F3FAF7}
+.bump-olho{color:var(--laranja);font-size:.68rem}
+.bump-combo{background:var(--grafite);border-color:#E9A27F}
+.bump-combo.on{border-color:#4BE3B6;box-shadow:0 18px 30px -20px rgba(14,107,99,.9)}
+.bump-selo{background:#E9A27F;color:var(--grafite)}
+.bump-combo.on .ck{background:#4BE3B6;border-color:#4BE3B6}
+.bump-combo.on .ck::after{border-color:var(--grafite)}
+.bc-pe{color:#C5DAD5}
+.prox b{letter-spacing:.04em}
+/* resumo claro no lugar do card preto */
+.resumo{background:var(--papel);color:var(--grafite);border:1px solid var(--linha);box-shadow:0 30px 60px -40px rgba(13,53,51,.3)}
+.res-produto b{color:var(--grafite)}
+.res-produto span{color:var(--ardosia)}
+.res-produto img{box-shadow:0 10px 20px -10px rgba(13,53,51,.5)}
+.prova-pill{color:var(--laranja-2);background:var(--nevoa);border-color:rgba(14,107,99,.3)}
+.prova-pill strong{color:var(--laranja)}
+.prova-pill .pulso{background:var(--laranja)}
+.entrega-pill{color:var(--grafite);background:#F3FAF7;border-color:var(--linha)}
+.entrega-pill svg{color:var(--laranja)}
+.entrega-pill strong{color:var(--grafite)}
+.linhas{border-top-color:var(--linha)}
+.linhas div{color:var(--ardosia)}
+.linhas .desc{color:var(--laranja)}
+.linhas .total{color:var(--grafite);border-top-color:var(--linha)}
+.res-lista svg{color:var(--laranja)}
+.off-mob{display:none}
+@media (max-width:880px){
+  .resumo{padding:.75rem .9rem;border-radius:16px}
+  .val-mob s{color:#56706C}
+  .val-mob b{color:var(--grafite)}
+  .off-mob{display:inline-block;font-style:normal;font-size:.68rem;font-weight:700;color:#fff;background:var(--desconto);border-radius:6px;padding:.15rem .4rem;margin-top:.2rem}
+  .prova-pill,.entrega-pill{margin-top:.5rem}
+}
+@media (max-width:560px){ main{padding-top:.6rem} .grade{gap:.7rem} }
 </style>
 </head>
 <body>
@@ -428,7 +482,7 @@ main{flex:1 0 auto;padding-block:clamp(1.2rem,4vw,3rem) 2.5rem}
       <div class="res-produto">
         <img src="/40prompts-estudante-medicina/img/capa.webp" alt="" width="720" height="1019">
         <div class="txt"><b>40 Prompts para Estudar Medicina com IA</b><span>Guia prático 2026 · PDF</span><em class="prova-pill"><span class="pulso"></span><span>Todo dia, <strong class="vendas">+45</strong> estudantes compram</span></em><em class="entrega-pill"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><span><strong>Entrega imediata</strong> no seu e-mail</span></em></div>
-        <span class="val-mob"><s class="de-txt">R$ 59,90</s><b class="preco-txt">R$ 29,90</b></span>
+        <span class="val-mob"><s class="de-txt">R$ 59,90</s><b class="preco-txt">R$ 29,90</b><i class="off-mob">-50% hoje</i></span>
       </div>
       <div class="linhas">
         <div><span>Produto</span><span class="de-txt">R$ 59,90</span></div>
