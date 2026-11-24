@@ -220,6 +220,15 @@ footer{padding:24px 40px 48px}
 @media(min-width:1100px){.jornada{grid-template-columns:repeat(7,minmax(0,1fr))}.jornada::after{content:'';position:absolute;left:28px;right:28px;top:29px;height:2px;background:repeating-linear-gradient(90deg,var(--pri) 0 8px,transparent 8px 14px);opacity:.35;z-index:0}.jornada li{z-index:1}}
 
 .navbar{padding-top:max(8px,env(safe-area-inset-top,0px))}
+/* prova social: sobe aos 5 s e fica até fechar */
+.balao{position:fixed;z-index:20;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));max-width:360px;display:flex;align-items:center;gap:12px;padding:12px 10px 12px 14px;border-radius:18px;background:var(--escuro);color:#DDEFEA;box-shadow:0 24px 48px -20px rgba(11,47,45,.6);opacity:0;transform:translateY(16px);transition:opacity .5s var(--curva),transform .5s var(--curva)}
+.balao.ver{opacity:1;transform:none}
+.balao[hidden]{display:none}
+.balao .vivo2{flex:none;width:10px;height:10px;border-radius:50%;background:var(--sinal);box-shadow:0 0 12px var(--sinal);animation:pisca 1.2s infinite}
+.balao p{margin:0;font-size:14px;line-height:1.4}
+.balao b{color:#fff}
+.balao button{flex:none;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.08);color:#DDEFEA;font:400 20px/1 Sora,sans-serif;cursor:pointer}
+@media(max-width:759px){.balao{left:12px;right:12px;bottom:auto;top:calc(72px + env(safe-area-inset-top,0px));max-width:none;transform:translateY(-16px)}.balao.ver{transform:none}}
 </style>
 </head>
 <body>
@@ -310,6 +319,7 @@ footer{padding:24px 40px 48px}
 <details><summary>E se a IA errar?</summary><p>Erra. Por isso tem um prompt que obriga a IA a mostrar o nível de confiança e onde conferir.</p></details>
 </div>
 </section>
+<div class="balao" id="balao" role="status" aria-live="polite" hidden><span class="vivo2" aria-hidden="true"></span><p>Todo dia, <b class="vendas">+45</b> estudantes de Medicina garantem o pacote dos 40 prompts.</p><button type="button" id="balaoFechar" aria-label="Fechar aviso">×</button></div>
 <footer id="fim">ChatGPT é marca da OpenAI. Este material é independente e não tem vínculo com a OpenAI.</footer>
 </div>
 <script>
@@ -323,6 +333,11 @@ footer{padding:24px 40px 48px}
   document.querySelectorAll(".preco-txt").forEach(function(el){ el.textContent = brl(PRECO); });
   document.querySelectorAll(".de-txt").forEach(function(el){ el.textContent = brl(PRECO_DE); });
   document.querySelectorAll(".vendas").forEach(function(el){ el.textContent = "+" + VENDAS_BASE; });
+
+  // balão de prova social: sobe aos 5 s e fica até a pessoa fechar
+  var balao = document.getElementById("balao"), fechou = false;
+  document.getElementById("balaoFechar").addEventListener("click", function(){ fechou = true; balao.classList.remove("ver"); setTimeout(function(){ balao.hidden = true; }, 500); });
+  setTimeout(function(){ if (fechou) return; balao.hidden = false; requestAnimationFrame(function(){ requestAnimationFrame(function(){ balao.classList.add("ver"); }); }); }, 5000);
 
   // Pixel da Meta: só dispara quando o código base estiver colado no site
   function px(evento, dados){ try { if (typeof window.fbq === "function") window.fbq("track", evento, dados || {}); } catch(e){} }
