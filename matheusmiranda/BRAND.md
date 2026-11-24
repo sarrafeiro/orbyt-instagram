@@ -15,7 +15,11 @@ Tudo que é só deste perfil fica aqui. O processo geral de trabalho (vale pra q
 - Número só o que ele disse ou o que foi medido. Nunca repetir no carrossel o tema de um Reel já gravado.
 - PromoSnap: citar o que é, sem gastar tempo nele.
 
-## Carrossel A: padrão centralizado (principal)
+## Regra do carrossel (24/11/2026)
+- Carrossel é SÓ no padrão tirinha com o personagem (Carrossel B). O padrão centralizado só texto (Carrossel A) não vai mais pro feed.
+- Ilustração na Kairogen; o Matheus põe os créditos. Sem crédito, o carrossel espera: não trocar por padrão só texto.
+
+## Carrossel A: padrão centralizado (aposentado no feed em 24/11/2026)
 - Motor: motor-v2/carrossel_v2.py com MARCA_JSON=matheusmiranda/marca-v2.json.
 - Cores: azul-marinho #1E2B4A, creme #FCF4E1, laranja #E2492F (destaque), branco. Uma cor de destaque só.
 - Fundos alternando marinho, creme e laranja.
