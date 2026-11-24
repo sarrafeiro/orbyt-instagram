@@ -1,6 +1,6 @@
 # Brand do Instagram @matheusmiranda.ia
 
-Tudo que é só deste perfil fica aqui. O processo geral de trabalho (vale pra qualquer Instagram) está na skill de Instagram. Atualizado em 12/11/2026.
+Tudo que é só deste perfil fica aqui. O processo geral de trabalho (vale pra qualquer Instagram) está na skill de Instagram. Atualizado em 24/11/2026.
 
 ## Perfil
 - Conta: @matheusmiranda.ia, nome de exibição Matheus Miranda. TikTok com o mesmo @.
@@ -43,14 +43,23 @@ Exemplo aprovado (Reel das 5 IAs):
 >
 > 📌 Salva pra testar uma por semana.
 
+## Posicionamento (24/11/2026)
+- Ele vai vender conteúdo de IA (curso) mais pra frente. Ainda não é hora: nada de oferta, lista de espera, link de venda ou "comenta X que eu te mando".
+- Cada post mostra O QUE ele construiu com IA e o RESULTADO real (o sistema, o time de IA, o número). O COMO (prompt, passo a passo, configuração) fica guardado pro produto.
+- Ele sempre no comando: ele monta, configura e decide; a IA executa.
+- Fecho: pergunta pra comentar, "salva" ou chamada pra seguir a série.
+
 ## Stories
-- Gravados: ele grava. A tarefa agendada "Lembrete de stories e Reels do @matheusmiranda.ia" (trig_019o4L1EkARPhztjfrvdv5wN) manda push às 09:51 e 19:51 com o tema, sem roteiro, e o Reels a gravar no dia.
-- Só texto: o Claude faz e agenda sozinho, na paleta do cartoon (matheusmiranda/personagem/stories.py). Um "post novo" 10 minutos depois de cada carrossel.
+- Ele grava o que quiser, sem lembrete de tema. A base é o "Café com IA" (trig_019o4L1EkARPhztjfrvdv5wN): todo dia por volta das 8h chega um resumo das notícias de IA do dia anterior, sem roteiro.
+- Story só texto de "post novo" depois do carrossel: opcional, sem gastar crédito.
 
 ## Reels
 - Ele grava. Roteiro em blocos curtos, sem texto pra decorar. A edição fica num chat separado.
 - O MP4 final ele arrasta no chat. Vai pro repositório em matheusmiranda/reels/ e de lá pro Trypost.
 
-## Grade
-- Carrossel às 12:30 e Reel às 19:40, todo dia.
-- Story só texto de "post novo" às 12:40.
+## Grade (desde 24/11/2026)
+- Segunda: carrossel, 12:30.
+- Quarta: Reel em vídeo (ele grava), 12:30.
+- Quinta: carrossel, 12:30.
+- Horário de almoço é o preferido dele (melhor engajamento na percepção dele; medir antes de cravar).
+- O planejamento sai todo domingo (trig_01EupCaa7A9XENL7eJ2ThEDo) e só vira post com o ok dele.
