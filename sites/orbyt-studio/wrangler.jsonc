@@ -16,6 +16,8 @@
   // Banco SQL (D1) com as sessões do funil do checkout. Sem "database_id" de propósito:
   // o wrangler cria o banco "orbyt-funil" no primeiro deploy e mantém a ligação nos seguintes.
   "d1_databases": [{ "binding": "FUNIL", "database_name": "orbyt-funil" }],
+  // Cron: a cada minuto manda os e-mails de recuperação que estão na hora (src/index.js > recuperar).
+  "triggers": { "crons": ["* * * * *"] },
   "keep_vars": true,
   "observability": { "enabled": true }
 }
