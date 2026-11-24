@@ -580,6 +580,37 @@ async function lpResumo(env, desde) {
   };
 }
 
+// Detalhe dos pedidos do período, sem dado pessoal: método, hora, valor, status no Mercado Pago e motivo de recusa.
+async function funilPedidos(env, lista) {
+  const ks = [];
+  let cursor;
+  do {
+    const r = await env.PEDIDOS.list({ prefix: "pedido:", cursor });
+    for (const k of r.keys) if (k.metadata && lista.includes(k.metadata.d)) ks.push(k);
+    cursor = r.list_complete ? null : r.cursor;
+  } while (cursor);
+  const out = await Promise.all(ks.slice(0, 40).map(async (k) => {
+    const id = k.name.slice(7), reg = (await env.PEDIDOS.get(k.name, "json")) || {};
+    let mpd = {};
+    try { const r = await mp(env, "GET", "/v1/orders/" + encodeURIComponent(id)); mpd = r.data || {}; } catch (e) {}
+    const pg = ((mpd.transactions || {}).payments || [])[0] || {};
+    return {
+      id: id.slice(0, 6) + "…", dia: k.metadata.d, criado: reg.criado || "", metodo: reg.metodo || k.metadata.m || "", fase: reg.fase || 0, extras: (reg.itens || []).join(","), total: reg.total || k.metadata.t || 0,
+      emailEnviado: !!reg.emailEnviado, dominioEmail: String(reg.email || "").split("@")[1] || "",
+      doAnuncio: !!reg.oppref, aparelho: /iPhone|iPad/.test(reg.ua || "") ? "iOS" : /Android/.test(reg.ua || "") ? "Android" : reg.ua ? "computador" : "", navegador: /Instagram|FBAN|FBAV/.test(reg.ua || "") ? "app" : /CriOS|Chrome/.test(reg.ua || "") ? "Chrome" : /Safari/.test(reg.ua || "") ? "Safari" : "", mp_status: mpd.status || "", mp_detalhe: mpd.status_detail || "",
+      pagamento_status: pg.status || "", pagamento_detalhe: pg.status_detail || "", meio: (pg.payment_method || {}).id || "", tipo: (pg.payment_method || {}).type || "",
+      atualizado: mpd.last_updated_date || "",
+    };
+  }));
+  return out.sort((a, b) => String(a.criado).localeCompare(String(b.criado)));
+}
+
+// Sessões que tocaram em pagar e não geraram pedido (ex.: cartão recusado antes de virar pedido).
+async function funilCliques(env, lista) {
+  if (!env.FUNIL) return null;
+  try { const db = await funilBanco(env); const r = await db.prepare("SELECT dia, fase, itens, viu, clicou, seg FROM sessao WHERE dia >= ?1 AND clicou = 1").bind(lista[lista.length - 1]).all(); return r.results || []; } catch (e) { return null; }
+}
+
 async function funilRelatorio(env, url) {
   if (!env.PEDIDOS || (await sha256(url.searchParams.get("k") || "")) !== FUNIL_HASH) return new Response("Não encontrado.", { status: 404 });
   const dias = Math.max(1, Math.min(14, Number(url.searchParams.get("dias")) || 7));
@@ -621,6 +652,7 @@ async function funilRelatorio(env, url) {
   for (const d of lista) for (const c in tot) tot[c] += porDia[d][c];
   let lp = null;
   if (env.FUNIL) { try { lp = await lpResumo(env, lista[lista.length - 1]); await (await funilBanco(env)).prepare("DELETE FROM " + LP_TABELA + " WHERE dia < ?1").bind(diaBR(Date.now() - 60 * 864e5)).run(); } catch (e) { console.log("lp: leitura falhou", String((e && e.message) || e)); } }
+  if (url.searchParams.get("pedidos") === "1") return json({ dias, pedidos: await funilPedidos(env, lista), cliquesSemPedido: await funilCliques(env, lista) });
   if (url.searchParams.get("formato") === "json") return json({ dias, fonte, total: tot, porDia, lp });
   const pct = (a, b) => (b ? Math.round((a / b) * 100) + "%" : "0%");
   const grana = (c) => "R$ " + (c / 100).toFixed(2).replace(".", ",");
