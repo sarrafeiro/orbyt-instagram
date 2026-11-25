@@ -102,6 +102,10 @@ export default {
         return json({ validacao: { status: r.status, resposta: (await r.text()).slice(0, 800) }, ultima_compra_ou_falha: env.PEDIDOS ? await env.PEDIDOS.get("diag:capi", "json") : null });
       }
       if (p === "/api/saude/extras") return await saudeExtra(env, url);
+      if (p === "/api/saude/aviso") {
+        if ((await sha256(url.searchParams.get("k") || "")) !== FUNIL_HASH) return new Response("Não encontrado.", { status: 404 });
+        return json(await avisarVenda(env, { id: "TESTE", external_reference: "40p-pix-f2-teste", total_amount: "29.90" }, true));
+      }
       if (p === "/api/saude") return await saude(env);
       if (p === "/api/oa/evento" && req.method === "POST") return await eventoOa(req, env, ctx);
       if (p === "/api/funil/sessao" && req.method === "POST") return await funilSessao(req, env);
@@ -471,6 +475,48 @@ async function posVenda(env, url, o) {
   try { await upsRegistrar(env, o); } catch (e) { console.log("ups registro erro", String((e && e.message) || e)); }
   try { await enviarEmail(env, url, o); } catch (e) { console.log("email erro", e && e.stack || e); }
   try { await conversaoCompra(env, o); } catch (e) { console.log("capi erro", e && e.stack || e); }
+  try { await avisarVenda(env, o); } catch (e) { console.log("aviso erro", String((e && e.message) || e)); }
+}
+
+// ---------- aviso de venda para o dono (pedido do Matheus em 25/11/2026) ----------
+// 1 e-mail curto por venda paga, para medicina@orbytstudio.com.br (o Email Routing da Cloudflare
+// encaminha para o Gmail dele). Sai depois do e-mail do comprador; se falhar, a venda segue.
+// Não repete: só pedidos criados nas últimas 6 h, mais a chave de idempotência do Resend (24 h).
+// Teto de AVISO_TETO_DIA avisos por dia, para não gastar a cota do Resend grátis (100/dia) que entrega o PDF.
+// Teste: /api/saude/aviso?k=<senha do relatório do funil> manda um aviso de exemplo.
+const AVISO_TETO_DIA = 15;
+async function avisarVenda(env, o, teste) {
+  if (!env.RESEND_API_KEY) return { ok: false, motivo: "sem RESEND_API_KEY" };
+  const comp = !teste && env.PEDIDOS ? await env.PEDIDOS.get("pedido:" + o.id, "json") : null;
+  const criado = Date.parse((comp && comp.criado) || o.created_date || "");
+  if (!teste && criado && Date.now() - criado > 6 * 3600e3) return { ok: false, motivo: "pedido antigo" };
+  const chaveDia = "aviso:" + diaBR();
+  let n = 0;
+  if (!teste && env.PEDIDOS) {
+    n = Number(await env.PEDIDOS.get(chaveDia)) || 0;
+    if (n >= AVISO_TETO_DIA) return { ok: false, motivo: "teto do dia" };
+  }
+  const sel = selecaoDaRef(o.external_reference), f = FASES[sel.fase];
+  const centavos = Number(o.total_amount) > 0 ? Math.round(Number(o.total_amount) * 100) : totalCentavos(sel);
+  const rs = "R$ " + reais(centavos).replace(".", ",");
+  const oque = sel.soExtras ? "pacote da fase pós-compra" : sel.itens.length === 3 ? "com combo" : sel.itens.length ? "com " + sel.itens.length + (sel.itens.length > 1 ? " extras" : " extra") : "sem extra";
+  const partes = [/^40p-cartao-/.test(String(o.external_reference || "")) ? "cartão" : "Pix", f ? f.rotulo : "", oque, sel.preco && !sel.soExtras ? "oferta do e-mail" : "", comp && comp.oppref ? "veio do anúncio" : ""].filter(Boolean);
+  const hora = new Date(Date.now() - 3 * 3600e3).toISOString().slice(11, 16);
+  const texto = (teste ? "TESTE: é assim que vai chegar o aviso de cada venda.\n\n" : "") + "Venda nova no 40 Prompts!\n" + rs + " às " + hora + " (" + partes.join(", ") + ")\nPedido " + o.id;
+  const r = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { authorization: "Bearer " + env.RESEND_API_KEY, "content-type": "application/json", "idempotency-key": teste ? "aviso-teste-" + Date.now() : "aviso-" + o.id },
+    body: JSON.stringify({
+      from: env.EMAIL_DE || "Orbyt Studio para Medicina <medicina@orbytstudio.com.br>",
+      to: [env.AVISO_PARA || "medicina@orbytstudio.com.br"],
+      subject: (teste ? "[TESTE] " : "") + "Venda! " + rs + " no 40 Prompts",
+      text: texto,
+    }),
+  });
+  if (!r.ok) { const t = (await r.text()).slice(0, 300); console.log("aviso de venda falhou", o.id, r.status, t); return { ok: false, status: r.status, resposta: t }; }
+  if (!teste && env.PEDIDOS) await env.PEDIDOS.put(chaveDia, String(n + 1), { expirationTtl: 2 * 86400 });
+  console.log("aviso de venda enviado", o.id);
+  return { ok: true, status: r.status };
 }
 
 async function sha256(t) { const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t)); return [...new Uint8Array(b)].map((x) => x.toString(16).padStart(2, "0")).join(""); }

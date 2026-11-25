@@ -19,6 +19,14 @@ Ligado na Cloudflare em 17/11/2026 (Settings > Builds do projeto `orbyt-studio`)
 - Segredos na Cloudflare (orbyt-studio > Settings > Variables and Secrets, tipo Secret): `MP_ACCESS_TOKEN`, `PDF_KEY` e, quando tiver e-mail, `RESEND_API_KEY`.
 - Trocar o PDF: criptografar de novo com a mesma chave e substituir `src/40prompts.bin`.
 
+## Aviso de venda (e-mail para o dono, desde 25/11/2026)
+
+- Cada venda paga manda um e-mail curto para `medicina@orbytstudio.com.br` (o Email Routing da Cloudflare encaminha para o Gmail do Matheus): valor, hora, Pix ou cartão, fase, extras e se veio do anúncio. Sai em `posVenda` (`avisarVenda`), depois do e-mail do comprador. Se falhar, a venda segue.
+- Não repete: só pedidos criados nas últimas 6 h, mais a chave de idempotência do Resend (`aviso-<pedido>`).
+- Teto de 15 avisos por dia (`AVISO_TETO_DIA`), contados no KV em `aviso:<dia>`, para não gastar a cota do Resend grátis que entrega o PDF.
+- Trocar o destino: variável `AVISO_PARA` na Cloudflare (Settings > Variables and Secrets). Não colocar e-mail pessoal aqui: o repositório é público.
+- Testar: `/api/saude/aviso?k=<senha do relatório do funil>` manda um aviso de exemplo com `[TESTE]` no assunto.
+
 ## Funil do checkout (tracking de produto)
 
 - Relatório: `/api/funil?k=<senha>` (página simples; `&dias=14` muda o período, `&formato=json` devolve os números). A senha não fica no repositório, só o hash dela (`FUNIL_HASH`).
