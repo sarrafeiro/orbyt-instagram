@@ -98,7 +98,7 @@ export default {
       if (p === "/api/mp/webhook") return await webhook(req, env, url, ctx);
       if (p === "/api/download" && req.method === "GET") return await download(env, url);
       if (p === "/api/saude/capi") {
-        const r = await fetch("https://bzr.openai.com/v1/events?pid=" + OA_PIXEL, { method: "POST", headers: { authorization: "Bearer " + env.OPENAI_CAPI_KEY, "content-type": "application/json" }, body: JSON.stringify({ validate_only: true, events: [{ id: "teste-validacao-1", type: "page_viewed", timestamp_ms: Date.now(), source_url: OA_ORIGEM + "/40prompts-estudante-medicina/", action_source: "web", user: { countries: ["BR"], external_ids_sha256: [await sha256("teste-validacao")] }, data: { type: "contents" } }] }) });
+        const r = await fetch("https://bzr.openai.com/v1/events?pid=" + OA_PIXEL, { method: "POST", headers: { authorization: "Bearer " + env.OPENAI_CAPI_KEY, "content-type": "application/json" }, body: JSON.stringify({ validate_only: true, events: [{ id: "teste-validacao-1", type: "page_viewed", timestamp_ms: Date.now(), source_url: OA_ORIGEM + "/40prompts-estudante-medicina/", action_source: "web", user: { countries: ["BR"], external_ids_sha256: [await sha256("teste-validacao")] }, data: { type: "contents" } }, { id: "teste-validacao-lead-1", type: "lead_created", timestamp_ms: Date.now(), source_url: OA_ORIGEM + "/40prompts-estudante-medicina/checkout/", action_source: "web", user: { countries: ["BR"], emails_sha256: [await sha256("teste@exemplo.com")] }, data: { type: "customer_action" } }] }) });
         return json({ validacao: { status: r.status, resposta: (await r.text()).slice(0, 800) }, ultima_compra_ou_falha: env.PEDIDOS ? await env.PEDIDOS.get("diag:capi", "json") : null });
       }
       if (p === "/api/saude/extras") return await saudeExtra(env, url);
@@ -165,8 +165,10 @@ async function criarPix(req, env, url, ctx) {
   corpo.transactions = { payments: [{ amount: corpo.total_amount, payment_method: { id: "pix", type: "bank_transfer" }, expiration_time: "PT30M" }] };
   const r = await mp(env, "POST", "/v1/orders", corpo);
   if (!r.ok) { console.log("pix falhou", r.status, JSON.stringify(r.data)); return json({ erro: "Não deu para gerar o Pix agora. Tente de novo." }, 502); }
-  await guardarComprador(env, r.data.id, payer, atribuicao(req, b), sel, "pix");
+  const atribPix = atribuicao(req, b);
+  await guardarComprador(env, r.data.id, payer, atribPix, sel, "pix");
   ctx.waitUntil(funilConverteu(env, b.sid));
+  ctx.waitUntil(leadOa(env, r.data.id, payer, atribPix));
   const pg = (((r.data.transactions || {}).payments || [])[0] || {}).payment_method || {};
   await recRegistrar(env, { email: payer.email, nome: payer.first_name, sel, pedido: r.data.id, metodo: "pix", qr: pg.qr_code, ticket: pg.ticket_url });
   return json({ id: r.data.id, status: r.data.status, total: totalCentavos(sel), qr_code: pg.qr_code, qr_code_base64: pg.qr_code_base64, ticket_url: pg.ticket_url });
@@ -183,8 +185,10 @@ async function criarCartao(req, env, url, ctx) {
   const r = await mp(env, "POST", "/v1/orders", corpo);
   const o = r.data || {};
   if (o.id) {
-    await guardarComprador(env, o.id, payer, atribuicao(req, b), sel, "cartao");
+    const atribCartao = atribuicao(req, b);
+    await guardarComprador(env, o.id, payer, atribCartao, sel, "cartao");
     ctx.waitUntil(funilConverteu(env, b.sid));
+    ctx.waitUntil(leadOa(env, o.id, payer, atribCartao));
     await recRegistrar(env, { email: payer.email, nome: payer.first_name, sel, pedido: o.id, metodo: "cartao" });
   }
   const pgto = ((o.transactions || {}).payments || [])[0] || {};
@@ -421,7 +425,8 @@ async function anotarCapi(env, status, txt, eventos, ok) {
       const ant = await env.PEDIDOS.get("diag:capi", "json");
       if (ant && ant.status === status && Date.now() - Date.parse(ant.quando) < 30 * 60e3) return;
     }
-    await env.PEDIDOS.put("diag:capi", JSON.stringify({ quando: new Date().toISOString(), status, resposta: txt, tipos: eventos.map((e) => e.type) }), { expirationTtl: 60 * 60 * 24 * 30 });
+    const levou = eventos.map((e) => ({ tipo: e.type, cliqueDoAnuncio: !!e.oppref, navegador: !!(e.user && e.user.obref), email: !!(e.user && e.user.emails_sha256), visitante: !!(e.user && e.user.external_ids_sha256) }));
+    await env.PEDIDOS.put("diag:capi", JSON.stringify({ quando: new Date().toISOString(), status, resposta: txt, tipos: eventos.map((e) => e.type), levou }), { expirationTtl: 60 * 60 * 24 * 30 });
   } catch (e) {}
 }
 
@@ -448,6 +453,22 @@ async function eventoOa(req, env, ctx) {
   if (a.oppref) ev.oppref = a.oppref;
   ctx.waitUntil(capi(env, [ev]));
   return json({ ok: true });
+}
+
+// Lead: a pessoa preencheu nome e e-mail e gerou o Pix ou mandou o cartão (ação real, antes de pagar).
+// Leva o e-mail com hash, que a compra sozinha não dava volume pra OpenAI casar. Um por pedido.
+async function leadOa(env, id, payer, a) {
+  try {
+    if (!env.OPENAI_CAPI_KEY || !id || !payer) return;
+    const u = usuarioBase(a || {});
+    if (payer.email) u.emails_sha256 = [await sha256(String(payer.email).trim().toLowerCase())];
+    if (a && a.vid) u.external_ids_sha256 = [await sha256(a.vid)];
+    if (payer.first_name) u.first_names_sha256 = [await sha256(normNome(payer.first_name))];
+    if (payer.last_name) u.last_names_sha256 = [await sha256(normNome(payer.last_name))];
+    const ev = { id: "lead-" + id, type: "lead_created", timestamp_ms: Date.now(), source_url: OA_ORIGEM + "/40prompts-estudante-medicina/checkout/", action_source: "web", user: u, data: { type: "customer_action" } };
+    if (a && a.oppref) ev.oppref = a.oppref;
+    await capi(env, [ev]);
+  } catch (e) { console.log("lead oa falhou", String((e && e.message) || e)); }
 }
 
 // Compra: mesmo ID do pedido que o pixel usa como event_id.
