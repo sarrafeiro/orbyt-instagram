@@ -52,22 +52,23 @@ function totalCentavos(sel) {
 // A seleção viaja dentro da referência do pedido no Mercado Pago (ex.: 40p-pix-f3oek-...),
 // então a entrega não depende de nenhum outro registro.
 function refDe(metodo, sel) {
-  const marca = (sel.fase ? "f" + sel.fase + sel.itens.map((k) => EXTRAS[k].letra).join("") + "-" : "") + (sel.preco ? "of" + sel.preco + "-" : "");
+  const marca = (sel.fase ? "f" + sel.fase + sel.itens.map((k) => EXTRAS[k].letra).join("") + "-" : "") + (sel.preco ? (sel.soExtras ? "oc" : "of") + sel.preco + "-" : "");
   return PRODUTO.prefixo + "-" + metodo + "-" + marca + crypto.randomUUID().slice(0, 18);
 }
 
 function selecaoDaRef(ref) {
   ref = String(ref || "");
   const m = /^40p-(?:pix|cartao)-f([123])([oek]{0,3})-/.exec(ref);
-  const of = /^40p-(?:pix|cartao)-(?:f[123][oek]{0,3}-)?of(\d{3,5})-/.exec(ref);
+  const of = /^40p-(?:pix|cartao)-(?:f[123][oek]{0,3}-)?o([fc])(\d{3,5})-/.exec(ref);
   const sel = m ? { fase: Number(m[1]), itens: ORDEM_EXTRAS.filter((k) => m[2].includes(EXTRAS[k].letra)) } : { fase: 0, itens: [] };
-  if (of) sel.preco = Number(of[1]);
+  if (of) { sel.preco = Number(of[2]); if (of[1] === "c") sel.soExtras = true; }
   return sel;
 }
 
 function itensMp(sel) {
   const l = [{ title: PRODUTO.nome, unit_price: PRODUTO.preco, quantity: 1 }];
   const f = FASES[sel.fase];
+  if (sel.preco && sel.soExtras && f) return [{ title: "Pacote do " + f.rotulo + " + bônus (OSCE, ENAMED e kit de prompts)", unit_price: reais(sel.preco), quantity: 1 }];
   if (sel.preco) return [{ title: sel.itens.length === 3 && f ? "Oferta: 40 Prompts + pacote do " + f.rotulo + " + bônus" : PRODUTO.nome + " (oferta)", unit_price: reais(sel.preco), quantity: 1 }];
   if (!f || !sel.itens.length) return l;
   if (sel.itens.length === 3) l.push({ title: "Combo " + f.rotulo + ": OSCE + Simulados ENAMED + Kit de prompts", unit_price: reais(COMBO_CENTAVOS), quantity: 1 });
@@ -305,14 +306,15 @@ async function enviarEmail(env, url, o) {
   if (!email) { console.log("pedido sem e-mail", o.id); return; }
   if (comp && comp.emailEnviado) return;
   const nome = ((comp && comp.first_name) || (o.payer && o.payer.first_name) || "").trim();
+  const selRef = selecaoDaRef(o.external_reference), soPacote = !!(selRef.soExtras && FASES[selRef.fase]);
   const arqs = [];
-  for (const a of arquivosDe(selecaoDaRef(o.external_reference))) arqs.push(Object.assign({ url: await linkDownload(env, url, o.id, a.chave) }, a));
+  for (const a of arquivosDe(selRef)) arqs.push(Object.assign({ url: await linkDownload(env, url, o.id, a.chave) }, a));
   const link = arqs[0].url, extras = arqs.slice(1);
   const pdf = await abrirPdf(env);
   const botao = (href, txt, cor) => '<a href="' + href + '" style="display:inline-block;background:' + cor + ';color:#ffffff;padding:13px 22px;border-radius:999px;text-decoration:none;font-weight:bold">' + txt + "</a>";
   let html = '<div style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.55;color:#16181B;max-width:520px;margin:0 auto;padding:24px">'
     + '<p style="margin:0 0 16px">' + (nome ? "Oi, " + escapar(nome) + "!" : "Oi!") + " Pagamento aprovado.</p>"
-    + '<p style="margin:0 0 16px">O seu <b>' + PRODUTO.nome + "</b> está anexado neste e-mail. Se preferir, baixe pelo botão:</p>"
+    + (soPacote ? '<p style="margin:0 0 16px">O seu <b>pacote do ' + FASES[selRef.fase].rotulo + "</b> está liberado nos botões abaixo. O guia dos 40 prompts vai anexado de novo, caso precise:</p>" : '<p style="margin:0 0 16px">O seu <b>' + PRODUTO.nome + "</b> está anexado neste e-mail. Se preferir, baixe pelo botão:</p>")
     + '<p style="margin:0 0 24px">' + botao(link, "Baixar o PDF", "#FF5A1F") + "</p>";
   if (extras.length) {
     html += '<p style="margin:0 0 12px"><b>Seus extras</b> também estão liberados:</p>';
@@ -331,7 +333,7 @@ async function enviarEmail(env, url, o) {
       from: env.EMAIL_DE || "Orbyt Studio para Medicina <medicina@orbytstudio.com.br>",
       reply_to: "medicina@orbytstudio.com.br",
       to: [email],
-      subject: extras.length ? "Seus PDFs chegaram: 40 Prompts + extras" : "Seu PDF chegou: " + PRODUTO.nome,
+      subject: soPacote ? "Seu pacote do " + FASES[selRef.fase].rotulo + " chegou" : extras.length ? "Seus PDFs chegaram: 40 Prompts + extras" : "Seu PDF chegou: " + PRODUTO.nome,
       html, text: texto,
       attachments: anexos,
     }),
@@ -466,6 +468,7 @@ async function conversaoCompra(env, o) {
 
 async function posVenda(env, url, o) {
   try { await recPago(env, o); } catch (e) { console.log("rec pago erro", String((e && e.message) || e)); }
+  try { await upsRegistrar(env, o); } catch (e) { console.log("ups registro erro", String((e && e.message) || e)); }
   try { await enviarEmail(env, url, o); } catch (e) { console.log("email erro", e && e.stack || e); }
   try { await conversaoCompra(env, o); } catch (e) { console.log("capi erro", e && e.stack || e); }
 }
@@ -508,6 +511,8 @@ async function funilBanco(env) {
       env.FUNIL.prepare("CREATE TABLE IF NOT EXISTS recupera (email TEXT PRIMARY KEY, nome TEXT NOT NULL DEFAULT '', fase INTEGER NOT NULL DEFAULT 0, itens TEXT NOT NULL DEFAULT '', pedido TEXT NOT NULL, metodo TEXT NOT NULL DEFAULT '', total INTEGER NOT NULL DEFAULT 0, qr TEXT NOT NULL DEFAULT '', ticket TEXT NOT NULL DEFAULT '', criado INTEGER NOT NULL, ultimo INTEGER NOT NULL, e1 INTEGER NOT NULL DEFAULT 0, e2 INTEGER NOT NULL DEFAULT 0, e3 INTEGER NOT NULL DEFAULT 0, pago INTEGER NOT NULL DEFAULT 0, sair INTEGER NOT NULL DEFAULT 0, chave TEXT NOT NULL, origem TEXT NOT NULL DEFAULT '') WITHOUT ROWID"),
       env.FUNIL.prepare("CREATE INDEX IF NOT EXISTS recupera_ultimo ON recupera (ultimo)"),
       env.FUNIL.prepare("CREATE INDEX IF NOT EXISTS recupera_criado ON recupera (criado)"),
+      env.FUNIL.prepare("CREATE TABLE IF NOT EXISTS upsell (email TEXT PRIMARY KEY, nome TEXT NOT NULL DEFAULT '', fase INTEGER NOT NULL, pedido TEXT NOT NULL, comprado INTEGER NOT NULL, u1 INTEGER NOT NULL DEFAULT 0, u2 INTEGER NOT NULL DEFAULT 0, comprou INTEGER NOT NULL DEFAULT 0, sair INTEGER NOT NULL DEFAULT 0, chave TEXT NOT NULL, origem TEXT NOT NULL DEFAULT '') WITHOUT ROWID"),
+      env.FUNIL.prepare("CREATE INDEX IF NOT EXISTS upsell_comprado ON upsell (comprado)"),
     ]);
     funilPronto = true;
   }
@@ -678,8 +683,9 @@ async function funilRelatorio(env, url) {
   if (env.FUNIL) { try { lp = await lpResumo(env, lista[lista.length - 1]); await (await funilBanco(env)).prepare("DELETE FROM " + LP_TABELA + " WHERE dia < ?1").bind(diaBR(Date.now() - 60 * 864e5)).run(); } catch (e) { console.log("lp: leitura falhou", String((e && e.message) || e)); } }
   if (url.searchParams.get("pedidos") === "1") return json({ dias, pedidos: await funilPedidos(env, lista), cliquesSemPedido: await funilCliques(env, lista) });
   let rec = null;
-  try { rec = await recResumo(env); } catch (e) { console.log("rec: resumo falhou", String((e && e.message) || e)); }
-  if (url.searchParams.get("formato") === "json") return json({ dias, fonte, total: tot, porDia, lp, recuperacao: rec });
+  let pos = null;
+  try { rec = await recResumo(env); pos = await upsResumo(env); } catch (e) { console.log("rec: resumo falhou", String((e && e.message) || e)); }
+  if (url.searchParams.get("formato") === "json") return json({ dias, fonte, total: tot, porDia, lp, recuperacao: rec, posCompra: pos });
   const pct = (a, b) => (b ? Math.round((a / b) * 100) + "%" : "0%");
   const grana = (c) => "R$ " + (c / 100).toFixed(2).replace(".", ",");
   const passos = [["Abriram o checkout", "abriu"], ["Preencheram os dados", "dados"], ["Escolheram a fase", "fase"], ["Chegaram no botão de pagar", "viu"], ["Geraram Pix ou passaram o cartão", "pedido"], ["Pagaram", "pago"]];
@@ -722,6 +728,14 @@ async function funilRelatorio(env, url) {
     h += '<div class="l"><span>Compraram depois de um e-mail</span><b>' + rec.recuperados + "</b></div>";
     h += '<div class="l"><span>Saíram da lista</span><b>' + rec.sairam + (rec.falhas ? "<small>" + rec.falhas + " envios falharam</small>" : "") + "</b></div></div>";
   }
+  if (pos && pos.n) {
+    h += '<h2>Oferta pós-compra (só os 40 prompts)</h2><div class="c">';
+    h += '<div class="l"><span>Compradores sem o pacote da fase</span><b>' + pos.n + "</b></div>";
+    h += '<div class="l"><span>24 h: pacote por R$ 12,90</span><b>' + pos.u1 + "</b></div>";
+    h += '<div class="l"><span>72 h: pacote por R$ 6,99</span><b>' + pos.u2 + "</b></div>";
+    h += '<div class="l"><span>Compraram o pacote depois do e-mail</span><b>' + pos.compraram + "</b></div>";
+    h += '<div class="l"><span>Saíram da lista</span><b>' + pos.sairam + "</b></div></div>";
+  }
   h += '<h2>Por dia</h2><div class="r"><table><tr><th>Dia</th><th>Abriu</th><th>Fase</th><th>Botão</th><th>Pedido</th><th>Pago</th><th>Extra</th><th>Receita</th></tr>';
   for (const d of lista) { const n = porDia[d]; h += "<tr><td>" + d.slice(8) + "/" + d.slice(5, 7) + "</td><td>" + n.abriu + "</td><td>" + n.fase + "</td><td>" + n.viu + "</td><td>" + n.pedido + "</td><td>" + n.pago + "</td><td>" + n.extra + "</td><td>" + grana(n.receita) + "</td></tr>"; }
   h += "</table></div>";
@@ -745,7 +759,12 @@ async function saudeExtra(env, url) {
 // Para na hora que o e-mail compra (posVenda marca "pago") ou quando a pessoa sai da lista.
 // O preço da oferta vai num link assinado: o servidor confere a assinatura e cobra o preço fechado.
 const REC_LIMITE_DIA = 40;   // o Resend grátis dá 100 por dia, divididos com a Cozinha Guiada
-const OFERTAS = { tudo: { preco: 2990, de: PRODUTO.centavos + COMBO_CENTAVOS }, "14": { preco: 1490, de: PRODUTO.centavos } };
+const SOMA_EXTRAS = ORDEM_EXTRAS.reduce((t, k) => t + EXTRAS[k].centavos, 0);   // R$ 24,70 avulsos
+const OFERTAS = {
+  tudo: { preco: 2990, de: PRODUTO.centavos + COMBO_CENTAVOS }, "14": { preco: 1490, de: PRODUTO.centavos },
+  // pós-compra, para quem levou só os 40 prompts: o pacote da fase no preço normal do combo (24 h) e por R$ 6,99 (72 h)
+  combo: { preco: COMBO_CENTAVOS, de: SOMA_EXTRAS, soExtras: true }, combo7: { preco: 699, de: SOMA_EXTRAS, soExtras: true },
+};
 const CHECKOUT_URL = OA_ORIGEM + "/40prompts-estudante-medicina/checkout/";
 
 async function hmacHex(env, rotulo, txt, n = 16) {
@@ -775,6 +794,10 @@ async function selecaoFinal(env, b) {
   if (!b || !b.oferta) return lerSelecao(b);
   const o = await lerOferta(env, b.oferta);
   if (!o) throw new ErroCliente("Essa oferta expirou. Atualize a página para ver o preço normal.");
+  if (OFERTAS[o.tipo].soExtras) {
+    if (!o.fase) throw new ErroCliente("Essa oferta expirou. Atualize a página para ver o preço normal.");
+    return { fase: o.fase, itens: ORDEM_EXTRAS.slice(), preco: o.preco, soExtras: true };
+  }
   if (o.tipo === "tudo") {
     const fase = o.fase || lerSelecao(b).fase;
     if (!fase) throw new ErroCliente("Escolha a sua fase para continuar.");
@@ -786,7 +809,7 @@ async function selecaoFinal(env, b) {
 async function ofertaVer(env, url) {
   const o = await lerOferta(env, url.searchParams.get("o"));
   if (!o) return json({ ok: false });
-  return json({ ok: true, tipo: o.tipo, fase: o.fase, total: o.preco, de: o.de, expira: o.expira });
+  return json({ ok: true, tipo: o.tipo, fase: o.fase, total: o.preco, de: o.de, expira: o.expira, so: !!OFERTAS[o.tipo].soExtras });
 }
 
 async function recRegistrar(env, d) {
@@ -812,9 +835,61 @@ async function recPago(env, o) {
 
 async function recSair(req, env, url) {
   const c = url.searchParams.get("c") || "";
-  if (/^[a-f0-9]{24}$/.test(c) && env.FUNIL) { try { await (await funilBanco(env)).prepare("UPDATE recupera SET sair = ?1 WHERE chave = ?2 AND sair = 0").bind(Date.now(), c).run(); } catch (e) {} }
+  if (/^[a-f0-9]{24}$/.test(c) && env.FUNIL) {
+    try {
+      const db = await funilBanco(env), agora = Date.now();
+      await db.batch([db.prepare("UPDATE recupera SET sair = ?1 WHERE chave = ?2 AND sair = 0").bind(agora, c), db.prepare("UPDATE upsell SET sair = ?1 WHERE chave = ?2 AND sair = 0").bind(agora, c)]);
+    } catch (e) {}
+  }
   if (req.method === "POST") return new Response("ok");
   return new Response('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Pronto</title></head><body style="font-family:Arial,Helvetica,sans-serif;background:#F4F5F7;color:#16181B;display:grid;place-items:center;min-height:90vh;margin:0;padding:20px"><div style="background:#fff;border-radius:16px;padding:28px;max-width:420px;text-align:center"><h1 style="font-size:1.3rem;margin:0 0 8px">Pronto, você saiu da lista.</h1><p style="color:#5B6470;margin:0">Não vamos mandar mais e-mails sobre esse pedido.</p></div></body></html>', { headers: { "content-type": "text/html; charset=utf-8" } });
+}
+
+// ---- pós-compra: quem levou só os 40 prompts recebe o pacote da fase (24 h no preço normal, 72 h por R$ 6,99) ----
+async function upsRegistrar(env, o, quando) {
+  if (!env.FUNIL) return;
+  const sel = selecaoDaRef(o.external_reference);
+  const comp = env.PEDIDOS ? await env.PEDIDOS.get("pedido:" + o.id, "json") : null;
+  const email = String((comp && comp.email) || (o.payer && o.payer.email) || "").toLowerCase();
+  if (!email || /@orbytstudio\.com\.br$/.test(email)) return;
+  const db = await funilBanco(env), agora = Date.now();
+  if (sel.itens.length === 3) { await db.prepare("UPDATE upsell SET comprou = ?1 WHERE email = ?2 AND comprou = 0").bind(agora, email).run(); return false; }
+  const fase = sel.fase || Number(comp && comp.fase) || 0;
+  if (!FASES[fase] || sel.itens.length) return false;
+  const chave = [...crypto.getRandomValues(new Uint8Array(12))].map((x) => x.toString(16).padStart(2, "0")).join("");
+  const r = await db.prepare("INSERT OR IGNORE INTO upsell (email, nome, fase, pedido, comprado, chave, origem) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)")
+    .bind(email, String((comp && comp.first_name) || "").slice(0, 60), fase, o.id, quando || agora, chave, quando ? "backfill" : "").run();
+  return ((r.meta && r.meta.changes) || 0) === 1;
+}
+
+async function upsBackfill(env) {
+  if (!env.FUNIL || !env.PEDIDOS) return { ok: false };
+  let cursor, vistos = 0, novos = 0;
+  const pagos = [];
+  do {
+    const r = await env.PEDIDOS.list({ prefix: "pedido:", cursor });
+    for (const k of r.keys) if (k.metadata && k.metadata.p) pagos.push(k.name.slice(7));
+    cursor = r.list_complete ? null : r.cursor;
+  } while (cursor);
+  // primeiro entram os que levaram só o guia; depois os pedidos com o pacote marcam "comprou"
+  const lista = [];
+  for (const id of pagos) {
+    const o = await mp(env, "GET", "/v1/orders/" + id);
+    if (!o.ok || o.data.status !== "processed") continue;
+    const comp = await env.PEDIDOS.get("pedido:" + id, "json");
+    lista.push({ o: o.data, t: Date.parse((comp && comp.criado) || "") || Date.now(), combo: selecaoDaRef(o.data.external_reference).itens.length === 3 });
+  }
+  lista.sort((a, b) => (a.combo - b.combo) || (a.t - b.t));
+  for (const x of lista) { vistos++; if (await upsRegistrar(env, x.o, x.t)) novos++; }
+  return { ok: true, pedidosPagos: vistos, entraramNaFila: novos };
+}
+
+async function upsResumo(env) {
+  const db = await funilBanco(env);
+  const r = await db.prepare("SELECT COUNT(*) AS n, SUM(u1 > 0) AS u1, SUM(u2 > 0) AS u2, SUM(comprou > 0 AND ((u1 > 0 AND comprou > u1) OR (u2 > 0 AND comprou > u2))) AS compraram, SUM(sair > 0) AS sairam FROM upsell").first();
+  const o = {};
+  for (const k of ["n", "u1", "u2", "compraram", "sairam"]) o[k] = Number(r && r[k]) || 0;
+  return o;
 }
 
 // ---- horário de Brasília ----
@@ -870,6 +945,28 @@ async function recEmail(env, c, tipo, agora) {
     corpo += p(botao(link, "Quero tudo por " + grana(of.preco)), "margin:0 0 22px");
     corpo += p("Vale até " + quandoBR(fim) + ". Depois volta ao preço normal.", "color:#5B6470;font-size:14px");
     texto = "Tudo por " + grana(of.preco) + " (de " + grana(of.de) + "): " + itens.join(", ") + ". Vale até " + quandoBR(fim) + ": " + link;
+  } else if (tipo === "u1" || tipo === "u2") {
+    const chave = tipo === "u1" ? "combo" : "combo7", of = OFERTAS[chave], token = await criarOferta(env, chave, c.fase), link = recLink("oferta=" + token, "origem=email-" + tipo);
+    const fim = agora + 72 * 3600e3, porDia = grana(Math.ceil(of.preco / 30));
+    const itens = ORDEM_EXTRAS.map((k) => EXTRAS[k].titulo(f)).concat([BONUS.titulo]);
+    const lista = '<div style="background:#F1F5F4;border-radius:14px;padding:18px 18px 8px;margin:0 0 18px">' + itens.map((t) => '<p style="margin:0 0 10px;font-size:15px"><span style="color:#0E6B63;font-weight:bold">&#10003;</span> ' + escapar(t) + "</p>").join("") + "</div>";
+    if (tipo === "u1") {
+      assunto = "O pacote do " + f.rotulo + " sai " + porDia + " por dia";
+      corpo += p(oi + " Você já tem os 40 prompts. O que completa eles no " + f.rotulo + " é o pacote da sua fase:");
+      corpo += lista;
+      corpo += p("Separados, os 3 saem " + grana(of.de) + ". No pacote, <b>" + grana(of.preco) + "</b>, quase metade do preço, e o Kit Acadêmico vem de bônus.");
+      corpo += p("Dá <b>" + porDia + " por dia</b> num mês de estudo. Menos que um cafezinho da cantina.");
+      corpo += p(botao(link, "Quero o pacote por " + grana(of.preco)), "margin:0 0 22px");
+      texto = "Pacote do " + f.rotulo + " por " + grana(of.preco) + " (separados " + grana(of.de) + "): " + itens.join(", ") + ". " + link;
+    } else {
+      assunto = "Último: o pacote do " + f.rotulo + " por " + grana(of.preco);
+      corpo += p(oi + " Último e-mail sobre isso. Baixei o pacote do " + f.rotulo + " pra <b>" + grana(of.preco) + "</b> <s style=\"color:#8A929C\">" + grana(of.de) + "</s>, só pra quem já tem os 40 prompts:");
+      corpo += lista;
+      corpo += p("São <b>" + porDia + " por dia</b> num mês. Menos que um chiclete.");
+      corpo += p(botao(link, "Quero por " + grana(of.preco)), "margin:0 0 22px");
+      corpo += p("Vale até " + quandoBR(fim) + ". Depois volta pro preço normal.", "color:#5B6470;font-size:14px");
+      texto = "Pacote do " + f.rotulo + " por " + grana(of.preco) + " até " + quandoBR(fim) + ": " + link;
+    }
   } else {
     const of = OFERTAS["14"], token = await criarOferta(env, "14", c.fase), link = recLink("oferta=" + token, "origem=email-e3");
     const fim = agora + 72 * 3600e3;
@@ -892,7 +989,7 @@ async function recEnviar(env, c, tipo, agora) {
   const m = await recEmail(env, c, tipo, agora);
   const r = await fetch("https://api.resend.com/emails", {
     method: "POST",
-    headers: { authorization: "Bearer " + env.RESEND_API_KEY, "content-type": "application/json", "idempotency-key": "rec-" + tipo.charAt(0) + "-" + (tipo.charAt(0) === "1" ? c.pedido : await sha256(c.email)) },
+    headers: { authorization: "Bearer " + env.RESEND_API_KEY, "content-type": "application/json", "idempotency-key": "rec-" + (tipo.charAt(0) === "1" ? "1-" + c.pedido : tipo + "-" + (await sha256(c.email))) },
     body: JSON.stringify({
       from: env.EMAIL_DE || "Orbyt Studio para Medicina <medicina@orbytstudio.com.br>",
       reply_to: "medicina@orbytstudio.com.br",
@@ -906,8 +1003,8 @@ async function recEnviar(env, c, tipo, agora) {
 }
 
 // Reserva a linha antes de mandar: se dois crons se cruzarem, só um envia.
-async function recPegar(db, c, campo, agora) {
-  const r = await db.prepare("UPDATE recupera SET " + campo + " = ?1 WHERE email = ?2 AND " + campo + " = 0").bind(agora, c.email).run();
+async function recPegar(db, c, campo, agora, tabela = "recupera") {
+  const r = await db.prepare("UPDATE " + tabela + " SET " + campo + " = ?1 WHERE email = ?2 AND " + campo + " = 0").bind(agora, c.email).run();
   return ((r.meta && r.meta.changes) || 0) === 1;
 }
 
@@ -915,7 +1012,7 @@ async function recuperar(env) {
   if (!env.FUNIL || !env.RESEND_API_KEY) return { ok: false };
   const db = await funilBanco(env), agora = Date.now(), base = new URL(OA_ORIGEM), feitos = [];
   const d0 = inicioDiaBR(agora);
-  const cont = await db.prepare("SELECT (SELECT COUNT(*) FROM recupera WHERE e1 >= ?1) + (SELECT COUNT(*) FROM recupera WHERE e2 >= ?1) + (SELECT COUNT(*) FROM recupera WHERE e3 >= ?1) AS n").bind(d0).first();
+  const cont = await db.prepare("SELECT (SELECT COUNT(*) FROM recupera WHERE e1 >= ?1) + (SELECT COUNT(*) FROM recupera WHERE e2 >= ?1) + (SELECT COUNT(*) FROM recupera WHERE e3 >= ?1) + (SELECT COUNT(*) FROM upsell WHERE u1 >= ?1) + (SELECT COUNT(*) FROM upsell WHERE u2 >= ?1) AS n").bind(d0).first();
   let folga = REC_LIMITE_DIA - (Number(cont && cont.n) || 0);
   // passou da janela do 1º e-mail (o Pix já venceu): não manda mais esse
   await db.prepare("UPDATE recupera SET e1 = -1 WHERE e1 = 0 AND ultimo < ?1").bind(agora - 25 * 60e3).run();
@@ -924,12 +1021,16 @@ async function recuperar(env) {
     ["e2", "SELECT * FROM recupera WHERE e2 = 0 AND pago = 0 AND sair = 0 AND criado <= ?1 AND criado > ?2 AND ultimo <= ?3 LIMIT 5", [agora - 24 * 3600e3, agora - 6 * 864e5, agora - 12 * 3600e3]],
     ["e3", "SELECT * FROM recupera WHERE e3 = 0 AND pago = 0 AND sair = 0 AND criado <= ?1 AND criado > ?2 AND ultimo <= ?3 LIMIT 5", [agora - 7 * 864e5, agora - 10 * 864e5, agora - 24 * 3600e3]],
   ];
-  for (const [campo, sql, args] of etapas) {
+  for (const [campo, sql, args] of etapas.concat([
+    ["u1", "SELECT * FROM upsell WHERE u1 = 0 AND comprou = 0 AND sair = 0 AND comprado <= ?1 AND comprado > ?2 AND email NOT IN (SELECT email FROM recupera WHERE sair > 0) LIMIT 5", [agora - 24 * 3600e3, agora - 48 * 3600e3]],
+    ["u2", "SELECT * FROM upsell WHERE u2 = 0 AND comprou = 0 AND sair = 0 AND comprado <= ?1 AND comprado > ?2 AND email NOT IN (SELECT email FROM recupera WHERE sair > 0) LIMIT 5", [agora - 72 * 3600e3, agora - 8 * 864e5]],
+  ])) {
+    const tabela = campo.charAt(0) === "u" ? "upsell" : "recupera";
     const r = await db.prepare(sql).bind(...args).all();
     for (const c of r.results || []) {
       if (folga <= 0) return { ok: true, feitos, limite: true };
-      if (!(await recPegar(db, c, campo, agora))) continue;
-      let tipo = campo.slice(1);
+      if (!(await recPegar(db, c, campo, agora, tabela))) continue;
+      let tipo = tabela === "upsell" ? campo : campo.slice(1);
       if (campo === "e1") {
         // confere no Mercado Pago antes: pagou e o aviso não chegou? entrega agora em vez de cobrar de novo
         const o = await mp(env, "GET", "/v1/orders/" + c.pedido);
@@ -941,7 +1042,7 @@ async function recuperar(env) {
       }
       let ok = false;
       try { ok = await recEnviar(env, c, tipo, agora); } catch (e) { console.log("rec: envio erro", String((e && e.message) || e)); }
-      if (!ok) await db.prepare("UPDATE recupera SET " + campo + " = -2 WHERE email = ?1").bind(c.email).run();
+      if (!ok) await db.prepare("UPDATE " + tabela + " SET " + campo + " = -2 WHERE email = ?1").bind(c.email).run();
       folga--;
       feitos.push({ tipo, ok });
     }
@@ -963,14 +1064,15 @@ async function recAdmin(env, url, ctx) {
   if ((await sha256(url.searchParams.get("k") || "")) !== FUNIL_HASH) return new Response("Não encontrado.", { status: 404 });
   const acao = url.searchParams.get("acao") || "status";
   if (acao === "ver") {
-    const tipo = url.searchParams.get("tipo") || "2", fase = Number(url.searchParams.get("fase")) || 2;
+    const tipo = url.searchParams.get("tipo") || "2", fase = [1, 2, 3].includes(Number(url.searchParams.get("fase"))) ? Number(url.searchParams.get("fase")) : 2;
     const c = { email: "exemplo@email.com", nome: url.searchParams.get("nome") || "Ana", fase, itens: "osce,enamed,kit", pedido: "ORDEXEMPLO0000000000", metodo: tipo === "1cartao" ? "cartao" : "pix", total: 4280, qr: "00020126580014br.gov.bcb.pix0136exemplo-de-codigo-pix-copia-e-cola-0000000000005204000053039865406" + "42.805802BR5925ORBYT STUDIO6009SAO PAULO62070503***6304ABCD", ticket: "https://www.mercadopago.com.br/", ultimo: Date.now(), chave: "0".repeat(24) };
     const m = await recEmail(env, c, tipo, Date.now());
     return new Response('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + escapar(m.assunto) + '</title><body style="margin:0;background:#E9ECEF"><div style="max-width:560px;margin:0 auto;background:#fff;font-family:Arial;padding:12px 24px;font-size:13px;color:#5B6470;border-bottom:1px solid #EEF0F3">Assunto: <b style="color:#16181B">' + escapar(m.assunto) + "</b></div>" + '<div style="max-width:560px;margin:0 auto;background:#fff">' + m.html + "</div></body>", { headers: { "content-type": "text/html; charset=utf-8" } });
   }
   if (acao === "rodar") return json(await recuperar(env));
   if (acao === "backfill") return json(await recBackfill(env, Math.max(1, Math.min(10, Number(url.searchParams.get("dias")) || 7))));
-  return json(await recResumo(env));
+  if (acao === "backfill-pos") return json(await upsBackfill(env));
+  return json({ recuperacao: await recResumo(env), posCompra: await upsResumo(env) });
 }
 
 // Uma vez só: põe na fila quem gerou pedido nos últimos dias e não pagou (sem o e-mail 1, porque o Pix já venceu).

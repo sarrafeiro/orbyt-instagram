@@ -832,7 +832,8 @@ body.com-oferta .bump-selo{display:none}
     else if (falta > 0){ forte.textContent = "Por + " + brlC(falta); pe.appendChild(forte); pe.appendChild(document.createTextNode(" você leva os 3 e ganha o Kit Acadêmico.")); }
     else { forte.textContent = falta < 0 ? brlC(-falta) + " mais barato" : "Mesmo preço"; pe.appendChild(forte); pe.appendChild(document.createTextNode(" do que você marcou, e ainda ganha o Kit Acadêmico.")); }
     var linhas = [];
-    if (OFERTA && combo) linhas.push(["Pacote do " + FASES[fase].rotulo + " + bônus", 0]);
+    if (OFERTA && OFERTA.so) { /* oferta pós-compra: a linha de cima já é o pacote */ }
+    else if (OFERTA && combo) linhas.push(["Pacote do " + FASES[fase].rotulo + " + bônus", 0]);
     else if (combo) linhas.push(["Combo do " + FASES[fase].rotulo + ": 3 extras + bônus", COMBO_C]);
     else l.forEach(function(k){ linhas.push([FASES[fase][k][2], EXTRAS_C[k]]); });
     document.querySelectorAll(".lin-extra").forEach(function(el){ el.remove(); });
@@ -879,7 +880,7 @@ body.com-oferta .bump-selo{display:none}
     var tk = params.get("oferta"); if (!tk) return;
     api("/api/oferta?o=" + encodeURIComponent(tk)).then(function(d){
       if (!d || !d.ok){ avisar("Essa oferta expirou. Este é o preço normal."); return; }
-      OFERTA = {token: tk, total: d.total, de: d.de, tipo: d.tipo};
+      OFERTA = {token: tk, total: d.total, de: d.de, tipo: d.tipo, so: !!d.so};
       document.body.classList.add("com-oferta");
       document.querySelectorAll(".preco-txt").forEach(function(el){ el.textContent = brlC(d.total); });
       document.querySelectorAll(".de-txt").forEach(function(el){ el.textContent = brlC(d.de); });
@@ -889,7 +890,25 @@ body.com-oferta .bump-selo{display:none}
       var faixa = document.getElementById("ofertaFaixa");
       faixa.textContent = "";
       var forte = document.createElement("b");
-      if (d.tipo === "tudo"){
+      if (d.so && FASES[d.fase]){
+        // pós-compra: só o pacote da fase (a pessoa já tem os 40 prompts)
+        var rot = FASES[d.fase].rotulo, nomePac = "Pacote do " + rot + " + bônus";
+        forte.textContent = "Seu pacote do " + rot + " por " + brlC(d.total);
+        faixa.appendChild(forte);
+        faixa.appendChild(document.createTextNode(". OSCE, simulados ENAMED e kit de prompts da sua fase, com o Kit Acadêmico de bônus. Vale até " + dt.toLocaleDateString("pt-BR", {day: "2-digit", month: "2-digit"}) + ", às " + hh + "."));
+        ORDEM.forEach(function(k){ marcados[k] = true; });
+        var bf = document.querySelector('.fase[data-f="' + d.fase + '"]'); if (bf) bf.click();
+        document.querySelectorAll("#blocoFase .fases, #blocoFase .fase-dica").forEach(function(el){ el.style.display = "none"; });
+        var tit = document.querySelector("#blocoFase .bloco-tit"); if (tit && tit.lastChild) tit.lastChild.textContent = "Seu pacote";
+        var bt = document.querySelector("#bump .bump-tit"); if (bt) bt.textContent = "Tudo isso vai no seu e-mail";
+        document.getElementById("comboPor").textContent = brlC(d.total);
+        document.getElementById("comboEco").textContent = brlC(d.de - d.total);
+        var olho = document.querySelector("#bump .bump-olho span:last-child"); if (olho) olho.textContent = "Feitos para o " + rot;
+        var nb = document.querySelector(".res-produto .txt b"); if (nb) nb.textContent = nomePac;
+        var ns = document.querySelector(".res-produto .txt > span"); if (ns) ns.textContent = "OSCE, ENAMED e kit de prompts · PDF";
+        var lc = document.querySelector("#conta > div:first-child > span:first-child"); if (lc) lc.textContent = nomePac;
+        var lp = document.querySelector(".resumo .linhas > div:first-child > span:first-child"); if (lp) lp.textContent = "Os 3 separados";
+      } else if (d.tipo === "tudo"){
         forte.textContent = "Sua oferta: tudo por " + brlC(d.total);
         faixa.appendChild(forte);
         faixa.appendChild(document.createTextNode(". Os 40 prompts, o pacote inteiro da sua fase e o bônus. Vale até " + dt.toLocaleDateString("pt-BR", {day: "2-digit", month: "2-digit"}) + ", às " + hh + "."));
