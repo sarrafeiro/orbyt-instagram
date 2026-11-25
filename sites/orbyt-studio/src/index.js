@@ -377,6 +377,7 @@ function atribuicao(req, b) {
   return {
     oppref: t(b && b.oppref, 512),
     obref: t(b && b.obref, 128),
+    vid: b && /^[a-f0-9]{24}$/.test(String(b.vid || "")) ? String(b.vid) : undefined,   // ID anônimo do visitante (LP e checkout)
     ip: t(req.headers.get("cf-connecting-ip"), 64),
     ua: t(req.headers.get("user-agent"), 512),
   };
@@ -436,6 +437,7 @@ async function eventoOa(req, env, ctx) {
   try { const u = new URL(String(b.source_url)); if (u.origin === OA_ORIGEM) fonte = u.origin + u.pathname; } catch (e) {}
   const a = atribuicao(req, b);
   const ev = { id: String(b.id), type: b.type, timestamp_ms: Date.now(), source_url: fonte, action_source: "web", user: usuarioBase(a), data: oaProduto(tipos[b.type]) };
+  if (a.vid) ev.user.external_ids_sha256 = [await sha256(a.vid)];
   if (b.type === "page_viewed") ev.data = { type: "contents", contents: [{ id: "lp-40-prompts", name: "LP 40 Prompts Medicina", content_type: "page" }] };
   if (a.oppref) ev.oppref = a.oppref;
   ctx.waitUntil(capi(env, [ev]));
@@ -449,6 +451,7 @@ async function conversaoCompra(env, o) {
   if (!comp || comp.capiEnviado) return;
   const u = usuarioBase(comp);
   if (comp.email) u.emails_sha256 = [await sha256(comp.email.trim().toLowerCase())];
+  if (comp.vid) u.external_ids_sha256 = [await sha256(comp.vid)];
   if (comp.first_name) u.first_names_sha256 = [await sha256(normNome(comp.first_name))];
   if (comp.last_name) u.last_names_sha256 = [await sha256(normNome(comp.last_name))];
   const ev = { id: o.id, type: "order_created", timestamp_ms: Date.now(), source_url: OA_ORIGEM + "/40prompts-estudante-medicina/checkout/", action_source: "web", user: u, data: oaProduto(true, selecaoDaRef(o.external_reference)) };

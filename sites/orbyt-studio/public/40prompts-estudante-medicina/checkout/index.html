@@ -21,7 +21,28 @@
   var f = d.getElementsByTagName(s)[0];
   f.parentNode.insertBefore(js, f);
 })(window, document, "script", "https://bzrcdn.openai.com/sdk/oaiq.min.js");
-oaiq("init", { pixelId: "7CWbN3bYT15ftAS8pMju2m" });
+// ID anônimo do visitante (o mesmo na LP e no checkout) + país: ajudam a OpenAI a ligar o clique à venda.
+// O pixel recebe só o hash (SHA-256); o servidor faz o mesmo hash. window.oaPronto avisa quando o hash está no pixel.
+(function (w) {
+  var PID = "7CWbN3bYT15ftAS8pMju2m", u = { country: "BR" }, vid = "", h = "";
+  try {
+    vid = localStorage.getItem("ovid") || "";
+    if (!/^[a-f0-9]{24}$/.test(vid)) { vid = Array.prototype.map.call(crypto.getRandomValues(new Uint8Array(12)), function (x) { return ("0" + x.toString(16)).slice(-2); }).join(""); localStorage.setItem("ovid", vid); localStorage.removeItem("ovidh"); }
+    h = localStorage.getItem("ovidh") || "";
+  } catch (e) {}
+  w.oaVid = vid;
+  if (/^[a-f0-9]{64}$/.test(h)) u.external_id_sha256 = h;
+  w.oaUser = u;
+  oaiq("init", { pixelId: PID, user: u });
+  w.oaPronto = (u.external_id_sha256 || !vid || !(w.crypto && crypto.subtle)) ? Promise.resolve() : Promise.race([
+    crypto.subtle.digest("SHA-256", new TextEncoder().encode(vid)).then(function (b) {
+      h = Array.prototype.map.call(new Uint8Array(b), function (x) { return ("0" + x.toString(16)).slice(-2); }).join("");
+      try { localStorage.setItem("ovidh", h); } catch (e) {}
+      u.external_id_sha256 = h; oaiq("init", { user: u });
+    }).catch(function () {}),
+    new Promise(function (ok) { setTimeout(ok, 800); })
+  ]);
+})(window);
 </script>
 <!-- Pixel da Meta: colar aqui o mesmo código base da LP. -->
 <style>
@@ -562,16 +583,16 @@ body.com-oferta .bump-selo{display:none}
   function oa(evento, extra, centavos){ try { var d = {type: "contents", amount: centavos || CENTAVOS, currency: "BRL", contents: [{ id: "40-prompts-medicina", name: "40 Prompts para Estudar Medicina com IA", content_type: "product", quantity: 1 }]}; if (extra) window.oaiq("measure", evento, d, extra); else window.oaiq("measure", evento, d); } catch(e){} }
   async function sha(t){ try { var b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t)); return [...new Uint8Array(b)].map(function(x){ return x.toString(16).padStart(2, "0"); }).join(""); } catch(e){ return ""; } }
   function normNome(t){ return String(t || "").toLowerCase().replace(/[\s!-\/:-@\[-`{-~]/g, ""); }
-  async function identificar(c){ try { var p = c.nome.split(/\s+/); var u = {country: "BR", email_sha256: await sha(c.email.trim().toLowerCase()), first_name_sha256: await sha(normNome(p[0])), last_name_sha256: await sha(normNome(p.slice(1).join("")))}; window.oaiq("init", {pixelId: "7CWbN3bYT15ftAS8pMju2m", user: u}); } catch(e){} }
+  async function identificar(c){ try { var p = c.nome.split(/\s+/); var u = {country: "BR", external_id_sha256: (window.oaUser && window.oaUser.external_id_sha256) || undefined, email_sha256: await sha(c.email.trim().toLowerCase()), first_name_sha256: await sha(normNome(p[0])), last_name_sha256: await sha(normNome(p.slice(1).join("")))}; if (!u.external_id_sha256) delete u.external_id_sha256; window.oaiq("init", {pixelId: "7CWbN3bYT15ftAS8pMju2m", user: u}); } catch(e){} }
   var produto = {content_name: "40-prompts-medicina", content_category: "prompts-medicina", value: PRECO, currency: "BRL"};
   var params = new URLSearchParams(location.search);
   var origem = params.get("origem") || "direto";
   px("InitiateCheckout", Object.assign({origem: origem}, produto));
   function oaCookie(n){ try { var m = document.cookie.match(new RegExp("(?:^|; )" + n + "=([^;]*)")); return m ? decodeURIComponent(m[1]) : ""; } catch(e){ return ""; } }
-  function oaRef(){ var q = ""; try { q = new URLSearchParams(location.search).get("oppref") || ""; } catch(e){} return {oppref: q || oaCookie("__oppref"), obref: oaCookie("__obref")}; }
+  function oaRef(){ var q = ""; try { q = new URLSearchParams(location.search).get("oppref") || ""; } catch(e){} return {oppref: q || oaCookie("__oppref"), obref: oaCookie("__obref"), vid: window.oaVid || ""}; }
   function oaId(p){ return p + "-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 10); }
-  function oaServidor(tipo, id){ setTimeout(function(){ try { var r = oaRef(); fetch("/api/oa/evento", {method: "POST", headers: {"content-type": "application/json"}, body: JSON.stringify({type: tipo, id: id, source_url: location.href, oppref: r.oppref, obref: r.obref}), keepalive: true}); } catch(e){} }, 1500); }
-  try { if (!sessionStorage.getItem("ck40OaCheckout")) { var oaCk = oaId("ck"); oa("checkout_started", {event_id: oaCk}); oaServidor("checkout_started", oaCk); sessionStorage.setItem("ck40OaCheckout", "1"); } } catch(e){ oa("checkout_started"); }
+  function oaServidor(tipo, id){ setTimeout(function(){ try { var r = oaRef(); fetch("/api/oa/evento", {method: "POST", headers: {"content-type": "application/json"}, body: JSON.stringify({type: tipo, id: id, source_url: location.href, oppref: r.oppref, obref: r.obref, vid: window.oaVid || ""}), keepalive: true}); } catch(e){} }, 1500); }
+  try { if (!sessionStorage.getItem("ck40OaCheckout")) { var oaCk = oaId("ck"); sessionStorage.setItem("ck40OaCheckout", "1"); oaServidor("checkout_started", oaCk); (window.oaPronto || Promise.resolve()).then(function(){ oa("checkout_started", {event_id: oaCk}); }); } } catch(e){ oa("checkout_started"); }
 
   var aviso = document.getElementById("aviso"), tAviso;
   function avisar(t){ aviso.textContent = t; aviso.classList.add("ver"); clearTimeout(tAviso); tAviso = setTimeout(function(){ aviso.classList.remove("ver"); }, 1800); }

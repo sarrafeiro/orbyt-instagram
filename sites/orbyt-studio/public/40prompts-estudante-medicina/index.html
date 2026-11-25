@@ -22,7 +22,28 @@
   var f = d.getElementsByTagName(s)[0];
   f.parentNode.insertBefore(js, f);
 })(window, document, "script", "https://bzrcdn.openai.com/sdk/oaiq.min.js");
-oaiq("init", { pixelId: "7CWbN3bYT15ftAS8pMju2m" });
+// ID anônimo do visitante (o mesmo na LP e no checkout) + país: ajudam a OpenAI a ligar o clique à venda.
+// O pixel recebe só o hash (SHA-256); o servidor faz o mesmo hash. window.oaPronto avisa quando o hash está no pixel.
+(function (w) {
+  var PID = "7CWbN3bYT15ftAS8pMju2m", u = { country: "BR" }, vid = "", h = "";
+  try {
+    vid = localStorage.getItem("ovid") || "";
+    if (!/^[a-f0-9]{24}$/.test(vid)) { vid = Array.prototype.map.call(crypto.getRandomValues(new Uint8Array(12)), function (x) { return ("0" + x.toString(16)).slice(-2); }).join(""); localStorage.setItem("ovid", vid); localStorage.removeItem("ovidh"); }
+    h = localStorage.getItem("ovidh") || "";
+  } catch (e) {}
+  w.oaVid = vid;
+  if (/^[a-f0-9]{64}$/.test(h)) u.external_id_sha256 = h;
+  w.oaUser = u;
+  oaiq("init", { pixelId: PID, user: u });
+  w.oaPronto = (u.external_id_sha256 || !vid || !(w.crypto && crypto.subtle)) ? Promise.resolve() : Promise.race([
+    crypto.subtle.digest("SHA-256", new TextEncoder().encode(vid)).then(function (b) {
+      h = Array.prototype.map.call(new Uint8Array(b), function (x) { return ("0" + x.toString(16)).slice(-2); }).join("");
+      try { localStorage.setItem("ovidh", h); } catch (e) {}
+      u.external_id_sha256 = h; oaiq("init", { user: u });
+    }).catch(function () {}),
+    new Promise(function (ok) { setTimeout(ok, 800); })
+  ]);
+})(window);
 </script>
 <!-- Pixel da Meta: ao publicar no domínio, colar aqui o código base. Os eventos já estão prontos no script do fim da página. -->
 <style>
@@ -354,9 +375,9 @@ footer{padding:24px 40px 48px}
   function oaCookie(n){ try { var m = document.cookie.match(new RegExp("(?:^|; )" + n + "=([^;]*)")); return m ? decodeURIComponent(m[1]) : ""; } catch(e){ return ""; } }
   function oaRef(){ var q = ""; try { q = new URLSearchParams(location.search).get("oppref") || ""; } catch(e){} return {oppref: q || oaCookie("__oppref"), obref: oaCookie("__obref")}; }
   function oaId(p){ return p + "-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 10); }
-  function oaServidor(tipo, id){ setTimeout(function(){ try { var r = oaRef(); fetch("/api/oa/evento", {method: "POST", headers: {"content-type": "application/json"}, body: JSON.stringify({type: tipo, id: id, source_url: location.href, oppref: r.oppref, obref: r.obref}), keepalive: true}); } catch(e){} }, 1500); }
+  function oaServidor(tipo, id){ setTimeout(function(){ try { var r = oaRef(); fetch("/api/oa/evento", {method: "POST", headers: {"content-type": "application/json"}, body: JSON.stringify({type: tipo, id: id, source_url: location.href, oppref: r.oppref, obref: r.obref, vid: window.oaVid || ""}), keepalive: true}); } catch(e){} }, 1500); }
   var oaPv = oaId("pv"); oaServidor("page_viewed", oaPv);
-  try { oaiq("measure", "page_viewed", { type: "contents", contents: [{ id: "lp-40-prompts", name: "LP 40 Prompts Medicina", content_type: "page" }] }, { event_id: oaPv }); oaiq("measure", "contents_viewed", { type: "contents", contents: [{ id: "40-prompts-medicina", name: "40 Prompts para Estudar Medicina com IA", content_type: "product", quantity: 1 }] }); } catch(e){}
+  (window.oaPronto || Promise.resolve()).then(function(){ try { oaiq("measure", "page_viewed", { type: "contents", contents: [{ id: "lp-40-prompts", name: "LP 40 Prompts Medicina", content_type: "page" }] }, { event_id: oaPv }); oaiq("measure", "contents_viewed", { type: "contents", contents: [{ id: "40-prompts-medicina", name: "40 Prompts para Estudar Medicina com IA", content_type: "product", quantity: 1 }] }); } catch(e){} });
 
   // ===== tracking de produto da LP: até qual tela chegou, qual botão de compra tocou, tempo e anúncio. Sem dado pessoal. =====
   var lpt = {sid: "", tela: 1, clique: "", ini: Date.now(), envios: 0, ult: ""};
