@@ -767,7 +767,9 @@ body.com-oferta .bump-selo{display:none}
 
   document.querySelectorAll("[data-voltar]").forEach(function(b){ b.addEventListener("click", function(){ clearInterval(tTimer); clearTimeout(tPoll); ir("eForm"); }); });
 
-  function aprovado(link, dados){
+  // restaurado = a pessoa voltou ao checkout depois de já ter comprado: só mostra o download de novo,
+  // sem mandar compra para os pixels e sem renovar a data do pedido salvo (senão vira venda falsa no painel).
+  function aprovado(link, dados, restaurado){
     clearInterval(tTimer); clearTimeout(tPoll);
     linkPdf = link || "";
     document.getElementById("baixar").href = linkPdf;
@@ -787,9 +789,9 @@ body.com-oferta .bump-selo{display:none}
     var m = (pedido && pedido.metodo) || metodo;
     var jaContou = false;
     try { jaContou = sessionStorage.getItem("ck40Comprou") === (pedido ? pedido.id : "c"); sessionStorage.setItem("ck40Comprou", pedido ? pedido.id : "c"); } catch(e){}
-    if (!jaContou){ px("Purchase", Object.assign({metodo: m, origem: origem}, produto, {value: totalPago / 100})); oa("order_created", {event_id: pedido && pedido.id ? pedido.id : "ck-" + Date.now()}, totalPago); }
+    if (!jaContou && !restaurado && pedido && pedido.id){ px("Purchase", Object.assign({metodo: m, origem: origem}, produto, {value: totalPago / 100})); oa("order_created", {event_id: pedido.id}, totalPago); }
     try { clearInterval(tRel); reserva.style.display = "none"; } catch(e){}
-    try { localStorage.setItem(CHAVE_PEDIDO, JSON.stringify({id: pedido ? pedido.id : "", metodo: m, download: linkPdf, downloads: dados && dados.downloads || [], total: totalPago, criado: Date.now()})); } catch(e){}
+    if (!restaurado) try { localStorage.setItem(CHAVE_PEDIDO, JSON.stringify({id: pedido ? pedido.id : "", metodo: m, download: linkPdf, downloads: dados && dados.downloads || [], total: totalPago, criado: Date.now()})); } catch(e){}
   }
 
   // ===== FASE DO CURSO E EXTRAS (order bump) =====
@@ -955,7 +957,7 @@ body.com-oferta .bump-selo{display:none}
   try {
     var salvo = JSON.parse(localStorage.getItem(CHAVE_PEDIDO) || "null");
     if (salvo && (salvo.download || salvo.id)) fu.pedido = true;
-    if (salvo && salvo.download && Date.now() - salvo.criado < 7 * 864e5){ pedido = salvo; aprovado(salvo.download, salvo); }
+    if (salvo && salvo.download && Date.now() - salvo.criado < 7 * 864e5){ pedido = salvo; aprovado(salvo.download, salvo, true); }
     else if (salvo && salvo.id && Date.now() - salvo.criado < 1800e3){
       pedido = salvo;
       if (salvo.metodo === "pix" && salvo.qr) mostrarPix(); else { ir("eProc"); acompanhar(); }
