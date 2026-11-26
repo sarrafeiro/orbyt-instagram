@@ -114,6 +114,7 @@ export default {
       if (p === "/api/oferta" && req.method === "GET") return await ofertaVer(env, url);
       if (p === "/api/sair") return await recSair(req, env, url);
       if (p === "/api/recupera" && req.method === "GET") return await recAdmin(env, url, ctx);
+      if (p === "/api/copiar-arquivos" && req.method === "GET") return await copiarArquivos(env, url);
       if (p.startsWith("/api/")) return json({ erro: "rota não existe" }, 404);
     } catch (e) {
       console.log("erro", p, e && e.stack || e);
@@ -284,6 +285,21 @@ async function abrirArquivo(env, url, a) {
   const r = await env.ASSETS.fetch(new Request(url.origin + DIR_EXTRAS + a.bin + ".bin"));
   if (!r.ok) throw new Error("extra fora do ar: " + a.bin + " " + r.status);
   return decifrar(env, new Uint8Array(await r.arrayBuffer()));
+}
+
+// Uso único (26/11/2026): copia os PDFs já abertos para o KV (chaves "arquivo:<nome>"),
+// para o servidor da Krenak Cursos (krenakcursos.com.br) entregar sem precisar da PDF_KEY.
+// Um arquivo por chamada (limite de CPU do plano grátis): /api/copiar-arquivos?k=<senha do funil>&n=f1-osce
+async function copiarArquivos(env, url) {
+  if ((await sha256(url.searchParams.get("k") || "")) !== FUNIL_HASH) return new Response("Não encontrado.", { status: 404 });
+  const nomes = ["principal", "academico"];
+  for (const f of [1, 2, 3]) for (const k of ORDEM_EXTRAS) nomes.push("f" + f + "-" + k);
+  const n = url.searchParams.get("n") || "";
+  if (!nomes.includes(n)) return json({ nomes });
+  const b = new Uint8Array(await abrirArquivo(env, url, n === "principal" ? {} : { bin: n }));
+  const pdf = b[0] === 0x25 && b[1] === 0x50 && b[2] === 0x44 && b[3] === 0x46;
+  if (pdf) await env.PEDIDOS.put("arquivo:" + n, b);
+  return json({ n, pdf, bytes: b.length, gravado: pdf });
 }
 
 async function linkDownload(env, url, id, chave) {
