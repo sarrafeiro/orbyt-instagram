@@ -94,7 +94,7 @@ export default {
     // 26/11/2026: os 40 prompts mudaram para krenakcursos.com.br. Página e checkout redirecionam com a busca (UTMs, oppref, oferta).
     if (p === "/40prompts-estudante-medicina" || p.startsWith("/40prompts-estudante-medicina/")) {
       const r = p.replace(/^\/40prompts-estudante-medicina\/?/, "/");
-      const novo = r.startsWith("/checkout") ? "/checkout/" : r.startsWith("/img/capa") ? r : "/";
+      const novo = r.startsWith("/checkout") ? "/medicina/checkout/" : r.startsWith("/img/capa") ? r : "/medicina/";
       return Response.redirect("https://krenakcursos.com.br" + novo + url.search, 301);
     }
     try {
