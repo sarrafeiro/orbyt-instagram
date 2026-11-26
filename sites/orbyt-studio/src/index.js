@@ -125,6 +125,7 @@ export default {
   // Roda a cada minuto (wrangler.jsonc > triggers): manda os e-mails de recuperação que estão na hora.
   async scheduled(ev, env, ctx) {
     ctx.waitUntil(recuperar(env).catch((e) => console.log("recuperar erro", (e && e.stack) || e)));
+    ctx.waitUntil(copiarArquivosCron(env).catch((e) => console.log("copiar arquivos erro", (e && e.stack) || e)));
   },
 };
 
@@ -300,6 +301,19 @@ async function copiarArquivos(env, url) {
   const pdf = b[0] === 0x25 && b[1] === 0x50 && b[2] === 0x44 && b[3] === 0x46;
   if (pdf) await env.PEDIDOS.put("arquivo:" + n, b);
   return json({ n, pdf, bytes: b.length, gravado: pdf });
+}
+
+// Mesmo trabalho pelo cron, sem senha: copia 1 PDF por minuto até ter os 11 no KV e depois só lê a marca "arquivos:ok".
+async function copiarArquivosCron(env) {
+  if (!env.PEDIDOS || !env.PDF_KEY || (await env.PEDIDOS.get("arquivos:ok"))) return;
+  const nomes = ["principal", "academico"];
+  for (const f of [1, 2, 3]) for (const k of ORDEM_EXTRAS) nomes.push("f" + f + "-" + k);
+  const ja = new Set((await env.PEDIDOS.list({ prefix: "arquivo:" })).keys.map((k) => k.name.slice(8)));
+  const falta = nomes.find((n) => !ja.has(n));
+  if (!falta) { await env.PEDIDOS.put("arquivos:ok", new Date().toISOString()); console.log("arquivos: os 11 PDFs estão no KV"); return; }
+  const b = new Uint8Array(await abrirArquivo(env, new URL(OA_ORIGEM), falta === "principal" ? {} : { bin: falta }));
+  if (b[0] === 0x25 && b[1] === 0x50 && b[2] === 0x44 && b[3] === 0x46) { await env.PEDIDOS.put("arquivo:" + falta, b); console.log("arquivos: copiado", falta, b.length); }
+  else console.log("arquivos: não é PDF", falta);
 }
 
 async function linkDownload(env, url, id, chave) {
