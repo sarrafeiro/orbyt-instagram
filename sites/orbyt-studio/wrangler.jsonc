@@ -6,7 +6,9 @@
   "main": "src/index.js",
   "assets": {
     "directory": "./public",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    // Os 40 prompts mudaram para krenakcursos.com.br (26/11/2026): essas páginas passam pelo servidor, que redireciona.
+    "run_worker_first": ["/40prompts-estudante-medicina", "/40prompts-estudante-medicina/*"]
   },
   // O PDF vai criptografado dentro do servidor. Sem a chave PDF_KEY ninguém abre.
   "rules": [{ "type": "Data", "globs": ["**/*.bin"], "fallthrough": false }],
@@ -16,8 +18,8 @@
   // Banco SQL (D1) com as sessões do funil do checkout. Sem "database_id" de propósito:
   // o wrangler cria o banco "orbyt-funil" no primeiro deploy e mantém a ligação nos seguintes.
   "d1_databases": [{ "binding": "FUNIL", "database_name": "orbyt-funil" }],
-  // Cron: a cada minuto manda os e-mails de recuperação que estão na hora (src/index.js > recuperar).
-  "triggers": { "crons": ["* * * * *"] },
+  // Sem cron desde 26/11/2026: os e-mails de recuperação e pós-compra saem do servidor da Krenak Cursos (mesmo banco).
+  "triggers": { "crons": [] },
   "keep_vars": true,
   "observability": { "enabled": true }
 }

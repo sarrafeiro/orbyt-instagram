@@ -91,6 +91,12 @@ export default {
   async fetch(req, env, ctx) {
     const url = new URL(req.url);
     const p = url.pathname;
+    // 26/11/2026: os 40 prompts mudaram para krenakcursos.com.br. Página e checkout redirecionam com a busca (UTMs, oppref, oferta).
+    if (p === "/40prompts-estudante-medicina" || p.startsWith("/40prompts-estudante-medicina/")) {
+      const r = p.replace(/^\/40prompts-estudante-medicina\/?/, "/");
+      const novo = r.startsWith("/checkout") ? "/checkout/" : r.startsWith("/img/capa") ? r : "/";
+      return Response.redirect("https://krenakcursos.com.br" + novo + url.search, 301);
+    }
     try {
       if (p === "/api/mp/pix" && req.method === "POST") return await criarPix(req, env, url, ctx);
       if (p === "/api/mp/cartao" && req.method === "POST") return await criarCartao(req, env, url, ctx);
